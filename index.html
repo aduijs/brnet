@@ -102,6 +102,8 @@
        BASE
        ═══════════════════════════════════════════ */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    h1, h2, h3, h4 { font-weight: inherit; font-size: inherit; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     html { scroll-behavior: smooth; }
 
     body {
@@ -488,10 +490,13 @@
 
 <body>
 
+  <!-- Skip to main content (WCAG 2.4.1) -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:font-impact focus:tracking-wider focus:uppercase focus:text-sm" style="background: var(--crimson); color: #fff;">Skip to main content</a>
+
   <!-- ══════════════════════════════════════════════════════
        NAV — Minimal, Aggressive
        ══════════════════════════════════════════════════════ -->
-  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50" aria-label="Main navigation">
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
       <a href="/" class="relative z-10 flex items-center gap-3 group">
@@ -512,7 +517,7 @@
       <div class="hidden lg:flex items-center gap-5">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
         <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
           Join Discord
         </a>
       </div>
@@ -521,7 +526,7 @@
       <div class="flex lg:hidden items-center gap-3">
         <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
         <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+          <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
         </button>
       </div>
     </div>
@@ -534,7 +539,7 @@
       <a href="https://wiki.birthright.net" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
       <a href="#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
         Join Discord
       </a>
     </div>
@@ -543,6 +548,7 @@
   <!-- ══════════════════════════════════════════════════════
        HERO — CINEMATIC + AGGRESSIVE
        ══════════════════════════════════════════════════════ -->
+  <main id="main-content">
   <section class="hero-mobile-cover relative min-h-screen flex flex-col items-center justify-end grain overflow-hidden" style="background: var(--bg-primary);">
     <!-- Video BG — the 3D logo animation -->
     <div class="absolute inset-0" style="background: var(--bg-primary);"></div>
@@ -573,12 +579,12 @@
       </div>
 
       <!-- MAIN HEADING — Mörk Borg aggressive stacking -->
-      <div class="anim-fade-up anim-d3 text-stack mb-6">
+      <h1 class="anim-fade-up anim-d3 text-stack mb-6">
         <span class="typo-mega" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow);">CLAIM YOUR</span>
         <span class="typo-mega" style="text-shadow: var(--hero-text-shadow);">
           <span style="color: var(--text-primary);">DIVINE </span><span class="word-accent" style="font-size: 1.1em;">BLOOD</span>
         </span>
-      </div>
+      </h1>
 
       <!-- Subtext -->
       <p class="anim-fade-up anim-d4 max-w-xl text-xl md:text-2xl" style="color: var(--text-secondary); line-height: 1.65; font-weight: 300;">
@@ -590,10 +596,10 @@
       <div class="anim-fade-up anim-d5 flex flex-wrap gap-4 mt-10">
         <a href="#world" class="btn-primary">
           Enter Cerilia
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
         <a href="#tools" class="btn-ghost">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
           Get the Rules
         </a>
       </div>
@@ -617,10 +623,10 @@
       <!-- Section label -->
       <div class="reveal mb-20 lg:mb-32">
         <span class="typo-label" style="color: var(--crimson);">&#9608; 01</span>
-        <div class="mt-4 typo-section-head text-stack">
+        <h2 class="mt-4 typo-section-head text-stack">
           <span style="color: var(--text-primary);">THE WORLD</span>
           <span style="color: var(--text-primary);">OF <span class="word-gold">CERILIA</span></span>
-        </div>
+        </h2>
       </div>
 
       <!-- Asymmetric two-column: logo + text -->
@@ -711,10 +717,10 @@
       <div class="reveal flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 lg:mb-24">
         <div>
           <span class="typo-label" style="color: var(--crimson);">&#9608; 02</span>
-          <div class="mt-4 typo-section-head text-stack">
+          <h2 class="mt-4 typo-section-head text-stack">
             <span style="color: var(--text-primary);">THE <span class="word-accent">SIX</span></span>
             <span style="color: var(--text-primary);">REGIONS</span>
-          </div>
+          </h2>
         </div>
         <p class="mt-6 lg:mt-0 max-w-md font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
           Each region of Cerilia is a world unto itself — with unique cultures,
@@ -726,7 +732,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <!-- Anuire — Large -->
         <a href="regions/anuire.html" class="reveal region-card md:col-span-2 lg:col-span-2 h-[400px] lg:h-[500px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/anuire%20800x600.png" alt="Anuire" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/anuire%20800x600.png" alt="The castle lands of Anuire" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);"></div>
           <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 40%);"></div>
           <div class="absolute bottom-0 left-0 p-8 lg:p-12 z-10 max-w-lg">
@@ -743,7 +749,7 @@
 
         <!-- Rjurik -->
         <a href="regions/rjurik.html" class="reveal rd1 region-card h-[400px] lg:h-[500px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/rjurik%20800x600.png" alt="Rjurik Highlands" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/rjurik%20800x600.png" alt="The forested highlands of Rjurik" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
           <div class="absolute bottom-0 left-0 p-8 z-10">
             <span class="typo-label" style="color: var(--gold);">The Wild North</span>
@@ -756,7 +762,7 @@
 
         <!-- Khinasi -->
         <a href="regions/khinasi.html" class="reveal rd1 region-card h-[350px] lg:h-[400px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/khinasi%20800x600.png" alt="Khinasi" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/khinasi%20800x600.png" alt="The golden cities of Khinasi" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
           <div class="absolute bottom-0 left-0 p-8 z-10">
             <span class="typo-label" style="color: var(--gold);">The Sunlit Lands</span>
@@ -769,7 +775,7 @@
 
         <!-- Brechtur -->
         <a href="regions/brechtur.html" class="reveal rd2 region-card h-[350px] lg:h-[400px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/brechtur%20800x600.png" alt="Brechtur" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/brechtur%20800x600.png" alt="The moonlit harbours of Brechtur" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
           <div class="absolute bottom-0 left-0 p-8 z-10">
             <span class="typo-label" style="color: var(--gold);">The Trading Coast</span>
@@ -782,7 +788,7 @@
 
         <!-- Vosgaard -->
         <a href="regions/vosgaard.html" class="reveal rd3 region-card h-[350px] lg:h-[400px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/vosgaard%20800x600.png" alt="Vosgaard" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/vosgaard%20800x600.png" alt="The frozen wastes of Vosgaard" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
           <div class="absolute bottom-0 left-0 p-8 z-10">
             <span class="typo-label" style="color: var(--crimson);">The Frozen Waste</span>
@@ -795,7 +801,7 @@
 
         <!-- Shadow World — Full width, menacing -->
         <a href="regions/shadow-world.html" class="reveal rd3 region-card md:col-span-2 lg:col-span-3 h-[350px] lg:h-[400px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/shadowworld%20800x600.png" alt="The Shadow World" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 40%;">
+          <img src="brand_assets/shadowworld%20800x600.png" alt="The twisted ruins of the Shadow World" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 40%;">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);"></div>
           <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 50%);"></div>
           <div class="absolute inset-0 grain" style="--grain-opacity: 0.08;"></div>
@@ -824,10 +830,10 @@
       <!-- Header -->
       <div class="reveal mb-16 lg:mb-24">
         <span class="typo-label" style="color: var(--crimson);">&#9608; 03</span>
-        <div class="mt-4 typo-section-head text-stack">
+        <h2 class="mt-4 typo-section-head text-stack">
           <span style="color: var(--text-primary);">DIGITAL</span>
           <span><span class="word-accent">ARSENAL</span></span>
-        </div>
+        </h2>
         <p class="mt-6 max-w-lg font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
           Tools forged for rulers. Manage your domain, track your bloodline, and
           wage war — all from your browser.
@@ -841,7 +847,7 @@
         <div class="reveal tool-card p-8 lg:p-10">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008V7.5z"/></svg>
+              <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008V7.5z"/></svg>
             </div>
             <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Domain Management</span>
           </div>
@@ -858,7 +864,7 @@
         <div class="reveal rd1 tool-card p-8 lg:p-10">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+              <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
             </div>
             <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Character Tools</span>
           </div>
@@ -875,7 +881,7 @@
         <div class="reveal rd2 tool-card p-8 lg:p-10">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+              <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
             </div>
             <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Warfare</span>
           </div>
@@ -892,7 +898,7 @@
         <div class="reveal rd2 tool-card p-8 lg:p-10">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+              <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
             </div>
             <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Exploration</span>
           </div>
@@ -909,7 +915,7 @@
         <div class="reveal rd3 tool-card p-8 lg:p-10">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Gameplay</span>
           </div>
@@ -926,7 +932,7 @@
         <div class="reveal rd3 tool-card p-8 lg:p-10">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z"/></svg>
+              <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z"/></svg>
             </div>
             <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">DM Tools</span>
           </div>
@@ -953,7 +959,7 @@
       <div class="reveal text-center mb-16 lg:mb-24">
         <span class="typo-label" style="color: var(--crimson);">&#9608; 04</span>
         <div class="mt-4">
-          <span class="typo-section-head" style="color: var(--text-primary);">JOIN THE <span class="word-accent">REALM</span></span>
+          <h2 class="typo-section-head" style="color: var(--text-primary);">JOIN THE <span class="word-accent">REALM</span></h2>
         </div>
         <p class="mt-6 max-w-lg mx-auto font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
           25 years of community. Veterans and newcomers forging the future of Birthright together.
@@ -966,7 +972,7 @@
         <!-- Forum -->
         <a href="https://forum.birthright.net" class="reveal community-card group p-8 lg:p-10 text-center">
           <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-            <svg class="w-8 h-8" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+            <svg aria-hidden="true" class="w-8 h-8" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
           </div>
           <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--crimson)] transition-colors" style="color: var(--text-primary);">FORUM</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.6;">
@@ -980,7 +986,7 @@
         <!-- Wiki -->
         <a href="https://wiki.birthright.net" class="reveal rd1 community-card group p-8 lg:p-10 text-center">
           <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-            <svg class="w-8 h-8" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            <svg aria-hidden="true" class="w-8 h-8" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
           </div>
           <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--crimson)] transition-colors" style="color: var(--text-primary);">WIKI</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.6;">
@@ -994,7 +1000,7 @@
         <!-- Discord -->
         <a href="https://discord.gg/birthright" class="reveal rd2 community-card group p-8 lg:p-10 text-center">
           <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
-            <svg class="w-8 h-8" style="color: var(--crimson);" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            <svg aria-hidden="true" class="w-8 h-8" style="color: var(--crimson);" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
           </div>
           <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--crimson)] transition-colors" style="color: var(--text-primary);">DISCORD</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.6;">
@@ -1030,11 +1036,11 @@
         <!-- Left: CTA -->
         <div class="reveal">
           <span class="typo-label" style="color: var(--crimson);">&#9608; 05</span>
-          <div class="mt-4 text-stack">
+          <h2 class="mt-4 text-stack">
             <span class="typo-section-head" style="color: var(--text-primary);">START</span>
             <span class="typo-section-head"><span class="word-accent">RULING</span></span>
             <span class="typo-section-head" style="color: var(--text-primary);">TODAY</span>
-          </div>
+          </h2>
           <p class="mt-8 font-body text-xl" style="color: var(--text-secondary); line-height: 1.7; font-weight: 300;">
             Everything you need to run a Birthright campaign is available for free.
             Original sourcebooks, community conversions, and quick-start guides.
@@ -1042,11 +1048,11 @@
           <div class="mt-10 flex flex-wrap gap-4">
             <a href="#" class="btn-primary">
               Download Rulebook
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+              <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
             </a>
             <a href="https://wiki.birthright.net" class="btn-ghost">
               Read the Wiki
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+              <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
             </a>
           </div>
         </div>
@@ -1097,6 +1103,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ══════════════════════════════════════════════════════
        FOOTER
        ══════════════════════════════════════════════════════ -->
@@ -1112,13 +1120,13 @@
           </p>
           <div class="flex gap-4 mt-6">
             <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+              <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
             <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+              <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
             <a href="https://wiki.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+              <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
         </div>
