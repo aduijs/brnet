@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rjurik Highlands — Birthright.net</title>
+  <meta name="description" content="Explore the Rjurik Highlands — the frozen north of Cerilia, where druids speak for the land and jarls earn their crowns through deeds.">
+  <meta property="og:title" content="Rjurik Highlands — Birthright">
+  <meta property="og:description" content="Where druids speak for the land and jarls earn their crowns through deeds, not birth.">
+  <meta property="og:image" content="../brand_assets/rjurik%20800x600.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --overlay-light: rgba(6, 6, 6, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --invert: 0;
+      /* Region accent — forest green */
+      --accent: #2d7a3a;
+      --accent-dim: rgba(45, 122, 58, 0.12);
+      --accent-bright: #3a9e4a;
+      --accent-glow: rgba(45, 122, 58, 0.25);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --overlay-light: rgba(214, 204, 184, 0.4);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --invert: 0;
+      /* Region accent — forest green (light mode) */
+      --accent: #1d6328;
+      --accent-dim: rgba(29, 99, 40, 0.12);
+      --accent-bright: #258832;
+      --accent-glow: rgba(29, 99, 40, 0.18);
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .word-accent {
+      display: inline-block;
+      color: var(--accent);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--accent-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .word-gold { color: var(--gold); }
+
+    .text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .text-stack > * { line-height: 0.88; }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+    @keyframes snowfall {
+      0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.5; }
+      100% { transform: translateY(100vh) translateX(30px) rotate(360deg); opacity: 0; }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+    .rd5 { transition-delay: 0.75s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--accent); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--gold); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       DOMAIN CARDS
+       ═══════════════════════════════════════════ */
+    .domain-card {
+      position: relative; overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.5s, background var(--transition-theme);
+    }
+    .domain-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-dim), var(--card-hover-shadow);
+    }
+    .domain-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .domain-card:hover::before { opacity: 1; }
+
+    /* Region link cards */
+    .region-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+    }
+    .region-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--card-hover-shadow);
+    }
+    .region-card img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .region-card:hover img {
+      transform: scale(1.08);
+    }
+
+    /* ═══════════════════════════════════════════
+       EDITORIAL BLOCKS
+       ═══════════════════════════════════════════ */
+    .editorial-block {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: border-color 0.4s, background var(--transition-theme);
+    }
+    .editorial-block:hover {
+      border-color: var(--accent);
+    }
+    .editorial-block::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .editorial-block:hover::after {
+      width: 100%;
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--accent-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-primary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+    .btn-ghost:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    /* ═══════════════════════════════════════════
+       MISC
+       ═══════════════════════════════════════════ */
+    .offset-left { transform: translateX(-5vw); }
+    .offset-right { transform: translateX(5vw); }
+
+    section {
+      transition: background var(--transition-theme);
+    }
+
+    /* Fact item */
+    .fact-item {
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+      transition: border-color 0.3s;
+    }
+    .fact-item:hover {
+      border-left-color: var(--accent-bright);
+    }
+
+    @media (max-width: 768px) {
+      .offset-left, .offset-right { transform: none; }
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="anuire.html" class="nav-link">Anuire</a>
+        <a href="khinasi.html" class="nav-link">Khinasi</a>
+        <a href="brechtur.html" class="nav-link">Brechtur</a>
+        <a href="vosgaard.html" class="nav-link">Vosgaard</a>
+        <a href="shadow-world.html" class="nav-link">Shadow World</a>
+        <a href="https://wiki.birthright.net" class="nav-link">Wiki</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <!-- Mobile menu btn -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="../index.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Home</a>
+      <a href="anuire.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Anuire</a>
+      <a href="khinasi.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Khinasi</a>
+      <a href="brechtur.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Brechtur</a>
+      <a href="vosgaard.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Vosgaard</a>
+      <a href="shadow-world.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Shadow World</a>
+      <a href="https://wiki.birthright.net" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — FROZEN WILDERNESS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex flex-col justify-end grain overflow-hidden" style="background: var(--bg-primary);">
+    <!-- BG Image -->
+    <div class="absolute inset-0">
+      <img src="../brand_assets/rjurik%20800x600.png" alt="" class="w-full h-full object-cover" style="opacity: 0.55;">
+      <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-primary) 0%, transparent 40%, transparent 60%, rgba(6,6,6,0.3) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(45,122,58,0.08) 0%, transparent 50%, rgba(45,122,58,0.05) 100%); mix-blend-multiply;"></div>
+    </div>
+
+    <!-- Snowfall particles container -->
+    <div id="snowfall" class="absolute inset-0 pointer-events-none overflow-hidden" style="z-index: 10;"></div>
+
+    <!-- Scanline -->
+    <div class="hero-scanline" style="z-index: 11;"></div>
+
+    <!-- Content -->
+    <div class="relative z-20 max-w-[1600px] mx-auto w-full px-6 lg:px-12 pb-16 lg:pb-24">
+      <!-- Label -->
+      <div class="anim-fade-up anim-d1 mb-6">
+        <span class="typo-label inline-flex items-center gap-3" style="color: var(--accent);">
+          <span style="color: var(--accent); letter-spacing: 0.05em;">&#9632;&#9632;</span>
+          The Wild North
+        </span>
+      </div>
+
+      <!-- Massive stacked title -->
+      <div class="text-stack anim-fade-up anim-d2 mb-8">
+        <span class="typo-mega" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow);">RJURIK</span>
+        <span class="typo-mega" style="color: var(--accent); text-shadow: 0 0 60px var(--accent-dim); font-size: clamp(3rem, 10vw, 8rem);">HIGHLANDS</span>
+      </div>
+
+      <!-- Subtitle -->
+      <p class="anim-fade-up anim-d3 font-body text-lg lg:text-xl max-w-2xl" style="color: var(--text-secondary); line-height: 1.7;">
+        Where druids speak for the land and jarls earn their crowns through deeds, not birth. Nature's law rules above the swords of men.
+      </p>
+
+      <!-- CTA -->
+      <div class="anim-fade-up anim-d4 mt-10 flex flex-wrap gap-4">
+        <a href="https://wiki.birthright.net/index.php/Rjurik_Highlands" class="btn-primary">
+          Explore the Wiki
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="anim-fade-up anim-d5 mt-16 flex items-center gap-3">
+        <div class="w-[1px] h-12" style="background: linear-gradient(to bottom, var(--accent), transparent);"></div>
+        <span class="typo-label" style="color: var(--text-muted);">Scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-12" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       OVERVIEW — Asymmetric Layout
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-20 lg:py-32" style="background: var(--bg-secondary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <!-- Lore — wider column -->
+        <div class="lg:col-span-7 reveal-left">
+          <span class="typo-label block mb-6" style="color: var(--accent);">Region Overview</span>
+          <h2 class="typo-section-head mb-8" style="color: var(--text-primary);">
+            The <span class="word-accent">Untamed</span> North
+          </h2>
+          <div class="space-y-6">
+            <p class="font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.7;">
+              The Rjurik Highlands stretch across the frozen north of Cerilia &mdash; a vast expanse of ancient forests, glacier-carved fjords, and snow-capped mountains. Here, the druids of Erik hold sway over a proud, independent people who measure wealth not in gold but in honor, cattle, and the strength of one's sworn word.
+            </p>
+            <p class="font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.7;">
+              The Rjurik have never been conquered, and they never intend to be. Their jarls rule by the consent of their people, and any leader who forgets this will find himself ruling an empty hall.
+            </p>
+          </div>
+        </div>
+
+        <!-- Facts — narrower, offset -->
+        <div class="lg:col-span-5 lg:pt-24 reveal-right">
+          <div class="space-y-8">
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Government</span>
+              <p class="font-display text-lg font-semibold" style="color: var(--text-primary);">Tribal Jarls &amp; Druids</p>
+            </div>
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Religion</span>
+              <p class="font-display text-lg font-semibold" style="color: var(--text-primary);">Erik (Father of Forests)</p>
+            </div>
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Landscape</span>
+              <p class="font-display text-lg font-semibold" style="color: var(--text-primary);">Boreal forests, fjords, tundra, mountains</p>
+            </div>
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Culture</span>
+              <p class="font-display text-lg font-semibold" style="color: var(--text-primary);">Norse-inspired, oral tradition, honor-bound</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-12" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       NOTABLE DOMAINS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-20 lg:py-32" style="background: var(--bg-primary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="mb-16 reveal">
+        <span class="typo-label block mb-4" style="color: var(--accent);">Domains of Power</span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Notable <span class="word-accent">Domains</span>
+        </h2>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Halskapa -->
+        <div class="domain-card p-8 lg:p-10 reveal rd1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Halskapa</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            The largest Rjurik realm, ruled by the Overseer of Halskapa. A constant struggle between civilization and the wild.
+          </p>
+        </div>
+
+        <!-- Stjordvik -->
+        <div class="domain-card p-8 lg:p-10 reveal rd2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Stjordvik</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            A prosperous coastal realm that balances Rjurik tradition with trade. The jarl here walks a fine line between old ways and new wealth.
+          </p>
+        </div>
+
+        <!-- Rjuvik -->
+        <div class="domain-card p-8 lg:p-10 reveal rd3">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Rjuvik</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            The most warlike of the Rjurik realms. Its jarl believes strength alone should determine who rules the highlands.
+          </p>
+        </div>
+
+        <!-- Blood Skull Barony -->
+        <div class="domain-card p-8 lg:p-10 reveal rd4">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--crimson);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Blood Skull Barony</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            An orcish domain that constantly threatens the southern Rjurik lands &mdash; a reminder that civilization's grip is tenuous here.
+          </p>
+        </div>
+
+        <!-- Hogunmark -->
+        <div class="domain-card p-8 lg:p-10 reveal rd5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Hogunmark</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            A druid-led realm where Erik's followers hold more power than any jarl. The forest itself seems to protect this land.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-12" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       CULTURE & THEMES
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-20 lg:py-32" style="background: var(--bg-secondary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="mb-16 reveal">
+        <span class="typo-label block mb-4" style="color: var(--accent);">Lore &amp; Identity</span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Culture &amp; <span class="word-accent">Themes</span>
+        </h2>
+      </div>
+
+      <!-- Editorial blocks -->
+      <div class="space-y-8">
+
+        <!-- The Old Ways -->
+        <div class="editorial-block p-8 lg:p-12 reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-4">
+              <span class="typo-label block mb-3" style="color: var(--text-muted);">Theme 01</span>
+              <h3 class="font-impact text-4xl lg:text-5xl tracking-wide uppercase" style="color: var(--accent);">The Old Ways</h3>
+            </div>
+            <div class="lg:col-span-8">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+                The druidic traditions of Erik run deeper than any political boundary. Nature worship permeates every aspect of Rjurik life &mdash; from the blessing of the harvest to the funeral rites performed under ancient oaks. Yet progress knocks at every door: Anuirean missionaries bring temples to Haelyn, merchants bring foreign goods and foreign ideas. The tension between preservation and progress defines the Rjurik soul. Those who cling too tightly to the old ways risk stagnation; those who abandon them risk losing everything that makes the Rjurik people who they are.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blood and Honor -->
+        <div class="editorial-block p-8 lg:p-12 reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-4">
+              <span class="typo-label block mb-3" style="color: var(--text-muted);">Theme 02</span>
+              <h3 class="font-impact text-4xl lg:text-5xl tracking-wide uppercase" style="color: var(--crimson);">Blood and Honor</h3>
+            </div>
+            <div class="lg:col-span-8">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+                Personal valor is the currency of respect among the Rjurik. A man's word is his bond, and oath-breaking is considered the gravest of sins &mdash; worse than murder, for it corrupts the very fabric of trust that holds communities together. The Thing, or assembly, serves as the great equalizer: here, any free person may speak, any grievance may be aired, and justice is rendered by the collective will. When words fail, trial by combat settles the matter. The Rjurik do not see violence as barbaric &mdash; they see it as honest.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Endless Winter -->
+        <div class="editorial-block p-8 lg:p-12 reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-4">
+              <span class="typo-label block mb-3" style="color: var(--text-muted);">Theme 03</span>
+              <h3 class="font-impact text-4xl lg:text-5xl tracking-wide uppercase" style="color: var(--text-primary);">The Endless Winter</h3>
+            </div>
+            <div class="lg:col-span-8">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+                Survival is not a metaphor in the Highlands &mdash; it is the daily reality. The long dark of winter brings not just cold but isolation, madness, and the creatures that haunt the frozen wastes. Giants stalk the mountain passes. Wolves as large as horses prowl the deep woods. The White Witch's domain in the far north is a place where winter never ends, where the very land itself seems hostile to all warm-blooded life. To be Rjurik is to face nature at its most unforgiving and refuse to yield.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="py-12" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       OTHER REGIONS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-20 lg:py-32" style="background: var(--bg-primary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="mb-16 reveal">
+        <span class="typo-label block mb-4" style="color: var(--gold);">Beyond the Highlands</span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Explore Other <span class="word-accent">Regions</span>
+        </h2>
+      </div>
+
+      <!-- Region cards grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Anuire -->
+        <a href="anuire.html" class="region-card block reveal rd1" style="border: 1px solid var(--border);">
+          <div class="relative h-48 overflow-hidden">
+            <img src="../brand_assets/anuire%20800x600.png" alt="Anuire" class="w-full h-full object-cover">
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%); mix-blend-multiply;"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card), transparent);"></div>
+          </div>
+          <div class="p-6" style="background: var(--bg-card);">
+            <span class="typo-label block mb-2" style="color: var(--gold);">The Heartlands</span>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Anuire</h3>
+            <p class="font-body text-sm mt-2" style="color: var(--text-muted); line-height: 1.6;">The shattered empire where bloodlines wage war for the Iron Throne.</p>
+          </div>
+        </a>
+
+        <!-- Khinasi -->
+        <a href="khinasi.html" class="region-card block reveal rd2" style="border: 1px solid var(--border);">
+          <div class="relative h-48 overflow-hidden">
+            <img src="../brand_assets/khinasi%20800x600.png" alt="Khinasi" class="w-full h-full object-cover">
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%); mix-blend-multiply;"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card), transparent);"></div>
+          </div>
+          <div class="p-6" style="background: var(--bg-card);">
+            <span class="typo-label block mb-2" style="color: var(--gold);">The Sunlit Lands</span>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Khinasi</h3>
+            <p class="font-body text-sm mt-2" style="color: var(--text-muted); line-height: 1.6;">Where scholars and merchants rule, and magic is the highest art.</p>
+          </div>
+        </a>
+
+        <!-- Brechtur -->
+        <a href="brechtur.html" class="region-card block reveal rd3" style="border: 1px solid var(--border);">
+          <div class="relative h-48 overflow-hidden">
+            <img src="../brand_assets/brechtur%20800x600.png" alt="Brechtur" class="w-full h-full object-cover">
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%); mix-blend-multiply;"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card), transparent);"></div>
+          </div>
+          <div class="p-6" style="background: var(--bg-card);">
+            <span class="typo-label block mb-2" style="color: var(--gold);">The Trade Lands</span>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Brechtur</h3>
+            <p class="font-body text-sm mt-2" style="color: var(--text-muted); line-height: 1.6;">Where coin speaks louder than crowns and guilds rival kingdoms.</p>
+          </div>
+        </a>
+
+        <!-- Vosgaard -->
+        <a href="vosgaard.html" class="region-card block reveal rd4" style="border: 1px solid var(--border);">
+          <div class="relative h-48 overflow-hidden">
+            <img src="../brand_assets/vosgaard%20800x600.png" alt="Vosgaard" class="w-full h-full object-cover">
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%); mix-blend-multiply;"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card), transparent);"></div>
+          </div>
+          <div class="p-6" style="background: var(--bg-card);">
+            <span class="typo-label block mb-2" style="color: var(--gold);">The Savage Steppes</span>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Vosgaard</h3>
+            <p class="font-body text-sm mt-2" style="color: var(--text-muted); line-height: 1.6;">Brutal warlords and dark gods rule this unforgiving land.</p>
+          </div>
+        </a>
+
+        <!-- Shadow World -->
+        <a href="shadow-world.html" class="region-card block reveal rd5" style="border: 1px solid var(--border);">
+          <div class="relative h-48 overflow-hidden">
+            <img src="../brand_assets/shadowworld%20800x600.png" alt="Shadow World" class="w-full h-full object-cover">
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card) 0%, transparent 60%); mix-blend-multiply;"></div>
+            <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-card), transparent);"></div>
+          </div>
+          <div class="p-6" style="background: var(--bg-card);">
+            <span class="typo-label block mb-2" style="color: var(--crimson);">The Half-World</span>
+            <h3 class="font-impact text-2xl tracking-wide uppercase" style="color: var(--text-primary);">Shadow World</h3>
+            <p class="font-body text-sm mt-2" style="color: var(--text-muted); line-height: 1.6;">A dark mirror of Cerilia where the dead do not rest easy.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting,
+            recognized by Wizards of the Coast. Keeping the blood alive since 1996.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            </a>
+            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+            </a>
+            <a href="https://wiki.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigate -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Regions</h4>
+          <div class="flex flex-col gap-3">
+            <a href="anuire.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Anuire</a>
+            <a href="khinasi.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Khinasi</a>
+            <a href="brechtur.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Brechtur</a>
+            <a href="vosgaard.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Vosgaard</a>
+            <a href="shadow-world.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Shadow World</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
+          <div class="flex flex-col gap-3">
+            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Home</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === SNOWFALL PARTICLES ===
+    const snowContainer = document.getElementById('snowfall');
+    function spawnSnowflake() {
+      const s = document.createElement('div');
+      const size = Math.random() * 3 + 1;
+      const x = Math.random() * 100;
+      const dur = Math.random() * 10 + 8;
+      const opacity = Math.random() * 0.4 + 0.1;
+      s.style.cssText = `
+        position: absolute; top: -10px; left: ${x}%;
+        width: ${size}px; height: ${size}px; border-radius: 50%;
+        background: rgba(240, 236, 228, ${opacity});
+        animation: snowfall ${dur}s linear;
+        pointer-events: none;
+      `;
+      snowContainer.appendChild(s);
+      setTimeout(() => s.remove(), dur * 1000);
+    }
+    setInterval(spawnSnowflake, 300);
+
+    // === BLOOD DRIP DIVIDERS — restart on scroll ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight; // reflow
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANUIRE — The Heartlands of Cerilia | Birthright.net</title>
+  <meta name="description" content="Explore Anuire, the political heart of Cerilia. Feudal kingdoms built on the ruins of the greatest empire the world has ever known.">
+  <meta property="og:title" content="Anuire — The Heartlands of Cerilia">
+  <meta property="og:description" content="The shattered empire where feudal lords battle for the Iron Throne while ancient bloodlines scheme in courts of steel and velvet.">
+  <meta property="og:image" content="../brand_assets/anuire%20800x600.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      --accent: #c41e1e;
+      --accent-dim: rgba(196, 30, 30, 0.15);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --accent: #8b1a1a;
+      --accent-dim: rgba(139, 26, 26, 0.12);
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       AGGRESSIVE TYPOGRAPHY
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .word-accent {
+      display: inline-block;
+      color: var(--accent);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--accent-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .word-gold {
+      color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+    .rd5 { transition-delay: 0.75s; }
+    .rd6 { transition-delay: 0.9s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--accent); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--gold); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARDS
+       ═══════════════════════════════════════════ */
+    .domain-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+      position: relative;
+      overflow: hidden;
+    }
+    .domain-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-dim), var(--card-hover-shadow);
+    }
+    .domain-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .domain-card:hover::before {
+      opacity: 1;
+    }
+
+    .region-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+    }
+    .region-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--card-hover-shadow);
+    }
+    .region-card img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .region-card:hover img {
+      transform: scale(1.08);
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--crimson-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--accent-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════════════
+       FACT ITEM
+       ═══════════════════════════════════════════ */
+    .fact-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .fact-item:last-child { border-bottom: none; }
+
+    /* ═══════════════════════════════════════════
+       CULTURE BLOCK
+       ═══════════════════════════════════════════ */
+    .culture-block {
+      padding: 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .culture-block:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 40px var(--gold-dim);
+    }
+    .culture-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent), var(--gold));
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION TRANSITIONS
+       ═══════════════════════════════════════════ */
+    section {
+      transition: background var(--transition-theme);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="rjurik.html" class="nav-link">Rjurik</a>
+        <a href="khinasi.html" class="nav-link">Khinasi</a>
+        <a href="brechtur.html" class="nav-link">Brechtur</a>
+        <a href="vosgaard.html" class="nav-link">Vosgaard</a>
+        <a href="shadow-world.html" class="nav-link">Shadow World</a>
+        <a href="https://wiki.birthright.net" class="nav-link">Wiki</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <!-- Mobile menu btn -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="../index.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Home</a>
+      <a href="rjurik.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Rjurik</a>
+      <a href="khinasi.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Khinasi</a>
+      <a href="brechtur.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Brechtur</a>
+      <a href="vosgaard.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Vosgaard</a>
+      <a href="shadow-world.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Shadow World</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — CINEMATIC REGION TITLE CARD
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex flex-col items-center justify-end grain overflow-hidden" style="background: var(--bg-primary);">
+    <!-- BG Image -->
+    <div class="absolute inset-0">
+      <img src="../brand_assets/anuire%20800x600.png" alt="Anuire" class="w-full h-full object-cover" style="opacity: 0.6; mix-blend-mode: luminosity;">
+      <!-- Color treatment layer -->
+      <div class="absolute inset-0" style="background: var(--accent); mix-blend-mode: multiply; opacity: 0.15;"></div>
+    </div>
+    <!-- Gradient overlays -->
+    <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-primary) 0%, transparent 40%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 30%);"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at center 40%, transparent 30%, var(--bg-primary) 80%);"></div>
+
+    <!-- Scanline -->
+    <div class="hero-scanline"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 pb-20 lg:pb-28 w-full">
+      <!-- Label -->
+      <div class="anim-fade-up anim-d1 mb-6">
+        <span class="typo-label inline-flex items-center gap-3" style="color: var(--accent);">
+          <span style="color: var(--accent);">&#9632;&#9632;</span>
+          The Heartlands of Cerilia
+        </span>
+      </div>
+
+      <!-- Main title -->
+      <h1 class="typo-mega anim-fade-up anim-d2" style="text-shadow: var(--hero-text-shadow);">
+        <span class="word-accent" style="transform: rotate(-2deg) scale(1.02);">Anuire</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="anim-fade-up anim-d3 font-body text-lg lg:text-xl max-w-2xl mt-8" style="color: var(--text-secondary); line-height: 1.7;">
+        The shattered empire where feudal lords battle for the Iron Throne while ancient bloodlines scheme in courts of steel and velvet.
+      </p>
+
+      <!-- CTA -->
+      <div class="anim-fade-up anim-d4 mt-10 flex flex-wrap gap-4">
+        <a href="https://wiki.birthright.net" class="btn-primary">
+          Explore the Wiki
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <a href="../index.html" class="btn-ghost">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+          Back to Cerilia
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-up anim-d5">
+      <span class="typo-label" style="color: var(--text-muted); font-size: 0.55rem;">Scroll</span>
+      <div class="w-px h-8" style="background: linear-gradient(to bottom, var(--accent), transparent);"></div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-12" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       OVERVIEW — ASYMMETRIC TWO-COLUMN
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain section-pad" style="background: var(--bg-secondary); padding: 6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <!-- Left: Lore text (7 cols) -->
+        <div class="lg:col-span-7 reveal-left">
+          <span class="typo-label block mb-6" style="color: var(--accent);">
+            <span style="color: var(--accent);">&#9632;</span>&ensp;Overview
+          </span>
+          <h2 class="typo-section-head mb-8" style="color: var(--text-primary);">
+            The <span class="word-accent">Iron</span> Throne<br>Awaits
+          </h2>
+          <div class="space-y-6 font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+            <p>
+              Anuire is the political heart of Cerilia — a land of feudal kingdoms built upon the ruins of the greatest empire the world has ever known. When the last Emperor fell, the Iron Throne was left empty, and dozens of noble houses rose to claim it.
+            </p>
+            <p>
+              Now, princes and dukes wage a cold war of diplomacy, espionage, and open battle across the heartlands, each believing their bloodline grants them the divine right to rule all of Anuire.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Key facts sidebar (5 cols) -->
+        <div class="lg:col-span-5 reveal-right">
+          <div class="p-8 lg:p-10" style="background: var(--bg-card); border: 1px solid var(--border);">
+            <h3 class="font-impact text-xl tracking-[0.15em] uppercase mb-8" style="color: var(--gold);">
+              Key Facts
+            </h3>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Population</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">~Millions</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Government</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Feudal Monarchy (fragmented)</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Religion</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Haelyn (Noble War), Erik (Nature), Cuiraécen (Storms)</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Landscape</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Fertile plains, ancient forests, fortified cities</span>
+            </div>
+
+            <!-- Accent bar -->
+            <div class="mt-8 h-1 w-16" style="background: linear-gradient(90deg, var(--accent), var(--gold));"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-12" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       NOTABLE DOMAINS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain section-pad" style="background: var(--bg-primary); padding: 6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-16">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span style="color: var(--accent);">&#9632;</span>&ensp;Powers of the Land
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Notable <span class="word-accent">Domains</span>
+        </h2>
+      </div>
+
+      <!-- Domain grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Avanil -->
+        <div class="domain-card p-8 reveal rd1">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Avanil</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            The strongest claimant to the Iron Throne. Prince Avan commands the largest army in Anuire and pursues reunification through strength.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+
+        <!-- Boeruine -->
+        <div class="domain-card p-8 reveal rd2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423Z"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Boeruine</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            The Archduke of Boeruine challenges Avanil's claim with equal ambition and a fierce military tradition.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+
+        <!-- Roesone -->
+        <div class="domain-card p-8 reveal rd3">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Roesone</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            A young barony carved from the wilds, Roesone represents the frontier spirit — self-made rulers building something new.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+
+        <!-- Medoere -->
+        <div class="domain-card p-8 reveal rd4">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Medoere</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            A theocracy devoted to Ruornil, the god of magic. The only domain where the temple IS the state.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </div>
+
+        <!-- Elinie -->
+        <div class="domain-card p-8 reveal rd5">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Elinie</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            A devout realm caught between powerful neighbors, maintaining independence through faith and determination.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </div>
+
+        <!-- Tuornen -->
+        <div class="domain-card p-8 reveal rd6">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"/></svg>
+            </div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Tuornen</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            A land of dark forests and ancient magic, Tuornen guards secrets older than the empire itself.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-12" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       CULTURE & THEMES — EDITORIAL LAYOUT
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain section-pad" style="background: var(--bg-secondary); padding: 6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-16">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span style="color: var(--accent);">&#9632;</span>&ensp;Defining Themes
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Culture & <span class="word-accent">Themes</span>
+        </h2>
+      </div>
+
+      <!-- Theme blocks -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- The Game of Thrones -->
+        <div class="culture-block reveal rd1">
+          <span class="typo-label block mb-4" style="color: var(--accent);">01</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">
+            The Game of Thrones
+          </h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            Political intrigue, succession crises, alliance and betrayal. Every court is a battlefield, every handshake a potential knife in the dark. Trust is the scarcest resource in Anuire.
+          </p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Intrigue &middot; Diplomacy &middot; Betrayal</span>
+          </div>
+        </div>
+
+        <!-- Legacy of Empire -->
+        <div class="culture-block reveal rd2">
+          <span class="typo-label block mb-4" style="color: var(--gold);">02</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">
+            Legacy of Empire
+          </h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            The weight of history, ruins of grandeur, the dream of reunification. The Anuirean Empire once spanned the continent — its ghost haunts every throne room and battlefield.
+          </p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">History &middot; Ruins &middot; Reunification</span>
+          </div>
+        </div>
+
+        <!-- Divine Right -->
+        <div class="culture-block reveal rd3">
+          <span class="typo-label block mb-4" style="color: var(--accent);">03</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">
+            Divine Right
+          </h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            Bloodlines as political currency, blood abilities as both gift and curse. The divine power flowing through royal veins is the ultimate claim to legitimacy — and the ultimate target.
+          </p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Bloodlines &middot; Power &middot; Legitimacy</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-12" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       OTHER REGIONS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain section-pad" style="background: var(--bg-primary); padding: 6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-12">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span style="color: var(--accent);">&#9632;</span>&ensp;Explore Cerilia
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Other <span class="word-gold">Regions</span>
+        </h2>
+      </div>
+
+      <!-- Region cards horizontal scroll on mobile, grid on desktop -->
+      <div class="flex lg:grid lg:grid-cols-5 gap-6 overflow-x-auto pb-4 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <style>.flex::-webkit-scrollbar { display: none; }</style>
+
+        <!-- Rjurik -->
+        <a href="rjurik.html" class="region-card flex-shrink-0 w-64 lg:w-auto aspect-[4/3] rounded-sm snap-start reveal rd1" style="min-width: 240px;">
+          <img src="../brand_assets/rjurik%20800x600.png" alt="Rjurik Highlands" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase text-white">Rjurik</h3>
+            <p class="font-body text-sm text-white/60 mt-1">Untamed highlands of druids and jarls.</p>
+          </div>
+        </a>
+
+        <!-- Khinasi -->
+        <a href="khinasi.html" class="region-card flex-shrink-0 w-64 lg:w-auto aspect-[4/3] rounded-sm snap-start reveal rd2" style="min-width: 240px;">
+          <img src="../brand_assets/khinasi%20800x600.png" alt="Khinasi" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase text-white">Khinasi</h3>
+            <p class="font-body text-sm text-white/60 mt-1">Lands of trade, magic, and scholarship.</p>
+          </div>
+        </a>
+
+        <!-- Brechtur -->
+        <a href="brechtur.html" class="region-card flex-shrink-0 w-64 lg:w-auto aspect-[4/3] rounded-sm snap-start reveal rd3" style="min-width: 240px;">
+          <img src="../brand_assets/brechtur%20800x600.png" alt="Brechtur" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase text-white">Brechtur</h3>
+            <p class="font-body text-sm text-white/60 mt-1">Merchant princes and guilded coastal cities.</p>
+          </div>
+        </a>
+
+        <!-- Vosgaard -->
+        <a href="vosgaard.html" class="region-card flex-shrink-0 w-64 lg:w-auto aspect-[4/3] rounded-sm snap-start reveal rd4" style="min-width: 240px;">
+          <img src="../brand_assets/vosgaard%20800x600.png" alt="Vosgaard" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase text-white">Vosgaard</h3>
+            <p class="font-body text-sm text-white/60 mt-1">Frozen wastes ruled by warlords and dark gods.</p>
+          </div>
+        </a>
+
+        <!-- Shadow World -->
+        <a href="shadow-world.html" class="region-card flex-shrink-0 w-64 lg:w-auto aspect-[4/3] rounded-sm snap-start reveal rd5" style="min-width: 240px;">
+          <img src="../brand_assets/shadowworld%20800x600.png" alt="Shadow World" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.4) 100%);"></div>
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase text-white">Shadow World</h3>
+            <p class="font-body text-sm text-white/60 mt-1">The dark mirror where nightmares seep through.</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting,
+            recognized by Wizards of the Coast. Keeping the blood alive since 1996.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            </a>
+            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+            </a>
+            <a href="https://wiki.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigate -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Navigate</h4>
+          <div class="flex flex-col gap-3">
+            <a href="../index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Home</a>
+            <a href="rjurik.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Rjurik</a>
+            <a href="khinasi.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Khinasi</a>
+            <a href="brechtur.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Brechtur</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
+          <div class="flex flex-col gap-3">
+            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === BLOOD DRIP DIVIDERS — restart on scroll ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight; // reflow
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+  </script>
+
+</body>
+</html>

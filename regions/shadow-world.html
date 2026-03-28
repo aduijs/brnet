@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Shadow World — Birthright.net</title>
+  <meta name="description" content="The Shadow World — a dark mirror of Cerilia where the dead do not rest. Explore the realm beyond the Seeming in the Birthright campaign setting.">
+  <meta property="og:title" content="The Shadow World — Birthright">
+  <meta property="og:description" content="A dark reflection of Cerilia that exists just beyond the veil of reality. The dead wander. Something watches.">
+  <meta property="og:image" content="../brand_assets/shadowworld%20800x600.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --overlay-light: rgba(6, 6, 6, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.06;
+      --logo-filter: none;
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --invert: 0;
+      /* Shadow World accent */
+      --accent: #7b2d8e;
+      --accent-dim: rgba(123, 45, 142, 0.12);
+      --accent-bright: #9e3db5;
+      --accent-glow: rgba(123, 45, 142, 0.35);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --overlay-light: rgba(214, 204, 184, 0.4);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.05;
+      --logo-filter: none;
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --invert: 0;
+      /* Shadow World accent — light */
+      --accent: #5a1a6b;
+      --accent-dim: rgba(90, 26, 107, 0.12);
+      --accent-bright: #7b2d8e;
+      --accent-glow: rgba(90, 26, 107, 0.2);
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE — HEAVY for horror
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY SYSTEM
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .word-accent {
+      display: inline-block;
+      color: var(--accent);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--accent-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .text-stack > * {
+      line-height: 0.88;
+    }
+
+    /* ═══════════════════════════════════════════
+       GLITCH / FLICKER ANIMATION — horror
+       ═══════════════════════════════════════════ */
+    @keyframes glitchFlicker {
+      0%, 100% {
+        opacity: 1;
+        transform: translate(0, 0) skewX(0deg);
+        text-shadow: var(--hero-text-shadow);
+      }
+      2% {
+        opacity: 0.8;
+        transform: translate(-3px, 1px) skewX(-2deg);
+        text-shadow: 3px 0 var(--accent), -3px 0 var(--crimson);
+      }
+      4% {
+        opacity: 1;
+        transform: translate(0, 0) skewX(0deg);
+        text-shadow: var(--hero-text-shadow);
+      }
+      41% {
+        opacity: 1;
+        transform: translate(0, 0) skewX(0deg);
+      }
+      42% {
+        opacity: 0.6;
+        transform: translate(2px, -1px) skewX(1deg);
+        text-shadow: -2px 0 var(--accent-bright), 2px 0 rgba(196,30,30,0.6);
+      }
+      43% {
+        opacity: 1;
+        transform: translate(0, 0) skewX(0deg);
+        text-shadow: var(--hero-text-shadow);
+      }
+      43.5% {
+        opacity: 0.9;
+        transform: translate(-1px, 0);
+        text-shadow: 1px 0 var(--accent);
+      }
+      44% {
+        opacity: 1;
+        transform: translate(0, 0) skewX(0deg);
+        text-shadow: var(--hero-text-shadow);
+      }
+      78% {
+        opacity: 1;
+        transform: translate(0, 0) skewX(0deg);
+      }
+      78.5% {
+        opacity: 0.7;
+        transform: translate(4px, 0) skewX(-3deg);
+        text-shadow: -4px 0 var(--accent), 4px 0 var(--crimson);
+      }
+      79% {
+        clip-path: inset(30% 0 50% 0);
+        transform: translate(-2px, 0);
+      }
+      79.5% {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+        transform: translate(0, 0) skewX(0deg);
+        text-shadow: var(--hero-text-shadow);
+      }
+    }
+
+    @keyframes glitchSlice {
+      0%, 100% { clip-path: inset(0 0 0 0); }
+      41.5% { clip-path: inset(0 0 0 0); }
+      42% { clip-path: inset(15% 0 60% 0); transform: translate(5px, 0); }
+      42.5% { clip-path: inset(55% 0 20% 0); transform: translate(-3px, 0); }
+      43% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+      78.2% { clip-path: inset(0 0 0 0); }
+      78.5% { clip-path: inset(40% 0 35% 0); transform: translate(-4px, 0); }
+      79% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
+    }
+
+    .glitch-text {
+      position: relative;
+      animation: glitchFlicker 6s step-end infinite;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .glitch-text::before {
+      color: var(--accent-bright);
+      animation: glitchSlice 6s step-end infinite;
+      opacity: 0.4;
+      z-index: -1;
+    }
+    .glitch-text::after {
+      color: var(--crimson);
+      animation: glitchSlice 6s step-end infinite reverse;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    /* Subtle persistent flicker for the whole hero */
+    @keyframes ambientFlicker {
+      0%, 100% { opacity: 1; }
+      92% { opacity: 1; }
+      92.5% { opacity: 0.92; }
+      93% { opacity: 1; }
+      97% { opacity: 1; }
+      97.3% { opacity: 0.95; }
+      97.6% { opacity: 1; }
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+    @keyframes shadowPulse {
+      0%, 100% { opacity: 0.02; }
+      50% { opacity: 0.06; }
+    }
+    @keyframes voidDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-20px, 10px) scale(1.02); }
+      66% { transform: translate(15px, -5px) scale(0.98); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+    .rd5 { transition-delay: 0.75s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--accent); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--accent); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+    .nav-link:focus-visible { color: var(--accent); }
+    .nav-link:active { opacity: 0.7; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .theme-toggle:active::after { transform: scale(0.9); }
+    [data-theme="light"] .theme-toggle:active::after { transform: translateX(20px) scale(0.9); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARDS
+       ═══════════════════════════════════════════ */
+    .location-card {
+      position: relative; overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.5s, background var(--transition-theme);
+    }
+    .location-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 0 60px var(--accent-dim), var(--card-hover-shadow);
+    }
+    .location-card:focus-visible {
+      border-color: var(--accent);
+      box-shadow: 0 0 60px var(--accent-dim);
+    }
+    .location-card:active {
+      transform: translateY(-2px) scale(0.99);
+    }
+
+    .region-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+    }
+    .region-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--card-hover-shadow);
+    }
+    .region-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .region-card:active {
+      transform: translateY(-2px) scale(0.99);
+    }
+    .region-card img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .region-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .editorial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .editorial-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-dim), var(--card-hover-shadow);
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--accent-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-primary:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+    .btn-ghost:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    /* ═══════════════════════════════════════════
+       SECTION TRANSITIONS
+       ═══════════════════════════════════════════ */
+    section {
+      transition: background var(--transition-theme);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="anuire.html" class="nav-link">Anuire</a>
+        <a href="rjurik.html" class="nav-link">Rjurik</a>
+        <a href="khinasi.html" class="nav-link">Khinasi</a>
+        <a href="brechtur.html" class="nav-link">Brechtur</a>
+        <a href="vosgaard.html" class="nav-link">Vosgaard</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <!-- Mobile menu btn -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="anuire.html"</a>
+      <a href="rjurik.html"</a>
+      <a href="khinasi.html"</a>
+      <a href="brechtur.html"</a>
+      <a href="vosgaard.html"</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — OPPRESSIVE, GLITCHED, HORROR
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex flex-col items-start justify-end grain overflow-hidden" style="background: var(--bg-primary); animation: ambientFlicker 8s step-end infinite;">
+    <!-- BG Image -->
+    <div class="absolute inset-0">
+      <img src="../brand_assets/shadowworld%20800x600.png" alt="" class="absolute inset-0 w-full h-full object-cover" style="opacity: 0.45; animation: voidDrift 30s ease-in-out infinite; mix-blend-mode: luminosity;">
+    </div>
+
+    <!-- OPPRESSIVE overlays — layered darkness -->
+    <div class="absolute inset-0" style="background: var(--bg-primary); opacity: 0.5;"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 120% 100% at 50% 30%, transparent 10%, var(--bg-primary) 65%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-primary) 8%, rgba(6,6,6,0.6) 40%, rgba(6,6,6,0.3) 60%, var(--bg-primary) 100%);"></div>
+
+    <!-- Purple eldritch haze -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 40% 50%, rgba(123,45,142,0.08) 0%, transparent 70%);"></div>
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at 70% 30%, rgba(123,45,142,0.05) 0%, transparent 50%);"></div>
+
+    <!-- Shadow pulse overlay -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 50% 50%, rgba(123,45,142,0.06), transparent 70%); animation: shadowPulse 6s ease-in-out infinite;"></div>
+
+    <!-- Scanline -->
+    <div class="hero-scanline"></div>
+
+    <!-- Particles container -->
+    <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true"></div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-5 md:px-6 lg:px-12 mt-auto pb-10 md:pb-16 lg:pb-24">
+      <!-- Label -->
+      <div class="anim-fade-up anim-d2 mb-4">
+        <span class="typo-label" style="color: var(--accent);">&#9608;&#9608; Beyond the Veil</span>
+      </div>
+
+      <!-- MAIN HEADING with glitch -->
+      <div class="anim-fade-up anim-d3 text-stack mb-6">
+        <span class="typo-mega" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow);">THE <span class="glitch-text" data-text="SHADOW" style="color: var(--accent);">SHADOW</span></span>
+        <span class="typo-mega" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow);">WORLD</span>
+      </div>
+
+      <!-- Subtitle -->
+      <p class="anim-fade-up anim-d4 max-w-xl text-xl md:text-2xl" style="color: var(--text-secondary); line-height: 1.65; font-weight: 300;">
+        A dark mirror of Cerilia where the dead do not rest and every step costs a piece of your soul. The Seeming grows thin. Something watches.
+      </p>
+
+      <!-- CTA -->
+      <div class="anim-fade-up anim-d5 flex flex-wrap gap-4 mt-10">
+        <a href="https://wiki.birthright.net" class="btn-primary">
+          Explore the Wiki
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom vignette -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style="background: linear-gradient(to top, var(--bg-secondary), transparent);"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       OVERVIEW — Asymmetric
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <div class="grid lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+        <!-- Lore — wider column -->
+        <div class="lg:col-span-7 reveal-left">
+          <span class="typo-label" style="color: var(--accent);">&#9608; The Echo</span>
+          <div class="mt-4">
+            <span class="typo-section-head" style="color: var(--text-primary);">A DARK <span class="word-accent">REFLECTION</span></span>
+          </div>
+          <div class="mt-10 space-y-6">
+            <p class="font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.7; font-weight: 300;">
+              The Shadow World is not a place &mdash; it is an echo. A dark reflection of Cerilia that exists just beyond the veil of reality, separated by a barrier called the Seeming. Here, everything is wrong. The sky is perpetually twilight, the colors are muted and sickly, and the air itself tastes of ash and despair.
+            </p>
+            <p class="font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.7; font-weight: 300;">
+              The dead wander its twisted landscapes, unable to find rest, while darker things &mdash; creatures born of pure shadow &mdash; hunt anything foolish enough to cross over. Some scholars believe the Shadow World is what Cerilia would become if the god Azrai had won at Deismaar. Others say it's worse than that.
+            </p>
+            <p class="font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.7; font-weight: 300;">
+              The Shadow World doesn't just reflect the real world &mdash; it <em>remembers</em> it. Every act of cruelty, every betrayal, every death leaves an imprint in the shadow, building a landscape of accumulated horror that grows stronger with each passing age.
+            </p>
+          </div>
+        </div>
+
+        <!-- Facts — narrower column -->
+        <div class="lg:col-span-5 reveal-right">
+          <div class="space-y-4">
+            <!-- Fact cards -->
+            <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border);">
+              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Nature</span>
+              <p class="mt-2 font-body text-base" style="color: var(--text-primary); line-height: 1.6;">Parallel dimension / dark reflection</p>
+            </div>
+            <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border);">
+              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Barrier</span>
+              <p class="mt-2 font-body text-base" style="color: var(--text-primary); line-height: 1.6;">The Seeming (growing thinner)</p>
+            </div>
+            <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border);">
+              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Inhabitants</span>
+              <p class="mt-2 font-body text-base" style="color: var(--text-primary); line-height: 1.6;">Undead, shadow creatures, lost souls</p>
+            </div>
+            <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border);">
+              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">The Halfling Connection</span>
+              <p class="mt-2 font-body text-base" style="color: var(--text-primary); line-height: 1.6;">The halflings are said to have originated from the Shadow World</p>
+            </div>
+            <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border); border-color: var(--accent);">
+              <span class="typo-label" style="color: var(--crimson); font-size: 0.55rem;">Danger Level</span>
+              <p class="mt-2 font-body text-base font-semibold" style="color: var(--crimson); line-height: 1.6;">Extreme &mdash; prolonged exposure corrupts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       NOTABLE LOCATIONS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Header -->
+      <div class="reveal text-center mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 02</span>
+        <div class="mt-4">
+          <span class="typo-section-head" style="color: var(--text-primary);">NOTABLE <span class="word-accent">LOCATIONS</span></span>
+        </div>
+        <p class="mt-6 max-w-lg mx-auto font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+          Places that exist in the shadow. Places you should never go.
+        </p>
+      </div>
+
+      <!-- Location cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- The Seeming -->
+        <div class="reveal location-card p-8 lg:p-10 group">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">The Barrier</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--accent)]" style="color: var(--text-primary); transition: color 0.3s;">THE SEEMING</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            The barrier between worlds. Where it thins, the dead can cross &mdash; and the living can fall through.
+          </p>
+        </div>
+
+        <!-- The Cold Rider's Domain -->
+        <div class="reveal rd1 location-card p-8 lg:p-10 group">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008V7.5z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Fortress</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--accent)]" style="color: var(--text-primary); transition: color 0.3s;">THE COLD RIDER'S DOMAIN</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            A frozen fortress ruled by an ancient undead lord who commands legions of spectral knights.
+          </p>
+        </div>
+
+        <!-- The Whispering Gallery -->
+        <div class="reveal rd2 location-card p-8 lg:p-10 group">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Library</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--accent)]" style="color: var(--text-primary); transition: color 0.3s;">THE WHISPERING GALLERY</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            An impossible library where every book ever destroyed in Cerilia still exists &mdash; but reading them extracts a terrible price.
+          </p>
+        </div>
+
+        <!-- The Mirror Courts -->
+        <div class="reveal rd3 location-card p-8 lg:p-10 group md:col-span-1">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Palace</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--accent)]" style="color: var(--text-primary); transition: color 0.3s;">THE MIRROR COURTS</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            Twisted reflections of Cerilia's royal courts, populated by shadow-copies of living rulers who speak prophetic truths laced with lies.
+          </p>
+        </div>
+
+        <!-- The Bleeding Forest -->
+        <div class="reveal rd4 location-card p-8 lg:p-10 group md:col-span-1 lg:col-span-2">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.55rem;">Wilderness</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--crimson)]" style="color: var(--text-primary); transition: color 0.3s;">THE BLEEDING FOREST</h3>
+          <p class="font-body text-base max-w-xl" style="color: var(--text-secondary); line-height: 1.65;">
+            Trees that weep blood-red sap and trap the souls of those who die within their branches. Even the plants are predators here.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       MECHANICS & LORE — Editorial blocks
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Header -->
+      <div class="reveal text-center mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 03</span>
+        <div class="mt-4">
+          <span class="typo-section-head" style="color: var(--text-primary);">MECHANICS &amp; <span class="word-accent">LORE</span></span>
+        </div>
+        <p class="mt-6 max-w-lg mx-auto font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+          How the Shadow World works at the table &mdash; and what it costs to go there.
+        </p>
+      </div>
+
+      <!-- Editorial blocks -->
+      <div class="space-y-6">
+
+        <!-- Crossing Over -->
+        <div class="reveal editorial-card">
+          <div class="grid lg:grid-cols-12 gap-0">
+            <div class="lg:col-span-4 p-8 lg:p-12 flex flex-col justify-center" style="border-right: 1px solid var(--border);">
+              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Gameplay</span>
+              <h3 class="font-impact text-4xl lg:text-5xl mt-3" style="color: var(--text-primary);">CROSSING OVER</h3>
+            </div>
+            <div class="lg:col-span-8 p-8 lg:p-12">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.75; font-weight: 300;">
+                The Shadow World is not somewhere you simply walk into. The barrier between Cerilia and its dark mirror &mdash; the Seeming &mdash; must be breached. This can happen through shadow paths (rare, hidden trails that exist in both worlds simultaneously), powerful realm magic, or where the Seeming has worn dangerously thin. Some ancient battlefields and cursed lands offer permanent crossings. Every entry has a cost: the traveler must make a saving throw against shadow corruption, and the difficulty increases the longer they remain. The Shadow World <em>wants</em> visitors. It just doesn't want them to leave.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Corruption -->
+        <div class="reveal rd1 editorial-card">
+          <div class="grid lg:grid-cols-12 gap-0">
+            <div class="lg:col-span-4 p-8 lg:p-12 flex flex-col justify-center lg:order-2" style="border-left: 1px solid var(--border);">
+              <span class="typo-label" style="color: var(--crimson); font-size: 0.55rem;">Horror</span>
+              <h3 class="font-impact text-4xl lg:text-5xl mt-3" style="color: var(--text-primary);">THE CORRUPTION</h3>
+            </div>
+            <div class="lg:col-span-8 p-8 lg:p-12 lg:order-1">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.75; font-weight: 300;">
+                Those who linger in the Shadow World begin to change. First comes the cold &mdash; a chill that no fire can warm. Then the dreams, visions of the shadow leaking into waking hours. Personality shifts follow: paranoia, cruelty, emotional numbness. In gameplay terms, each day spent in the Shadow World requires a corruption check. Failed checks accumulate shadow taint that manifests as mechanical penalties and roleplay hooks. At its worst, a character loses themselves entirely, becoming a shadow creature &mdash; a hollow echo of who they once were, trapped in the dark mirror forever.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Halfling Secret -->
+        <div class="reveal rd2 editorial-card">
+          <div class="grid lg:grid-cols-12 gap-0">
+            <div class="lg:col-span-4 p-8 lg:p-12 flex flex-col justify-center" style="border-right: 1px solid var(--border);">
+              <span class="typo-label" style="color: var(--gold); font-size: 0.55rem;">Deep Lore</span>
+              <h3 class="font-impact text-4xl lg:text-5xl mt-3" style="color: var(--text-primary);">THE HALFLING SECRET</h3>
+            </div>
+            <div class="lg:col-span-8 p-8 lg:p-12">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.75; font-weight: 300;">
+                The halflings of Cerilia carry a secret in their blood. Unlike every other race, they did not originate on Cerilia &mdash; they came from the Shadow World. Their ancestors fled that dark dimension long ago, crossing the Seeming to find refuge in the lands of the living. This origin gives halflings a unique and unsettling relationship with the shadow: they are partially resistant to its corruption, can sense thin points in the Seeming, and some can even walk the shadow paths without magic. But it also means the Shadow World remembers them &mdash; and it wants them back.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       OTHER REGIONS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Header -->
+      <div class="reveal text-center mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 04</span>
+        <div class="mt-4">
+          <span class="typo-section-head" style="color: var(--text-primary);">OTHER <span class="word-accent">REGIONS</span></span>
+        </div>
+        <p class="mt-6 max-w-lg mx-auto font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+          Return to the lands of the living.
+        </p>
+      </div>
+
+      <!-- Region cards grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Anuire -->
+        <a href="anuire.html" class="reveal region-card relative aspect-[4/3] overflow-hidden group">
+          <img src="../brand_assets/anuire%20800x600.png" alt="Anuire" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);"></div>
+          <div class="absolute inset-0" style="background: rgba(196,30,30,0.08); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-6 lg:p-8">
+            <span class="typo-label" style="color: rgba(255,255,255,0.5); font-size: 0.5rem;">The Western Empire</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">ANUIRE</h3>
+          </div>
+        </a>
+
+        <!-- Rjurik -->
+        <a href="rjurik.html" class="reveal rd1 region-card relative aspect-[4/3] overflow-hidden group">
+          <img src="../brand_assets/rjurik%20800x600.png" alt="Rjurik Highlands" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);"></div>
+          <div class="absolute inset-0" style="background: rgba(34,100,60,0.1); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-6 lg:p-8">
+            <span class="typo-label" style="color: rgba(255,255,255,0.5); font-size: 0.5rem;">The Northern Wilds</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">RJURIK</h3>
+          </div>
+        </a>
+
+        <!-- Khinasi -->
+        <a href="khinasi.html" class="reveal rd2 region-card relative aspect-[4/3] overflow-hidden group">
+          <img src="../brand_assets/khinasi%20800x600.png" alt="Khinasi" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);"></div>
+          <div class="absolute inset-0" style="background: rgba(212,168,67,0.1); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-6 lg:p-8">
+            <span class="typo-label" style="color: rgba(255,255,255,0.5); font-size: 0.5rem;">The Southern Kingdoms</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">KHINASI</h3>
+          </div>
+        </a>
+
+        <!-- Brechtur -->
+        <a href="brechtur.html" class="reveal rd3 region-card relative aspect-[4/3] overflow-hidden group">
+          <img src="../brand_assets/brechtur%20800x600.png" alt="Brechtur" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);"></div>
+          <div class="absolute inset-0" style="background: rgba(50,80,120,0.1); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-6 lg:p-8">
+            <span class="typo-label" style="color: rgba(255,255,255,0.5); font-size: 0.5rem;">The Merchant Coast</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">BRECHTUR</h3>
+          </div>
+        </a>
+
+        <!-- Vosgaard -->
+        <a href="vosgaard.html" class="reveal rd4 region-card relative aspect-[4/3] overflow-hidden group sm:col-span-2 lg:col-span-2">
+          <img src="../brand_assets/vosgaard%20800x600.png" alt="Vosgaard" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.1) 100%);"></div>
+          <div class="absolute inset-0" style="background: rgba(100,30,30,0.1); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-6 lg:p-8">
+            <span class="typo-label" style="color: rgba(255,255,255,0.5); font-size: 0.5rem;">The Eastern Wastes</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">VOSGAARD</h3>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+        <!-- Brand -->
+        <div>
+          <a href="../index.html">
+            <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          </a>
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting, recognized by Wizards of the Coast.
+          </p>
+        </div>
+
+        <!-- Regions -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Regions</h4>
+          <div class="flex flex-col gap-3">
+            <a href="anuire.html"</a>
+            <a href="rjurik.html" Highlands</a>
+            <a href="khinasi.html"</a>
+            <a href="brechtur.html"</a>
+            <a href="vosgaard.html"</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
+          <div class="flex flex-col gap-3">
+            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The shadow remembers
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === SHADOW PARTICLES (purple motes, not gold) ===
+    const particleContainer = document.getElementById('particles');
+    function spawnParticle() {
+      const p = document.createElement('div');
+      const size = Math.random() * 3 + 1;
+      const x = Math.random() * 100;
+      const dur = Math.random() * 10 + 8;
+      const drift = (Math.random() - 0.5) * 40;
+      p.style.cssText = `
+        position: absolute; bottom: 0; left: ${x}%;
+        width: ${size}px; height: ${size}px; border-radius: 50%;
+        background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        opacity: 0;
+        animation: shadowParticle ${dur}s linear;
+        pointer-events: none;
+      `;
+      particleContainer.appendChild(p);
+      setTimeout(() => p.remove(), dur * 1000);
+    }
+
+    // Add shadow particle keyframes dynamically
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+      @keyframes shadowParticle {
+        0% { transform: translateY(0) scale(0); opacity: 0; }
+        5% { opacity: 0.4; transform: translateY(-5vh) scale(1); }
+        50% { opacity: 0.2; }
+        100% { transform: translateY(-100vh) scale(0.1); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(particleStyle);
+
+    setInterval(spawnParticle, 600);
+
+    // === BLOOD DRIP DIVIDERS ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight;
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(d => dripObs.observe(d));
+  </script>
+
+</body>
+</html>

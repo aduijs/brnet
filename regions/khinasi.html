@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KHINASI — The Sunlit Lands | Birthright.net</title>
+  <meta name="description" content="Explore the Khinasi lands — desert cities of learning and trade where merchants hold more power than kings and magic is honored as the highest art.">
+  <meta property="og:title" content="Khinasi — The Sunlit Lands | Birthright.net">
+  <meta property="og:description" content="Desert cities of learning and trade where merchants hold more power than kings and magic is honored as the highest art.">
+  <meta property="og:image" content="../brand_assets/khinasi%20800x600.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --overlay-light: rgba(6, 6, 6, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --invert: 0;
+      /* Khinasi accent */
+      --accent: #c49a18;
+      --accent-dim: rgba(196, 154, 24, 0.12);
+      --accent-bright: #e0b020;
+      --accent-glow: rgba(196, 154, 24, 0.25);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --overlay-light: rgba(214, 204, 184, 0.4);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --invert: 0;
+      /* Khinasi accent light */
+      --accent: #8a6c08;
+      --accent-dim: rgba(138, 108, 8, 0.12);
+      --accent-bright: #a68210;
+      --accent-glow: rgba(138, 108, 8, 0.18);
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .word-accent {
+      display: inline-block;
+      color: var(--accent);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--accent-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .word-gold { color: var(--gold); }
+
+    .text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .text-stack > * { line-height: 0.88; }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes float-particle {
+      0% { transform: translateY(0) scale(0); opacity: 0; }
+      10% { opacity: 0.6; transform: translateY(-10vh) scale(1); }
+      100% { transform: translateY(-100vh) scale(0.2); opacity: 0; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes heatHaze {
+      0%, 100% { transform: translateY(0) scaleY(1); }
+      50% { transform: translateY(-2px) scaleY(1.002); }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+    .rd5 { transition-delay: 0.75s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--accent); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--accent); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+    .nav-link.active { color: var(--accent); }
+    .nav-link.active::after { width: 100%; left: 0; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARDS
+       ═══════════════════════════════════════════ */
+    .domain-card {
+      position: relative; overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.5s, background var(--transition-theme);
+    }
+    .domain-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-dim), var(--card-hover-shadow);
+    }
+    .domain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .domain-card:hover::before { opacity: 1; }
+
+    .region-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+    }
+    .region-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--card-hover-shadow);
+    }
+    .region-card img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .region-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .culture-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .culture-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 0 50px var(--accent-dim), var(--card-hover-shadow);
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--accent-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════════════
+       KHINASI-SPECIFIC
+       ═══════════════════════════════════════════ */
+
+    /* Desert heat haze on hero */
+    .heat-haze {
+      animation: heatHaze 4s ease-in-out infinite;
+    }
+
+    /* Geometric arabesque ornament */
+    .arabesque {
+      position: relative;
+    }
+    .arabesque::before,
+    .arabesque::after {
+      content: '';
+      position: absolute;
+      width: 40px; height: 40px;
+      border: 1px solid var(--accent);
+      opacity: 0.2;
+    }
+    .arabesque::before { top: -8px; left: -8px; border-right: none; border-bottom: none; }
+    .arabesque::after { bottom: -8px; right: -8px; border-left: none; border-top: none; }
+
+    /* Fact item */
+    .fact-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .fact-item:last-child { border-bottom: none; }
+
+    /* Domain index number */
+    .domain-index {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.12;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+
+    /* Section transitions */
+    section {
+      transition: background var(--transition-theme);
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="anuire.html" class="nav-link">Anuire</a>
+        <a href="rjurik.html" class="nav-link">Rjurik</a>
+        <a href="khinasi.html" class="nav-link active">Khinasi</a>
+        <a href="brechtur.html" class="nav-link">Brechtur</a>
+        <a href="vosgaard.html" class="nav-link">Vosgaard</a>
+        <a href="shadow-world.html" class="nav-link">Shadow World</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <!-- Mobile menu btn -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="anuire.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Anuire</a>
+      <a href="rjurik.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Rjurik</a>
+      <a href="khinasi.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--accent); border-color: var(--border);">Khinasi</a>
+      <a href="brechtur.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Brechtur</a>
+      <a href="vosgaard.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Vosgaard</a>
+      <a href="shadow-world.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Shadow World</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — Desert Gold Sunset
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex flex-col items-center justify-end grain overflow-hidden" style="background: var(--bg-primary);">
+    <!-- Region Art BG -->
+    <div class="absolute inset-0">
+      <img src="../brand_assets/khinasi%20800x600.png" alt="Khinasi" class="w-full h-full object-cover" style="object-position: center 30%;">
+      <!-- Color treatment layer -->
+      <div class="absolute inset-0" style="background: rgba(196, 154, 24, 0.15); mix-blend-mode: multiply;"></div>
+    </div>
+
+    <!-- Desert heat gradient overlays -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 120% 80% at 50% 20%, transparent 30%, var(--bg-primary) 85%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-[65%]" style="background: linear-gradient(to top, var(--bg-primary) 8%, rgba(6,6,6,0.6) 45%, transparent 100%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to right, var(--bg-primary) 0%, transparent 40%); opacity: 0.6;"></div>
+
+    <!-- Warm amber radial glow -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 40% at 60% 30%, rgba(196,154,24,0.08) 0%, transparent 70%);"></div>
+
+    <!-- Scan line -->
+    <div class="hero-scanline"></div>
+
+    <!-- Particles -->
+    <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true"></div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-5 md:px-6 lg:px-12 mt-auto pb-8 md:pb-16 lg:pb-24">
+      <!-- Label -->
+      <div class="anim-fade-up anim-d2 mb-4">
+        <span class="typo-label" style="color: var(--accent);">&#9608;&#9608; The Sunlit Lands</span>
+      </div>
+
+      <!-- MAIN HEADING -->
+      <div class="anim-fade-up anim-d3 text-stack mb-6">
+        <span class="typo-mega" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow);">KHINASI</span>
+      </div>
+
+      <!-- Subtitle -->
+      <p class="anim-fade-up anim-d4 max-w-xl text-xl md:text-2xl" style="color: var(--text-secondary); line-height: 1.65; font-weight: 300;">
+        Desert cities of learning and trade where merchants hold more power than kings and magic is honored as the highest art.
+      </p>
+
+      <!-- CTA -->
+      <div class="anim-fade-up anim-d5 flex flex-wrap gap-4 mt-10">
+        <a href="https://wiki.birthright.net" class="btn-primary">
+          Explore the Wiki
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom edge geometric accent -->
+    <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3;"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       OVERVIEW — Asymmetric Layout
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Section label -->
+      <div class="reveal mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 01</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">THE <span class="word-accent">SUNLIT</span></span>
+          <span style="color: var(--text-primary);">LANDS</span>
+        </div>
+      </div>
+
+      <!-- Asymmetric grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <!-- Lore text — wider column -->
+        <div class="reveal-left lg:col-span-7">
+          <div class="arabesque p-6 lg:p-0" style="border: none;">
+            <p class="font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.7;">
+              The Khinasi lands bask in the warmth of the southern sun — a realm of golden deserts, bustling bazaars, and cities of breathtaking beauty. Unlike the feudal Anuireans, the Khinasi people believe that nobility is earned through wisdom, trade, and magical mastery rather than inherited through blood alone.
+            </p>
+            <p class="font-body text-lg lg:text-xl mt-6" style="color: var(--text-secondary); line-height: 1.7;">
+              Here, a clever merchant can rise higher than a prince, and a skilled wizard commands more respect than a general. The Khinasi were the first people of Cerilia to develop a written language, and they guard their libraries as fiercely as other nations guard their castles.
+            </p>
+          </div>
+        </div>
+
+        <!-- Facts — narrower column -->
+        <div class="reveal-right lg:col-span-5">
+          <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 2rem;">
+            <!-- Corner ornament -->
+            <div class="relative">
+              <div class="absolute -top-2 -left-2 w-8 h-8 border-t border-l" style="border-color: var(--accent); opacity: 0.4;"></div>
+              <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b border-r" style="border-color: var(--accent); opacity: 0.4;"></div>
+
+              <h3 class="font-impact text-lg tracking-[0.2em] uppercase mb-6" style="color: var(--accent);">Region Facts</h3>
+
+              <div class="fact-item">
+                <span class="typo-label" style="color: var(--text-muted);">Government</span>
+                <p class="font-body text-base mt-1" style="color: var(--text-primary);">Merchant Princes & Councils</p>
+              </div>
+
+              <div class="fact-item">
+                <span class="typo-label" style="color: var(--text-muted);">Religion</span>
+                <p class="font-body text-base mt-1" style="color: var(--text-primary);">Avani (Sun & Reason)</p>
+              </div>
+
+              <div class="fact-item">
+                <span class="typo-label" style="color: var(--text-muted);">Landscape</span>
+                <p class="font-body text-base mt-1" style="color: var(--text-primary);">Deserts, oases, coastal cities, ancient ruins</p>
+              </div>
+
+              <div class="fact-item">
+                <span class="typo-label" style="color: var(--text-muted);">Culture</span>
+                <p class="font-body text-base mt-1" style="color: var(--text-primary);">Arabian/Mediterranean-inspired, scholarship, trade</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       NOTABLE DOMAINS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Section header -->
+      <div class="reveal flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 lg:mb-24">
+        <div>
+          <span class="typo-label" style="color: var(--accent);">&#9608; 02</span>
+          <div class="mt-4 typo-section-head text-stack">
+            <span style="color: var(--text-primary);">NOTABLE</span>
+            <span style="color: var(--text-primary);"><span class="word-accent">DOMAINS</span></span>
+          </div>
+        </div>
+        <p class="mt-6 lg:mt-0 max-w-md font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+          The great city-states and kingdoms of the Khinasi, each a jewel in the desert crown.
+        </p>
+      </div>
+
+      <!-- Domain Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Khourane -->
+        <div class="reveal domain-card p-8 lg:p-10 md:col-span-2 lg:col-span-2">
+          <span class="domain-index">01</span>
+          <div class="relative z-10">
+            <span class="typo-label" style="color: var(--accent);">The Jewel of the South</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-3 mb-4" style="color: var(--text-primary); line-height: 0.9;">KHOURANE</h3>
+            <p class="font-body text-lg max-w-xl" style="color: var(--text-secondary); line-height: 1.7;">
+              The jewel of the south. A wealthy trading state where the merchant council holds as much power as the prince.
+            </p>
+          </div>
+          <!-- Decorative corner -->
+          <div class="absolute bottom-4 right-4 w-20 h-20 border-b border-r" style="border-color: var(--accent); opacity: 0.1;"></div>
+        </div>
+
+        <!-- Ariya -->
+        <div class="reveal rd1 domain-card p-8 lg:p-10">
+          <span class="domain-index">02</span>
+          <div class="relative z-10">
+            <span class="typo-label" style="color: var(--accent);">The Vast Desert</span>
+            <h3 class="font-impact text-3xl lg:text-4xl mt-3 mb-4" style="color: var(--text-primary); line-height: 0.9;">ARIYA</h3>
+            <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+              A vast desert realm where Bedouin-like nomads roam and ancient secrets lie buried beneath the sands.
+            </p>
+          </div>
+        </div>
+
+        <!-- Mairada -->
+        <div class="reveal rd2 domain-card p-8 lg:p-10">
+          <span class="domain-index">03</span>
+          <div class="relative z-10">
+            <span class="typo-label" style="color: var(--accent);">The Academy</span>
+            <h3 class="font-impact text-3xl lg:text-4xl mt-3 mb-4" style="color: var(--text-primary); line-height: 0.9;">MAIRADA</h3>
+            <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+              A coastal city-state renowned for its university of magic — the finest school of sorcery in all Cerilia.
+            </p>
+          </div>
+        </div>
+
+        <!-- Binsada -->
+        <div class="reveal rd3 domain-card p-8 lg:p-10">
+          <span class="domain-index">04</span>
+          <div class="relative z-10">
+            <span class="typo-label" style="color: var(--accent);">The Spiritual Heart</span>
+            <h3 class="font-impact text-3xl lg:text-4xl mt-3 mb-4" style="color: var(--text-primary); line-height: 0.9;">BINSADA</h3>
+            <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+              A spiritual heartland where the temples of Avani hold sway and the sun goddess's light guides all decisions.
+            </p>
+          </div>
+        </div>
+
+        <!-- Sendoure -->
+        <div class="reveal rd4 domain-card p-8 lg:p-10">
+          <span class="domain-index">05</span>
+          <div class="relative z-10">
+            <span class="typo-label" style="color: var(--accent);">The Crossroads</span>
+            <h3 class="font-impact text-3xl lg:text-4xl mt-3 mb-4" style="color: var(--text-primary); line-height: 0.9;">SENDOURE</h3>
+            <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+              A trading crossroads where East meets West, and fortunes are made and lost in a single afternoon.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       CULTURE & THEMES — Editorial Blocks
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Section header -->
+      <div class="reveal mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 03</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">CULTURE</span>
+          <span style="color: var(--text-primary);">& <span class="word-accent">THEMES</span></span>
+        </div>
+      </div>
+
+      <!-- Editorial blocks -->
+      <div class="space-y-6">
+        <!-- The Merchant Princes -->
+        <div class="reveal culture-card p-8 lg:p-12">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div class="lg:col-span-4">
+              <span class="font-impact text-6xl lg:text-8xl" style="color: var(--accent); opacity: 0.15; line-height: 0.85;">01</span>
+              <h3 class="font-impact text-3xl lg:text-4xl mt-2" style="color: var(--text-primary); line-height: 0.9; letter-spacing: 0.02em;">THE MERCHANT PRINCES</h3>
+            </div>
+            <div class="lg:col-span-8">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+                In the Khinasi lands, wealth is the truest measure of power. The merchant princes command vast trading networks that span the desert — their caravans as formidable as any army, their bazaars as treacherous as any battlefield. Political influence flows through gold, not blood. A shrewd trader who controls the spice routes wields more authority than a hereditary lord, and the grand councils of the city-states are dominated by those who have proven their worth through commerce and cunning.
+              </p>
+              <div class="flex flex-wrap gap-3 mt-6">
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">Trade as Power</span>
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">Bazaar Politics</span>
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">Caravans as Armies</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- True Magic -->
+        <div class="reveal rd1 culture-card p-8 lg:p-12">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div class="lg:col-span-4">
+              <span class="font-impact text-6xl lg:text-8xl" style="color: var(--accent); opacity: 0.15; line-height: 0.85;">02</span>
+              <h3 class="font-impact text-3xl lg:text-4xl mt-2" style="color: var(--text-primary); line-height: 0.9; letter-spacing: 0.02em;">TRUE MAGIC</h3>
+            </div>
+            <div class="lg:col-span-8">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+                Where other nations fear or distrust arcane power, the Khinasi revere it as the highest of all arts. Wizards here are not hunted outcasts but honored scholars and rulers. The el-Arrasi tradition — named for the legendary mage who stood against the Shadow at Deismaar — teaches that true sorcery is a path of discipline, wisdom, and enlightenment. The great universities of magic are the pride of Khinasi civilization, and a wizard's tower is considered a greater treasure than any fortress.
+              </p>
+              <div class="flex flex-wrap gap-3 mt-6">
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">Wizard-Rulers</span>
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">The el-Arrasi Tradition</span>
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">Magic Honored Openly</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Light of Avani -->
+        <div class="reveal rd2 culture-card p-8 lg:p-12">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <div class="lg:col-span-4">
+              <span class="font-impact text-6xl lg:text-8xl" style="color: var(--accent); opacity: 0.15; line-height: 0.85;">03</span>
+              <h3 class="font-impact text-3xl lg:text-4xl mt-2" style="color: var(--text-primary); line-height: 0.9; letter-spacing: 0.02em;">LIGHT OF AVANI</h3>
+            </div>
+            <div class="lg:col-span-8">
+              <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+                Avani, the goddess of the sun, reason, and the written word, is the guiding light of Khinasi civilization. Her temples are not merely places of worship but centers of learning, law, and justice. The Khinasi believe that ignorance is the true enemy — that superstition and darkness can be vanquished through knowledge and illumination. The written word is considered sacred, and literacy is a mark of honor. Under Avani's blazing gaze, the Khinasi have built a culture that prizes reason above fear and scholarship above blind faith.
+              </p>
+              <div class="flex flex-wrap gap-3 mt-6">
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">Sun Worship</span>
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">Reason Over Superstition</span>
+                <span class="typo-label px-3 py-1.5" style="color: var(--accent); border: 1px solid var(--accent-dim);">The Written Word</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       OTHER REGIONS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Section header -->
+      <div class="reveal mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 04</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">OTHER</span>
+          <span style="color: var(--text-primary);"><span class="word-accent">REGIONS</span></span>
+        </div>
+      </div>
+
+      <!-- Region Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <!-- Anuire -->
+        <a href="anuire.html" class="reveal region-card h-[300px] lg:h-[350px]" style="border: 1px solid var(--border); display: block;">
+          <img src="../brand_assets/anuire%20800x600.png" alt="Anuire" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: rgba(139,26,26,0.08); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Heartlands</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">ANUIRE</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              The shattered empire. Feudal lords battle for the Iron Throne.
+            </p>
+          </div>
+          <div class="absolute top-4 right-4 w-12 h-12 border-t border-r" style="border-color: var(--gold); opacity: 0.2;"></div>
+        </a>
+
+        <!-- Rjurik -->
+        <a href="rjurik.html" class="reveal rd1 region-card h-[300px] lg:h-[350px]" style="border: 1px solid var(--border); display: block;">
+          <img src="../brand_assets/rjurik%20800x600.png" alt="Rjurik Highlands" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: rgba(34,80,34,0.08); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Wild North</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">RJURIK</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Norse-inspired druids and jarls in untamed highlands.
+            </p>
+          </div>
+        </a>
+
+        <!-- Brechtur -->
+        <a href="brechtur.html" class="reveal rd2 region-card h-[300px] lg:h-[350px]" style="border: 1px solid var(--border); display: block;">
+          <img src="../brand_assets/brechtur%20800x600.png" alt="Brechtur" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: rgba(40,60,80,0.08); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Trading Coast</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">BRECHTUR</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Gothic harbours and mercantile guilds in dark waters.
+            </p>
+          </div>
+        </a>
+
+        <!-- Vosgaard -->
+        <a href="vosgaard.html" class="reveal rd3 region-card h-[300px] lg:h-[350px]" style="border: 1px solid var(--border); display: block;">
+          <img src="../brand_assets/vosgaard%20800x600.png" alt="Vosgaard" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: rgba(60,30,30,0.08); mix-blend-mode: multiply;"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--crimson);">The Frozen Waste</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">VOSGAARD</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Brutal warlords and blood-soaked tundra.
+            </p>
+          </div>
+        </a>
+
+        <!-- Shadow World — wide -->
+        <a href="shadow-world.html" class="reveal rd4 region-card md:col-span-2 h-[300px] lg:h-[350px]" style="border: 1px solid var(--border); display: block;">
+          <img src="../brand_assets/shadowworld%20800x600.png" alt="The Shadow World" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 40%;">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 50%);"></div>
+          <div class="absolute inset-0 grain" style="--grain-opacity: 0.08;"></div>
+          <div class="absolute bottom-0 left-0 p-8 lg:p-12 z-10 max-w-lg">
+            <span class="typo-label" style="color: var(--crimson);">&#9608; Beyond the Veil</span>
+            <h3 class="font-impact text-4xl lg:text-6xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 30px rgba(0,0,0,0.9);">
+              THE SHADOW<br>WORLD
+            </h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              A dark mirror of Cerilia where the dead do not rest.
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <a href="../index.html">
+            <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          </a>
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting,
+            recognized by Wizards of the Coast. Keeping the blood alive since 1996.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors hover:border-[var(--accent)]" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            </a>
+            <a href="https://wiki.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors hover:border-[var(--accent)]" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Regions -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Regions</h4>
+          <div class="flex flex-col gap-3">
+            <a href="anuire.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Anuire</a>
+            <a href="rjurik.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Rjurik</a>
+            <a href="khinasi.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--accent);">Khinasi</a>
+            <a href="brechtur.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Brechtur</a>
+            <a href="vosgaard.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Vosgaard</a>
+            <a href="shadow-world.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Shadow World</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
+          <div class="flex flex-col gap-3">
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../index.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted);">Home</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === PARTICLES (golden sand/ember) ===
+    const particleContainer = document.getElementById('particles');
+    function spawnParticle() {
+      const p = document.createElement('div');
+      const size = Math.random() * 3 + 1;
+      const x = Math.random() * 100;
+      const dur = Math.random() * 8 + 6;
+      p.style.cssText = `
+        position: absolute; bottom: 0; left: ${x}%;
+        width: ${size}px; height: ${size}px; border-radius: 50%;
+        background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+        animation: float-particle ${dur}s linear;
+        pointer-events: none;
+      `;
+      particleContainer.appendChild(p);
+      setTimeout(() => p.remove(), dur * 1000);
+    }
+    setInterval(spawnParticle, 400);
+
+    // === BLOOD DRIP DIVIDERS ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight;
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+  </script>
+
+</body>
+</html>

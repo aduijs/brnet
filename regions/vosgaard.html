@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOSGAARD — The Frozen Waste | Birthright.net</title>
+  <meta name="description" content="Vosgaard: the most hostile region of Cerilia. Brutal warlords, blood-soaked tundra, and the dark legacy of Azrai. Only the strong survive.">
+  <meta property="og:title" content="Vosgaard — The Frozen Waste">
+  <meta property="og:description" content="Brutal warlords and blood-soaked tundra. Only the strong survive the endless winter.">
+  <meta property="og:image" content="../brand_assets/vosgaard%20800x600.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --overlay-light: rgba(6, 6, 6, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --invert: 0;
+      /* Vosgaard accent — blood red */
+      --accent: #a82020;
+      --accent-dim: rgba(168, 32, 32, 0.12);
+      --accent-bright: #d42828;
+      --accent-glow: rgba(168, 32, 32, 0.35);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --overlay-light: rgba(214, 204, 184, 0.4);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --invert: 0;
+      /* Vosgaard accent — blood red (light mode) */
+      --accent: #8b1a1a;
+      --accent-dim: rgba(139, 26, 26, 0.1);
+      --accent-bright: #a82020;
+      --accent-glow: rgba(139, 26, 26, 0.2);
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       AGGRESSIVE TYPOGRAPHY
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-blackletter {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .word-accent {
+      display: inline-block;
+      color: var(--accent);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--accent-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .word-gold { color: var(--gold); }
+
+    .text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .text-stack > * { line-height: 0.88; }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+    @keyframes bloodPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(168, 32, 32, 0.4); }
+      50% { box-shadow: 0 0 30px 8px rgba(168, 32, 32, 0.15); }
+    }
+    @keyframes dripFall {
+      0% { transform: translateY(-100%) scaleY(0); opacity: 0; }
+      10% { opacity: 0.8; }
+      60% { transform: translateY(0) scaleY(1); opacity: 0.6; }
+      80% { transform: translateY(5px) scaleY(1.1); opacity: 0.3; }
+      100% { transform: translateY(10px) scaleY(0.5); opacity: 0; }
+    }
+    @keyframes flickerGlow {
+      0%, 100% { opacity: 0.15; }
+      10% { opacity: 0.25; }
+      20% { opacity: 0.1; }
+      40% { opacity: 0.3; }
+      60% { opacity: 0.12; }
+      80% { opacity: 0.22; }
+    }
+    @keyframes slashReveal {
+      from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+      to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+    .rd5 { transition-delay: 0.75s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--accent); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--accent); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--accent);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--accent); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO — BLOOD AND ICE
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    .hero-blood-vignette {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(168,32,32,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(168,32,32,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 90%, rgba(100,10,10,0.2) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Blood drip elements on hero */
+    .blood-drip-line {
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 0;
+      background: linear-gradient(to bottom, var(--accent), rgba(168,32,32,0.3), transparent);
+      animation: dripFall 4s ease-in-out infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       DOMAIN CARDS
+       ═══════════════════════════════════════════ */
+    .domain-card {
+      position: relative; overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.5s, background var(--transition-theme);
+    }
+    .domain-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 0 50px var(--accent-dim), var(--card-hover-shadow);
+    }
+    .domain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .domain-card:hover::before { opacity: 1; }
+
+    /* ═══════════════════════════════════════════
+       REGION CARDS (Other Regions)
+       ═══════════════════════════════════════════ */
+    .region-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+    }
+    .region-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--card-hover-shadow);
+    }
+    .region-card img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .region-card:hover img {
+      transform: scale(1.08);
+    }
+
+    /* ═══════════════════════════════════════════
+       THEME CARDS (Culture section)
+       ═══════════════════════════════════════════ */
+    .theme-card {
+      position: relative; overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .theme-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-dim), var(--card-hover-shadow);
+    }
+    .theme-card .theme-icon {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .theme-card:hover .theme-icon {
+      transform: scale(1.1) rotate(-3deg);
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--accent-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--accent-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════════════
+       BROKEN GRID
+       ═══════════════════════════════════════════ */
+    .offset-left { transform: translateX(-5vw); }
+    .offset-right { transform: translateX(5vw); }
+
+    @media (max-width: 768px) {
+      .offset-left, .offset-right { transform: none; }
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION TRANSITIONS
+       ═══════════════════════════════════════════ */
+    section {
+      transition: background var(--transition-theme);
+    }
+
+    /* ═══════════════════════════════════════════
+       VOSGAARD-SPECIFIC: BRUTAL EFFECTS
+       ═══════════════════════════════════════════ */
+    .slash-mark {
+      position: absolute;
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: rotate(-25deg);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .frost-overlay {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 100% 30% at 50% 0%, rgba(180,200,220,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 20% at 80% 10%, rgba(150,180,210,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .fact-item {
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    .fact-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.4em;
+      width: 8px;
+      height: 2px;
+      background: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="#" class="nav-link" style="color: var(--accent);">Vosgaard</a>
+        <a href="anuire.html" class="nav-link">Anuire</a>
+        <a href="rjurik.html" class="nav-link">Rjurik</a>
+        <a href="khinasi.html" class="nav-link">Khinasi</a>
+        <a href="brechtur.html" class="nav-link">Brechtur</a>
+        <a href="shadow-world.html" class="nav-link">Shadow World</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Discord
+        </a>
+      </div>
+
+      <!-- Mobile menu btn -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="../index.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Home</a>
+      <a href="anuire.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Anuire</a>
+      <a href="rjurik.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Rjurik</a>
+      <a href="khinasi.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Khinasi</a>
+      <a href="brechtur.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Brechtur</a>
+      <a href="shadow-world.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Shadow World</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — FROZEN HELL
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex flex-col items-start justify-end grain overflow-hidden" style="background: var(--bg-primary);">
+    <!-- BG Image -->
+    <div class="absolute inset-0">
+      <img src="../brand_assets/vosgaard%20800x600.png" alt="Vosgaard" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 30%;">
+      <!-- Color treatment -->
+      <div class="absolute inset-0" style="background: var(--accent); mix-blend-mode: multiply; opacity: 0.2;"></div>
+    </div>
+
+    <!-- Heavy overlays for text readability -->
+    <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-primary) 5%, rgba(6,6,6,0.55) 40%, rgba(6,6,6,0.15) 70%, rgba(6,6,6,0.35) 100%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(6,6,6,0.65) 0%, transparent 55%);"></div>
+    <!-- Top darkening for nav readability -->
+    <div class="absolute top-0 left-0 right-0 h-32 pointer-events-none" style="background: linear-gradient(to bottom, rgba(6,6,6,0.6), transparent);"></div>
+
+    <!-- Blood vignette -->
+    <div class="hero-blood-vignette"></div>
+
+    <!-- Frost overlay -->
+    <div class="frost-overlay"></div>
+
+    <!-- Red glow at bottom -->
+    <div class="absolute bottom-0 left-0 right-0 h-[2px]" style="background: linear-gradient(90deg, transparent 10%, var(--accent) 50%, transparent 90%); opacity: 0.4;"></div>
+
+    <!-- Scanline -->
+    <div class="hero-scanline"></div>
+
+    <!-- Blood drip lines -->
+    <div class="blood-drip-line" style="left: 15%; animation-delay: 0s; animation-duration: 5s;"></div>
+    <div class="blood-drip-line" style="left: 35%; animation-delay: 1.5s; animation-duration: 6s;"></div>
+    <div class="blood-drip-line" style="left: 72%; animation-delay: 3s; animation-duration: 4.5s;"></div>
+    <div class="blood-drip-line" style="left: 88%; animation-delay: 0.8s; animation-duration: 7s;"></div>
+    <div class="blood-drip-line" style="left: 50%; animation-delay: 2.2s; animation-duration: 5.5s;"></div>
+
+    <!-- Flickering red glow -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 50% at 30% 80%, rgba(168,32,32,0.12) 0%, transparent 60%); animation: flickerGlow 6s ease-in-out infinite;"></div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-5 md:px-6 lg:px-12 mt-auto pb-10 md:pb-16 lg:pb-24">
+      <!-- Label -->
+      <div class="anim-fade-up anim-d2 mb-4">
+        <span class="typo-label" style="color: var(--accent);">&#9608;&#9608; The Frozen Waste</span>
+      </div>
+
+      <!-- MASSIVE TITLE -->
+      <div class="anim-fade-up anim-d3 mb-6">
+        <span class="typo-mega" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow); font-size: clamp(5rem, 16vw, 14rem); line-height: 0.8; display: block;">VOSGAARD</span>
+      </div>
+
+      <!-- Subtitle — brutal -->
+      <p class="anim-fade-up anim-d4 max-w-2xl text-xl md:text-2xl" style="color: var(--text-secondary); line-height: 1.65; font-weight: 300;">
+        Brutal warlords and blood-soaked tundra. Only the strong survive the endless winter.
+        <span style="color: var(--accent); font-weight: 500;">Mercy is weakness.</span>
+        <span style="color: var(--text-primary); font-weight: 500;">Conquest is prayer.</span>
+      </p>
+
+      <!-- CTA -->
+      <div class="anim-fade-up anim-d5 flex flex-wrap gap-4 mt-10">
+        <a href="https://wiki.birthright.net" class="btn-primary">
+          Explore the Wiki
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Slash marks — decorative brutality -->
+    <div class="slash-mark" style="top: 20%; right: 12%;"></div>
+    <div class="slash-mark" style="top: 35%; right: 8%; width: 80px; transform: rotate(-30deg);"></div>
+    <div class="slash-mark" style="top: 15%; right: 18%; width: 60px; transform: rotate(-20deg);"></div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       OVERVIEW — ASYMMETRIC
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Section label -->
+      <div class="reveal mb-8">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 01</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">THE LAND</span>
+          <span><span class="word-accent">OF BLOOD</span></span>
+        </div>
+      </div>
+
+      <!-- Asymmetric layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        <!-- Lore text — spans 7 cols -->
+        <div class="reveal-left lg:col-span-7">
+          <p class="font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.7;">
+            Vosgaard is the most hostile region of Cerilia — a frozen wasteland of endless tundra, blood-soaked battlefields, and warlords who rule through fear and strength alone. The Vos people were the chosen of Azrai, the god of shadow, and his dark influence still courses through their blood. Here, might makes right in the most literal sense: chieftains earn their thrones by killing whoever sits upon them.
+          </p>
+          <p class="font-body text-lg lg:text-xl mt-6" style="color: var(--text-secondary); line-height: 1.7;">
+            Diplomacy is for the weak. Alliance is temporary. And the only law that matters is the one enforced by axe and fire. Those who survive Vosgaard are forged into something harder than steel — but the cost of that forging is measured in blood.
+          </p>
+        </div>
+
+        <!-- Facts — spans 5 cols, offset up -->
+        <div class="reveal-right lg:col-span-5 lg:-mt-8">
+          <div class="p-8 lg:p-10" style="background: var(--bg-card); border: 1px solid var(--border);">
+            <h3 class="font-impact text-2xl tracking-wider mb-8" style="color: var(--text-primary);">REGION FACTS</h3>
+
+            <div class="space-y-6">
+              <div class="fact-item">
+                <span class="typo-label block mb-1" style="color: var(--accent); font-size: 0.55rem;">Government</span>
+                <span class="font-body text-base" style="color: var(--text-primary);">Warlord Chieftains</span>
+              </div>
+              <div class="fact-item">
+                <span class="typo-label block mb-1" style="color: var(--accent); font-size: 0.55rem;">Religion</span>
+                <span class="font-body text-base" style="color: var(--text-primary);">Belinik (Terror &amp; War), Kriesha (Winter &amp; Hardship)</span>
+              </div>
+              <div class="fact-item">
+                <span class="typo-label block mb-1" style="color: var(--accent); font-size: 0.55rem;">Landscape</span>
+                <span class="font-body text-base" style="color: var(--text-primary);">Frozen tundra, blood-stained steppes, volcanic mountains</span>
+              </div>
+              <div class="fact-item">
+                <span class="typo-label block mb-1" style="color: var(--accent); font-size: 0.55rem;">Culture</span>
+                <span class="font-body text-base" style="color: var(--text-primary);">Slavic/Mongol-inspired, war-culture, survival of the fittest</span>
+              </div>
+            </div>
+
+            <!-- Accent line at bottom -->
+            <div class="mt-8 h-[2px]" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       NOTABLE DOMAINS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Header -->
+      <div class="reveal mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 02</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">NOTABLE</span>
+          <span><span class="word-accent">DOMAINS</span></span>
+        </div>
+        <p class="mt-6 max-w-lg font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+          Kingdoms forged in blood and held by the strongest hand. Each domain is a battleground, each throne a death sentence.
+        </p>
+      </div>
+
+      <!-- Domain cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Molochev -->
+        <div class="reveal domain-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Major Realm</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">MOLOCHEV</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            The most powerful Vos realm. Its Tsarevic rules through sheer brutality, and his armies are the terror of the north.
+          </p>
+        </div>
+
+        <!-- Kozlovnyy -->
+        <div class="reveal rd1 domain-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Dark Shamans</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">KOZLOVNYY</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            A land of dark shamans and blood magic, where the line between priest and warlord blurs into horror.
+          </p>
+        </div>
+
+        <!-- Torova Temylatin -->
+        <div class="reveal rd2 domain-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Crown of Winter</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">TOROVA TEMYLATIN</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            The "Crown of Winter" — a volcanic wasteland ruled by the priests of Kriesha, goddess of ice and suffering.
+          </p>
+        </div>
+
+        <!-- Rzhlev -->
+        <div class="reveal rd3 domain-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Borderland</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">RZHLEV</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            A contested borderland caught between Vos aggression and Brecht commerce — a place where loyalties shift with the wind.
+          </p>
+        </div>
+
+        <!-- Grovnikken Steppe -->
+        <div class="reveal rd4 domain-card md:col-span-2 p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.115 5.19l.319 1.913A6 6 0 008.11 10.36L9.75 12l-.387.775c-.217.433-.132.956.21 1.298l1.348 1.348c.21.21.329.497.329.795v1.089c0 .426.24.815.622 1.006l.153.076c.433.217.956.132 1.298-.21l.723-.723a8.7 8.7 0 002.288-4.042 1.087 1.087 0 00-.358-1.099l-1.33-1.108c-.251-.21-.582-.299-.905-.245l-1.17.195a1.125 1.125 0 01-.98-.314l-.295-.295a1.125 1.125 0 010-1.591l.13-.132a1.125 1.125 0 011.3-.21l.603.302a.809.809 0 001.086-1.086L14.25 7.5l1.256-.837a4.5 4.5 0 001.528-1.732l.146-.292M6.115 5.19A9 9 0 1017.18 4.64M6.115 5.19A8.965 8.965 0 0112 3c1.929 0 3.716.607 5.18 1.64"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Endless Steppe</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">THE GROVNIKKEN STEPPE</h3>
+          <p class="font-body text-base max-w-xl" style="color: var(--text-secondary); line-height: 1.65;">
+            Endless grasslands where mounted warlords hunt each other in an eternal cycle of raid and revenge.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       CULTURE & THEMES
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Header -->
+      <div class="reveal mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 03</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">CULTURE</span>
+          <span><span style="color: var(--text-primary);">&amp; </span><span class="word-accent">THEMES</span></span>
+        </div>
+      </div>
+
+      <!-- Theme cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        <!-- Blood and Iron -->
+        <div class="reveal theme-card p-8 lg:p-10">
+          <div class="theme-icon w-16 h-16 flex items-center justify-center mb-8" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+            <svg class="w-8 h-8" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/></svg>
+          </div>
+          <h3 class="font-impact text-3xl tracking-wider mb-4" style="color: var(--text-primary);">BLOOD AND IRON</h3>
+          <p class="font-body text-base mb-6" style="color: var(--text-secondary); line-height: 1.7;">
+            Warfare as religion, the endless cycle of conquest, trial by combat. In Vosgaard, steel is the only tongue that speaks truth.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Warfare</span>
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Conquest</span>
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Trial by Combat</span>
+          </div>
+        </div>
+
+        <!-- Azrai's Shadow -->
+        <div class="reveal rd1 theme-card p-8 lg:p-10">
+          <div class="theme-icon w-16 h-16 flex items-center justify-center mb-8" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+            <svg class="w-8 h-8" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="font-impact text-3xl tracking-wider mb-4" style="color: var(--text-primary);">AZRAI'S SHADOW</h3>
+          <p class="font-body text-base mb-6" style="color: var(--text-secondary); line-height: 1.7;">
+            The dark god's legacy, tainted bloodlines, shadow magic and corruption. Azrai's touch lingers in every Vos soul like a wound that never heals.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Dark Legacy</span>
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Tainted Blood</span>
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Shadow Magic</span>
+          </div>
+        </div>
+
+        <!-- The Endless Winter -->
+        <div class="reveal rd2 theme-card p-8 lg:p-10">
+          <div class="theme-icon w-16 h-16 flex items-center justify-center mb-8" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+            <svg class="w-8 h-8" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+          </div>
+          <h3 class="font-impact text-3xl tracking-wider mb-4" style="color: var(--text-primary);">THE ENDLESS WINTER</h3>
+          <p class="font-body text-base mb-6" style="color: var(--text-secondary); line-height: 1.7;">
+            Survival against impossible odds, the frozen waste as enemy and teacher. Winter does not forgive. Winter does not forget.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Survival</span>
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Frozen Waste</span>
+            <span class="px-3 py-1 text-xs font-display tracking-widest uppercase" style="border: 1px solid var(--border); color: var(--text-muted);">Hardship</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       OTHER REGIONS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain overflow-hidden" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Header -->
+      <div class="reveal mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--accent);">&#9608; 04</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">OTHER</span>
+          <span><span class="word-accent">REGIONS</span></span>
+        </div>
+      </div>
+
+      <!-- Region cards grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Anuire -->
+        <a href="anuire.html" class="reveal region-card h-[350px] lg:h-[400px]" style="border: 1px solid var(--border); display: block; text-decoration: none;">
+          <img src="../brand_assets/anuire%20800x600.png" alt="Anuire" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: var(--accent); mix-blend-mode: multiply; opacity: 0.05;"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Imperial Heartland</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">ANUIRE</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              The shattered empire where blooded scions wage war for the Iron Throne.
+            </p>
+          </div>
+        </a>
+
+        <!-- Rjurik -->
+        <a href="rjurik.html" class="reveal rd1 region-card h-[350px] lg:h-[400px]" style="border: 1px solid var(--border); display: block; text-decoration: none;">
+          <img src="../brand_assets/rjurik%20800x600.png" alt="Rjurik" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Highland Reaches</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">RJURIK</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Norse-inspired druids and jarls in untamed highlands where nature's law rules above all.
+            </p>
+          </div>
+        </a>
+
+        <!-- Khinasi -->
+        <a href="khinasi.html" class="reveal rd2 region-card h-[350px] lg:h-[400px]" style="border: 1px solid var(--border); display: block; text-decoration: none;">
+          <img src="../brand_assets/khinasi%20800x600.png" alt="Khinasi" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Sunlit Lands</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">KHINASI</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Desert cities of learning and trade, where merchants hold more power than kings.
+            </p>
+          </div>
+        </a>
+
+        <!-- Brechtur -->
+        <a href="brechtur.html" class="reveal rd3 region-card h-[350px] lg:h-[400px]" style="border: 1px solid var(--border); display: block; text-decoration: none;">
+          <img src="../brand_assets/brechtur%20800x600.png" alt="Brechtur" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Trading Coast</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">BRECHTUR</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Gothic harbours and mercantile guilds. Gold speaks louder than swords in these dark waters.
+            </p>
+          </div>
+        </a>
+
+        <!-- Shadow World — spans 2 cols -->
+        <a href="shadow-world.html" class="reveal rd4 region-card md:col-span-2 h-[350px] lg:h-[400px]" style="border: 1px solid var(--border); display: block; text-decoration: none;">
+          <img src="../brand_assets/shadowworld%20800x600.png" alt="The Shadow World" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 40%;">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 50%);"></div>
+          <div class="absolute inset-0 grain" style="--grain-opacity: 0.08;"></div>
+          <div class="absolute bottom-0 left-0 p-8 lg:p-12 z-10 max-w-lg">
+            <span class="typo-label" style="color: var(--crimson);">&#9608; Beyond the Veil</span>
+            <h3 class="font-impact text-5xl lg:text-7xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 30px rgba(0,0,0,0.9);">
+              THE SHADOW<br>WORLD
+            </h3>
+            <p class="mt-3 font-body text-base" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              A dark mirror of Cerilia where the dead do not rest and the Halfling realm bleeds into nightmare.
+            </p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-24">
+      <div class="flex flex-col md:flex-row items-start justify-between gap-12">
+        <!-- Logo -->
+        <div>
+          <a href="../index.html" class="inline-block">
+            <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10" style="filter: var(--logo-filter);">
+          </a>
+          <p class="mt-4 font-body text-sm max-w-xs" style="color: var(--text-muted); line-height: 1.6;">
+            The official community hub for the Birthright campaign setting.
+          </p>
+        </div>
+
+        <!-- Region links -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Regions</h4>
+          <div class="flex flex-col gap-3">
+            <a href="anuire.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Anuire</a>
+            <a href="rjurik.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Rjurik</a>
+            <a href="khinasi.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Khinasi</a>
+            <a href="brechtur.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Brechtur</a>
+            <a href="#" class="font-body text-base transition-colors" style="color: var(--accent); text-decoration: none;">Vosgaard</a>
+            <a href="shadow-world.html" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Shadow World</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
+          <div class="flex flex-col gap-3">
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--accent)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === BLOOD DRIP DIVIDERS ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight;
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+
+    // === BLOOD DRIP SPAWNER (hero only) ===
+    const hero = document.querySelector('section');
+    function spawnBloodDrip() {
+      const drip = document.createElement('div');
+      const x = Math.random() * 100;
+      const h = Math.random() * 60 + 40;
+      const dur = Math.random() * 3 + 3;
+      drip.style.cssText = `
+        position: absolute; top: 0; left: ${x}%;
+        width: 1px; height: ${h}px;
+        background: linear-gradient(to bottom, var(--accent), rgba(168,32,32,0.2), transparent);
+        animation: dripFall ${dur}s ease-in forwards;
+        pointer-events: none; z-index: 5;
+      `;
+      hero.appendChild(drip);
+      setTimeout(() => drip.remove(), dur * 1000);
+    }
+    setInterval(spawnBloodDrip, 2000);
+  </script>
+
+</body>
+</html>
