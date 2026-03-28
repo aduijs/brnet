@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIRTHRIGHT.NET — Rule a Domain, Shape a World</title>
+  <meta name="description" content="The official home of the Birthright campaign setting. Explore the lands of Cerilia, claim your bloodline, and rule your domain.">
+  <meta property="og:title" content="Birthright — Rule a Domain, Shape a World">
+  <meta property="og:description" content="The legendary D&D campaign setting. Claim your divine bloodline and rule the kingdoms of Cerilia.">
+  <meta property="og:image" content="brand_assets/social%20share.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts: aggressive display + elegant body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM — DUAL LIGHT/DARK
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --overlay-light: rgba(6, 6, 6, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --invert: 0;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --overlay-light: rgba(214, 204, 184, 0.4);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --invert: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--crimson);
+      color: #fff;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       AGGRESSIVE TYPOGRAPHY SYSTEM
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-blackletter {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    /* Accent word — rotated, different color, AGGRESSIVE */
+    .word-accent {
+      display: inline-block;
+      color: var(--crimson);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--crimson-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--crimson);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .word-gold {
+      color: var(--gold);
+    }
+
+    /* Stacked text effect */
+    .text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .text-stack > * {
+      line-height: 0.88;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes glitch-1 {
+      0%, 100% { clip-path: inset(0 0 90% 0); transform: translate(-2px, 0); }
+      25% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+      50% { clip-path: inset(50% 0 30% 0); transform: translate(-1px, 0); }
+      75% { clip-path: inset(70% 0 10% 0); transform: translate(1px, 0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes float-particle {
+      0% { transform: translateY(0) scale(0); opacity: 0; }
+      10% { opacity: 0.6; transform: translateY(-10vh) scale(1); }
+      100% { transform: translateY(-100vh) scale(0.2); opacity: 0; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--crimson); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--gold); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARDS
+       ═══════════════════════════════════════════ */
+    .region-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
+    }
+    .region-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: var(--card-hover-shadow);
+    }
+    .region-card img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .region-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .tool-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: 0 0 40px var(--gold-dim), var(--card-hover-shadow);
+    }
+
+    .community-card {
+      position: relative; overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .community-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--crimson);
+      box-shadow: 0 0 40px var(--crimson-dim), var(--card-hover-shadow);
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS & ORNAMENTS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--crimson), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--crimson);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       BROKEN GRID UTILS
+       ═══════════════════════════════════════════ */
+    .offset-left { transform: translateX(-5vw); }
+    .offset-right { transform: translateX(5vw); }
+
+    @media (max-width: 768px) {
+      .offset-left, .offset-right { transform: none; }
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+
+      /* Hero: video as bg cover on mobile, content at bottom */
+      .hero-mobile-cover video {
+        object-fit: cover !important;
+        object-position: center 40% !important;
+      }
+
+      /* Tighter section padding on mobile */
+      .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+
+      /* Scion strip adjustments */
+      .scion-strip { height: 350px !important; }
+      .scion-character { display: none; } /* hide character on small screens, keep landscape */
+      .scion-text h3 { font-size: 2.5rem !important; }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--crimson);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--crimson-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--crimson-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════════════
+       SECTION TRANSITIONS
+       ═══════════════════════════════════════════ */
+    section {
+      transition: background var(--transition-theme);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV — Minimal, Aggressive
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="/" class="relative z-10 flex items-center gap-3 group">
+        <img src="brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="#world" class="nav-link">The World</a>
+        <a href="#regions" class="nav-link">Regions</a>
+        <a href="#tools" class="nav-link">Arsenal</a>
+        <a href="https://wiki.birthright.net" class="nav-link">Wiki</a>
+        <a href="#community" class="nav-link">Community</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <!-- Mobile menu btn -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="#world" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">The World</a>
+      <a href="#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
+      <a href="#tools" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Arsenal</a>
+      <a href="https://wiki.birthright.net" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — CINEMATIC + AGGRESSIVE
+       ══════════════════════════════════════════════════════ -->
+  <section class="hero-mobile-cover relative min-h-screen flex flex-col items-center justify-end grain overflow-hidden" style="background: var(--bg-primary);">
+    <!-- Video BG — the 3D logo animation -->
+    <div class="absolute inset-0" style="background: var(--bg-primary);"></div>
+    <video class="absolute inset-0 w-full h-full object-contain md:object-contain object-cover" autoplay muted loop playsinline poster="brand_assets/hero%20background.png" style="opacity: 0.9; object-position: center 35%;">
+      <source src="brand_assets/BRnetLogoAnimated.mp4" type="video/mp4">
+    </video>
+
+    <!-- Edge darkening -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 90% 90% at 50% 45%, transparent 20%, var(--bg-primary) 80%);"></div>
+
+    <!-- Bottom gradient for text -->
+    <div class="absolute bottom-0 left-0 right-0 h-[55%] pointer-events-none" style="background: linear-gradient(to top, var(--bg-primary) 5%, rgba(0,0,0,0.3) 50%, transparent 100%);"></div>
+
+    <!-- Left gradient for text readability -->
+    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to right, var(--bg-primary) 0%, transparent 45%); opacity: 0.5;"></div>
+
+    <!-- Scan line effect -->
+    <div class="hero-scanline"></div>
+
+    <!-- Particles -->
+    <div id="particles" class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true"></div>
+
+    <!-- Hero Content — Bottom aligned, aggressive typography -->
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-5 md:px-6 lg:px-12 mt-auto pb-8 md:pb-16 lg:pb-24">
+      <!-- Small label -->
+      <div class="anim-fade-up anim-d2 mb-4">
+        <span class="typo-label" style="color: var(--crimson);">&#9608;&#9608; The Official Birthright Campaign Setting</span>
+      </div>
+
+      <!-- MAIN HEADING — Mörk Borg aggressive stacking -->
+      <div class="anim-fade-up anim-d3 text-stack mb-6">
+        <span class="typo-mega" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow);">CLAIM YOUR</span>
+        <span class="typo-mega" style="text-shadow: var(--hero-text-shadow);">
+          <span style="color: var(--text-primary);">DIVINE </span><span class="word-accent" style="font-size: 1.1em;">BLOOD</span>
+        </span>
+      </div>
+
+      <!-- Subtext -->
+      <p class="anim-fade-up anim-d4 max-w-xl text-xl md:text-2xl" style="color: var(--text-secondary); line-height: 1.65; font-weight: 300;">
+        Rule kingdoms. Command armies. Shape the fate of Cerilia
+        in the most ambitious D&D setting ever forged.
+      </p>
+
+      <!-- CTAs -->
+      <div class="anim-fade-up anim-d5 flex flex-wrap gap-4 mt-10">
+        <a href="#world" class="btn-primary">
+          Enter Cerilia
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <a href="#tools" class="btn-ghost">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          Get the Rules
+        </a>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="anim-fade-up anim-d6 mt-6 md:mt-12 flex items-center gap-3">
+        <div class="w-[1px] h-8" style="background: linear-gradient(to bottom, var(--crimson), transparent);"></div>
+        <span class="typo-label" style="color: var(--text-muted); font-size: 0.6rem;">Scroll to descend</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       THE WORLD — Asymmetric cinematic intro
+       ══════════════════════════════════════════════════════ -->
+  <section id="world" class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <!-- Blood drip divider -->
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Section label -->
+      <div class="reveal mb-20 lg:mb-32">
+        <span class="typo-label" style="color: var(--crimson);">&#9608; 01</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">THE WORLD</span>
+          <span style="color: var(--text-primary);">OF <span class="word-gold">CERILIA</span></span>
+        </div>
+      </div>
+
+      <!-- Asymmetric two-column: logo + text -->
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <!-- Left: 3D Logo -->
+        <div class="lg:col-span-7 reveal-left">
+          <div class="relative">
+            <img src="brand_assets/logo_3d_transparent.png" alt="Birthright" class="w-full max-w-[750px]" style="filter: drop-shadow(0 0 40px var(--gold-glow)) drop-shadow(0 15px 30px var(--shadow-color));">
+            <!-- Decorative corner marks -->
+            <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2" style="border-color: var(--crimson); opacity: 0.4;"></div>
+            <div class="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2" style="border-color: var(--crimson); opacity: 0.4;"></div>
+          </div>
+        </div>
+
+        <!-- Right: Text -->
+        <div class="lg:col-span-5 reveal-right">
+          <div class="lg:pl-4">
+            <p class="font-body text-xl md:text-2xl mb-8" style="color: var(--text-secondary); line-height: 1.75; font-weight: 300;">
+              In a world where the blood of gods flows through mortal veins, heroes
+              don't merely delve dungeons — they <strong style="color: var(--text-primary); font-weight: 600;">command armies, manage provinces,
+              and shape the fate of nations</strong> through divine bloodright.
+            </p>
+            <p class="font-body text-lg mb-10" style="color: var(--text-muted); line-height: 1.75; font-weight: 300;">
+              Created by TSR in 1995, Birthright remains the only D&D setting where
+              political intrigue, domain management, and mass warfare sit at the heart
+              of play — a Game of Thrones before Game of Thrones existed.
+            </p>
+            <div class="flex items-center gap-6">
+              <div>
+                <span class="font-impact text-4xl" style="color: var(--gold);">25+</span>
+                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Years of Lore</p>
+              </div>
+              <div class="w-[1px] h-12" style="background: var(--border);"></div>
+              <div>
+                <span class="font-impact text-4xl" style="color: var(--gold);">6</span>
+                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Vast Regions</p>
+              </div>
+              <div class="w-[1px] h-12" style="background: var(--border);"></div>
+              <div>
+                <span class="font-impact text-4xl" style="color: var(--gold);">∞</span>
+                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Kingdoms to Rule</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Blooded Scion — Full width cinematic strip -->
+      <div class="reveal mt-24 lg:mt-40 relative overflow-hidden" style="margin-left: -1.5rem; margin-right: -1.5rem;">
+        <div class="scion-strip relative h-[450px] lg:h-[600px] overflow-hidden" style="border-top: 2px solid var(--crimson); border-bottom: 2px solid var(--crimson);">
+          <img src="brand_assets/hero%20background.png" alt="The lands of Cerilia" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 30%;">
+          <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, transparent 60%, rgba(0,0,0,0.5) 100%);"></div>
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);"></div>
+
+          <!-- Overlaid character -->
+          <div class="scion-character absolute right-4 lg:right-16 bottom-0 h-[115%]" style="z-index: 2;">
+            <img src="brand_assets/blooded%20scion.png" alt="A Blooded Scion of Cerilia" class="h-full w-auto object-contain" style="filter: drop-shadow(-10px 0 40px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(196,30,30,0.15));">
+          </div>
+
+          <!-- Decorative scan line -->
+          <div class="absolute top-0 left-0 right-0 h-[1px]" style="background: linear-gradient(90deg, transparent, var(--crimson), transparent); opacity: 0.5;"></div>
+
+          <!-- Text overlay — aggressive -->
+          <div class="absolute left-6 lg:left-16 bottom-8 md:bottom-10 lg:bottom-14 max-w-lg z-10">
+            <span class="typo-label" style="color: var(--crimson);">&#9608; Blooded Scion</span>
+            <h3 class="scion-text font-impact text-4xl md:text-5xl lg:text-7xl mt-3" style="color: #fff; line-height: 0.88; text-shadow: 0 4px 30px rgba(0,0,0,0.9);">
+              THE BLOOD<br><span style="color: var(--crimson);">REMEMBERS</span>
+            </h3>
+            <p class="mt-5 font-body text-base lg:text-lg" style="color: rgba(255,255,255,0.7); line-height: 1.65; text-shadow: 0 2px 15px rgba(0,0,0,0.8);">
+              When the god Azrai fell at Mount Deismaar, his divine essence scattered
+              across the battlefield — flowing into those who would become the first
+              blooded rulers of Cerilia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       REGIONS — Broken grid, full-bleed imagery
+       ══════════════════════════════════════════════════════ -->
+  <section id="regions" class="relative grain overflow-hidden" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Section header -->
+      <div class="reveal flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 lg:mb-24">
+        <div>
+          <span class="typo-label" style="color: var(--crimson);">&#9608; 02</span>
+          <div class="mt-4 typo-section-head text-stack">
+            <span style="color: var(--text-primary);">THE <span class="word-accent">SIX</span></span>
+            <span style="color: var(--text-primary);">REGIONS</span>
+          </div>
+        </div>
+        <p class="mt-6 lg:mt-0 max-w-md font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+          Each region of Cerilia is a world unto itself — with unique cultures,
+          conflicts, and kingdoms to claim.
+        </p>
+      </div>
+
+      <!-- Region Grid — Asymmetric -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <!-- Anuire — Large -->
+        <div class="reveal region-card md:col-span-2 lg:col-span-2 h-[400px] lg:h-[500px]" style="border: 1px solid var(--border);">
+          <img src="brand_assets/anuire%20800x600.png" alt="Anuire" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 40%);"></div>
+          <div class="absolute bottom-0 left-0 p-8 lg:p-12 z-10 max-w-lg">
+            <span class="typo-label" style="color: var(--gold);">The Heartlands</span>
+            <h3 class="font-impact text-5xl lg:text-7xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">ANUIRE</h3>
+            <p class="mt-3 font-body text-base" style="color: rgba(255,255,255,0.7); line-height: 1.6; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+              The shattered empire. Feudal lords battle for the Iron Throne while ancient bloodlines
+              scheme in courts of steel and velvet.
+            </p>
+          </div>
+          <!-- Corner accent -->
+          <div class="absolute top-4 right-4 w-16 h-16 border-t border-r" style="border-color: var(--gold); opacity: 0.3;"></div>
+        </div>
+
+        <!-- Rjurik -->
+        <div class="reveal rd1 region-card h-[400px] lg:h-[500px]" style="border: 1px solid var(--border);">
+          <img src="brand_assets/rjurik%20800x600.png" alt="Rjurik Highlands" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Wild North</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">RJURIK</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+              Norse-inspired druids and jarls in untamed highlands where nature's law rules above all.
+            </p>
+          </div>
+        </div>
+
+        <!-- Khinasi -->
+        <div class="reveal rd1 region-card h-[350px] lg:h-[400px]" style="border: 1px solid var(--border);">
+          <img src="brand_assets/khinasi%20800x600.png" alt="Khinasi" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Sunlit Lands</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">KHINASI</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Desert cities of learning and trade, where merchants hold more power than kings.
+            </p>
+          </div>
+        </div>
+
+        <!-- Brechtur -->
+        <div class="reveal rd2 region-card h-[350px] lg:h-[400px]" style="border: 1px solid var(--border);">
+          <img src="brand_assets/brechtur%20800x600.png" alt="Brechtur" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--gold);">The Trading Coast</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">BRECHTUR</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Gothic harbours and mercantile guilds. Gold speaks louder than swords in these dark waters.
+            </p>
+          </div>
+        </div>
+
+        <!-- Vosgaard -->
+        <div class="reveal rd3 region-card h-[350px] lg:h-[400px]" style="border: 1px solid var(--border);">
+          <img src="brand_assets/vosgaard%20800x600.png" alt="Vosgaard" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
+          <div class="absolute bottom-0 left-0 p-8 z-10">
+            <span class="typo-label" style="color: var(--crimson);">The Frozen Waste</span>
+            <h3 class="font-impact text-4xl lg:text-5xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">VOSGAARD</h3>
+            <p class="mt-3 font-body text-sm" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              Brutal warlords and blood-soaked tundra. Only the strong survive the endless winter.
+            </p>
+          </div>
+        </div>
+
+        <!-- Shadow World — Full width, menacing -->
+        <div class="reveal rd3 region-card md:col-span-2 lg:col-span-3 h-[350px] lg:h-[400px]" style="border: 1px solid var(--border);">
+          <img src="brand_assets/shadowworld%20800x600.png" alt="The Shadow World" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 40%;">
+          <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);"></div>
+          <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 50%);"></div>
+          <!-- Noise overlay for horror feel -->
+          <div class="absolute inset-0 grain" style="--grain-opacity: 0.08;"></div>
+          <div class="absolute bottom-0 left-0 p-8 lg:p-12 z-10 max-w-lg">
+            <span class="typo-label" style="color: var(--crimson);">&#9608; Beyond the Veil</span>
+            <h3 class="font-impact text-5xl lg:text-7xl mt-2" style="color: #fff; line-height: 0.9; text-shadow: 0 4px 30px rgba(0,0,0,0.9);">
+              THE SHADOW<br>WORLD
+            </h3>
+            <p class="mt-3 font-body text-base" style="color: rgba(255,255,255,0.6); line-height: 1.6;">
+              A dark mirror of Cerilia where the dead do not rest and the Halfling realm
+              bleeds into nightmare. Every step taken here costs a piece of your soul.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       DIGITAL ARSENAL — Tools & Add-ons
+       ══════════════════════════════════════════════════════ -->
+  <section id="tools" class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Header -->
+      <div class="reveal mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--crimson);">&#9608; 03</span>
+        <div class="mt-4 typo-section-head text-stack">
+          <span style="color: var(--text-primary);">DIGITAL</span>
+          <span><span class="word-accent">ARSENAL</span></span>
+        </div>
+        <p class="mt-6 max-w-lg font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+          Tools forged for rulers. Manage your domain, track your bloodline, and
+          wage war — all from your browser.
+        </p>
+      </div>
+
+      <!-- Tool Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Domain Tracker -->
+        <div class="reveal tool-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008V7.5z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Domain Management</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">DOMAIN TRACKER</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            Interactive province management. Track holdings, income, loyalty, and military forces across your realm in real-time.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="px-2 py-1 text-xs font-impact tracking-wider" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">PLANNED</span>
+          </div>
+        </div>
+
+        <!-- Bloodline Generator -->
+        <div class="reveal rd1 tool-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Character Tools</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">BLOODLINE GENERATOR</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            Generate blooded scions with derivation, strength, and blood abilities. Full 2e and 5e compatibility with printable character sheets.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="px-2 py-1 text-xs font-impact tracking-wider" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">PLANNED</span>
+          </div>
+        </div>
+
+        <!-- War Card System -->
+        <div class="reveal rd2 tool-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Warfare</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">WAR CARD SYSTEM</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            Digital battle resolution with unit cards, terrain modifiers, and automated War Moves. Run mass combat without slowing your session.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="px-2 py-1 text-xs font-impact tracking-wider" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">PLANNED</span>
+          </div>
+        </div>
+
+        <!-- Interactive Atlas -->
+        <div class="reveal rd2 tool-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Exploration</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">INTERACTIVE ATLAS</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            Zoomable map of Cerilia with province data, ruler info, and wiki-linked entries. Filter by region, allegiance, or bloodline.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="px-2 py-1 text-xs font-impact tracking-wider" style="background: var(--crimson-dim); color: var(--gold); border: 1px solid var(--gold);">PLANNED</span>
+          </div>
+        </div>
+
+        <!-- Domain Turn Simulator -->
+        <div class="reveal rd3 tool-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Gameplay</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">DOMAIN TURN ENGINE</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            Automate seasonal domain actions — taxation, diplomacy, espionage, and realm magic. Submit orders asynchronously between sessions.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="px-2 py-1 text-xs font-impact tracking-wider" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">PLANNED</span>
+          </div>
+        </div>
+
+        <!-- Random Event Generator -->
+        <div class="reveal rd3 tool-card p-8 lg:p-10">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z"/></svg>
+            </div>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">DM Tools</span>
+          </div>
+          <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">EVENT ORACLE</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
+            Generate domain events, NPC schemes, and political crises. Weighted by region, season, and current realm stability.
+          </p>
+          <div class="mt-6 flex items-center gap-2">
+            <span class="px-2 py-1 text-xs font-impact tracking-wider" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">PLANNED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       COMMUNITY HUB
+       ══════════════════════════════════════════════════════ -->
+  <section id="community" class="relative grain overflow-hidden" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <!-- Header -->
+      <div class="reveal text-center mb-16 lg:mb-24">
+        <span class="typo-label" style="color: var(--crimson);">&#9608; 04</span>
+        <div class="mt-4">
+          <span class="typo-section-head" style="color: var(--text-primary);">JOIN THE <span class="word-accent">REALM</span></span>
+        </div>
+        <p class="mt-6 max-w-lg mx-auto font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+          25 years of community. Veterans and newcomers forging the future of Birthright together.
+        </p>
+      </div>
+
+      <!-- Three pillars -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <!-- Forum -->
+        <a href="https://forum.birthright.net" class="reveal community-card group p-8 lg:p-10 text-center">
+          <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+            <svg class="w-8 h-8" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+          </div>
+          <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--crimson)] transition-colors" style="color: var(--text-primary);">FORUM</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.6;">
+            The original gathering hall. Decades of campaign journals, homebrew rules, and realm lore.
+          </p>
+          <div class="mt-6 font-impact text-sm tracking-wider" style="color: var(--gold);">
+            ENTER &rarr;
+          </div>
+        </a>
+
+        <!-- Wiki -->
+        <a href="https://wiki.birthright.net" class="reveal rd1 community-card group p-8 lg:p-10 text-center">
+          <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+            <svg class="w-8 h-8" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+          </div>
+          <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--crimson)] transition-colors" style="color: var(--text-primary);">WIKI</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.6;">
+            The living encyclopedia. Every province, bloodline, and historical event documented by the community.
+          </p>
+          <div class="mt-6 font-impact text-sm tracking-wider" style="color: var(--gold);">
+            EXPLORE &rarr;
+          </div>
+        </a>
+
+        <!-- Discord -->
+        <a href="https://discord.gg/birthright" class="reveal rd2 community-card group p-8 lg:p-10 text-center">
+          <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+            <svg class="w-8 h-8" style="color: var(--crimson);" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          </div>
+          <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--crimson)] transition-colors" style="color: var(--text-primary);">DISCORD</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.6;">
+            Live conversations. Find a game, theorycraft builds, or argue about who should hold the Iron Throne.
+          </p>
+          <div class="mt-6 font-impact text-sm tracking-wider" style="color: var(--gold);">
+            JOIN &rarr;
+          </div>
+        </a>
+      </div>
+
+      <!-- Featured quote / testimonial strip -->
+      <div class="reveal mt-20 lg:mt-28 relative p-8 lg:p-12 text-center" style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <span class="font-blackletter text-6xl lg:text-8xl absolute -top-8 lg:-top-12 left-1/2 -translate-x-1/2" style="color: var(--crimson); opacity: 0.15;" aria-hidden="true">&ldquo;</span>
+        <blockquote class="font-body text-xl lg:text-2xl italic max-w-3xl mx-auto" style="color: var(--text-primary); line-height: 1.7; font-weight: 300;">
+          Birthright is the setting that made me understand what D&D could really be.
+          Not just dungeon crawls — but the weight of a crown, the cost of war,
+          and the price of divine blood.
+        </blockquote>
+        <cite class="block mt-6 typo-label not-italic" style="color: var(--text-muted);">— A regent of the community, since 1996</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       DOWNLOADS / GET STARTED
+       ══════════════════════════════════════════════════════ -->
+  <section id="downloads" class="relative grain overflow-hidden" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-24 lg:py-40">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <!-- Left: CTA -->
+        <div class="reveal">
+          <span class="typo-label" style="color: var(--crimson);">&#9608; 05</span>
+          <div class="mt-4 text-stack">
+            <span class="typo-section-head" style="color: var(--text-primary);">START</span>
+            <span class="typo-section-head"><span class="word-accent">RULING</span></span>
+            <span class="typo-section-head" style="color: var(--text-primary);">TODAY</span>
+          </div>
+          <p class="mt-8 font-body text-xl" style="color: var(--text-secondary); line-height: 1.7; font-weight: 300;">
+            Everything you need to run a Birthright campaign is available for free.
+            Original sourcebooks, community conversions, and quick-start guides.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="#" class="btn-primary">
+              Download Rulebook
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+            </a>
+            <a href="https://wiki.birthright.net" class="btn-ghost">
+              Read the Wiki
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Resource cards -->
+        <div class="reveal rd2 space-y-4">
+          <div class="tool-card p-6 flex items-center gap-5">
+            <div class="w-12 h-12 shrink-0 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <span class="font-impact text-lg" style="color: var(--gold);">PDF</span>
+            </div>
+            <div>
+              <h4 class="font-impact text-xl" style="color: var(--text-primary);">BIRTHRIGHT CAMPAIGN SETTING</h4>
+              <p class="font-body text-sm" style="color: var(--text-muted);">The original 1995 boxed set — digitized and free</p>
+            </div>
+          </div>
+
+          <div class="tool-card p-6 flex items-center gap-5">
+            <div class="w-12 h-12 shrink-0 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <span class="font-impact text-lg" style="color: var(--gold);">5E</span>
+            </div>
+            <div>
+              <h4 class="font-impact text-xl" style="color: var(--text-primary);">5TH EDITION CONVERSION</h4>
+              <p class="font-body text-sm" style="color: var(--text-muted);">Community-crafted rules for modern D&D</p>
+            </div>
+          </div>
+
+          <div class="tool-card p-6 flex items-center gap-5">
+            <div class="w-12 h-12 shrink-0 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <span class="font-impact text-lg" style="color: var(--gold);">MAP</span>
+            </div>
+            <div>
+              <h4 class="font-impact text-xl" style="color: var(--text-primary);">ATLAS OF CERILIA</h4>
+              <p class="font-body text-sm" style="color: var(--text-muted);">High-resolution maps for print and VTT</p>
+            </div>
+          </div>
+
+          <div class="tool-card p-6 flex items-center gap-5">
+            <div class="w-12 h-12 shrink-0 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <span class="font-impact text-lg" style="color: var(--gold);">QS</span>
+            </div>
+            <div>
+              <h4 class="font-impact text-xl" style="color: var(--text-primary);">QUICK START GUIDE</h4>
+              <p class="font-body text-sm" style="color: var(--text-muted);">New to Birthright? Start here. 20-minute read.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <img src="brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting,
+            recognized by Wizards of the Coast. Keeping the blood alive since 1996.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            </a>
+            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+            </a>
+            <a href="https://wiki.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigate -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Navigate</h4>
+          <div class="flex flex-col gap-3">
+            <a href="#world" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">The World</a>
+            <a href="#regions" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Regions</a>
+            <a href="#tools" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Digital Arsenal</a>
+            <a href="#downloads" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Downloads</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
+          <div class="flex flex-col gap-3">
+            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      lastScroll = y;
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    // Close on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === PARTICLES (subtle gold embers) ===
+    const particleContainer = document.getElementById('particles');
+    function spawnParticle() {
+      const p = document.createElement('div');
+      const size = Math.random() * 3 + 1;
+      const x = Math.random() * 100;
+      const dur = Math.random() * 8 + 6;
+      p.style.cssText = `
+        position: absolute; bottom: 0; left: ${x}%;
+        width: ${size}px; height: ${size}px; border-radius: 50%;
+        background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+        animation: float-particle ${dur}s linear;
+        pointer-events: none;
+      `;
+      particleContainer.appendChild(p);
+      setTimeout(() => p.remove(), dur * 1000);
+    }
+    setInterval(spawnParticle, 400);
+
+    // === BLOOD DRIP DIVIDERS — restart on scroll ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight; // reflow
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "birthright-net",
+  "version": "1.0.0",
+  "description": "Birthright RPG official website",
+  "type": "module",
+  "dependencies": {
+    "puppeteer": "^24.4.0"
+  }
+}

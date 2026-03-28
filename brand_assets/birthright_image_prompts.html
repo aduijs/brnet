@@ -1,0 +1,359 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body, .root {
+    font-family: 'Crimson Pro', Georgia, serif;
+    color: var(--color-text-primary);
+  }
+
+  .header {
+    padding: 2rem 1.5rem 1.5rem;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    margin-bottom: 1.5rem;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+  }
+
+  .header p {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    padding: 0 1.5rem;
+    margin-bottom: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .cards {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
+  }
+
+  .card-header:hover {
+    background: var(--color-background-secondary);
+  }
+
+  .card-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-meta {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    margin-top: 1px;
+  }
+
+  .badge {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 99px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .chevron {
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .card.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  .card-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 0.5px solid var(--color-border-tertiary);
+  }
+
+  .card.open .card-body {
+    display: block;
+  }
+
+  .prompt-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin: 12px 0 6px;
+  }
+
+  .prompt-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-style: italic;
+  }
+
+  .copy-btn {
+    margin-top: 12px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    padding: 6px 14px;
+    border: 0.5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .copy-btn:hover {
+    background: var(--color-background-secondary);
+    color: var(--color-text-primary);
+  }
+
+  .copy-btn.copied {
+    color: var(--color-text-success);
+    border-color: var(--color-border-success);
+  }
+
+  .footer-note {
+    padding: 1.5rem;
+    margin-top: 1rem;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    border-top: 0.5px solid var(--color-border-tertiary);
+    line-height: 1.6;
+  }
+</style>
+
+<div class="root">
+  <div class="header">
+    <h1>Birthright — Image Generation Prompts</h1>
+    <p>Mark Simonetti style · Click any card to expand prompt</p>
+  </div>
+
+  <div class="section-label">Hero</div>
+  <div class="cards" id="cards"></div>
+
+  <div class="footer-note">
+    Append to every prompt: <em>"Digital painting, Mark Simonetti style. Ultra-detailed, cinematic composition, volumetric god rays, dramatic chiaroscuro. Rich warm highlights (gold, amber) against deep cool shadows (teal, midnight blue). Painterly brushwork, epic fantasy realism. No watermarks, no text."</em>
+  </div>
+</div>
+
+<script>
+const images = [
+  {
+    section: "Hero",
+    icon: "🏰",
+    title: "Hero Background",
+    dims: "1920×1080",
+    color: "#7F77DD",
+    bg: "#EEEDFE",
+    prompt: "Epic panoramic vista of Cerilia, a vast fantasy continent at the edge of a storm. Foreground: a ruined battlement with a solitary armored figure silhouetted against the sky, dwarfed by the scale of the world beyond. Mid-distance: rolling mist-veiled plains stretching toward a colossal fortified city on a promontory, its towers backlit in burnished gold. Background: a cathedral range of mountains under a churning sky split between deep storm-purple and a miraculous golden break of light. Volumetric crepuscular rays cascade downward. Color mood: 80% deep cool (prussian blue, slate, charcoal), 20% warm gold breaking through. Atmospheric perspective haze. Designed for cinematic darkening overlay — keep maximum drama in the upper sky and midground silhouettes.",
+  },
+  {
+    section: "Regions",
+    icon: "⚔️",
+    title: "Anuire",
+    dims: "800×600",
+    color: "#185FA5",
+    bg: "#E6F1FB",
+    prompt: "A grand Anuirean imperial castle crowns a steep chalk-white promontory above rolling emerald hills under a turbulent sky. Dozens of royal banners — crimson and gold — snap in the wind from every tower and curtain wall. In the valley below, tiny figures of knights and foot soldiers form a procession winding toward the main gate, emphasizing the castle's colossal scale. The upper 60% is dominated by the castle and dramatic storm-lit sky with golden light piercing through bruised purple clouds. Lower 40% transitions into soft grass with a gradient toward dark for text overlay. Chivalric, imperious, seat-of-empire feel. Warm amber light gilding the highest parapets, cold blue shadow filling the courtyards.",
+  },
+  {
+    section: "Regions",
+    icon: "🌙",
+    title: "Khinasi",
+    dims: "800×600",
+    color: "#BA7517",
+    bg: "#FAEEDA",
+    prompt: "A sprawling sun-drenched Khinasi desert city fills the frame at golden hour. Gleaming white and terracotta architecture clusters around a central grand mosque whose minaret catches the last amber light. Domed merchant halls, ornate arched arcades, and a busy bazaar with bright awnings in saffron and cobalt fill the midground. In the far distance, golden sand dunes merge into a hazy horizon. The upper sky transitions from deep burnt-orange near the horizon to rich violet-indigo at the top. Small figures: robed scholars and camels loaded with silks give human scale. Water feature — an ornamental pool — catches the orange sky. Mood: golden, opulent, learned. Moorish and Arabian architectural detail, Simonetti's miniature figures dwarfed by soaring minarets.",
+  },
+  {
+    section: "Regions",
+    icon: "🌲",
+    title: "Rjurik Highlands",
+    dims: "800×600",
+    prompt: "Ancient Rjurik highland forest at twilight in autumn. Massive primordial pines and silver birch fill the foreground, their trunks like pillars in a natural cathedral. Beyond the tree line, a jagged mountain range emerges from curtains of violet-grey mist. High in the sky, faint aurora borealis ribbons in pale green and silver arc over the peaks. A lone longhouse with firelight glowing orange from its smoke-hole sits barely visible among the trees, emphasizing isolation and scale. Mood: druidic, ancient, northern. Color palette: deep forest greens and black-greens in shadow, amber fire warmth from the longhouse, cold silver-blue moonlight on the peaks, aurora adding ethereal color at the top of frame.",
+    color: "#3B6D11",
+    bg: "#EAF3DE",
+    icon: "🌲",
+  },
+  {
+    section: "Regions",
+    icon: "⚓",
+    title: "Brechtur",
+    dims: "800×600",
+    color: "#0C447C",
+    bg: "#E6F1FB",
+    prompt: "A prosperous Brechtur Hanseatic harbor city at deep twilight. Four-masted merchant cogs and galleons crowd the harbor, their rigging a lacework of ropes and lanterns against a violet-indigo sky. Moonlight fractures on dark water. Tall timber-framed merchant guild houses line the quay, their gabled roofs silhouetted. Dock workers with torches are tiny figures loading cargo. The full moon hangs large and silver above the tallest mast. Fog clings to the waterline. Mood: prosperous, secretive, twilight commerce. Color palette: deep navy and black for water, amber and warm gold from lanterns, cold silver moonlight cutting highlights on ship hulls and wet cobblestones, violet sky.",
+  },
+  {
+    section: "Regions",
+    icon: "🔥",
+    title: "Vosgaard",
+    dims: "800×600",
+    color: "#993C1D",
+    bg: "#FAECE7",
+    prompt: "A frozen Vosgaard steppe under a blood-red and slate-grey sky. In the middle distance, a sprawling war camp of black felt tents and bone-white wooden palisades stretches across the frozen ground, with distant campfires creating a constellation of orange-red light against the snow. Skeletal dead trees frame the foreground. A warband of tiny fur-clad figures on horseback silhouetted against the burning horizon. In the far distance, a burning village sends a column of black smoke into the sky. Mood: brutal, apocalyptic cold, nomadic terror. Color palette: white and grey snow, deep shadow blue-black, crimson and orange fire-glow on the horizon and lower sky, blood-red atmospheric tint overhead.",
+  },
+  {
+    section: "Regions",
+    icon: "👁️",
+    title: "Shadow World",
+    dims: "800×600",
+    color: "#534AB7",
+    bg: "#EEEDFE",
+    prompt: "The Shadow World — an ethereal mirror-realm of Cerilia. A grand palace or cathedral, now half-dissolved into ghostly translucence, rises from a floor of violet mist. The architecture is unmistakably the same as Anuire's, but twisted: archways that lead nowhere, towers spiraling into void, stones crumbling into motes of pale light. Massive dead black trees with roots like grasping fingers frame the scene. The sky is a deep purple-black pierced by stars that are too close and too bright. Will-o'-wisp clusters of silver-blue light drift at mid-height. A faint ghostly figure stands at the palace gate. Mood: haunting, beautiful, wrong. Color palette: deep purple-black void, lavender and violet mist, silver-white spectral light on architecture, occasional amber ember warmth from decaying matter.",
+  },
+  {
+    section: "Bloodlines",
+    icon: "👑",
+    title: "Blooded Scion Portrait",
+    dims: "700×940",
+    color: "#3C3489",
+    bg: "#EEEDFE",
+    prompt: "A regal Anuirean blooded scion, front-facing in 3/4 view, filling most of the frame. The figure wears ornate full plate armor with a surcoat bearing an ancient heraldic device, and a circlet of gold set with a crimson gemstone that pulses with divine bloodline energy. Both hands rest on the pommel of a great sword planted point-down before them. From the figure's chest and hands, tendrils of golden-crimson divine energy bloom outward — the Birthright bloodline made visible, like fractal cracks of inner fire. Eyes glow faintly amber. Background: pure dark — near-black, with faint suggestions of stone columns vanishing into shadow. The figure is perfectly lit from above in warm gold, with deep cool blue-teal shadow on one side creating dramatic Rembrandt lighting. Scale and power without arrogance. Mood: mythic, divine, ancient lineage made flesh. No crown, only the circlet and the glow mark the ruler.",
+  },
+  {
+    section: "Optional",
+    icon: "🌐",
+    title: "OG / Social Share Card",
+    dims: "1200×630",
+    color: "#5F5E5A",
+    bg: "#F1EFE8",
+    prompt: "A horizontal cinematic banner for social media sharing. Left half: a composite atmospheric vignette of Cerilia — a glimpse of castle battlements above mist, a distant minaret catching light, a ship's prow on dark water, all blended softly like memory or legend. Right half: dark atmospheric gradient transitioning to deep black-blue, providing space for logo text overlay. A faint cartographic grid or antique map texture underlies the entire image at low opacity. Golden light leaks from the left edge where the composite scene fades in. The overall mood is epic, inviting, legendary. Suitable as a background behind centered text: 'BIRTHRIGHT — THE WORLD OF CERILIA'.",
+  },
+];
+
+const sectionOrder = ["Hero", "Regions", "Bloodlines", "Optional"];
+
+function renderCards() {
+  const container = document.getElementById('cards');
+  let currentSection = "Hero";
+  
+  images.forEach((img, i) => {
+    if (img.section !== currentSection && i > 0) {
+      currentSection = img.section;
+      const label = document.createElement('div');
+      label.className = 'section-label';
+      label.style.marginTop = '1.75rem';
+      label.textContent = img.section;
+      container.parentNode.insertBefore(label, container.nextSibling);
+      
+      const newCards = document.createElement('div');
+      newCards.className = 'cards';
+      container.parentNode.insertBefore(newCards, label.nextSibling);
+    }
+
+    const lastCards = document.querySelector('.cards:last-of-type');
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const badgeStyle = `background:${img.bg};color:${img.color};border-radius:99px;`;
+
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleCard(this)">
+        <div class="card-left">
+          <div class="card-icon" style="background:${img.bg};">${img.icon}</div>
+          <div>
+            <div class="card-title">${img.title}</div>
+            <div class="card-meta">${img.dims}</div>
+          </div>
+        </div>
+        <span class="badge" style="${badgeStyle}">${img.section}</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="card-body">
+        <div class="prompt-label">Generation Prompt</div>
+        <div class="prompt-text">${img.prompt}</div>
+        <button class="copy-btn" onclick="copyPrompt(this, \`${img.prompt.replace(/`/g,'\\`')}\`)">Copy prompt</button>
+      </div>
+    `;
+
+    lastCards.appendChild(card);
+  });
+}
+
+function toggleCard(header) {
+  const card = header.parentElement;
+  card.classList.toggle('open');
+}
+
+function copyPrompt(btn, text) {
+  const suffix = " Digital painting, Mark Simonetti style. Ultra-detailed, cinematic composition, volumetric god rays, dramatic chiaroscuro. Rich warm highlights (gold, amber) against deep cool shadows (teal, midnight blue). Painterly brushwork, epic fantasy realism. No watermarks, no text.";
+  navigator.clipboard.writeText(text + suffix).then(() => {
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy prompt';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+renderCards();
+</script>
