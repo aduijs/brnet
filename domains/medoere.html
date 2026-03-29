@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medoere — The Theocracy | BIRTHRIGHT.NET</title>
+  <meta name="description" content="Domain profile for Medoere, the theocracy of Ruornil in Anuire. Ruled by Archprelate Suris Enlien, where faith is the law.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --overlay-light: rgba(6, 6, 6, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --invert: 0;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --overlay-light: rgba(214, 204, 184, 0.4);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --invert: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    h1, h2, h3, h4 { font-weight: inherit; font-size: inherit; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--crimson);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       AGGRESSIVE TYPOGRAPHY SYSTEM
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-blackletter {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .word-accent {
+      display: inline-block;
+      color: var(--crimson);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--crimson-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--crimson);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .word-gold {
+      color: var(--gold);
+    }
+
+    .text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .text-stack > * {
+      line-height: 0.88;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--crimson); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--gold); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS & ORNAMENTS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--crimson), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--crimson);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--crimson);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--crimson-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--crimson-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════════════
+       DOMAIN-SPECIFIC STYLES
+       ═══════════════════════════════════════════ */
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: 0 0 30px var(--gold-dim);
+    }
+
+    .npc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .npc-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--crimson);
+      box-shadow: 0 0 40px var(--crimson-dim), var(--card-hover-shadow);
+    }
+
+    .domain-link {
+      position: relative; overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .domain-link:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: 0 0 40px var(--gold-dim), var(--card-hover-shadow);
+    }
+
+    .province-bar {
+      height: 6px;
+      background: var(--bg-surface);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .province-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--crimson), var(--gold));
+      border-radius: 3px;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .holding-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .holding-tag:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Political topic cards */
+    .topic-card {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--crimson);
+    }
+    .topic-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--crimson);
+    }
+
+    /* Section transitions */
+    section {
+      transition: background var(--transition-theme);
+    }
+
+    @media (max-width: 768px) {
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Skip to main content -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:font-impact focus:tracking-wider focus:uppercase focus:text-sm" style="background: var(--crimson); color: #fff;">Skip to main content</a>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50" aria-label="Main navigation">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="../brand_assets/BRlogo.gif" alt="Birthright.net - Return to homepage" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="../index.html#world" class="nav-link">The World</a>
+        <a href="../bloodlines.html" class="nav-link">Bloodlines</a>
+        <a href="../index.html#regions" class="nav-link">Regions</a>
+        <a href="../tour.html" class="nav-link">Tour</a>
+        <a href="https://wiki.birthright.net" class="nav-link">Wiki</a>
+        <a href="../index.html#community" class="nav-link">Community</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <!-- Mobile menu btn -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="../index.html#world" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">The World</a>
+      <a href="../bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
+      <a href="../index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
+      <a href="../tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
+      <a href="https://wiki.birthright.net" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="../index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
+
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — DOMAIN PROFILE
+       ══════════════════════════════════════════════════════ -->
+  <main id="main-content">
+  <section class="relative flex flex-col justify-end grain overflow-hidden" style="min-height: 60vh; background: var(--bg-primary);">
+    <!-- BG Image -->
+    <div class="absolute inset-0">
+      <img src="../brand_assets/anuire%20800x600.png" alt="" class="w-full h-full object-cover" style="opacity: 0.4; mix-blend-mode: multiply;">
+    </div>
+
+    <!-- Overlays -->
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 30%, transparent 50%, var(--bg-primary) 100%);"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 20%, var(--bg-primary) 80%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-[40%]" style="background: linear-gradient(to top, var(--bg-primary), transparent);"></div>
+
+    <!-- Scan line -->
+    <div class="hero-scanline"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-6 lg:px-12 pb-12 lg:pb-20">
+      <!-- Breadcrumb -->
+      <nav class="anim-fade-up anim-d1 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2 typo-label" style="color: var(--text-muted); font-size: 0.6rem;">
+          <li><a href="../index.html#regions" class="hover:text-[var(--gold)] transition-colors" style="color: var(--gold);">Anuire</a></li>
+          <li aria-hidden="true" style="color: var(--text-muted);">&#8594;</li>
+          <li style="color: var(--text-secondary);">Medoere</li>
+        </ol>
+      </nav>
+
+      <!-- Domain Name -->
+      <h1 class="anim-fade-up anim-d2 text-stack mb-4">
+        <span class="typo-mega" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow);">MEDOERE</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="anim-fade-up anim-d3 font-display text-lg md:text-xl lg:text-2xl tracking-wide" style="color: var(--text-secondary); line-height: 1.5;">
+        <span style="color: var(--crimson);">The Theocracy</span> &mdash; Where Faith Is the Law
+      </p>
+
+      <!-- Scroll cue -->
+      <div class="anim-fade-up anim-d5 mt-8 flex items-center gap-3">
+        <div class="w-[1px] h-8" style="background: linear-gradient(to bottom, var(--crimson), transparent);"></div>
+        <span class="typo-label" style="color: var(--text-muted); font-size: 0.6rem;">Scroll to explore</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-8" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       DOMAIN STATS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-16 lg:py-24" style="background: var(--bg-secondary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-12">
+        <span class="typo-label" style="color: var(--crimson);">&#9608;&#9608; Domain Statistics</span>
+        <h2 class="typo-section-head mt-3" style="color: var(--text-primary);">AT A <span class="word-accent">GLANCE</span></h2>
+      </div>
+
+      <!-- Stats grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Ruler -->
+        <div class="stat-card p-6 reveal rd1">
+          <span class="typo-label block mb-3" style="color: var(--gold); font-size: 0.6rem;">Ruler</span>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--text-primary);">Archprelate Suris Enlien</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">Male Anuirean, Cleric of Ruornil</p>
+        </div>
+
+        <!-- Bloodline -->
+        <div class="stat-card p-6 reveal rd2">
+          <span class="typo-label block mb-3" style="color: var(--gold); font-size: 0.6rem;">Bloodline</span>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--text-primary);">Vorynn, Major</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">Blood Strength: <span style="color: var(--crimson); font-weight: 600;">30</span></p>
+        </div>
+
+        <!-- Alignment -->
+        <div class="stat-card p-6 reveal rd3">
+          <span class="typo-label block mb-3" style="color: var(--gold); font-size: 0.6rem;">Alignment</span>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--text-primary);">Neutral Good</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">A domain guided by compassion and faith</p>
+        </div>
+
+        <!-- Capital -->
+        <div class="stat-card p-6 reveal rd1">
+          <span class="typo-label block mb-3" style="color: var(--gold); font-size: 0.6rem;">Capital</span>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--text-primary);">Caer Medoere</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">Seat of the Celestial Spell</p>
+        </div>
+
+        <!-- Allies -->
+        <div class="stat-card p-6 reveal rd2">
+          <span class="typo-label block mb-3" style="color: var(--gold); font-size: 0.6rem;">Allies</span>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--text-primary);">Roesone, Aerenwe</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">Southern coast alliance</p>
+        </div>
+
+        <!-- Enemies -->
+        <div class="stat-card p-6 reveal rd3">
+          <span class="typo-label block mb-3" style="color: var(--crimson); font-size: 0.6rem;">Enemies</span>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--crimson);">Diemed</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">Claims Medoere as rebellious territory</p>
+        </div>
+      </div>
+
+      <!-- Provinces -->
+      <div class="mt-12 reveal">
+        <span class="typo-label block mb-6" style="color: var(--gold); font-size: 0.6rem;">Provinces</span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Caer Medoere -->
+          <div class="stat-card p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-impact text-lg tracking-wide uppercase" style="color: var(--text-primary);">Caer Medoere</h4>
+              <span class="font-impact text-sm" style="color: var(--gold);">2/5</span>
+            </div>
+            <div class="province-bar">
+              <div class="province-bar-fill" style="width: 40%;"></div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <span class="font-body text-xs" style="color: var(--text-muted);">Province Level 2</span>
+              <span class="font-body text-xs" style="color: var(--text-muted);">Source 5</span>
+            </div>
+          </div>
+
+          <!-- Braeme -->
+          <div class="stat-card p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-impact text-lg tracking-wide uppercase" style="color: var(--text-primary);">Braeme</h4>
+              <span class="font-impact text-sm" style="color: var(--gold);">2/3</span>
+            </div>
+            <div class="province-bar">
+              <div class="province-bar-fill" style="width: 40%;"></div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <span class="font-body text-xs" style="color: var(--text-muted);">Province Level 2</span>
+              <span class="font-body text-xs" style="color: var(--text-muted);">Source 3</span>
+            </div>
+          </div>
+
+          <!-- Alamier -->
+          <div class="stat-card p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-impact text-lg tracking-wide uppercase" style="color: var(--text-primary);">Alamier</h4>
+              <span class="font-impact text-sm" style="color: var(--gold);">1/3</span>
+            </div>
+            <div class="province-bar">
+              <div class="province-bar-fill" style="width: 20%;"></div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <span class="font-body text-xs" style="color: var(--text-muted);">Province Level 1</span>
+              <span class="font-body text-xs" style="color: var(--text-muted);">Source 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-8" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       OVERVIEW
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-16 lg:py-24" style="background: var(--bg-primary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="max-w-4xl">
+        <!-- Section header -->
+        <div class="reveal mb-10">
+          <span class="typo-label" style="color: var(--crimson);">&#9608;&#9608; Domain Overview</span>
+          <h2 class="typo-section-head mt-3" style="color: var(--text-primary);">WHERE THE TEMPLE<br><span class="word-accent">IS</span> THE STATE</h2>
+        </div>
+
+        <div class="space-y-8 reveal rd1">
+          <p class="font-body text-lg md:text-xl" style="color: var(--text-secondary); line-height: 1.7;">
+            Medoere is unique among Anuirean domains &mdash; it is a theocracy, a realm where the temple <em>is</em> the state. Ruled by the Archprelate of the Celestial Spell of Ruornil (the god of magic and the moon), Medoere is a small but spiritually powerful domain on the southern coast of Anuire.
+          </p>
+
+          <p class="font-body text-lg md:text-xl" style="color: var(--text-secondary); line-height: 1.7;">
+            The domain was once part of Diemed, but the faithful of Ruornil declared independence when the Baron of Diemed began persecuting followers of the moon god. Under the leadership of the Celestial Spell, Medoere established itself as an independent theocracy where the clergy govern all aspects of life.
+          </p>
+
+          <p class="font-body text-lg md:text-xl" style="color: var(--text-secondary); line-height: 1.7;">
+            Medoere is a realm of scholarship and mysticism. The temples of Ruornil serve as schools and libraries as well as places of worship. Magic is revered here, and wizards are welcomed rather than feared. The Archprelate governs through a council of high priests, making it one of the more democratic domains in Anuire &mdash; as long as you worship Ruornil.
+          </p>
+        </div>
+
+        <!-- Pull quote -->
+        <div class="reveal rd2 mt-12 pl-6 lg:pl-10" style="border-left: 3px solid var(--crimson);">
+          <p class="font-display text-xl md:text-2xl italic" style="color: var(--text-primary); line-height: 1.5; letter-spacing: 0.01em;">
+            &ldquo;In Medoere, to question the temple is to question the state. To serve the god is to serve the realm.&rdquo;
+          </p>
+          <span class="typo-label block mt-4" style="color: var(--text-muted); font-size: 0.6rem;">From the halls of the Celestial Spell</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-8" style="background: var(--bg-secondary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       KEY NPCs
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-16 lg:py-24" style="background: var(--bg-secondary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-12">
+        <span class="typo-label" style="color: var(--crimson);">&#9608;&#9608; Key Figures</span>
+        <h2 class="typo-section-head mt-3" style="color: var(--text-primary);">THE <span class="word-accent">BLOODED</span> RULERS</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Suris Enlien -->
+        <div class="npc-card p-8 reveal rd1">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 shrink-0 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
+              <span class="font-blackletter text-2xl" style="color: var(--crimson);">S</span>
+            </div>
+            <div>
+              <h3 class="font-impact text-2xl tracking-wide uppercase mb-1" style="color: var(--text-primary);">Archprelate Suris Enlien</h3>
+              <span class="typo-label block mb-4" style="color: var(--gold); font-size: 0.55rem;">Ruler of Medoere &bull; Cleric of Ruornil</span>
+              <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+                A scholarly and contemplative ruler who would prefer to spend his days studying the stars but understands the necessity of politics. Suris Enlien leads with quiet wisdom, balancing the spiritual needs of his flock with the political realities of defending a small domain against the ambitions of Diemed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lenviath Alam -->
+        <div class="npc-card p-8 reveal rd2">
+          <div class="flex items-start gap-5">
+            <div class="w-14 h-14 shrink-0 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <span class="font-blackletter text-2xl" style="color: var(--gold);">L</span>
+            </div>
+            <div>
+              <h3 class="font-impact text-2xl tracking-wide uppercase mb-1" style="color: var(--text-primary);">Lenviath Alam</h3>
+              <span class="typo-label block mb-4" style="color: var(--gold); font-size: 0.55rem;">Captain of the Temple Guard</span>
+              <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+                Captain of the temple guard and Medoere's chief military officer, a devout warrior-priest. Lenviath Alam combines martial discipline with religious fervor, commanding a modest but fiercely loyal defense force that stands as the shield of the theocracy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-8" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       POLITICAL LANDSCAPE
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-16 lg:py-24" style="background: var(--bg-primary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="max-w-4xl">
+        <!-- Section header -->
+        <div class="reveal mb-12">
+          <span class="typo-label" style="color: var(--crimson);">&#9608;&#9608; Political Landscape</span>
+          <h2 class="typo-section-head mt-3" style="color: var(--text-primary);">CONFLICTS &amp;<br><span class="word-accent">INTRIGUES</span></h2>
+        </div>
+
+        <!-- Topics -->
+        <div class="space-y-12">
+          <!-- The Diemed Conflict -->
+          <div class="topic-card reveal rd1">
+            <h3 class="font-impact text-2xl tracking-wide uppercase mb-3" style="color: var(--text-primary);">The Diemed Conflict</h3>
+            <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+              The Baron of Diemed has never accepted Medoere's independence. In his eyes, the theocracy is nothing more than a rebellious province &mdash; temple lands that rightfully belong under Diemed's crown. Border skirmishes are frequent, and Diemed's agents constantly seek to undermine Medoere's sovereignty through espionage, economic pressure, and occasionally open threats of invasion. The conflict defines Medoere's foreign policy and forces a domain of scholars and priests to maintain a standing military.
+            </p>
+          </div>
+
+          <div class="divider-horizontal"></div>
+
+          <!-- Faith and Magic -->
+          <div class="topic-card reveal rd2">
+            <h3 class="font-impact text-2xl tracking-wide uppercase mb-3" style="color: var(--text-primary);">Faith and Magic</h3>
+            <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+              Ruornil is the god of magic and the moon, and his worship occupies a unique position in Cerilian theology. Unlike other faiths that view arcane magic with suspicion, the Celestial Spell actively encourages the study and practice of the magical arts. This makes Medoere a haven for wizards and scholars who face persecution elsewhere &mdash; but it also means the domain must navigate the deep distrust that many Anuireans hold toward unchecked magical power.
+            </p>
+          </div>
+
+          <div class="divider-horizontal"></div>
+
+          <!-- The Scholarly Tradition -->
+          <div class="topic-card reveal rd3">
+            <h3 class="font-impact text-2xl tracking-wide uppercase mb-3" style="color: var(--text-primary);">The Scholarly Tradition</h3>
+            <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+              Medoere's temples double as centers of learning. The Celestial Spell maintains extensive libraries and schools, making the theocracy a center of knowledge and education unmatched by domains many times its size. Scholars, astronomers, and students travel from across Anuire to study in Medoere's halls, giving this small domain an outsized influence in matters of lore, history, and arcane research.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-8" style="background: var(--bg-secondary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       HOLDINGS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-16 lg:py-24" style="background: var(--bg-secondary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="max-w-4xl">
+        <!-- Section header -->
+        <div class="reveal mb-10">
+          <span class="typo-label" style="color: var(--crimson);">&#9608;&#9608; Holdings</span>
+          <h2 class="typo-section-head mt-3" style="color: var(--text-primary);">POWER <span class="word-accent">STRUCTURE</span></h2>
+        </div>
+
+        <div class="reveal rd1">
+          <p class="font-body text-lg mb-8" style="color: var(--text-secondary); line-height: 1.7;">
+            Medoere's power base is overwhelmingly concentrated in its temple holdings. The Celestial Spell of Ruornil controls virtually all religious authority across the domain's three provinces. Military holdings are modest &mdash; sufficient for defense but not conquest. Law holdings are intertwined with the temple's authority, as religious law and civil law are one and the same in this theocracy.
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="holding-tag">
+              <span style="color: var(--crimson);">&#9670;</span> Temple Holdings &mdash; Dominant
+            </span>
+            <span class="holding-tag">
+              <span style="color: var(--gold);">&#9670;</span> Law Holdings &mdash; Moderate
+            </span>
+            <span class="holding-tag">
+              <span style="color: var(--text-muted);">&#9670;</span> Military &mdash; Modest
+            </span>
+            <span class="holding-tag">
+              <span style="color: var(--gold);">&#9670;</span> Source Holdings &mdash; Contested
+            </span>
+          </div>
+
+          <div class="mt-8 p-6 stat-card">
+            <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+              <span class="font-display text-sm uppercase tracking-widest" style="color: var(--gold);">Note:</span> The source holdings in Medoere's provinces are significant, given Ruornil's association with magic. Control of these sources is a constant source of tension with neighboring realms and independent wizards who covet the magical potential of Medoere's wild lands.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-8" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       RELATED DOMAINS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain py-16 lg:py-24" style="background: var(--bg-primary);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-12">
+        <span class="typo-label" style="color: var(--crimson);">&#9608;&#9608; Related Domains</span>
+        <h2 class="typo-section-head mt-3" style="color: var(--text-primary);">NEIGHBORS &amp; <span class="word-accent">RIVALS</span></h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <!-- Roesone -->
+        <a href="#" class="domain-link p-6 block reveal rd1">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-3 h-3 rounded-full" style="background: var(--gold);"></div>
+            <span class="typo-label" style="color: var(--gold); font-size: 0.55rem;">Ally</span>
+          </div>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--text-primary);">Roesone</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">
+            A young barony on Medoere's eastern border. The two domains share a common enemy in Diemed and maintain a strong defensive alliance.
+          </p>
+          <span class="font-impact text-xs tracking-widest uppercase mt-4 inline-block" style="color: var(--gold);">Explore &rarr;</span>
+        </a>
+
+        <!-- Aerenwe -->
+        <a href="#" class="domain-link p-6 block reveal rd2">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-3 h-3 rounded-full" style="background: var(--gold);"></div>
+            <span class="typo-label" style="color: var(--gold); font-size: 0.55rem;">Ally</span>
+          </div>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--text-primary);">Aerenwe</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">
+            The forested realm to the south. Aerenwe's queen maintains friendly relations with Medoere, and the two domains share cultural and trade ties along the coast.
+          </p>
+          <span class="font-impact text-xs tracking-widest uppercase mt-4 inline-block" style="color: var(--gold);">Explore &rarr;</span>
+        </a>
+
+        <!-- Diemed -->
+        <a href="#" class="domain-link p-6 block reveal rd3">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-3 h-3 rounded-full" style="background: var(--crimson);"></div>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.55rem;">Enemy</span>
+          </div>
+          <h3 class="font-impact text-2xl tracking-wide uppercase mb-2" style="color: var(--crimson);">Diemed</h3>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">
+            The ancient barony that once ruled Medoere. Baron Heirl Diem considers the theocracy a rebellious province and seeks to reclaim it by any means necessary.
+          </p>
+          <span class="font-impact text-xs tracking-widest uppercase mt-4 inline-block" style="color: var(--crimson);">Explore &rarr;</span>
+        </a>
+      </div>
+
+      <!-- Back to Anuire -->
+      <div class="reveal rd4">
+        <a href="../index.html#regions" class="btn-ghost">
+          <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+          Back to Anuire
+        </a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <img src="../brand_assets/BRlogo.gif" alt="Birthright.net logo" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting,
+            recognized by Wizards of the Coast. Keeping the blood alive since 1996.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+              <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            </a>
+            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+              <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+            </a>
+            <a href="https://wiki.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+              <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigate -->
+        <div>
+          <h2 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Navigate</h2>
+          <div class="flex flex-col gap-3">
+            <a href="../index.html#world" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">The World</a>
+            <a href="../index.html#regions" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Regions</a>
+            <a href="../index.html#tools" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Digital Arsenal</a>
+            <a href="../index.html#downloads" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Downloads</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h2 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h2>
+          <div class="flex flex-col gap-3">
+            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === BLOOD DRIP DIVIDERS ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight;
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+  </script>
+
+</body>
+</html>

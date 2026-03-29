@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RHEULGARD — The Naval Power — Masters of the Northern Seas | Birthright.net</title>
+  <meta name="description" content="Domain dossier for Rheulgard, the premiere naval power of the Brecht coast. Ruled by Admiral Erik Danig.">
+  <meta property="og:title" content="Rheulgard — Domain Dossier">
+  <meta property="og:description" content="Masters of the Northern Seas. Admiral Erik Danig commands a fleet that patrols the treacherous Krakennauricht strait.">
+  <meta property="og:image" content="../brand_assets/brechtur%20800x600.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Skip link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--accent)] focus:text-white font-impact tracking-widest uppercase text-sm">Skip to content</a>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      --accent: #1a6b7a;
+      --accent-dim: rgba(26, 107, 122, 0.15);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #1a6b7a;
+      --crimson-dim: rgba(26, 107, 122, 0.15);
+      --crimson-bright: #1a6b7a;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #124d58;
+      --crimson-dim: rgba(18, 77, 88, 0.12);
+      --crimson-bright: #124d58;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --accent: #124d58;
+      --accent-dim: rgba(18, 77, 88, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    ::selection { background: var(--accent); color: #fff; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 10vw, 8rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+    .word-accent {
+      display: inline-block;
+      color: var(--accent);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--accent-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+    .word-gold { color: var(--gold); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+    .rd5 { transition-delay: 0.75s; }
+    .rd6 { transition-delay: 0.9s; }
+
+    #nav { transition: background var(--transition-theme); }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--accent); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after { transform: translateX(20px); }
+    .theme-toggle:hover { border-color: var(--gold); }
+
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    .domain-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+      position: relative;
+      overflow: hidden;
+    }
+    .domain-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-dim), var(--card-hover-shadow);
+    }
+    .domain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .domain-card:hover::before { opacity: 1; }
+
+    .culture-block {
+      padding: 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .culture-block:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 40px var(--gold-dim);
+    }
+    .culture-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent), var(--gold));
+    }
+
+    .stat-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: background var(--transition-theme), border-color var(--transition-theme);
+    }
+    .stat-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+    }
+
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    .fact-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .fact-item:last-child { border-bottom: none; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--crimson-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--accent-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+
+    section { transition: background var(--transition-theme); }
+
+    @media (max-width: 768px) {
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+      .culture-block { padding: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="../index.html#world" class="nav-link">The World</a>
+        <a href="../bloodlines.html" class="nav-link">Bloodlines</a>
+        <a href="../index.html#regions" class="nav-link">Regions</a>
+        <a href="../tour.html" class="nav-link">Tour</a>
+        <a href="https://wiki.birthright.net" class="nav-link">Wiki</a>
+        <a href="../index.html#community" class="nav-link">Community</a>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="../index.html#world" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">The World</a>
+      <a href="../bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
+      <a href="../index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
+      <a href="../tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
+      <a href="https://wiki.birthright.net" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="../index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="main-content" class="relative flex flex-col items-center justify-end grain overflow-hidden" style="background: var(--bg-primary); min-height: 60vh;">
+    <div class="absolute inset-0">
+      <img src="../brand_assets/brechtur%20800x600.png" alt="The naval fortresses and storm-tossed seas of the Brecht coast" class="w-full h-full object-cover" style="opacity: 0.5; mix-blend-mode: luminosity;">
+      <div class="absolute inset-0" style="background: var(--accent); mix-blend-mode: multiply; opacity: 0.2;"></div>
+    </div>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-primary) 0%, transparent 50%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 40%);"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at center 40%, transparent 20%, var(--bg-primary) 75%);"></div>
+
+    <div class="hero-scanline"></div>
+
+    <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 pb-16 lg:pb-24 w-full">
+      <nav class="anim-fade-up anim-d1 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2 typo-label" style="color: var(--text-muted);">
+          <li><a href="../regions/brechtur.html" class="transition-colors hover:text-[var(--gold)]" style="color: var(--accent);">Brechtur</a></li>
+          <li aria-hidden="true" style="color: var(--text-muted);">/</li>
+          <li style="color: var(--gold);">Rheulgard</li>
+        </ol>
+      </nav>
+
+      <div class="anim-fade-up anim-d2 mb-4">
+        <span class="typo-label inline-flex items-center gap-3" style="color: var(--accent);">
+          <span aria-hidden="true" style="color: var(--accent);">&#9632;&#9632;</span>
+          Domain Dossier
+        </span>
+      </div>
+
+      <h1 class="typo-mega anim-fade-up anim-d3" style="text-shadow: var(--hero-text-shadow);">
+        <span class="word-accent" style="transform: rotate(-2deg) scale(1.02);">Rheulgard</span>
+      </h1>
+
+      <p class="anim-fade-up anim-d4 font-body text-lg lg:text-xl max-w-2xl mt-6" style="color: var(--text-secondary); line-height: 1.7;">
+        The Naval Power &mdash; Masters of the Northern Seas
+      </p>
+    </div>
+
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-up anim-d5">
+      <span class="typo-label" style="color: var(--text-muted); font-size: 0.55rem;">Scroll</span>
+      <div class="w-px h-8" style="background: linear-gradient(to bottom, var(--accent), transparent);"></div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-8" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- DOMAIN STATS -->
+  <section class="relative grain" style="background: var(--bg-secondary); padding: 4rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="stat-block relative p-8 lg:p-10 reveal" style="border-color: var(--gold); border-width: 1px;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div>
+            <span class="typo-label block mb-3" style="color: var(--gold);">Ruler</span>
+            <p class="font-display text-base font-semibold mb-1" style="color: var(--text-primary);">Admiral Erik Danig</p>
+            <p class="font-body text-sm" style="color: var(--text-secondary);">Male Brecht, Fighter</p>
+            <p class="font-body text-sm mt-1" style="color: var(--text-muted);">Bloodline: Masela, Major, 28</p>
+          </div>
+          <div>
+            <span class="typo-label block mb-3" style="color: var(--gold);">Alignment</span>
+            <p class="font-display text-base font-semibold mb-4" style="color: var(--text-primary);">Lawful Good</p>
+            <span class="typo-label block mb-3" style="color: var(--gold);">Capital</span>
+            <p class="font-display text-base font-semibold" style="color: var(--text-primary);">Rheulgard</p>
+          </div>
+          <div>
+            <span class="typo-label block mb-3" style="color: var(--gold);">Allies</span>
+            <p class="font-body text-sm" style="color: var(--text-secondary);">M&uuml;den (trade protection), Treucht</p>
+          </div>
+          <div>
+            <span class="typo-label block mb-3" style="color: var(--accent);">Enemies</span>
+            <p class="font-body text-sm" style="color: var(--text-secondary);"><span style="color: var(--accent);">Pirates</span>, <span style="color: var(--accent);">Grabentod</span></p>
+          </div>
+        </div>
+        <div class="mt-8 h-1 w-24" style="background: linear-gradient(90deg, var(--accent), var(--gold));"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="relative grain section-pad" style="background: var(--bg-secondary); padding: 6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <div class="lg:col-span-8 reveal-left">
+          <span class="typo-label block mb-6" style="color: var(--accent);">
+            <span aria-hidden="true" style="color: var(--accent);">&#9632;</span>&ensp;Overview
+          </span>
+          <h2 class="typo-section-head mb-8" style="color: var(--text-primary);">
+            Masters of the<br><span class="word-accent">Northern</span> Seas
+          </h2>
+          <div class="space-y-6 font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+            <p>Rheulgard is the premiere naval power of the Brecht coast, its admirals commanding a fleet that patrols the treacherous Krakennauricht strait. The realm's identity is bound to the sea &mdash; its people are born sailors, and its military tradition centers on naval warfare rather than land battles.</p>
+            <p>Admiral Erik Danig rules from the great naval fortress overlooking the strait, maintaining the sea lanes that are Brechtur's lifeblood. His Masela bloodline grants him an almost supernatural connection to the ocean, making him the most feared naval commander in Cerilia.</p>
+            <p>The strait itself is one of the most dangerous waterways in the world, and only Rheulgard's expertise keeps it navigable for merchant shipping.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-4 reveal-right">
+          <div class="p-8" style="background: var(--bg-card); border: 1px solid var(--border);">
+            <h3 class="font-impact text-xl tracking-[0.15em] uppercase mb-8" style="color: var(--gold);">
+              At a Glance
+            </h3>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Government</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Naval Admiralty</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Religion</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Nesirie (the sea), Haelyn</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Economy</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Naval protection, tolls, fishing</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Military</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Premier Brecht fleet, marines</span>
+            </div>
+            <div class="mt-8 h-1 w-16" style="background: linear-gradient(90deg, var(--accent), var(--gold));"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- KEY NPCs -->
+  <section class="relative grain section-pad" style="background: var(--bg-primary); padding: 6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="reveal mb-16">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span aria-hidden="true" style="color: var(--accent);">&#9632;</span>&ensp;Persons of Interest
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Key <span class="word-accent">NPCs</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+
+        <div class="culture-block reveal rd1">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
+            </div>
+            <div>
+              <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Admiral Erik Danig</h3>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Ruler of Rheulgard</span>
+            </div>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            The finest naval commander in Cerilia, whose tactical genius has won a dozen sea battles. His Masela bloodline gives him an instinctive understanding of the sea that borders on the supernatural.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+
+        <div class="culture-block reveal rd2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Captain Maren Voss</h3>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Scout Fleet Commander</span>
+            </div>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            His prot&eacute;g&eacute; and commander of the scout fleet. Maren is the fastest ship captain in Brechtur, known for her daring reconnaissance missions into hostile waters.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- POLITICAL SITUATION -->
+  <section class="relative grain section-pad" style="background: var(--bg-secondary); padding: 6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="reveal mb-16">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span aria-hidden="true" style="color: var(--accent);">&#9632;</span>&ensp;Current Affairs
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Political <span class="word-accent">Situation</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+
+        <div class="domain-card p-8 reveal rd1">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
+            </div>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Strait Control</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            Control of the Krakennauricht strait gives Rheulgard tremendous leverage over all Brecht commerce. Ships that want safe passage pay tolls, and those that refuse often discover why the strait earned its fearsome name.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+
+        <div class="domain-card p-8 reveal rd2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+            </div>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Pirate Problem</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            Pirates and privateers constantly challenge Rheulgard's dominance of the northern seas. The Admiral must balance the cost of maintaining constant patrols with the political pressure from merchants who demand safe waters.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </div>
+
+        <div class="domain-card p-8 reveal rd3">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--border-hover);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--text-secondary);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Naval Alliances</h3>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            Rheulgard's fleet is essential to the defense of all Brechtur. The Admiral parlays this importance into political influence, but must be careful not to appear to be using the realm's naval protection as political leverage.
+          </p>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--border-hover), transparent);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- RELATED DOMAINS -->
+  <section class="relative grain section-pad" style="background: var(--bg-primary); padding: 6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="reveal mb-16">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span aria-hidden="true" style="color: var(--accent);">&#9632;</span>&ensp;Nearby Powers
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Related <span class="word-accent">Domains</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <a href="muden.html" class="domain-card p-6 flex items-center gap-4 reveal rd1 group" style="text-decoration: none;">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09Z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-impact text-lg tracking-[0.08em] uppercase" style="color: var(--text-primary);">M&uuml;den</h3>
+            <span class="typo-label" style="color: var(--gold); font-size: 0.5rem;">Trading City</span>
+          </div>
+          <svg class="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <a href="danigau.html" class="domain-card p-6 flex items-center gap-4 reveal rd2 group" style="text-decoration: none;">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09Z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-impact text-lg tracking-[0.08em] uppercase" style="color: var(--text-primary);">Danigau</h3>
+            <span class="typo-label" style="color: var(--gold); font-size: 0.5rem;">Dark Countess</span>
+          </div>
+          <svg class="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <a href="treucht.html" class="domain-card p-6 flex items-center gap-4 reveal rd3 group" style="text-decoration: none;">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09Z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-impact text-lg tracking-[0.08em] uppercase" style="color: var(--text-primary);">Treucht</h3>
+            <span class="typo-label" style="color: var(--gold); font-size: 0.5rem;">Free City</span>
+          </div>
+          <svg class="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <!-- Back to Region -->
+        <a href="../regions/brechtur.html" class="domain-card p-6 flex items-center gap-4 reveal rd4 group" style="text-decoration: none; border-color: var(--gold);">
+          <div class="w-12 h-12 flex items-center justify-center flex-shrink-0" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+          </div>
+          <div>
+            <h3 class="font-impact text-lg tracking-[0.08em] uppercase" style="color: var(--gold);">Back to Brechtur</h3>
+            <span class="typo-label" style="color: var(--text-muted); font-size: 0.5rem;">Region Overview</span>
+          </div>
+          <svg class="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="md:col-span-2">
+          <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting,
+            recognized by Wizards of the Coast. Keeping the blood alive since 1996.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            </a>
+            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+            </a>
+            <a href="https://wiki.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Navigate</h4>
+          <div class="flex flex-col gap-3">
+            <a href="../index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Home</a>
+            <a href="../regions/brechtur.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Brechtur</a>
+            <a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Bloodlines</a>
+            <a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Tour</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
+          <div class="flex flex-col gap-3">
+            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight;
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+  </script>
+
+</body>
+</html>

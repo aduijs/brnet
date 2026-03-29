@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TUORNEN — The Ancient Forest | Birthright.net</title>
+  <meta name="description" content="Explore Tuornen, a land of ancient forests and old magic where the bond between humans and elves remains strong. Ruled by the half-elven Duke Gilgaed Fhiele.">
+  <meta property="og:title" content="Tuornen — The Ancient Forest">
+  <meta property="og:description" content="Where old magic still whispers through ancient trees and the bond between humans and elves endures.">
+  <meta property="og:image" content="../brand_assets/anuire%20800x600.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      --accent: #c41e1e;
+      --accent-dim: rgba(196, 30, 30, 0.15);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      /* Forest-specific accent for Tuornen */
+      --forest: #2d6b3f;
+      --forest-dim: rgba(45, 107, 63, 0.15);
+      --forest-glow: rgba(45, 107, 63, 0.25);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --accent: #8b1a1a;
+      --accent-dim: rgba(139, 26, 26, 0.12);
+      --forest: #1e5430;
+      --forest-dim: rgba(30, 84, 48, 0.12);
+      --forest-glow: rgba(30, 84, 48, 0.18);
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       AGGRESSIVE TYPOGRAPHY
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .word-accent {
+      display: inline-block;
+      color: var(--accent);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--accent-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .word-gold {
+      color: var(--gold);
+    }
+
+    .word-forest {
+      display: inline-block;
+      color: var(--forest);
+      text-shadow: 0 0 40px var(--forest-dim);
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes leafDrift {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+    .anim-d6 { animation-delay: 0.9s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+    .rd3 { transition-delay: 0.45s; }
+    .rd4 { transition-delay: 0.6s; }
+    .rd5 { transition-delay: 0.75s; }
+    .rd6 { transition-delay: 0.9s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--accent); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--gold); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--forest), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       CARDS & BLOCKS
+       ═══════════════════════════════════════════ */
+    .domain-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+      position: relative;
+      overflow: hidden;
+    }
+    .domain-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px var(--accent-dim), var(--card-hover-shadow);
+    }
+    .domain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .domain-card:hover::before { opacity: 1; }
+
+    .culture-block {
+      padding: 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .culture-block:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 40px var(--gold-dim);
+    }
+    .culture-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent), var(--gold));
+    }
+
+    .npc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+    }
+    .npc-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--forest);
+      box-shadow: 0 0 40px var(--forest-dim), var(--card-hover-shadow);
+    }
+    .npc-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--forest), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .npc-card:hover::before { opacity: 1; }
+
+    .stat-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: background var(--transition-theme), border-color var(--transition-theme);
+    }
+
+    .province-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .province-row:last-child { border-bottom: none; }
+
+    .province-bar {
+      height: 4px;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+    .province-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Related domain links */
+    .related-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
+    }
+    .related-link:hover {
+      transform: translateX(6px);
+      border-color: var(--accent);
+      box-shadow: 0 0 30px var(--accent-dim);
+    }
+    .related-link:active { transform: translateX(2px); }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--crimson-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--accent-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════════════
+       FACT ITEM
+       ═══════════════════════════════════════════ */
+    .fact-item {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .fact-item:last-child { border-bottom: none; }
+
+    /* ═══════════════════════════════════════════
+       SECTION TRANSITIONS
+       ═══════════════════════════════════════════ */
+    section {
+      transition: background var(--transition-theme);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .section-pad { padding-top: 4rem; padding-bottom: 4rem; }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="../index.html#world" class="nav-link">The World</a>
+        <a href="../bloodlines.html" class="nav-link">Bloodlines</a>
+        <a href="../index.html#regions" class="nav-link">Regions</a>
+        <a href="../tour.html" class="nav-link">Tour</a>
+        <a href="https://wiki.birthright.net" class="nav-link">Wiki</a>
+        <a href="../index.html#community" class="nav-link">Community</a>
+      </div>
+
+      <!-- Right side -->
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <!-- Mobile menu btn -->
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="../index.html#world" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">The World</a>
+      <a href="../bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
+      <a href="../index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
+      <a href="../tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
+      <a href="https://wiki.birthright.net" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="../index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
+
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — TUORNEN TITLE CARD (60vh)
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative flex flex-col items-center justify-end grain overflow-hidden" style="min-height: 60vh; background: var(--bg-primary);">
+    <!-- BG Image -->
+    <div class="absolute inset-0">
+      <img src="../brand_assets/anuire%20800x600.png" alt="Tuornen" class="w-full h-full object-cover" style="opacity: 0.5; mix-blend-mode: luminosity;">
+      <!-- Forest color treatment -->
+      <div class="absolute inset-0" style="background: var(--forest); mix-blend-mode: multiply; opacity: 0.2;"></div>
+      <div class="absolute inset-0" style="background: var(--accent); mix-blend-mode: multiply; opacity: 0.08;"></div>
+    </div>
+    <!-- Gradient overlays -->
+    <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-primary) 0%, transparent 50%);"></div>
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 35%);"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at center 40%, transparent 30%, var(--bg-primary) 80%);"></div>
+
+    <!-- Scanline -->
+    <div class="hero-scanline"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 pb-16 lg:pb-24 w-full">
+      <!-- Breadcrumb -->
+      <div class="anim-fade-up anim-d1 mb-6">
+        <nav class="flex items-center gap-2 typo-label" style="color: var(--text-muted); font-size: 0.6rem;" aria-label="Breadcrumb">
+          <a href="../regions/anuire.html" class="transition-colors hover:text-[var(--gold)]" style="color: var(--text-muted);">Anuire</a>
+          <span style="color: var(--accent);">&#9656;</span>
+          <span style="color: var(--accent);">Tuornen</span>
+        </nav>
+      </div>
+
+      <!-- Main title -->
+      <h1 class="typo-mega anim-fade-up anim-d2" style="text-shadow: var(--hero-text-shadow);">
+        <span class="word-accent" style="transform: rotate(-2deg) scale(1.02);">Tuornen</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="anim-fade-up anim-d3 font-body text-lg lg:text-xl max-w-2xl mt-6" style="color: var(--text-secondary); line-height: 1.7;">
+        <span class="font-display font-semibold" style="color: var(--forest);">The Ancient Forest</span> — Where Old Magic Still Whispers
+      </p>
+
+      <!-- CTA -->
+      <div class="anim-fade-up anim-d4 mt-8 flex flex-wrap gap-4">
+        <a href="https://wiki.birthright.net" class="btn-primary">
+          Read on Wiki
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <a href="../regions/anuire.html" class="btn-ghost">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+          Back to Anuire
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-up anim-d5">
+      <span class="typo-label" style="color: var(--text-muted); font-size: 0.55rem;">Scroll</span>
+      <div class="w-px h-8" style="background: linear-gradient(to bottom, var(--forest), transparent);"></div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       STATS — DOMAIN PROFILE
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain" style="background: var(--bg-secondary); padding: 5rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+
+        <!-- Left: Ruler & Key Info -->
+        <div class="lg:col-span-5 reveal-left">
+          <span class="typo-label block mb-6" style="color: var(--accent);">
+            <span style="color: var(--accent);">&#9632;</span>&ensp;Domain Profile
+          </span>
+          <h2 class="typo-section-head mb-10" style="color: var(--text-primary);">
+            The <span class="word-forest">Forest</span><br>Duchy
+          </h2>
+
+          <div class="stat-block p-8">
+            <h3 class="font-impact text-xl tracking-[0.15em] uppercase mb-8" style="color: var(--gold);">
+              Ruler
+            </h3>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Name</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Gilgaed Fhiele</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Race / Gender</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Male Half-Elf</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Class</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Ranger / Noble</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Bloodline</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">
+                Reynir, <span style="color: var(--gold);">Major</span> <span style="color: var(--text-muted);">(28)</span>
+              </span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Alignment</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Chaotic Good</span>
+            </div>
+
+            <div class="fact-item">
+              <span class="typo-label block mb-2" style="color: var(--text-muted);">Capital</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Haes</span>
+            </div>
+
+            <div class="mt-6 flex gap-6">
+              <div>
+                <span class="typo-label block mb-2" style="color: var(--text-muted);">Allies</span>
+                <span class="font-display text-sm font-semibold" style="color: var(--forest);">Elves of Tuarhievel</span>
+              </div>
+              <div>
+                <span class="typo-label block mb-2" style="color: var(--text-muted);">Enemies</span>
+                <span class="font-display text-sm font-semibold" style="color: var(--accent);">Alamie, Ghoere</span>
+              </div>
+            </div>
+
+            <div class="mt-8 h-1 w-16" style="background: linear-gradient(90deg, var(--forest), var(--gold));"></div>
+          </div>
+        </div>
+
+        <!-- Right: Provinces -->
+        <div class="lg:col-span-7 reveal-right">
+          <div class="stat-block p-8">
+            <h3 class="font-impact text-xl tracking-[0.15em] uppercase mb-8" style="color: var(--gold);">
+              Provinces
+            </h3>
+
+            <!-- Haes -->
+            <div class="province-row">
+              <div class="flex-1">
+                <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Haes</span>
+                <span class="typo-label ml-3" style="color: var(--gold); font-size: 0.6rem;">Capital</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="typo-label" style="color: var(--text-muted); font-size: 0.6rem;">Level 3 / Source 4</span>
+                <div class="province-bar w-24" style="background: var(--border);">
+                  <div class="province-bar-fill" style="width: 75%; background: linear-gradient(90deg, var(--forest), var(--gold));"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Elevesnemiere -->
+            <div class="province-row">
+              <div class="flex-1">
+                <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Elevesnemiere</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="typo-label" style="color: var(--text-muted); font-size: 0.6rem;">Level 2 / Source 3</span>
+                <div class="province-bar w-24" style="background: var(--border);">
+                  <div class="province-bar-fill" style="width: 60%; background: linear-gradient(90deg, var(--forest), var(--gold));"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nabhriene -->
+            <div class="province-row">
+              <div class="flex-1">
+                <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Nabhriene</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="typo-label" style="color: var(--text-muted); font-size: 0.6rem;">Level 2 / Source 3</span>
+                <div class="province-bar w-24" style="background: var(--border);">
+                  <div class="province-bar-fill" style="width: 60%; background: linear-gradient(90deg, var(--forest), var(--gold));"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Monsedge -->
+            <div class="province-row">
+              <div class="flex-1">
+                <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Monsedge</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="typo-label" style="color: var(--text-muted); font-size: 0.6rem;">Level 1 / Source 2</span>
+                <div class="province-bar w-24" style="background: var(--border);">
+                  <div class="province-bar-fill" style="width: 40%; background: linear-gradient(90deg, var(--forest), var(--gold));"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pechalinn -->
+            <div class="province-row">
+              <div class="flex-1">
+                <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Pechalinn</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="typo-label" style="color: var(--text-muted); font-size: 0.6rem;">Level 1 / Source 2</span>
+                <div class="province-bar w-24" style="background: var(--border);">
+                  <div class="province-bar-fill" style="width: 40%; background: linear-gradient(90deg, var(--forest), var(--gold));"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Summary stats -->
+            <div class="mt-8 pt-6 grid grid-cols-3 gap-6" style="border-top: 1px solid var(--border);">
+              <div class="text-center">
+                <span class="font-impact text-3xl tracking-tight" style="color: var(--forest);">5</span>
+                <span class="typo-label block mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Provinces</span>
+              </div>
+              <div class="text-center">
+                <span class="font-impact text-3xl tracking-tight" style="color: var(--gold);">14</span>
+                <span class="typo-label block mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Total Source</span>
+              </div>
+              <div class="text-center">
+                <span class="font-impact text-3xl tracking-tight" style="color: var(--accent);">9</span>
+                <span class="typo-label block mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Total Level</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       OVERVIEW
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain" style="background: var(--bg-primary); padding: 5rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+
+        <!-- Left: Lore text -->
+        <div class="lg:col-span-8 reveal-left">
+          <span class="typo-label block mb-6" style="color: var(--accent);">
+            <span style="color: var(--accent);">&#9632;</span>&ensp;Overview
+          </span>
+          <h2 class="typo-section-head mb-8" style="color: var(--text-primary);">
+            Where <span class="word-accent">Two Worlds</span><br>Converge
+          </h2>
+          <div class="space-y-6 font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
+            <p>
+              Tuornen is a land of ancient forests, mysterious ruins, and old magic. Nestled in the heartlands of Anuire, it is one of the few domains where the bond between humans and elves remains strong. The domain's half-elven ruler, Gilgaed Fhiele, walks between two worlds &#8212; the human realm of politics and war, and the elven world of nature and ancient tradition.
+            </p>
+            <p>
+              The forests of Tuornen are among the oldest in Anuire, and they still harbor secrets from before the Battle of Deismaar. Ancient elven ruins dot the landscape, and the magical sources that flow through the land are unusually strong. This makes Tuornen a coveted prize for wizards and a constant target for neighboring domains that would exploit its resources.
+            </p>
+            <p>
+              Tuornen maintains its independence through a combination of forest warfare expertise, elven alliances, and the sheer difficulty of campaigning in its wooded terrain. The domain's soldiers are expert archers and guerrilla fighters who can vanish into the trees and strike from nowhere. Would-be conquerors have learned to their cost that Tuornen's forests fight back.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Atmospheric sidebar -->
+        <div class="lg:col-span-4 reveal-right">
+          <div class="p-8 relative overflow-hidden" style="background: var(--bg-card); border: 1px solid var(--border);">
+            <!-- Decorative forest glow -->
+            <div class="absolute top-0 right-0 w-32 h-32 rounded-full" style="background: radial-gradient(circle, var(--forest-glow), transparent); filter: blur(40px);"></div>
+
+            <h3 class="font-impact text-xl tracking-[0.15em] uppercase mb-8 relative" style="color: var(--gold);">
+              Domain Traits
+            </h3>
+
+            <div class="space-y-5 relative">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center mt-0.5" style="background: var(--forest-dim); border: 1px solid var(--forest);">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--forest);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"/></svg>
+                </div>
+                <div>
+                  <span class="font-display text-sm font-semibold block" style="color: var(--text-primary);">Ancient Forests</span>
+                  <span class="font-body text-sm" style="color: var(--text-muted);">Pre-Deismaar woodlands with elven ruins</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center mt-0.5" style="background: var(--forest-dim); border: 1px solid var(--forest);">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--forest);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z"/></svg>
+                </div>
+                <div>
+                  <span class="font-display text-sm font-semibold block" style="color: var(--text-primary);">Powerful Source Holdings</span>
+                  <span class="font-body text-sm" style="color: var(--text-muted);">Unusually strong magical ley lines</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center mt-0.5" style="background: var(--forest-dim); border: 1px solid var(--forest);">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--forest);"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                </div>
+                <div>
+                  <span class="font-display text-sm font-semibold block" style="color: var(--text-primary);">Half-Elven Leadership</span>
+                  <span class="font-body text-sm" style="color: var(--text-muted);">Bridge between human and elven worlds</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center mt-0.5" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
+                </div>
+                <div>
+                  <span class="font-display text-sm font-semibold block" style="color: var(--text-primary);">Guerrilla Warfare</span>
+                  <span class="font-body text-sm" style="color: var(--text-muted);">Expert archers and forest fighters</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 h-1 w-16" style="background: linear-gradient(90deg, var(--forest), var(--gold));"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       KEY NPCs
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain" style="background: var(--bg-secondary); padding: 5rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-14">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span style="color: var(--accent);">&#9632;</span>&ensp;Figures of Note
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Key <span class="word-accent">Characters</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Gilgaed Fhiele -->
+        <div class="npc-card p-8 lg:p-10 reveal rd1">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 flex items-center justify-center" style="background: var(--forest-dim); border: 1px solid var(--forest);">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--forest);"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Gilgaed Fhiele</h3>
+              <span class="typo-label" style="color: var(--forest); font-size: 0.55rem;">Duke of Tuornen &middot; Half-Elf Ranger</span>
+            </div>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            The half-elven Duke is torn between his human obligations as a ruler and his elven heritage. He is a skilled ranger and natural leader, but his dual nature makes him an outsider in both worlds. His bloodline of Reynir grants him a deep connection to the land itself, and the forests respond to his presence in ways that unnerve even his allies.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--forest-dim); color: var(--forest); border: 1px solid var(--forest);">Ranger</span>
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Reynir Bloodline</span>
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Chaotic Good</span>
+          </div>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--forest), transparent);"></div>
+        </div>
+
+        <!-- Fhileraene -->
+        <div class="npc-card p-8 lg:p-10 reveal rd2">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Fhileraene</h3>
+              <span class="typo-label" style="color: var(--gold); font-size: 0.55rem;">Elven Advisor &middot; Voice of Tuarhievel</span>
+            </div>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            An elven advisor from Tuarhievel who serves as Gilgaed's connection to the elven court. She is ancient, wise, and deeply protective of the forests. Fhileraene has witnessed the slow decline of elven influence in Cerilia and sees in Tuornen a last chance to preserve something of the old world. Her counsel shapes much of the domain's forest policy.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Elven Elder</span>
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--forest-dim); color: var(--forest); border: 1px solid var(--forest);">Tuarhievel</span>
+          </div>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       POLITICAL LANDSCAPE
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain" style="background: var(--bg-primary); padding: 5rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-14">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span style="color: var(--accent);">&#9632;</span>&ensp;Threats & Alliances
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Political <span class="word-accent">Landscape</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- The Alamie Aggression -->
+        <div class="culture-block reveal rd1">
+          <span class="typo-label block mb-4" style="color: var(--accent);">01</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">
+            The Alamie Aggression
+          </h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            Alamie has long pressed territorial claims on Tuornen's eastern provinces. The Duke of Alamie views the forests as rightfully his, a legacy of older borders drawn when the empire still stood. Border skirmishes are a seasonal occurrence, and full-scale war is never far from the horizon.
+          </p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Conflict &middot; Territory &middot; War</span>
+          </div>
+        </div>
+
+        <!-- The Elven Alliance -->
+        <div class="culture-block reveal rd2">
+          <span class="typo-label block mb-4" style="color: var(--forest);">02</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">
+            The Elven Alliance
+          </h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            The relationship with Tuarhievel is Tuornen's greatest diplomatic asset &#8212; and its most delicate. The elves support Gilgaed because of his half-elven blood, but they have their own agenda regarding the forests. Maintaining this alliance requires constant negotiation between human progress and elven preservation.
+          </p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Diplomacy &middot; Elves &middot; Balance</span>
+          </div>
+        </div>
+
+        <!-- Forest Magic -->
+        <div class="culture-block reveal rd3">
+          <span class="typo-label block mb-4" style="color: var(--gold);">03</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">
+            Forest Magic
+          </h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
+            Tuornen's rich magical sources are the envy of every wizard-regent in Anuire. The ley lines that run through its ancient forests are unusually potent, drawing the attention of source-holders both friendly and hostile. Controlling &#8212; or corrupting &#8212; these sources is a prize worth going to war over.
+          </p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Magic &middot; Sources &middot; Power</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-secondary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       HOLDINGS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain" style="background: var(--bg-secondary); padding: 5rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-14">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span style="color: var(--accent);">&#9632;</span>&ensp;Power Structure
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Holdings & <span class="word-forest">Assets</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Source Holdings -->
+        <div class="domain-card p-8 reveal rd1">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--forest-dim); border: 1px solid var(--forest);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--forest);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
+            </div>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Sources</h3>
+          </div>
+          <div class="flex items-end gap-2 mb-4">
+            <span class="font-impact text-4xl" style="color: var(--forest);">Strong</span>
+          </div>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.6;">
+            Tuornen's greatest asset. The ancient forests channel powerful magical ley lines, making source holdings among the richest in Anuire.
+          </p>
+          <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--forest), transparent);"></div>
+        </div>
+
+        <!-- Law Holdings -->
+        <div class="domain-card p-8 reveal rd2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 0 1-2.031.352 5.988 5.988 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971Zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 0 1-2.031.352 5.989 5.989 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971Z"/></svg>
+            </div>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Law</h3>
+          </div>
+          <div class="flex items-end gap-2 mb-4">
+            <span class="font-impact text-4xl" style="color: var(--gold);">Moderate</span>
+          </div>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.6;">
+            The Duke's law extends through settled areas but the deep forests remain largely ungoverned, following older elven customs and traditions.
+          </p>
+          <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </div>
+
+        <!-- Temple Holdings -->
+        <div class="domain-card p-8 reveal rd3">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
+            </div>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Temples</h3>
+          </div>
+          <div class="flex items-end gap-2 mb-4">
+            <span class="font-impact text-4xl" style="color: var(--gold);">Moderate</span>
+          </div>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.6;">
+            Erik's faith has a natural home here among the forest folk, while Haelyn's temples serve the more settled populations in the capital and towns.
+          </p>
+          <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </div>
+
+        <!-- Strategic Asset -->
+        <div class="domain-card p-8 reveal rd4">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+            </div>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Forests</h3>
+          </div>
+          <div class="flex items-end gap-2 mb-4">
+            <span class="font-impact text-4xl" style="color: var(--accent);">Critical</span>
+          </div>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.6;">
+            The forests themselves are Tuornen's greatest strategic asset. They hamper invading armies, shelter guerrilla fighters, and channel magical power.
+          </p>
+          <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-10" style="background: var(--bg-primary);">
+    <div class="divider-blood"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       RELATED DOMAINS
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain" style="background: var(--bg-primary); padding: 5rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Section header -->
+      <div class="reveal mb-12">
+        <span class="typo-label block mb-6" style="color: var(--gold);">
+          <span style="color: var(--accent);">&#9632;</span>&ensp;Explore More
+        </span>
+        <h2 class="typo-section-head" style="color: var(--text-primary);">
+          Related <span class="word-gold">Domains</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- Alamie -->
+        <a href="#" class="related-link reveal rd1">
+          <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-impact text-lg tracking-[0.1em] uppercase" style="color: var(--text-primary);">Alamie</h3>
+            <span class="font-body text-sm" style="color: var(--accent);">Enemy &mdash; Claims Tuornen's eastern provinces</span>
+          </div>
+          <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--text-muted);"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <!-- Tuarhievel -->
+        <a href="#" class="related-link reveal rd2">
+          <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center" style="background: var(--forest-dim); border: 1px solid var(--forest);">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--forest);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-impact text-lg tracking-[0.1em] uppercase" style="color: var(--text-primary);">Tuarhievel</h3>
+            <span class="font-body text-sm" style="color: var(--forest);">Elven Ally &mdash; The ancient woodland realm</span>
+          </div>
+          <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--text-muted);"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <!-- Mhoried -->
+        <a href="#" class="related-link reveal rd3">
+          <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-impact text-lg tracking-[0.1em] uppercase" style="color: var(--text-primary);">Mhoried</h3>
+            <span class="font-body text-sm" style="color: var(--text-secondary);">Neighbor &mdash; Highland realm to the north</span>
+          </div>
+          <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--text-muted);"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+        <!-- Back to Anuire -->
+        <a href="../regions/anuire.html" class="related-link reveal rd4">
+          <div class="w-10 h-10 flex-shrink-0 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="font-impact text-lg tracking-[0.1em] uppercase" style="color: var(--text-primary);">Anuire</h3>
+            <span class="font-body text-sm" style="color: var(--text-secondary);">Back to the Heartlands of Cerilia</span>
+          </div>
+          <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--text-muted);"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting,
+            recognized by Wizards of the Coast. Keeping the blood alive since 1996.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            </a>
+            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+            </a>
+            <a href="https://wiki.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigate -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Navigate</h4>
+          <div class="flex flex-col gap-3">
+            <a href="../index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Home</a>
+            <a href="../regions/anuire.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Anuire</a>
+            <a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Bloodlines</a>
+            <a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Tour</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
+          <div class="flex flex-col gap-3">
+            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="https://wiki.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === BLOOD DRIP DIVIDERS — restart on scroll ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight; // reflow
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+
+    // === PROVINCE BAR ANIMATION ===
+    const bars = document.querySelectorAll('.province-bar-fill');
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const target = e.target;
+          const finalWidth = target.style.width;
+          target.style.width = '0%';
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              target.style.width = finalWidth;
+            });
+          });
+          barObs.unobserve(target);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(el => barObs.observe(el));
+  </script>
+
+</body>
+</html>
