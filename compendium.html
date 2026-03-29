@@ -221,10 +221,10 @@
 
     /* Scroll reveal */
     .reveal {
-      opacity: 0; transform: translateY(50px);
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.visible { opacity: 1; }
 
     .rd1 { transition-delay: 0.15s; }
     .rd2 { transition-delay: 0.3s; }
@@ -670,7 +670,7 @@
   </section>
 
   <!-- Blood drip divider -->
-  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+  <div class="py-4 divider-wrap" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
 
   <!-- ══════════════════════════════════════════════════════
        ANUIRE
@@ -980,7 +980,7 @@
   </section>
 
   <!-- Blood drip divider -->
-  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+  <div class="py-4 divider-wrap" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
 
   <!-- ══════════════════════════════════════════════════════
        RJURIK HIGHLANDS
@@ -1043,7 +1043,7 @@
   </section>
 
   <!-- Blood drip divider -->
-  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+  <div class="py-4 divider-wrap" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
 
   <!-- ══════════════════════════════════════════════════════
        KHINASI
@@ -1103,7 +1103,7 @@
   </section>
 
   <!-- Blood drip divider -->
-  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+  <div class="py-4 divider-wrap" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
 
   <!-- ══════════════════════════════════════════════════════
        BRECHTUR
@@ -1166,7 +1166,7 @@
   </section>
 
   <!-- Blood drip divider -->
-  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+  <div class="py-4 divider-wrap" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
 
   <!-- ══════════════════════════════════════════════════════
        VOSGAARD
@@ -1226,7 +1226,7 @@
   </section>
 
   <!-- Blood drip divider -->
-  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+  <div class="py-4 divider-wrap" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
 
   <!-- ══════════════════════════════════════════════════════
        ORGANIZATIONS
@@ -1349,7 +1349,7 @@
   </section>
 
   <!-- Blood drip divider -->
-  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+  <div class="py-4 divider-wrap" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
 
   <!-- ══════════════════════════════════════════════════════
        CHARACTERS
@@ -1614,32 +1614,30 @@
         btn.classList.add('active');
         btn.setAttribute('aria-selected', 'true');
 
+        // Hide all dividers first, then selectively show
+        document.querySelectorAll('.divider-wrap').forEach(d => d.style.display = 'none');
+
+        let visibleCount = 0;
         sections.forEach(section => {
-          if (filter === 'all' || section.dataset.region === filter) {
-            section.style.display = '';
-          } else {
-            section.style.display = 'none';
-          }
+          const show = filter === 'all' || section.dataset.region === filter;
+          section.style.display = show ? '' : 'none';
+          if (show) visibleCount++;
         });
 
-        // Also show/hide blood drip dividers between sections
-        document.querySelectorAll('.divider-blood').forEach(drip => {
-          const parent = drip.closest('div');
-          if (filter === 'all') {
-            parent.style.display = '';
-          } else {
-            // Hide dividers that sit between hidden sections
-            const prev = parent.previousElementSibling;
-            const next = parent.nextElementSibling;
-            if (prev && prev.style.display === 'none' && next && next.style.display === 'none') {
-              parent.style.display = 'none';
-            } else if (prev && prev.style.display === 'none') {
-              parent.style.display = 'none';
-            } else if (next && next.style.display === 'none') {
-              parent.style.display = 'none';
+        // Show dividers only between visible sections
+        if (filter === 'all') {
+          document.querySelectorAll('.divider-wrap').forEach(d => d.style.display = '');
+        } else {
+          // Only show the divider right before the visible section (if any)
+          sections.forEach(section => {
+            if (section.style.display !== 'none') {
+              const prev = section.previousElementSibling;
+              if (prev && prev.classList.contains('divider-wrap')) {
+                prev.style.display = '';
+              }
             }
-          }
-        });
+          });
+        }
       });
     });
 
