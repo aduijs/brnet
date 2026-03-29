@@ -634,10 +634,21 @@
         <!-- Left: 3D Logo -->
         <div class="lg:col-span-7 reveal-left">
           <div class="relative">
-            <img src="brand_assets/logo_3d_transparent.png" alt="Birthright 3D logo featuring armored warriors and a crowned king" class="w-full max-w-[750px]" style="filter: drop-shadow(0 0 40px var(--gold-glow)) drop-shadow(0 15px 30px var(--shadow-color));">
+            <a href="tour.html" class="block group">
+              <img src="brand_assets/logo_3d_transparent.png" alt="Birthright 3D logo — click to start the interactive tour of Cerilia" class="w-full max-w-[750px] transition-transform duration-500 group-hover:scale-[1.02]" style="filter: drop-shadow(0 0 40px var(--gold-glow)) drop-shadow(0 15px 30px var(--shadow-color));">
+              <!-- Play overlay hint -->
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="px-6 py-3 font-impact text-sm tracking-[0.2em] uppercase" style="background: var(--crimson); color: #fff; box-shadow: 0 0 40px rgba(196,30,30,0.4);">
+                  <span class="flex items-center gap-2">
+                    <svg aria-hidden="true" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    Tour Cerilia
+                  </span>
+                </div>
+              </div>
+            </a>
             <!-- Decorative corner marks -->
-            <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2" style="border-color: var(--crimson); opacity: 0.4;"></div>
-            <div class="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2" style="border-color: var(--crimson); opacity: 0.4;"></div>
+            <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 pointer-events-none" style="border-color: var(--crimson); opacity: 0.4;"></div>
+            <div class="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 pointer-events-none" style="border-color: var(--crimson); opacity: 0.4;"></div>
           </div>
         </div>
 
