@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMPENDIUM — The Complete Index | Birthright.net</title>
+  <meta name="description" content="Every domain, organization, and character in Cerilia — indexed and cross-referenced. The complete Birthright compendium.">
+  <meta property="og:title" content="Compendium — The Complete Birthright Index">
+  <meta property="og:description" content="Browse every domain, organization, and NPC in Cerilia. The master codex of the Birthright campaign setting.">
+  <meta property="og:image" content="brand_assets/social%20share.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            blackletter: ['UnifrakturCook', 'cursive'],
+            impact: ['Bebas Neue', 'sans-serif'],
+            display: ['Cinzel', 'serif'],
+            body: ['Crimson Pro', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       THEME SYSTEM
+       ═══════════════════════════════════════════ */
+    :root {
+      --transition-theme: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #060606;
+      --bg-secondary: #0c0c0c;
+      --bg-elevated: #111111;
+      --bg-surface: #1a1a1a;
+      --bg-card: #0f0f0f;
+      --text-primary: #f0ece4;
+      --text-secondary: rgba(240, 236, 228, 0.55);
+      --text-muted: rgba(240, 236, 228, 0.3);
+      --gold: #d4a843;
+      --gold-dim: rgba(212, 168, 67, 0.15);
+      --gold-glow: rgba(212, 168, 67, 0.25);
+      --crimson: #c41e1e;
+      --crimson-dim: rgba(196, 30, 30, 0.12);
+      --crimson-bright: #ff2e2e;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --overlay-heavy: rgba(6, 6, 6, 0.92);
+      --overlay-medium: rgba(6, 6, 6, 0.7);
+      --overlay-light: rgba(6, 6, 6, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.6);
+      --nav-bg: rgba(6, 6, 6, 0.85);
+      --grain-opacity: 0.035;
+      --logo-filter: none;
+      --hero-text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+      --card-hover-shadow: 0 30px 80px rgba(0,0,0,0.7);
+      --invert: 0;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #d6ccb8;
+      --bg-secondary: #ccc1ab;
+      --bg-elevated: #ded5c3;
+      --bg-surface: #c4b89f;
+      --bg-card: #d2c8b2;
+      --text-primary: #1a1510;
+      --text-secondary: rgba(26, 21, 16, 0.65);
+      --text-muted: rgba(26, 21, 16, 0.35);
+      --gold: #7a5c10;
+      --gold-dim: rgba(122, 92, 16, 0.12);
+      --gold-glow: rgba(122, 92, 16, 0.18);
+      --crimson: #8b1a1a;
+      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-bright: #b82020;
+      --border: rgba(26, 21, 16, 0.14);
+      --border-hover: rgba(26, 21, 16, 0.25);
+      --overlay-heavy: rgba(214, 204, 184, 0.92);
+      --overlay-medium: rgba(214, 204, 184, 0.75);
+      --overlay-light: rgba(214, 204, 184, 0.4);
+      --shadow-color: rgba(80, 60, 30, 0.25);
+      --nav-bg: rgba(214, 204, 184, 0.92);
+      --grain-opacity: 0.04;
+      --logo-filter: none;
+      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --invert: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       BASE
+       ═══════════════════════════════════════════ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    h1, h2, h3, h4 { font-weight: inherit; font-size: inherit; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Crimson Pro', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background var(--transition-theme), color var(--transition-theme);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    *:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    ::selection {
+      background: var(--crimson);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       GRAIN TEXTURE
+       ═══════════════════════════════════════════ */
+    .grain::after {
+      content: ''; position: absolute; inset: 0; opacity: var(--grain-opacity); pointer-events: none; z-index: 100;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY
+       ═══════════════════════════════════════════ */
+    .typo-mega {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .typo-blackletter {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+    }
+
+    .typo-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .typo-section-head {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .word-accent {
+      display: inline-block;
+      color: var(--crimson);
+      transform: rotate(-3deg) scale(1.05);
+      margin: 0 0.05em;
+      text-shadow: 0 0 40px var(--crimson-dim);
+      position: relative;
+    }
+    .word-accent::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--crimson);
+      opacity: 0.4;
+      transform: skewX(-8deg);
+    }
+
+    .word-gold {
+      color: var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes blood-drip {
+      0% { height: 0; opacity: 0; }
+      20% { opacity: 1; }
+      100% { height: 80px; opacity: 0.6; }
+    }
+    @keyframes horizontalScan {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+
+    .anim-fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .anim-d1 { animation-delay: 0.1s; }
+    .anim-d2 { animation-delay: 0.25s; }
+    .anim-d3 { animation-delay: 0.4s; }
+    .anim-d4 { animation-delay: 0.55s; }
+    .anim-d5 { animation-delay: 0.7s; }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(50px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .rd1 { transition-delay: 0.15s; }
+    .rd2 { transition-delay: 0.3s; }
+
+    /* ═══════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════ */
+    #nav {
+      transition: background var(--transition-theme);
+    }
+    #nav.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-link {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+      background: var(--crimson); transition: width 0.3s, left 0.3s;
+    }
+    .nav-link:hover::after { width: 100%; left: 0; }
+
+    /* Theme toggle */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer; position: relative;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gold);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px var(--shadow-color);
+    }
+    [data-theme="light"] .theme-toggle::after {
+      transform: translateX(20px);
+    }
+    .theme-toggle:hover { border-color: var(--gold); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ */
+    .hero-scanline {
+      position: absolute; top: 0; left: 0; width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+      opacity: 0.3;
+      animation: horizontalScan 8s linear infinite;
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVIDERS & ORNAMENTS
+       ═══════════════════════════════════════════ */
+    .divider-blood {
+      width: 2px; height: 0; margin: 0 auto;
+      background: linear-gradient(to bottom, var(--crimson), transparent);
+      animation: blood-drip 2s ease-out forwards;
+      position: relative;
+    }
+    .divider-blood::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--crimson);
+    }
+
+    .divider-horizontal {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BUTTONS
+       ═══════════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: var(--crimson);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--crimson-bright);
+      transform: scale(1.03);
+      box-shadow: 0 0 50px var(--crimson-dim), 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.03);
+    }
+    .btn-ghost:active { transform: scale(0.97); }
+
+    /* ═══════════════════════════════════════════
+       COMPENDIUM-SPECIFIC STYLES
+       ═══════════════════════════════════════════ */
+
+    /* Filter buttons */
+    .filter-btn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .filter-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: scale(1.03);
+    }
+    .filter-btn:active { transform: scale(0.97); }
+    .filter-btn.active {
+      background: var(--crimson);
+      border-color: var(--crimson);
+      color: #fff;
+    }
+    .filter-btn.active:hover {
+      background: var(--crimson-bright);
+      border-color: var(--crimson-bright);
+      color: #fff;
+    }
+
+    /* Domain / org / NPC cards */
+    .codex-card {
+      display: flex;
+      align-items: stretch;
+      text-decoration: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s, background var(--transition-theme);
+      overflow: hidden;
+    }
+    .codex-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: 0 0 40px var(--gold-dim), var(--card-hover-shadow);
+    }
+    .codex-card.evil-card:hover {
+      border-color: var(--crimson);
+      box-shadow: 0 0 40px var(--crimson-dim), var(--card-hover-shadow);
+    }
+
+    .card-accent {
+      width: 2px;
+      flex-shrink: 0;
+      background: var(--gold);
+    }
+    .evil-card .card-accent {
+      background: var(--crimson);
+    }
+
+    .evil-pill {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1px 8px;
+      background: var(--crimson-dim);
+      color: var(--crimson);
+      border: 1px solid var(--crimson);
+    }
+
+    .shady-pill {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1px 8px;
+      background: var(--gold-dim);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+
+    /* Quick stats */
+    .stat-item {
+      text-align: center;
+      padding: 1rem 2rem;
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      line-height: 1;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Search input */
+    .search-input {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-family: 'Crimson Pro', serif;
+      font-size: 1rem;
+      padding: 0.75rem 1rem 0.75rem 3rem;
+      width: 100%;
+      max-width: 400px;
+      transition: border-color 0.3s, box-shadow 0.3s, background var(--transition-theme);
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 20px var(--gold-dim);
+    }
+    .search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Section subtitle */
+    .region-subtitle {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    /* Subsection heading */
+    .subsection-head {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+
+    section {
+      transition: background var(--transition-theme);
+    }
+
+    @media (max-width: 768px) {
+      .typo-mega { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+      .typo-section-head { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .stat-item { padding: 0.75rem 1rem; }
+      .stat-num { font-size: 1.8rem; }
+      .filter-btn { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Skip to main content -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:font-impact focus:tracking-wider focus:uppercase focus:text-sm" style="background: var(--crimson); color: #fff;">Skip to main content</a>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAV
+       ══════════════════════════════════════════════════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50" aria-label="Main navigation">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <a href="index.html" class="relative z-10 flex items-center gap-3 group">
+        <img src="brand_assets/BRlogo.gif" alt="Birthright.net - Return to homepage" class="h-9 lg:h-11" style="filter: var(--logo-filter); transition: transform 0.3s;">
+        <span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color: var(--text-muted);">.NET</span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="index.html#world" class="nav-link">The World</a>
+        <a href="bloodlines.html" class="nav-link">Bloodlines</a>
+        <a href="index.html#regions" class="nav-link">Regions</a>
+        <a href="tour.html" class="nav-link">Tour</a>
+        <a href="compendium.html" class="nav-link">Compendium</a>
+        <a href="http://www.birthright.net/forums/showwiki.php" class="nav-link">Wiki</a>
+        <a href="index.html#community" class="nav-link">Community</a>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+          <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+          Join Discord
+        </a>
+      </div>
+
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color: var(--text-primary);" aria-label="Menu">
+          <svg aria-hidden="true" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+      <a href="index.html#world" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">The World</a>
+      <a href="bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
+      <a href="index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
+      <a href="tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
+      <a href="http://www.birthright.net/forums/showwiki.php" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
+        <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+        Join Discord
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO — Shorter (50vh)
+       ══════════════════════════════════════════════════════ -->
+  <main id="main-content">
+  <section class="relative flex flex-col items-center justify-end grain overflow-hidden" style="min-height: 50vh; background: var(--bg-primary);">
+    <!-- Background -->
+    <div class="absolute inset-0">
+      <img src="brand_assets/hero%20background.png" alt="" class="w-full h-full object-cover" style="opacity: 0.4;">
+    </div>
+
+    <!-- Dark overlays -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 90% 90% at 50% 45%, transparent 20%, var(--bg-primary) 80%);"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-[60%] pointer-events-none" style="background: linear-gradient(to top, var(--bg-primary) 10%, rgba(0,0,0,0.3) 50%, transparent 100%);"></div>
+    <div class="absolute inset-0 pointer-events-none" style="background: var(--overlay-light);"></div>
+
+    <!-- Scan line -->
+    <div class="hero-scanline"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 w-full max-w-[1600px] mx-auto px-5 md:px-6 lg:px-12 mt-auto pb-10 lg:pb-16 text-center">
+      <div class="anim-fade-up anim-d2 mb-4">
+        <span class="typo-label" style="color: var(--gold); text-shadow: 0 2px 8px rgba(0,0,0,0.8); background: rgba(0,0,0,0.4); padding: 4px 10px; backdrop-filter: blur(4px);">&#9608;&#9608; The Complete Index</span>
+      </div>
+
+      <h1 class="anim-fade-up anim-d3 typo-mega mb-4" style="color: var(--text-primary); text-shadow: var(--hero-text-shadow);">COMPENDIUM</h1>
+
+      <p class="anim-fade-up anim-d4 max-w-2xl mx-auto text-lg md:text-xl" style="color: var(--text-secondary); line-height: 1.7; font-weight: 300;">
+        Every domain, organization, and character in Cerilia — indexed and cross-referenced.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       QUICK STATS BAR
+       ══════════════════════════════════════════════════════ -->
+  <section style="background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="flex flex-wrap justify-center gap-0">
+        <div class="stat-item" style="border-right: 1px solid var(--border);">
+          <div class="stat-num">50</div>
+          <div class="stat-label">Domains</div>
+        </div>
+        <div class="stat-item" style="border-right: 1px solid var(--border);">
+          <div class="stat-num">11</div>
+          <div class="stat-label">Organizations</div>
+        </div>
+        <div class="stat-item" style="border-right: 1px solid var(--border);">
+          <div class="stat-num">9</div>
+          <div class="stat-label">Characters</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Regions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FILTER / SEARCH BAR
+       ══════════════════════════════════════════════════════ -->
+  <section class="relative grain" style="background: var(--bg-primary); padding: 2rem 0 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+      <!-- Search -->
+      <div class="relative mb-6 flex justify-center">
+        <div class="relative w-full max-w-md">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--text-muted);"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search domains, organizations, characters..." aria-label="Search the compendium">
+        </div>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="flex flex-wrap justify-center gap-2 pb-8" role="tablist" aria-label="Filter compendium by region">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="anuire" role="tab" aria-selected="false">Anuire</button>
+        <button class="filter-btn" data-filter="rjurik" role="tab" aria-selected="false">Rjurik</button>
+        <button class="filter-btn" data-filter="khinasi" role="tab" aria-selected="false">Khinasi</button>
+        <button class="filter-btn" data-filter="brechtur" role="tab" aria-selected="false">Brechtur</button>
+        <button class="filter-btn" data-filter="vosgaard" role="tab" aria-selected="false">Vosgaard</button>
+        <button class="filter-btn" data-filter="organizations" role="tab" aria-selected="false">Organizations</button>
+        <button class="filter-btn" data-filter="characters" role="tab" aria-selected="false">Characters</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       ANUIRE
+       ══════════════════════════════════════════════════════ -->
+  <section data-region="anuire" class="relative grain" style="background: var(--bg-primary); padding: 3rem 0 4rem;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+      <div class="reveal mb-8">
+        <h2 class="typo-section-head" style="color: var(--text-primary);">ANUIRE</h2>
+        <p class="region-subtitle mt-2">The Heartlands of the Fallen Empire</p>
+      </div>
+
+      <!-- Southern Coast -->
+      <div class="mb-10 reveal rd1">
+        <h3 class="subsection-head">Southern Coast</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="domains/roesone.html" class="codex-card" data-name="Roesone">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Roesone</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Young Barony</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Baroness Marlae Roesone</div>
+            </div>
+          </a>
+          <a href="domains/aerenwe.html" class="codex-card" data-name="Aerenwe">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Aerenwe</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Emerald Realm</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Queen Liliene Swordwraith</div>
+            </div>
+          </a>
+          <a href="domains/diemed.html" class="codex-card" data-name="Diemed">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Diemed</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Ancient Barony</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Baron Heirl Diem</div>
+            </div>
+          </a>
+          <a href="domains/ilien.html" class="codex-card" data-name="Ilien">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Ilien</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Free City</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">el-Hadid</div>
+            </div>
+          </a>
+          <a href="domains/medoere.html" class="codex-card" data-name="Medoere">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Medoere</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Theocracy</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Archprelate Suris Enlien</div>
+            </div>
+          </a>
+          <a href="domains/mieres.html" class="codex-card" data-name="Mieres">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Mieres</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Pirate Isle</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Governor Vaumel</div>
+            </div>
+          </a>
+          <a href="domains/spiderfell.html" class="codex-card evil-card" data-name="Spiderfell">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Spiderfell</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Spider's Web</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Spider</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Western Coast -->
+      <div class="mb-10 reveal rd1">
+        <h3 class="subsection-head">Western Coast</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="domains/boeruine.html" class="codex-card" data-name="Boeruine">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Boeruine</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Military Might</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Archduke Aeric</div>
+            </div>
+          </a>
+          <a href="domains/talinie.html" class="codex-card" data-name="Talinie">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Talinie</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Northern Shield</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Thane Thuriene</div>
+            </div>
+          </a>
+          <a href="domains/brosengae.html" class="codex-card" data-name="Brosengae">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Brosengae</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Under Avan's Shadow</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Governor</div>
+            </div>
+          </a>
+          <a href="domains/rhuobhe.html" class="codex-card evil-card" data-name="Rhuobhe">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Rhuobhe</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Manslayer's Domain</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Rhuobhe</div>
+            </div>
+          </a>
+          <a href="domains/taeghas.html" class="codex-card" data-name="Taeghas">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Taeghas</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Western Shore</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Duchess Regien</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- The Heartlands -->
+      <div class="mb-10 reveal rd1">
+        <h3 class="subsection-head">The Heartlands</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="domains/avanil.html" class="codex-card" data-name="Avanil">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Avanil</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Prince's Domain</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Prince Darien Avan</div>
+            </div>
+          </a>
+          <a href="domains/ghoere.html" class="codex-card" data-name="Ghoere">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Ghoere</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Iron Fist</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Baron Gavin Tael</div>
+            </div>
+          </a>
+          <a href="domains/mhoried.html" class="codex-card" data-name="Mhoried">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Mhoried</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Shield of the Heartlands</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Mhor Daeric</div>
+            </div>
+          </a>
+          <a href="domains/tuornen.html" class="codex-card" data-name="Tuornen">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Tuornen</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Ancient Forest</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Gilgaed Fhiele</div>
+            </div>
+          </a>
+          <a href="domains/alamie.html" class="codex-card" data-name="Alamie">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Alamie</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Jealous Duke</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Duke Carilon</div>
+            </div>
+          </a>
+          <a href="domains/imperial-city.html" class="codex-card" data-name="Imperial City">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Imperial City</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Empty Throne</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Contested</div>
+            </div>
+          </a>
+          <a href="domains/elinie.html" class="codex-card" data-name="Elinie">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Elinie</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Devout Realm</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Caliph Alandalae</div>
+            </div>
+          </a>
+          <a href="domains/endier.html" class="codex-card" data-name="Endier">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Endier</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Merchant's Realm</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Guilder Kalien</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Northern Marches -->
+      <div class="mb-10 reveal rd1">
+        <h3 class="subsection-head">Northern Marches</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="domains/dhoesone.html" class="codex-card" data-name="Dhoesone">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Dhoesone</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Northern Marches</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Baroness Fhiele</div>
+            </div>
+          </a>
+          <a href="domains/cariele.html" class="codex-card" data-name="Cariele">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Cariele</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Counting House</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Count Mheallie</div>
+            </div>
+          </a>
+          <a href="domains/five-peaks.html" class="codex-card evil-card" data-name="Five Peaks">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Five Peaks</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Goblin Mountains</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Orog King</div>
+            </div>
+          </a>
+          <a href="domains/markazor.html" class="codex-card evil-card" data-name="Markazor">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Markazor</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Dark Fortress</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">King Krazak</div>
+            </div>
+          </a>
+          <a href="domains/thurazor.html" class="codex-card evil-card" data-name="Thurazor">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Thurazor</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Goblin Kingdom</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">King Tie'skar</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Eastern Marches -->
+      <div class="reveal rd1">
+        <h3 class="subsection-head">Eastern Marches</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="domains/baruk-azhik.html" class="codex-card" data-name="Baruk-Azhik">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Baruk-Azhik</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Dwarven Kingdom</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Overthane Grimm</div>
+            </div>
+          </a>
+          <a href="domains/chimaeron.html" class="codex-card evil-card" data-name="Chimaeron">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Chimaeron</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Monster's Domain</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Chimaera</div>
+            </div>
+          </a>
+          <a href="domains/coeranys.html" class="codex-card" data-name="Coeranys">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Coeranys</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Contested County</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Count Aeric</div>
+            </div>
+          </a>
+          <a href="domains/osoerde.html" class="codex-card" data-name="Osoerde">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Osoerde</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Tyrant's Domain</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Duke Jaison</div>
+            </div>
+          </a>
+          <a href="domains/sielwode.html" class="codex-card" data-name="Sielwode">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Sielwode</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Elven Forest</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Emerald Queen</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       RJURIK HIGHLANDS
+       ══════════════════════════════════════════════════════ -->
+  <section data-region="rjurik" class="relative grain" style="background: var(--bg-primary); padding: 3rem 0 4rem;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+      <div class="reveal mb-8">
+        <h2 class="typo-section-head" style="color: var(--text-primary);">RJURIK HIGHLANDS</h2>
+        <p class="region-subtitle mt-2">The Wild Frontier of the North</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 reveal rd1">
+        <a href="domains/halskapa.html" class="codex-card" data-name="Halskapa">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Halskapa</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Great Realm</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Jarl Guthrim</div>
+          </div>
+        </a>
+        <a href="domains/stjordvik.html" class="codex-card" data-name="Stjordvik">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Stjordvik</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Coastal Realm</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Jarl Varri</div>
+          </div>
+        </a>
+        <a href="domains/rjuvik.html" class="codex-card" data-name="Rjuvik">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Rjuvik</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Warlike Realm</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Jarl Fulgar</div>
+          </div>
+        </a>
+        <a href="domains/blood-skull-barony.html" class="codex-card evil-card" data-name="Blood Skull Barony">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="flex items-center gap-2">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Blood Skull Barony</div>
+              <span class="evil-pill">EVIL</span>
+            </div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Orc Domain</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Ghuralli</div>
+          </div>
+        </a>
+        <a href="domains/hogunmark.html" class="codex-card" data-name="Hogunmark">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Hogunmark</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Druid Realm</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Emerald Watcher</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       KHINASI
+       ══════════════════════════════════════════════════════ -->
+  <section data-region="khinasi" class="relative grain" style="background: var(--bg-primary); padding: 3rem 0 4rem;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+      <div class="reveal mb-8">
+        <h2 class="typo-section-head" style="color: var(--text-primary);">KHINASI</h2>
+        <p class="region-subtitle mt-2">The Lands of Wisdom and Sorcery</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 reveal rd1">
+        <a href="domains/khourane.html" class="codex-card" data-name="Khourane">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Khourane</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Jewel of the South</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Sultan el-Hadid</div>
+          </div>
+        </a>
+        <a href="domains/ariya.html" class="codex-card" data-name="Ariya">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Ariya</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Desert Kingdom</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Emir Khalid</div>
+          </div>
+        </a>
+        <a href="domains/mairada.html" class="codex-card" data-name="Mairada">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Mairada</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">City of Magic</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Archmage Kalilah</div>
+          </div>
+        </a>
+        <a href="domains/binsada.html" class="codex-card" data-name="Binsada">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Binsada</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Sacred Land</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">High Priestess Laera</div>
+          </div>
+        </a>
+        <a href="domains/sendoure.html" class="codex-card" data-name="Sendoure">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Sendoure</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Crossroads</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Prince-Merchant Farouk</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       BRECHTUR
+       ══════════════════════════════════════════════════════ -->
+  <section data-region="brechtur" class="relative grain" style="background: var(--bg-primary); padding: 3rem 0 4rem;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+      <div class="reveal mb-8">
+        <h2 class="typo-section-head" style="color: var(--text-primary);">BRECHTUR</h2>
+        <p class="region-subtitle mt-2">The Merchant Principalities of the North Sea</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 reveal rd1">
+        <a href="domains/muden.html" class="codex-card" data-name="Muden">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">M&uuml;den</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Great Trading City</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Guildmaster Albrecht</div>
+          </div>
+        </a>
+        <a href="domains/danigau.html" class="codex-card" data-name="Danigau">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Danigau</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Dark Countess</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Countess Hildegarde</div>
+          </div>
+        </a>
+        <a href="domains/grabentod.html" class="codex-card evil-card" data-name="Grabentod">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="flex items-center gap-2">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Grabentod</div>
+              <span class="evil-pill">EVIL</span>
+            </div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Grave of God</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Vampire</div>
+          </div>
+        </a>
+        <a href="domains/rheulgard.html" class="codex-card" data-name="Rheulgard">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Rheulgard</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Naval Power</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Admiral Erik</div>
+          </div>
+        </a>
+        <a href="domains/treucht.html" class="codex-card" data-name="Treucht">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Treucht</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Free City</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Council of Guilds</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       VOSGAARD
+       ══════════════════════════════════════════════════════ -->
+  <section data-region="vosgaard" class="relative grain" style="background: var(--bg-primary); padding: 3rem 0 4rem;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+      <div class="reveal mb-8">
+        <h2 class="typo-section-head" style="color: var(--text-primary);">VOSGAARD</h2>
+        <p class="region-subtitle mt-2">The Frozen Reaches of Shadow and War</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 reveal rd1">
+        <a href="domains/molochev.html" class="codex-card" data-name="Molochev">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Molochev</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Iron Tsardom</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Tsarevic Basil</div>
+          </div>
+        </a>
+        <a href="domains/kozlovnyy.html" class="codex-card" data-name="Kozlovnyy">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Kozlovnyy</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Blood Priests</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Boyar Vladith</div>
+          </div>
+        </a>
+        <a href="domains/torova-temylatin.html" class="codex-card" data-name="Torova Temylatin">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Torova Temylatin</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Crown of Winter</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Ice Lady</div>
+          </div>
+        </a>
+        <a href="domains/rzhlev.html" class="codex-card" data-name="Rzhlev">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Rzhlev</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Borderland</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Boyar Pyotr</div>
+          </div>
+        </a>
+        <a href="domains/grovnikken-steppe.html" class="codex-card" data-name="Grovnikken Steppe">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Grovnikken Steppe</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Endless Grasslands</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Warlord Kvigmar</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       ORGANIZATIONS
+       ══════════════════════════════════════════════════════ -->
+  <section data-region="organizations" class="relative grain" style="background: var(--bg-primary); padding: 3rem 0 4rem;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+      <div class="reveal mb-8">
+        <h2 class="typo-section-head" style="color: var(--text-primary);">ORGANIZATIONS</h2>
+        <p class="region-subtitle mt-2">Temples, Guilds, and Sources of Power</p>
+      </div>
+
+      <!-- Temples -->
+      <div class="mb-10 reveal rd1">
+        <h3 class="subsection-head">Temples</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="organizations/impregnable-heart-of-haelyn.html" class="codex-card" data-name="Impregnable Heart of Haelyn">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Impregnable Heart of Haelyn</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Temple</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Haelyn</div>
+            </div>
+          </a>
+          <a href="organizations/orthodox-imperial-temple.html" class="codex-card" data-name="Orthodox Imperial Temple">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Orthodox Imperial Temple</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Temple</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Haelyn</div>
+            </div>
+          </a>
+          <a href="organizations/northern-imperial-temple.html" class="codex-card" data-name="Northern Imperial Temple">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Northern Imperial Temple</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Temple</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Haelyn</div>
+            </div>
+          </a>
+          <a href="organizations/ruornils-celestial-spell.html" class="codex-card" data-name="Ruornil's Celestial Spell">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Ruornil's Celestial Spell</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Temple</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Ruornil</div>
+            </div>
+          </a>
+          <a href="organizations/celestial-jewel-of-sarimie.html" class="codex-card" data-name="Celestial Jewel of Sarimie">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Celestial Jewel of Sarimie</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Temple</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Sarimie</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Guilds -->
+      <div class="mb-10 reveal rd1">
+        <h3 class="subsection-head">Guilds</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="organizations/port-of-call-exchange.html" class="codex-card" data-name="Port of Call Exchange">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Port of Call Exchange</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Guild</div>
+            </div>
+          </a>
+          <a href="organizations/spider-river-traders.html" class="codex-card" data-name="Spider River Traders">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Spider River Traders</div>
+                <span class="shady-pill">SHADY</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Guild</div>
+            </div>
+          </a>
+          <a href="organizations/heartlands-outfitters.html" class="codex-card" data-name="Heartlands Outfitters">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Heartlands Outfitters</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Guild</div>
+            </div>
+          </a>
+          <a href="organizations/straits-of-aerele-shipping.html" class="codex-card" data-name="Straits of Aerele Shipping">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Straits of Aerele Shipping</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Guild</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Sources -->
+      <div class="reveal rd1">
+        <h3 class="subsection-head">Sources</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="organizations/wizard-of-the-erebannien.html" class="codex-card" data-name="Wizard of the Erebannien">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Wizard of the Erebannien</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Source</div>
+            </div>
+          </a>
+          <a href="organizations/college-of-sorcery.html" class="codex-card" data-name="College of Sorcery">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">College of Sorcery</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Source</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Blood drip divider -->
+  <div class="py-4" style="background: var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- ══════════════════════════════════════════════════════
+       CHARACTERS
+       ══════════════════════════════════════════════════════ -->
+  <section data-region="characters" class="relative grain" style="background: var(--bg-primary); padding: 3rem 0 4rem;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+
+      <div class="reveal mb-8">
+        <h2 class="typo-section-head" style="color: var(--text-primary);">CHARACTERS</h2>
+        <p class="region-subtitle mt-2">The Blooded Scions and Abominations of Cerilia</p>
+      </div>
+
+      <!-- Rulers -->
+      <div class="mb-10 reveal rd1">
+        <h3 class="subsection-head">Rulers</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="npcs/darien-avan.html" class="codex-card" data-name="Prince Darien Avan">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Prince Darien Avan</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Avanil</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Fighter 14</div>
+            </div>
+          </a>
+          <a href="npcs/aeric-boeruine.html" class="codex-card" data-name="Archduke Aeric Boeruine">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Archduke Aeric Boeruine</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Boeruine</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Fighter 16</div>
+            </div>
+          </a>
+          <a href="npcs/marlae-roesone.html" class="codex-card" data-name="Baroness Marlae Roesone">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Baroness Marlae Roesone</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Roesone</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Fighter 7</div>
+            </div>
+          </a>
+          <a href="npcs/el-hadid-ilien.html" class="codex-card" data-name="el-Hadid">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">el-Hadid</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Ilien</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Wizard 18</div>
+            </div>
+          </a>
+          <a href="npcs/grimm-graybeard.html" class="codex-card" data-name="Overthane Grimm Graybeard">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Overthane Grimm Graybeard</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Baruk-Azhik</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Fighter 15</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Awnsheglien -->
+      <div class="mb-10 reveal rd1">
+        <h3 class="subsection-head">Awnsheglien</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="npcs/the-gorgon.html" class="codex-card evil-card" data-name="The Gorgon">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">The Gorgon</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Gorgon's Crown</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">True Azrai</div>
+            </div>
+          </a>
+          <a href="npcs/the-spider.html" class="codex-card evil-card" data-name="The Spider">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">The Spider</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Spiderfell</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">True Azrai</div>
+            </div>
+          </a>
+          <a href="npcs/the-chimaera.html" class="codex-card evil-card" data-name="The Chimaera">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">The Chimaera</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Chimaeron</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">True Azrai</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Villains -->
+      <div class="reveal rd1">
+        <h3 class="subsection-head">Villains</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <a href="npcs/rhuobhe-manslayer.html" class="codex-card evil-card" data-name="Rhuobhe Manslayer">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Rhuobhe Manslayer</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Rhuobhe</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Fighter/Wizard 20+</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════ -->
+  <footer class="relative grain" style="background: var(--bg-primary); border-top: 1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <img src="brand_assets/BRlogo.gif" alt="Birthright.net logo" class="h-10 mb-4" style="filter: var(--logo-filter);">
+          <p class="font-body text-base max-w-sm" style="color: var(--text-muted); line-height: 1.65;">
+            The official fan community for the Birthright campaign setting,
+            recognized by Wizards of the Coast. Keeping the blood alive since 1996.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+              <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
+            </a>
+            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+              <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+            </a>
+            <a href="http://www.birthright.net/forums/showwiki.php" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+              <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigate -->
+        <div>
+          <h2 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Navigate</h2>
+          <div class="flex flex-col gap-3">
+            <a href="index.html#world" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">The World</a>
+            <a href="index.html#regions" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Regions</a>
+            <a href="bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Bloodlines</a>
+            <a href="tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Tour</a>
+            <a href="http://www.birthright.net/forums/showwiki.php" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+
+        <!-- Community -->
+        <div>
+          <h2 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h2>
+          <div class="flex flex-col gap-3">
+            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
+            <a href="http://www.birthright.net/forums/showwiki.php" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top: 1px solid var(--border);">
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          &copy; Birthright.net community. Birthright, D&D, and Wizards of the Coast are trademarks of Hasbro, Inc.
+        </p>
+        <p class="font-impact text-xs tracking-[0.2em] uppercase" style="color: var(--text-muted);">
+          The blood endures
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════════════════ -->
+  <script>
+    // === THEME TOGGLE ===
+    const html = document.documentElement;
+    const saved = localStorage.getItem('br-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+
+    function toggleTheme() {
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('br-theme', next);
+    }
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+
+    // === NAV SCROLL ===
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // === MOBILE MENU ===
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileNav.classList.toggle('open', menuOpen);
+    });
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    // === SCROLL REVEAL ===
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // === BLOOD DRIP DIVIDERS ===
+    const drips = document.querySelectorAll('.divider-blood');
+    const dripObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'none';
+          e.target.offsetHeight;
+          e.target.style.animation = 'blood-drip 2s ease-out forwards';
+        }
+      });
+    }, { threshold: 0.5 });
+    drips.forEach(el => dripObs.observe(el));
+
+    // === FILTER SYSTEM ===
+    const filterBtns = document.querySelectorAll('[data-filter]');
+    const sections = document.querySelectorAll('[data-region]');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        sections.forEach(section => {
+          if (filter === 'all' || section.dataset.region === filter) {
+            section.style.display = '';
+          } else {
+            section.style.display = 'none';
+          }
+        });
+
+        // Also show/hide blood drip dividers between sections
+        document.querySelectorAll('.divider-blood').forEach(drip => {
+          const parent = drip.closest('div');
+          if (filter === 'all') {
+            parent.style.display = '';
+          } else {
+            // Hide dividers that sit between hidden sections
+            const prev = parent.previousElementSibling;
+            const next = parent.nextElementSibling;
+            if (prev && prev.style.display === 'none' && next && next.style.display === 'none') {
+              parent.style.display = 'none';
+            } else if (prev && prev.style.display === 'none') {
+              parent.style.display = 'none';
+            } else if (next && next.style.display === 'none') {
+              parent.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+
+    // === SEARCH FILTER ===
+    const searchInput = document.getElementById('searchInput');
+    const allCards = document.querySelectorAll('.codex-card');
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+
+      if (query === '') {
+        // Reset: show all cards and sections based on active filter
+        allCards.forEach(card => card.style.display = '');
+        const activeFilter = document.querySelector('[data-filter].active');
+        if (activeFilter) {
+          const filter = activeFilter.dataset.filter;
+          sections.forEach(section => {
+            if (filter === 'all' || section.dataset.region === filter) {
+              section.style.display = '';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+        }
+        // Show all subsection heads and grids
+        document.querySelectorAll('.subsection-head').forEach(h => h.style.display = '');
+        return;
+      }
+
+      // When searching, show all sections but hide non-matching cards
+      sections.forEach(section => section.style.display = '');
+
+      allCards.forEach(card => {
+        const name = (card.dataset.name || '').toLowerCase();
+        const textContent = card.textContent.toLowerCase();
+        if (name.includes(query) || textContent.includes(query)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Hide subsections where all cards are hidden
+      document.querySelectorAll('.grid').forEach(grid => {
+        const visibleCards = grid.querySelectorAll('.codex-card:not([style*="display: none"])');
+        const wrapper = grid.closest('.mb-10, .reveal');
+        if (wrapper) {
+          wrapper.style.display = visibleCards.length === 0 ? 'none' : '';
+        }
+      });
+
+      // Hide sections where all grids are hidden
+      sections.forEach(section => {
+        const visibleCards = section.querySelectorAll('.codex-card:not([style*="display: none"])');
+        section.style.display = visibleCards.length === 0 ? 'none' : '';
+      });
+    });
+  </script>
+
+</body>
+</html>
