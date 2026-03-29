@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BROSENGAE &mdash; The Subjugated Coast | Birthright.net</title>
+  <meta name="description" content="Explore Brosengae, a domain under Avanil's effective control.">
+  <meta property="og:title" content="Brosengae &mdash; The Subjugated Coast"><meta property="og:description" content="A domain retaining nominal independence but answering to Prince Avan.">
+  <meta property="og:image" content="../brand_assets/anuire%20800x600.png"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{blackletter:['UnifrakturCook','cursive'],impact:['Bebas Neue','sans-serif'],display:['Cinzel','serif'],body:['Crimson Pro','serif']}}}}</script>
+  <style>
+    :root{--transition-theme:0.6s cubic-bezier(0.16,1,0.3,1);--accent:#c41e1e;--accent-dim:rgba(196,30,30,0.15)}
+    [data-theme="dark"]{--bg-primary:#060606;--bg-secondary:#0c0c0c;--bg-elevated:#111111;--bg-surface:#1a1a1a;--bg-card:#0f0f0f;--text-primary:#f0ece4;--text-secondary:rgba(240,236,228,0.55);--text-muted:rgba(240,236,228,0.3);--gold:#d4a843;--gold-dim:rgba(212,168,67,0.15);--gold-glow:rgba(212,168,67,0.25);--crimson:#c41e1e;--crimson-dim:rgba(196,30,30,0.12);--crimson-bright:#ff2e2e;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--shadow-color:rgba(0,0,0,0.6);--nav-bg:rgba(6,6,6,0.85);--grain-opacity:0.035;--logo-filter:none;--card-hover-shadow:0 30px 80px rgba(0,0,0,0.7);--overlay-heavy:rgba(6,6,6,0.92);--overlay-medium:rgba(6,6,6,0.7);--hero-text-shadow:0 4px 30px rgba(0,0,0,0.8)}
+    [data-theme="light"]{--bg-primary:#d6ccb8;--bg-secondary:#ccc1ab;--bg-elevated:#ded5c3;--bg-surface:#c4b89f;--bg-card:#d2c8b2;--text-primary:#1a1510;--text-secondary:rgba(26,21,16,0.65);--text-muted:rgba(26,21,16,0.35);--gold:#7a5c10;--gold-dim:rgba(122,92,16,0.12);--gold-glow:rgba(122,92,16,0.18);--crimson:#8b1a1a;--crimson-dim:rgba(139,26,26,0.1);--crimson-bright:#b82020;--border:rgba(26,21,16,0.14);--border-hover:rgba(26,21,16,0.25);--shadow-color:rgba(80,60,30,0.25);--nav-bg:rgba(214,204,184,0.92);--grain-opacity:0.04;--logo-filter:none;--card-hover-shadow:0 20px 60px rgba(80,60,30,0.25);--overlay-heavy:rgba(214,204,184,0.92);--overlay-medium:rgba(214,204,184,0.75);--hero-text-shadow:0 2px 15px rgba(214,204,184,0.5);--accent:#8b1a1a;--accent-dim:rgba(139,26,26,0.12)}
+    *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+    body{font-family:'Crimson Pro',serif;background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;transition:background var(--transition-theme),color var(--transition-theme);-webkit-font-smoothing:antialiased}
+    *:focus-visible{outline:2px solid var(--gold);outline-offset:3px}::selection{background:var(--accent);color:#fff}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg-primary)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+    .grain::after{content:'';position:absolute;inset:0;opacity:var(--grain-opacity);pointer-events:none;z-index:100;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
+    .typo-mega{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,10rem);line-height:0.85;letter-spacing:-0.03em;text-transform:uppercase}
+    .typo-section-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);line-height:0.9;letter-spacing:-0.02em;text-transform:uppercase}
+    .typo-label{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase}
+    .word-accent{display:inline-block;color:var(--accent);transform:rotate(-3deg) scale(1.05);margin:0 0.05em;text-shadow:0 0 40px var(--accent-dim);position:relative}
+    .word-accent::after{content:'';position:absolute;bottom:0.05em;left:0;right:0;height:3px;background:var(--accent);opacity:0.4;transform:skewX(-8deg)}
+    .word-gold{color:var(--gold)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes blood-drip{0%{height:0;opacity:0}20%{opacity:1}100%{height:80px;opacity:0.6}}
+    @keyframes horizontalScan{0%{transform:translateX(-100%)}100%{transform:translateX(100vw)}}
+    .anim-fade-up{opacity:0;animation:fadeUp 1s cubic-bezier(0.16,1,0.3,1) forwards}
+    .anim-d1{animation-delay:0.1s}.anim-d2{animation-delay:0.25s}.anim-d3{animation-delay:0.4s}.anim-d4{animation-delay:0.55s}.anim-d5{animation-delay:0.7s}
+    .reveal{opacity:0;transform:translateY(50px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-left{opacity:0;transform:translateX(-60px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1)}.reveal-left.visible{opacity:1;transform:translateX(0)}
+    .reveal-right{opacity:0;transform:translateX(60px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1)}.reveal-right.visible{opacity:1;transform:translateX(0)}
+    .rd1{transition-delay:0.15s}.rd2{transition-delay:0.3s}.rd3{transition-delay:0.45s}.rd4{transition-delay:0.6s}.rd5{transition-delay:0.75s}
+    #nav{transition:background var(--transition-theme)}#nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav-link{position:relative;font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color 0.3s}.nav-link:hover{color:var(--gold)}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:50%;width:0;height:2px;background:var(--accent);transition:width 0.3s,left 0.3s}.nav-link:hover::after{width:100%;left:0}
+    .theme-toggle{width:44px;height:24px;border-radius:12px;background:var(--bg-surface);border:1px solid var(--border);cursor:pointer;position:relative;transition:background 0.3s,border-color 0.3s}
+    .theme-toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--gold);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);box-shadow:0 1px 3px var(--shadow-color)}
+    [data-theme="light"] .theme-toggle::after{transform:translateX(20px)}.theme-toggle:hover{border-color:var(--gold)}
+    .mobile-nav{transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1)}.mobile-nav.open{transform:translateX(0)}
+    .hero-scanline{position:absolute;top:0;left:0;width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.3;animation:horizontalScan 8s linear infinite}
+    .domain-card{background:var(--bg-card);border:1px solid var(--border);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),border-color 0.4s,box-shadow 0.4s,background var(--transition-theme);position:relative;overflow:hidden}
+    .domain-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 0 40px var(--accent-dim),var(--card-hover-shadow)}
+    .domain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity 0.4s}.domain-card:hover::before{opacity:1}
+    .divider-blood{width:2px;height:0;margin:0 auto;background:linear-gradient(to bottom,var(--accent),transparent);animation:blood-drip 2s ease-out forwards;position:relative}
+    .divider-blood::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    .btn-primary{display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2.5rem;background:var(--accent);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s,background 0.3s}
+    .btn-primary:hover{background:var(--crimson-bright);transform:scale(1.03);box-shadow:0 0 50px var(--accent-dim),0 10px 40px rgba(0,0,0,0.3)}.btn-primary:active{transform:scale(0.97)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2.5rem;background:transparent;color:var(--text-primary);font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border-hover);cursor:pointer;transition:transform 0.3s,border-color 0.3s,color 0.3s}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:scale(1.03)}.btn-ghost:active{transform:scale(0.97)}
+    .fact-item{padding:1.25rem 0;border-bottom:1px solid var(--border)}.fact-item:last-child{border-bottom:none}
+    .culture-block{padding:2.5rem;background:var(--bg-card);border:1px solid var(--border);position:relative;transition:border-color 0.4s,box-shadow 0.4s,background var(--transition-theme)}
+    .culture-block:hover{border-color:var(--gold);box-shadow:0 0 40px var(--gold-dim)}
+    .culture-block::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--accent),var(--gold))}
+    .npc-card{background:var(--bg-card);border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color 0.4s,box-shadow 0.4s,transform 0.4s cubic-bezier(0.16,1,0.3,1),background var(--transition-theme)}
+    .npc-card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 0 40px var(--gold-dim),var(--card-hover-shadow)}
+    .npc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s}.npc-card:hover::before{opacity:1}
+    .province-bar{height:6px;background:var(--bg-surface);position:relative;overflow:hidden}
+    .province-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width 1.2s cubic-bezier(0.16,1,0.3,1)}
+    section{transition:background var(--transition-theme)}
+    @media(max-width:768px){.typo-mega{font-size:clamp(2.8rem,12vw,4.5rem)}.typo-section-head{font-size:clamp(2.5rem,10vw,4rem)}}
+    @media(max-width:480px){.typo-mega{font-size:clamp(2.2rem,11vw,3.5rem)}.typo-section-head{font-size:clamp(2rem,9vw,3rem)}}
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <a href="../index.html" class="relative z-10 flex items-center gap-3 group"><img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter:var(--logo-filter);transition:transform 0.3s;"><span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color:var(--text-muted);">.NET</span></a>
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="../index.html#world" class="nav-link">The World</a><a href="../bloodlines.html" class="nav-link">Bloodlines</a><a href="../index.html#regions" class="nav-link">Regions</a><a href="../tour.html" class="nav-link">Tour</a><a href="http://www.birthright.net/forums/showwiki.php?title=Brosengae" class="nav-link">Wiki</a><a href="../index.html#community" class="nav-link">Community</a>
+      </div>
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding:0.6rem 1.5rem;font-size:0.85rem;"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>Join Discord</a>
+      </div>
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color:var(--text-primary);" aria-label="Menu"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button>
+      </div>
+    </div>
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background:var(--bg-elevated);border-left:1px solid var(--border);">
+      <a href="../index.html#world" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">The World</a>
+      <a href="../bloodlines.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Bloodlines</a>
+      <a href="../index.html#regions" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Regions</a>
+      <a href="../tour.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Tour</a>
+      <a href="http://www.birthright.net/forums/showwiki.php?title=Brosengae" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Wiki</a>
+      <a href="../index.html#community" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Community</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size:0.9rem;"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>Join Discord</a>
+    </div>
+  </nav>
+
+  <section id="main-content" class="relative flex flex-col items-center justify-end grain overflow-hidden" style="background:var(--bg-primary);min-height:60vh;">
+    <div class="absolute inset-0"><img src="../brand_assets/anuire%20800x600.png" alt="Brosengae region art" class="w-full h-full object-cover" style="opacity:0.5;mix-blend-mode:luminosity;"><div class="absolute inset-0" style="background:var(--accent);mix-blend-mode:multiply;opacity:0.12;"></div></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to top,var(--bg-primary) 0%,transparent 50%);"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom,var(--bg-primary) 0%,transparent 40%);"></div>
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at center 40%,transparent 30%,var(--bg-primary) 80%);"></div>
+    <div class="hero-scanline"></div>
+    <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 pb-16 lg:pb-24 w-full">
+      <div class="anim-fade-up anim-d1 mb-6"><nav aria-label="Breadcrumb" class="flex items-center gap-2 typo-label" style="color:var(--text-muted);font-size:0.6rem;"><a href="../regions/anuire.html" class="transition-colors hover:text-[var(--gold)]" style="color:var(--text-muted);">Anuire</a><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg><span style="color:var(--accent);">Brosengae</span></nav></div>
+      <h1 class="typo-mega anim-fade-up anim-d2" style="text-shadow:var(--hero-text-shadow);"><span class="word-accent" style="transform:rotate(-2deg) scale(1.02);">Brosengae</span></h1>
+      <p class="anim-fade-up anim-d3 font-body text-lg lg:text-xl max-w-2xl mt-6" style="color:var(--text-secondary);line-height:1.7;">The Subjugated Coast &mdash; Under Avan's Shadow</p>
+    </div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-up anim-d5"><span class="typo-label" style="color:var(--text-muted);font-size:0.55rem;">Scroll</span><div class="w-px h-8" style="background:linear-gradient(to bottom,var(--accent),transparent);"></div></div>
+  </section>
+
+  <div class="py-10" style="background:var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <section class="relative grain" style="background:var(--bg-secondary);padding:5rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        <div class="lg:col-span-5 reveal-left">
+          <div class="p-8 lg:p-10" style="background:var(--bg-card);border:1px solid var(--border);">
+            <h2 class="font-impact text-xl tracking-[0.15em] uppercase mb-8" style="color:var(--gold);">Domain Overview</h2>
+            <div class="fact-item"><span class="typo-label block mb-2" style="color:var(--text-muted);">Ruler</span><span class="font-display text-base font-semibold" style="color:var(--text-primary);">Archduke Avan (de facto); Governor Brosen</span><span class="block font-body text-sm mt-1" style="color:var(--text-secondary);">NE administration</span></div>
+            <div class="fact-item"><span class="typo-label block mb-2" style="color:var(--text-muted);">Bloodline</span><span class="font-display text-base font-semibold" style="color:var(--text-primary);">Contested</span></div>
+            <div class="fact-item"><span class="typo-label block mb-2" style="color:var(--text-muted);">Alignment</span><span class="font-display text-base font-semibold" style="color:var(--text-primary);">Neutral Evil</span></div>
+            <div class="fact-item"><span class="typo-label block mb-2" style="color:var(--text-muted);">Capital</span><span class="font-display text-base font-semibold" style="color:var(--text-primary);">Brosengae City</span></div>
+            <div class="fact-item"><span class="typo-label block mb-2" style="color:var(--text-muted);">Allies</span><span class="font-display text-base font-semibold" style="color:var(--gold);">Avanil</span></div>
+            <div class="fact-item"><span class="typo-label block mb-2" style="color:var(--text-muted);">Enemies</span><span class="font-display text-base font-semibold" style="color:var(--accent);">Local resistance, Boeruine</span></div>
+            <div class="mt-8 h-1 w-16" style="background:linear-gradient(90deg,var(--accent),var(--gold));"></div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 reveal-right">
+          <span class="typo-label block mb-6" style="color:var(--accent);"><span style="color:var(--accent);">&#9632;</span>&ensp;Provinces</span>
+          <h2 class="typo-section-head mb-10" style="color:var(--text-primary);font-size:clamp(2.5rem,6vw,5rem);">The <span class="word-accent">Two</span> Provinces</h2>
+          <div class="space-y-8">
+            <div class="reveal rd1">
+              <div class="flex items-baseline justify-between mb-3">
+                <h4 class="font-impact text-xl tracking-[0.1em] uppercase" style="color: var(--text-primary);">Brosengae City</h4>
+                <span class="font-display text-sm font-semibold" style="color: var(--gold);">Province 3 / Source 4</span>
+              </div>
+              <div class="province-bar"><div class="province-bar-fill" style="width: 60%;"></div></div>
+              <p class="font-body text-sm mt-2" style="color: var(--text-muted);">Capital &mdash; A port serving Avanil's western trade interests.</p>
+            </div>
+            <div class="reveal rd2">
+              <div class="flex items-baseline justify-between mb-3">
+                <h4 class="font-impact text-xl tracking-[0.1em] uppercase" style="color: var(--text-primary);">Coastal Holdings</h4>
+                <span class="font-display text-sm font-semibold" style="color: var(--gold);">Province 2 / Source 5</span>
+              </div>
+              <div class="province-bar"><div class="province-bar-fill" style="width: 40%;"></div></div>
+              <p class="font-body text-sm mt-2" style="color: var(--text-muted);">Fishing villages under Avan's economic control.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="py-10" style="background:var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <section class="relative grain" style="background:var(--bg-primary);padding:6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <div class="lg:col-span-8 reveal-left">
+          <span class="typo-label block mb-6" style="color:var(--accent);"><span style="color:var(--accent);">&#9632;</span>&ensp;Overview</span>
+          <h2 class="typo-section-head mb-8" style="color:var(--text-primary);">The <span class="word-accent">Subjugated</span> Coast</h2>
+          <div class="space-y-6 font-body text-lg" style="color:var(--text-secondary);line-height:1.7;">
+            <p>Brosengae is a cautionary tale about falling under a more powerful neighbor's influence. While technically independent, the domain answers to Prince Avan of Avanil. The local governor serves at Avan's pleasure.</p>
+            <p>The domain's western coast position makes it strategically valuable. Avan uses Brosengae to project influence and counter Boeruine's ambitions. For the people, their interests always come second to Avanil's.</p>
+            <p>A growing undercurrent of resentment among merchants and minor nobles chafes under Avan's economic control. Whether this discontent will coalesce into organized resistance remains to be seen.</p>
+          </div>
+        </div>
+        <div class="lg:col-span-4 reveal-right">
+          <div class="p-8" style="background:var(--bg-card);border:1px solid var(--border);">
+            <h3 class="font-impact text-lg tracking-[0.15em] uppercase mb-6" style="color:var(--gold);">Why Play Brosengae?</h3>
+            <div class="space-y-5">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center mt-1" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg>
+                </div>
+                <div>
+                  <span class="font-display text-sm font-semibold block mb-1" style="color: var(--text-primary);">Puppet State</span>
+                  <span class="font-body text-sm" style="color: var(--text-muted);">Navigate life under a powerful domain's control.</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center mt-1" style="background: var(--gold-dim); border: 1px solid var(--gold);">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg>
+                </div>
+                <div>
+                  <span class="font-display text-sm font-semibold block mb-1" style="color: var(--text-primary);">Trade Port</span>
+                  <span class="font-body text-sm" style="color: var(--text-muted);">A strategic coastal location.</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 flex-shrink-0 flex items-center justify-center mt-1" style="background: var(--accent-dim); border: 1px solid var(--accent);">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"/></svg>
+                </div>
+                <div>
+                  <span class="font-display text-sm font-semibold block mb-1" style="color: var(--text-primary);">Seeds of Rebellion</span>
+                  <span class="font-body text-sm" style="color: var(--text-muted);">The potential to throw off Avan's yoke.</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 h-1 w-16" style="background:linear-gradient(90deg,var(--accent),var(--gold));"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="py-10" style="background:var(--bg-secondary);"><div class="divider-blood"></div></div>
+
+  <section class="relative grain" style="background:var(--bg-secondary);padding:6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="reveal mb-16"><span class="typo-label block mb-6" style="color:var(--gold);"><span style="color:var(--accent);">&#9632;</span>&ensp;Key Figures</span><h2 class="typo-section-head" style="color:var(--text-primary);">Notable <span class="word-accent">NPCs</span></h2></div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="npc-card p-8 reveal rd1">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg></div>
+            <div>
+              <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Governor Brosen</h3>
+              <span class="typo-label" style="color: var(--text-muted); font-size: 0.55rem;">Puppet Ruler</span>
+            </div>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Caught between loyalty to his people and fear of Prince Avan. Knows his position exists only at Avan's sufferance, but tries to protect his domain where he can.</p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Noble &middot; Administrator &middot; Compromised</span>
+          </div>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </div>
+        <div class="npc-card p-8 reveal rd2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></div>
+            <div>
+              <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Merchant-Captain Sera</h3>
+              <span class="typo-label" style="color: var(--text-muted); font-size: 0.55rem;">Guild Leader</span>
+            </div>
+          </div>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The most vocal critic of Avan's control. Dreams of true independence but knows challenging Avanil directly would be suicidal. Works in the shadows.</p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Guilder &middot; Resistance &middot; Ambitious</span>
+          </div>
+          <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="py-10" style="background:var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <section class="relative grain" style="background:var(--bg-primary);padding:6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="reveal mb-16"><span class="typo-label block mb-6" style="color:var(--gold);"><span style="color:var(--accent);">&#9632;</span>&ensp;Threats &amp; Challenges</span><h2 class="typo-section-head" style="color:var(--text-primary);">Political <span class="word-accent">Situation</span></h2></div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="culture-block reveal rd1">
+          <span class="typo-label block mb-4" style="color: var(--accent);">01</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">Avanil's Control</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Prince Avan's grip is economic as much as military. He controls guild holdings, trade routes, and money flow. Economic warfare alone would bring the domain to its knees.</p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Economic &middot; Control &middot; Dominance</span>
+          </div>
+        </div>
+        <div class="culture-block reveal rd2">
+          <span class="typo-label block mb-4" style="color: var(--gold);">02</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">Trade Independence</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Merchants want freedom to trade on their own terms, not as middlemen for Avanil. This desire drives local resistance.</p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Commerce &middot; Freedom &middot; Resistance</span>
+          </div>
+        </div>
+        <div class="culture-block reveal rd3">
+          <span class="typo-label block mb-4" style="color: var(--accent);">03</span>
+          <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">Local Resistance</h3>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">A quiet resistance exists, led by merchants and minor nobles dreaming of independence. They lack military power, so they work through sabotage and seeking outside allies.</p>
+          <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            <span class="typo-label" style="font-size: 0.6rem;">Rebellion &middot; Espionage &middot; Hope</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="py-10" style="background:var(--bg-secondary);"><div class="divider-blood"></div></div>
+
+  <section class="relative grain" style="background:var(--bg-secondary);padding:6rem 0;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div class="reveal mb-12"><span class="typo-label block mb-6" style="color:var(--gold);"><span style="color:var(--accent);">&#9632;</span>&ensp;Neighbors &amp; Rivals</span><h2 class="typo-section-head" style="color:var(--text-primary);">Related <span class="word-gold">Domains</span></h2></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <a href="avanil.html" class="domain-card p-8 reveal rd1 block" style="text-decoration:none;">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg></div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Avanil</h3>
+          </div>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">The principality that effectively controls Brosengae.</p>
+          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.55rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Overlord</span></div>
+          <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
+        </a>
+        <a href="taeghas.html" class="domain-card p-8 reveal rd2 block" style="text-decoration:none;">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Taeghas</h3>
+          </div>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">A neighbor also caught between great powers.</p>
+          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.55rem; background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Neighbor</span></div>
+          <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </a>
+        <a href="boeruine.html" class="domain-card p-8 reveal rd3 block" style="text-decoration:none;">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Boeruine</h3>
+          </div>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">Avan's rival, who might support independence.</p>
+          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.55rem; background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Potential Ally</span></div>
+          <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </a>
+        <a href="talinie.html" class="domain-card p-8 reveal rd4 block" style="text-decoration:none;">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg></div>
+            <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Talinie</h3>
+          </div>
+          <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">The northern shield on the western coast.</p>
+          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.55rem; background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Neighbor</span></div>
+          <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
+        </a>
+      </div>
+      <div class="reveal mt-16 text-center"><a href="../regions/anuire.html" class="btn-ghost"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0 7.5-7.5M3 12h18"/></svg>Back to Anuire</a></div>
+    </div>
+  </section>
+
+  <footer class="relative grain" style="background:var(--bg-primary);border-top:1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="md:col-span-2"><img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter:var(--logo-filter);"><p class="font-body text-base max-w-sm" style="color:var(--text-muted);line-height:1.65;">The official fan community for the Birthright campaign setting, recognized by Wizards of the Coast. Keeping the blood alive since 1996.</p>
+          <div class="flex gap-4 mt-6"><a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Discord"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg></a><a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Forum"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></a><a href="http://www.birthright.net/forums/showwiki.php?title=Brosengae" class="w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Wiki"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></a></div>
+        </div>
+        <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Navigate</h4><div class="flex flex-col gap-3"><a href="../index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Home</a><a href="../regions/anuire.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Anuire</a><a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Bloodlines</a><a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Tour</a><a href="http://www.birthright.net/forums/showwiki.php?title=Brosengae" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
+        <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Community</h4><div class="flex flex-col gap-3"><a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Forum</a><a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Discord</a><a href="http://www.birthright.net/forums/showwiki.php?title=Brosengae" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
+      </div>
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid var(--border);"><p class="font-body text-sm" style="color:var(--text-muted);">&copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.</p><p class="font-impact text-xs tracking-[0.2em] uppercase" style="color:var(--text-muted);">The blood endures</p></div>
+    </div>
+  </footer>
+
+  <script>
+    const html=document.documentElement;const saved=localStorage.getItem('br-theme');if(saved)html.setAttribute('data-theme',saved);
+    function toggleTheme(){const next=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',next);localStorage.setItem('br-theme',next)}
+    document.getElementById('themeToggle').addEventListener('click',toggleTheme);document.getElementById('themeToggleMobile').addEventListener('click',toggleTheme);
+    const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+    const menuBtn=document.getElementById('menuBtn');const mobileNav=document.getElementById('mobileNav');let menuOpen=false;
+    menuBtn.addEventListener('click',()=>{menuOpen=!menuOpen;mobileNav.classList.toggle('open',menuOpen)});
+    mobileNav.querySelectorAll('a').forEach(link=>{link.addEventListener('click',()=>{menuOpen=false;mobileNav.classList.remove('open')})});
+    const reveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+    const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+    reveals.forEach(el=>revealObs.observe(el));
+    const drips=document.querySelectorAll('.divider-blood');
+    const dripObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='none';e.target.offsetHeight;e.target.style.animation='blood-drip 2s ease-out forwards'}})},{threshold:0.5});
+    drips.forEach(el=>dripObs.observe(el));
+    const bars=document.querySelectorAll('.province-bar-fill');
+    const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const t=e.target;const w=t.style.width;t.style.width='0%';requestAnimationFrame(()=>{requestAnimationFrame(()=>{t.style.width=w})});barObs.unobserve(t)}})},{threshold:0.3});
+    bars.forEach(el=>barObs.observe(el));
+  </script>
+</body>
+</html>
