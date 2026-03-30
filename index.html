@@ -48,7 +48,7 @@
       --bg-card: #0f0f0f;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
-      --text-muted: rgba(240, 236, 228, 0.3);
+      --text-muted: rgba(240, 236, 228, 0.45);
       --gold: #d4a843;
       --gold-dim: rgba(212, 168, 67, 0.15);
       --gold-glow: rgba(212, 168, 67, 0.25);
@@ -70,31 +70,31 @@
     }
 
     [data-theme="light"] {
-      --bg-primary: #d6ccb8;
-      --bg-secondary: #ccc1ab;
-      --bg-elevated: #ded5c3;
-      --bg-surface: #c4b89f;
-      --bg-card: #d2c8b2;
+      --bg-primary: #f5f5f3;
+      --bg-secondary: #eaeae7;
+      --bg-elevated: #ffffff;
+      --bg-surface: #e0e0dc;
+      --bg-card: #f0f0ed;
       --text-primary: #1a1510;
       --text-secondary: rgba(26, 21, 16, 0.65);
-      --text-muted: rgba(26, 21, 16, 0.35);
+      --text-muted: rgba(26, 21, 16, 0.50);
       --gold: #7a5c10;
-      --gold-dim: rgba(122, 92, 16, 0.12);
-      --gold-glow: rgba(122, 92, 16, 0.18);
+      --gold-dim: rgba(122, 92, 16, 0.10);
+      --gold-glow: rgba(122, 92, 16, 0.15);
       --crimson: #8b1a1a;
-      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-dim: rgba(139, 26, 26, 0.08);
       --crimson-bright: #b82020;
-      --border: rgba(26, 21, 16, 0.14);
-      --border-hover: rgba(26, 21, 16, 0.25);
-      --overlay-heavy: rgba(214, 204, 184, 0.92);
-      --overlay-medium: rgba(214, 204, 184, 0.75);
-      --overlay-light: rgba(214, 204, 184, 0.4);
-      --shadow-color: rgba(80, 60, 30, 0.25);
-      --nav-bg: rgba(214, 204, 184, 0.92);
-      --grain-opacity: 0.04;
+      --border: rgba(26, 21, 16, 0.10);
+      --border-hover: rgba(26, 21, 16, 0.20);
+      --overlay-heavy: rgba(245, 245, 243, 0.92);
+      --overlay-medium: rgba(245, 245, 243, 0.75);
+      --overlay-light: rgba(245, 245, 243, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.12);
+      --nav-bg: rgba(245, 245, 243, 0.92);
+      --grain-opacity: 0.03;
       --logo-filter: none;
-      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
-      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --hero-text-shadow: 0 2px 15px rgba(245,245,243,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(0,0,0,0.10);
       --invert: 0;
     }
 
@@ -155,7 +155,7 @@
 
     .typo-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
     }
@@ -332,6 +332,7 @@
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .mobile-nav.open { transform: translateX(0); }
+    .mobile-backdrop.open { opacity: 1 !important; pointer-events: auto !important; }
 
     /* ═══════════════════════════════════════════
        HERO
@@ -479,11 +480,43 @@
     }
     .btn-ghost:active { transform: scale(0.97); }
 
+    /* Footer social icons */
+    .social-icon:hover {
+      color: var(--gold) !important;
+      border-color: var(--gold) !important;
+    }
+
     /* ═══════════════════════════════════════════
        SECTION TRANSITIONS
        ═══════════════════════════════════════════ */
     section {
       transition: background var(--transition-theme);
+    }
+
+    /* ═══════════════════════════════════════════
+       REDUCED MOTION — Accessibility
+       ═══════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal, .reveal-left, .reveal-right {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .anim-fade-up {
+        opacity: 1 !important;
+      }
+      .hero-scanline {
+        display: none;
+      }
+      .divider-blood {
+        height: 40px !important;
+        opacity: 0.6 !important;
+      }
     }
   </style>
 </head>
@@ -532,6 +565,9 @@
       </div>
     </div>
 
+    <!-- Mobile Nav Backdrop -->
+    <div id="mobileBackdrop" class="mobile-backdrop fixed inset-0 z-30 xl:hidden" style="background: rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s;"></div>
+
     <!-- Mobile Nav -->
     <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 xl:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
       <a href="#world" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">The World</a>
@@ -552,7 +588,7 @@
        HERO — CINEMATIC + AGGRESSIVE
        ══════════════════════════════════════════════════════ -->
   <main id="main-content">
-  <section class="hero-mobile-cover relative min-h-screen flex flex-col items-center justify-end grain overflow-hidden" style="background: var(--bg-primary);">
+  <section class="hero-mobile-cover relative min-h-screen flex flex-col items-center justify-end grain overflow-hidden pt-20" style="background: var(--bg-primary);">
     <!-- Video BG — the 3D logo animation -->
     <div class="absolute inset-0" style="background: var(--bg-primary);"></div>
     <video class="absolute inset-0 w-full h-full object-contain md:object-contain object-cover" autoplay muted loop playsinline poster="brand_assets/hero%20background.png" style="opacity: 0.9; object-position: center 35%;">
@@ -605,7 +641,7 @@
       <!-- Scroll cue -->
       <div class="anim-fade-up anim-d6 mt-6 md:mt-12 flex items-center gap-3">
         <div class="w-[1px] h-8" style="background: linear-gradient(to bottom, var(--crimson), transparent);"></div>
-        <span class="typo-label" style="color: var(--text-muted); font-size: 0.6rem;">Scroll to descend</span>
+        <span class="typo-label" style="color: var(--text-muted); font-size: 0.7rem;">Scroll to descend</span>
       </div>
     </div>
   </section>
@@ -633,7 +669,7 @@
         <div class="lg:col-span-7 reveal-left">
           <div class="relative">
             <a href="tour.html" class="block group">
-              <img src="brand_assets/logo_3d_transparent.png" alt="Birthright 3D logo — click to start the interactive tour of Cerilia" class="w-full max-w-[750px] transition-transform duration-500 group-hover:scale-[1.02]" style="filter: drop-shadow(0 0 40px var(--gold-glow)) drop-shadow(0 15px 30px var(--shadow-color));">
+              <img src="brand_assets/logo_3d_transparent.png" alt="Birthright 3D logo — click to start the interactive tour of Cerilia" loading="lazy" class="w-full max-w-[750px] transition-transform duration-500 group-hover:scale-[1.02]" style="filter: drop-shadow(0 0 40px var(--gold-glow)) drop-shadow(0 15px 30px var(--shadow-color));">
               <!-- Play overlay hint -->
               <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div class="px-6 py-3 font-impact text-sm tracking-[0.2em] uppercase" style="background: var(--crimson); color: #fff; box-shadow: 0 0 40px rgba(196,30,30,0.4);">
@@ -666,17 +702,17 @@
             <div class="flex items-center gap-6">
               <div>
                 <span class="font-impact text-4xl" style="color: var(--gold);">30+</span>
-                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Years of Lore</p>
+                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.7rem;">Years of Lore</p>
               </div>
               <div class="w-[1px] h-12" style="background: var(--border);"></div>
               <div>
                 <span class="font-impact text-4xl" style="color: var(--gold);">6</span>
-                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Vast Regions</p>
+                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.7rem;">Vast Regions</p>
               </div>
               <div class="w-[1px] h-12" style="background: var(--border);"></div>
               <div>
                 <span class="font-impact text-4xl" style="color: var(--gold);">∞</span>
-                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.55rem;">Kingdoms to Rule</p>
+                <p class="typo-label mt-1" style="color: var(--text-muted); font-size: 0.7rem;">Kingdoms to Rule</p>
               </div>
             </div>
           </div>
@@ -686,13 +722,13 @@
       <!-- The Blooded Scion — Full width cinematic strip -->
       <a href="bloodlines.html" class="reveal mt-24 lg:mt-40 relative overflow-hidden block group" style="margin-left: -1.5rem; margin-right: -1.5rem; text-decoration: none;">
         <div class="scion-strip relative h-[450px] lg:h-[600px] overflow-hidden" style="border-top: 2px solid var(--crimson); border-bottom: 2px solid var(--crimson);">
-          <img src="brand_assets/hero%20background.png" alt="Panoramic view of Cerilia with a castle on a hilltop under dramatic sunlight" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 30%;">
+          <img src="brand_assets/hero%20background.png" alt="Panoramic view of Cerilia with a castle on a hilltop under dramatic sunlight" loading="lazy" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 30%;">
           <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, transparent 60%, rgba(0,0,0,0.5) 100%);"></div>
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);"></div>
 
           <!-- Overlaid character -->
           <div class="scion-character absolute right-4 lg:right-16 bottom-0 h-[115%]" style="z-index: 2;">
-            <img src="brand_assets/blooded%20scion.png" alt="A Blooded Scion of Cerilia" class="h-full w-auto object-contain" style="filter: drop-shadow(-10px 0 40px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(196,30,30,0.15));">
+            <img src="brand_assets/blooded%20scion.png" alt="A Blooded Scion of Cerilia" loading="lazy" class="h-full w-auto object-contain" style="filter: drop-shadow(-10px 0 40px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(196,30,30,0.15));">
           </div>
 
           <!-- Decorative scan line -->
@@ -741,7 +777,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <!-- Anuire — Large -->
         <a href="regions/anuire.html" class="reveal region-card md:col-span-2 lg:col-span-2 h-[400px] lg:h-[500px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/anuire%20800x600.png" alt="The castle lands of Anuire" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/anuire%20800x600.png" alt="The castle lands of Anuire" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);"></div>
           <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 40%);"></div>
           <div class="absolute bottom-0 left-0 p-8 lg:p-12 z-10 max-w-lg">
@@ -758,7 +794,7 @@
 
         <!-- Rjurik -->
         <a href="regions/rjurik.html" class="reveal rd1 region-card h-[400px] lg:h-[500px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/rjurik%20800x600.png" alt="The forested highlands of Rjurik" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/rjurik%20800x600.png" alt="The forested highlands of Rjurik" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
           <div class="absolute bottom-0 left-0 p-8 z-10">
             <span class="typo-label" style="color: var(--gold);">The Wild North</span>
@@ -771,7 +807,7 @@
 
         <!-- Khinasi -->
         <a href="regions/khinasi.html" class="reveal rd1 region-card h-[350px] lg:h-[400px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/khinasi%20800x600.png" alt="The golden cities of Khinasi" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/khinasi%20800x600.png" alt="The golden cities of Khinasi" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
           <div class="absolute bottom-0 left-0 p-8 z-10">
             <span class="typo-label" style="color: var(--gold);">The Sunlit Lands</span>
@@ -784,7 +820,7 @@
 
         <!-- Brechtur -->
         <a href="regions/brechtur.html" class="reveal rd2 region-card h-[350px] lg:h-[400px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/brechtur%20800x600.png" alt="The moonlit harbours of Brechtur" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/brechtur%20800x600.png" alt="The moonlit harbours of Brechtur" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
           <div class="absolute bottom-0 left-0 p-8 z-10">
             <span class="typo-label" style="color: var(--gold);">The Trading Coast</span>
@@ -797,7 +833,7 @@
 
         <!-- Vosgaard -->
         <a href="regions/vosgaard.html" class="reveal rd3 region-card h-[350px] lg:h-[400px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/vosgaard%20800x600.png" alt="The frozen wastes of Vosgaard" class="absolute inset-0 w-full h-full object-cover">
+          <img src="brand_assets/vosgaard%20800x600.png" alt="The frozen wastes of Vosgaard" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 50%, transparent 80%);"></div>
           <div class="absolute bottom-0 left-0 p-8 z-10">
             <span class="typo-label" style="color: var(--crimson);">The Frozen Waste</span>
@@ -810,7 +846,7 @@
 
         <!-- Shadow World — Full width, menacing -->
         <a href="regions/shadow-world.html" class="reveal rd3 region-card md:col-span-2 lg:col-span-3 h-[350px] lg:h-[400px] block" style="border: 1px solid var(--border); text-decoration: none;">
-          <img src="brand_assets/shadowworld%20800x600.png" alt="The twisted ruins of the Shadow World" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 40%;">
+          <img src="brand_assets/shadowworld%20800x600.png" alt="The twisted ruins of the Shadow World" loading="lazy" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 40%;">
           <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 80%);"></div>
           <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 50%);"></div>
           <div class="absolute inset-0 grain" style="--grain-opacity: 0.08;"></div>
@@ -858,7 +894,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
               <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008V7.5z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Domain Management</span>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">Domain Management</span>
           </div>
           <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">DOMAIN TRACKER</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -875,7 +911,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
               <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Character Tools</span>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">Character Tools</span>
           </div>
           <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">BLOODLINE GENERATOR</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -892,7 +928,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
               <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Warfare</span>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">Warfare</span>
           </div>
           <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">WAR CARD SYSTEM</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -909,7 +945,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
               <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Exploration</span>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">Exploration</span>
           </div>
           <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">INTERACTIVE ATLAS</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -926,7 +962,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
               <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">Gameplay</span>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">Gameplay</span>
           </div>
           <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">DOMAIN TURN ENGINE</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -943,7 +979,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
               <svg aria-hidden="true" class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--crimson); font-size: 0.6rem;">DM Tools</span>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">DM Tools</span>
           </div>
           <h3 class="font-impact text-3xl mb-3" style="color: var(--text-primary);">EVENT ORACLE</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -1128,13 +1164,13 @@
             recognized by Wizards of the Coast. Keeping the blood alive since 1996.
           </p>
           <div class="flex gap-4 mt-6">
-            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+            <a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
               <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
-            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+            <a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
               <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+            <a href="http://www.birthright.net/forums/showwiki.php" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
               <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
@@ -1208,17 +1244,52 @@
     // === MOBILE MENU ===
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
     let menuOpen = false;
-    menuBtn.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      mobileNav.classList.toggle('open', menuOpen);
+
+    function openMenu() {
+      menuOpen = true;
+      mobileNav.classList.add('open');
+      mobileBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Focus first link for a11y
+      const firstLink = mobileNav.querySelector('a');
+      if (firstLink) firstLink.focus();
+    }
+    function closeMenu() {
+      menuOpen = false;
+      mobileNav.classList.remove('open');
+      mobileBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+      menuBtn.focus();
+    }
+
+    menuBtn.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+    mobileBackdrop.addEventListener('click', closeMenu);
+
+    // Escape key closes menu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOpen) closeMenu();
     });
+
+    // Focus trap inside mobile nav
+    mobileNav.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !menuOpen) return;
+      const focusable = mobileNav.querySelectorAll('a, button');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
     // Close on link click
     mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuOpen = false;
-        mobileNav.classList.remove('open');
-      });
+      link.addEventListener('click', closeMenu);
     });
 
     // === SCROLL REVEAL ===
@@ -1233,24 +1304,37 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
     reveals.forEach(el => revealObs.observe(el));
 
-    // === PARTICLES (subtle gold embers) ===
+    // === PARTICLES (subtle gold embers) — pauses off-screen & respects reduced motion ===
     const particleContainer = document.getElementById('particles');
-    function spawnParticle() {
-      const p = document.createElement('div');
-      const size = Math.random() * 3 + 1;
-      const x = Math.random() * 100;
-      const dur = Math.random() * 8 + 6;
-      p.style.cssText = `
-        position: absolute; bottom: 0; left: ${x}%;
-        width: ${size}px; height: ${size}px; border-radius: 50%;
-        background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
-        animation: float-particle ${dur}s linear;
-        pointer-events: none;
-      `;
-      particleContainer.appendChild(p);
-      setTimeout(() => p.remove(), dur * 1000);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let heroVisible = true;
+
+    if (!prefersReducedMotion) {
+      // Observe hero visibility to pause/resume particles
+      const heroSection = particleContainer.closest('section');
+      const heroObs = new IntersectionObserver((entries) => {
+        heroVisible = entries[0].isIntersecting;
+      }, { threshold: 0 });
+      heroObs.observe(heroSection);
+
+      function spawnParticle() {
+        if (!heroVisible) return;
+        const p = document.createElement('div');
+        const size = Math.random() * 3 + 1;
+        const x = Math.random() * 100;
+        const dur = Math.random() * 8 + 6;
+        p.style.cssText = `
+          position: absolute; bottom: 0; left: ${x}%;
+          width: ${size}px; height: ${size}px; border-radius: 50%;
+          background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+          animation: float-particle ${dur}s linear;
+          pointer-events: none;
+        `;
+        particleContainer.appendChild(p);
+        setTimeout(() => p.remove(), dur * 1000);
+      }
+      setInterval(spawnParticle, 400);
     }
-    setInterval(spawnParticle, 400);
 
     // === BLOOD DRIP DIVIDERS — restart on scroll ===
     const drips = document.querySelectorAll('.divider-blood');

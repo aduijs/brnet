@@ -30,7 +30,7 @@
       --bg: #060606;
       --text: #f0ece4;
       --text-dim: rgba(240,236,228,0.55);
-      --text-muted: rgba(240,236,228,0.3);
+      --text-muted: rgba(240,236,228,0.45);
       --gold: #d4a843;
       --crimson: #c41e1e;
     }
@@ -323,9 +323,35 @@
     @media (max-width: 768px) {
       .nav-zone { width: 50px; }
       .slide-counter { font-size: 0.7rem; right: 16px; top: 16px; }
-      .exit-btn { font-size: 0.6rem; left: 12px; top: 12px; padding: 4px 10px; }
+      .exit-btn { font-size: 0.7rem; left: 12px; top: 12px; padding: 4px 10px; }
       .dot-nav { bottom: 16px; gap: 8px; }
       .dot { width: 6px; height: 6px; }
+    }
+  
+    /* ═══════════════════════════════════════════
+       REDUCED MOTION — Accessibility
+       ═══════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal, .reveal-left, .reveal-right {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .anim-fade-up {
+        opacity: 1 !important;
+      }
+      .hero-scanline {
+        display: none;
+      }
+      .divider-blood {
+        height: 40px !important;
+        opacity: 0.6 !important;
+      }
     }
   </style>
 </head>

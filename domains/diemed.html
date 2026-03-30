@@ -13,7 +13,7 @@
   <style>
     :root{--transition-theme:0.6s cubic-bezier(0.16,1,0.3,1);--accent:#c41e1e;--accent-dim:rgba(196,30,30,0.15)}
     [data-theme="dark"]{--bg-primary:#060606;--bg-secondary:#0c0c0c;--bg-elevated:#111111;--bg-surface:#1a1a1a;--bg-card:#0f0f0f;--text-primary:#f0ece4;--text-secondary:rgba(240,236,228,0.55);--text-muted:rgba(240,236,228,0.3);--gold:#d4a843;--gold-dim:rgba(212,168,67,0.15);--gold-glow:rgba(212,168,67,0.25);--crimson:#c41e1e;--crimson-dim:rgba(196,30,30,0.12);--crimson-bright:#ff2e2e;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--shadow-color:rgba(0,0,0,0.6);--nav-bg:rgba(6,6,6,0.85);--grain-opacity:0.035;--logo-filter:none;--card-hover-shadow:0 30px 80px rgba(0,0,0,0.7);--overlay-heavy:rgba(6,6,6,0.92);--overlay-medium:rgba(6,6,6,0.7);--hero-text-shadow:0 4px 30px rgba(0,0,0,0.8)}
-    [data-theme="light"]{--bg-primary:#d6ccb8;--bg-secondary:#ccc1ab;--bg-elevated:#ded5c3;--bg-surface:#c4b89f;--bg-card:#d2c8b2;--text-primary:#1a1510;--text-secondary:rgba(26,21,16,0.65);--text-muted:rgba(26,21,16,0.35);--gold:#7a5c10;--gold-dim:rgba(122,92,16,0.12);--gold-glow:rgba(122,92,16,0.18);--crimson:#8b1a1a;--crimson-dim:rgba(139,26,26,0.1);--crimson-bright:#b82020;--border:rgba(26,21,16,0.14);--border-hover:rgba(26,21,16,0.25);--shadow-color:rgba(80,60,30,0.25);--nav-bg:rgba(214,204,184,0.92);--grain-opacity:0.04;--logo-filter:none;--card-hover-shadow:0 20px 60px rgba(80,60,30,0.25);--overlay-heavy:rgba(214,204,184,0.92);--overlay-medium:rgba(214,204,184,0.75);--hero-text-shadow:0 2px 15px rgba(214,204,184,0.5);--accent:#8b1a1a;--accent-dim:rgba(139,26,26,0.12)}
+    [data-theme="light"]{--bg-primary:#f5f5f3;--bg-secondary:#eaeae7;--bg-elevated:#ffffff;--bg-surface:#e0e0dc;--bg-card:#f0f0ed;--text-primary:#1a1510;--text-secondary:rgba(26,21,16,0.65);--text-muted:rgba(26,21,16,0.35);--gold:#7a5c10;--gold-dim:rgba(122,92,16,0.10);--gold-glow:rgba(122,92,16,0.15);--crimson:#8b1a1a;--crimson-dim:rgba(139,26,26,0.08);--crimson-bright:#b82020;--border:rgba(26,21,16,0.10);--border-hover:rgba(26,21,16,0.20);--shadow-color:rgba(0,0,0,0.12);--nav-bg:rgba(245,245,243,0.92);--grain-opacity:0.03;--logo-filter:none;--card-hover-shadow:0 20px 60px rgba(0,0,0,0.10);--overlay-heavy:rgba(245,245,243,0.92);--overlay-medium:rgba(245,245,243,0.75);--hero-text-shadow:0 2px 15px rgba(245,245,243,0.5);--accent:#8b1a1a;--accent-dim:rgba(139,26,26,0.12)}
     *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
     body{font-family:'Crimson Pro',serif;background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;transition:background var(--transition-theme),color var(--transition-theme);-webkit-font-smoothing:antialiased}
     *:focus-visible{outline:2px solid var(--gold);outline-offset:3px}::selection{background:var(--accent);color:#fff}
@@ -64,6 +64,38 @@
     section{transition:background var(--transition-theme)}
     @media(max-width:768px){.typo-mega{font-size:clamp(2.8rem,12vw,4.5rem)}.typo-section-head{font-size:clamp(2.5rem,10vw,4rem)}}
     @media(max-width:480px){.typo-mega{font-size:clamp(2.2rem,11vw,3.5rem)}.typo-section-head{font-size:clamp(2rem,9vw,3rem)}}
+  
+    /* Footer social icons */
+    .social-icon:hover {
+      color: var(--gold) !important;
+      border-color: var(--gold) !important;
+    }
+
+    /* ═══════════════════════════════════════════
+       REDUCED MOTION — Accessibility
+       ═══════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal, .reveal-left, .reveal-right {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .anim-fade-up {
+        opacity: 1 !important;
+      }
+      .hero-scanline {
+        display: none;
+      }
+      .divider-blood {
+        height: 40px !important;
+        opacity: 0.6 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -84,6 +116,8 @@
         <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color:var(--text-primary);" aria-label="Menu"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button>
       </div>
     </div>
+    <div id="mobileBackdrop" class="mobile-backdrop fixed inset-0 z-30 xl:hidden" style="background: rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s;"></div>
+
     <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background:var(--bg-elevated);border-left:1px solid var(--border);">
       <a href="../index.html#world" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">The World</a>
       <a href="../bloodlines.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Bloodlines</a>
@@ -103,11 +137,11 @@
     <div class="absolute inset-0 z-[2] pointer-events-none" style="background: radial-gradient(ellipse at 70% 30%, rgba(100,20,20,0.3), transparent 50%), linear-gradient(180deg, rgba(40,10,10,0.2), transparent);"></div>
     <div class="hero-scanline"></div>
     <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 pb-16 lg:pb-24 w-full">
-      <div class="anim-fade-up anim-d1 mb-6"><nav aria-label="Breadcrumb" class="flex items-center gap-2 typo-label" style="color:var(--text-muted);font-size:0.6rem;"><a href="../regions/anuire.html" class="transition-colors hover:text-[var(--gold)]" style="color:var(--text-muted);">Anuire</a><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg><span style="color:var(--accent);">Diemed</span></nav></div>
+      <div class="anim-fade-up anim-d1 mb-6"><nav aria-label="Breadcrumb" class="flex items-center gap-2 typo-label" style="color:var(--text-muted);font-size:0.7rem;"><a href="../regions/anuire.html" class="transition-colors hover:text-[var(--gold)]" style="color:var(--text-muted);">Anuire</a><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg><span style="color:var(--accent);">Diemed</span></nav></div>
       <h1 class="typo-mega anim-fade-up anim-d2" style="text-shadow:var(--hero-text-shadow);"><span class="word-accent" style="transform:rotate(-2deg) scale(1.02);">Diemed</span></h1>
       <p class="anim-fade-up anim-d3 font-body text-lg lg:text-xl max-w-2xl mt-6" style="color:var(--text-secondary);line-height:1.7;">The Ancient Barony &mdash; Pride, Power, and Vengeance</p>
     </div>
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-up anim-d5"><span class="typo-label" style="color:var(--text-muted);font-size:0.55rem;">Scroll</span><div class="w-px h-8" style="background:linear-gradient(to bottom,var(--accent),transparent);"></div></div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-up anim-d5"><span class="typo-label" style="color:var(--text-muted);font-size:0.7rem;">Scroll</span><div class="w-px h-8" style="background:linear-gradient(to bottom,var(--accent),transparent);"></div></div>
   </section>
 
   <div class="py-10" style="background:var(--bg-primary);"><div class="divider-blood"></div></div>
@@ -233,13 +267,13 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg></div>
             <div>
               <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Baron Heirl Diem</h3>
-              <span class="typo-label" style="color: var(--text-muted); font-size: 0.55rem;">Ruler of Diemed</span>
+              <span class="typo-label" style="color: var(--text-muted); font-size: 0.7rem;">Ruler of Diemed</span>
             </div>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Cold, calculating, and utterly convinced of his divine right to rule the entire southern coast. The Baron combines military force with ruthless diplomacy. His obsession with restoring Diemed's ancient borders consumes him.</p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48Z"/></svg>
-            <span class="typo-label" style="font-size: 0.6rem;">Fighter &middot; Anduiras Bloodline &middot; Lawful Evil</span>
+            <span class="typo-label" style="font-size: 0.7rem;">Fighter &middot; Anduiras Bloodline &middot; Lawful Evil</span>
           </div>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </div>
@@ -248,13 +282,13 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></div>
             <div>
               <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Lasica Diem</h3>
-              <span class="typo-label" style="color: var(--text-muted); font-size: 0.55rem;">The Baron's Daughter</span>
+              <span class="typo-label" style="color: var(--text-muted); font-size: 0.7rem;">The Baron's Daughter</span>
             </div>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Perhaps even more ambitious than her father. Beautiful, brilliant, and utterly ruthless. Many wonder if she will wait for her father to die naturally.</p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.047 8.287 8.287 0 009 9.601a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48Z"/></svg>
-            <span class="typo-label" style="font-size: 0.6rem;">Noble &middot; Heir Apparent &middot; Dangerous Ambition</span>
+            <span class="typo-label" style="font-size: 0.7rem;">Noble &middot; Heir Apparent &middot; Dangerous Ambition</span>
           </div>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
         </div>
@@ -274,7 +308,7 @@
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Baron considers Roesone an illegitimate splinter state. He has launched multiple campaigns against the young barony and shows no signs of stopping. The conflict is personal as much as political.</p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
-            <span class="typo-label" style="font-size: 0.6rem;">Military &middot; Territorial &middot; Personal</span>
+            <span class="typo-label" style="font-size: 0.7rem;">Military &middot; Territorial &middot; Personal</span>
           </div>
         </div>
         <div class="culture-block reveal rd2">
@@ -283,7 +317,7 @@
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Medoere was once part of Diemed, and its independence galls the Baron. The religious nature of Medoere's government makes reconquest politically complicated.</p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
-            <span class="typo-label" style="font-size: 0.6rem;">Religious &middot; Political &middot; Reclamation</span>
+            <span class="typo-label" style="font-size: 0.7rem;">Religious &middot; Political &middot; Reclamation</span>
           </div>
         </div>
         <div class="culture-block reveal rd3">
@@ -292,7 +326,7 @@
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Beyond Roesone and Medoere, the Baron eyes Aerenwe's rich lands. His vision of restored greater Diemed would make him the dominant southern coast power.</p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
-            <span class="typo-label" style="font-size: 0.6rem;">Expansion &middot; Strategy &middot; Domination</span>
+            <span class="typo-label" style="font-size: 0.7rem;">Expansion &middot; Strategy &middot; Domination</span>
           </div>
         </div>
       </div>
@@ -311,7 +345,7 @@
             <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Roesone</h3>
           </div>
           <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">The young barony Diemed views as a rebellious splinter state.</p>
-          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.55rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Enemy</span></div>
+          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.7rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Enemy</span></div>
           <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </a>
         <a href="aerenwe.html" class="domain-card p-8 reveal rd2 block" style="text-decoration:none;">
@@ -320,7 +354,7 @@
             <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Aerenwe</h3>
           </div>
           <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">The forested realm whose lands the Baron covets.</p>
-          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.55rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Enemy</span></div>
+          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.7rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Enemy</span></div>
           <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </a>
         <a href="medoere.html" class="domain-card p-8 reveal rd3 block" style="text-decoration:none;">
@@ -329,7 +363,7 @@
             <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Medoere</h3>
           </div>
           <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">The theocracy that broke away from Diemed's control.</p>
-          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.55rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Enemy</span></div>
+          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.7rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Enemy</span></div>
           <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </a>
         <a href="ilien.html" class="domain-card p-8 reveal rd4 block" style="text-decoration:none;">
@@ -338,7 +372,7 @@
             <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Ilien</h3>
           </div>
           <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.7;">The tiny city-state whose wizard defies Diemed.</p>
-          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.55rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Rival</span></div>
+          <div class="mt-4"><span class="typo-label inline-block px-3 py-1" style="font-size: 0.7rem; background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Rival</span></div>
           <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </a>
       </div>
@@ -350,7 +384,7 @@
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
         <div class="md:col-span-2"><img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter:var(--logo-filter);"><p class="font-body text-base max-w-sm" style="color:var(--text-muted);line-height:1.65;">The official fan community for the Birthright campaign setting, recognized by Wizards of the Coast. Keeping the blood alive since 1996.</p>
-          <div class="flex gap-4 mt-6"><a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Discord"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg></a><a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Forum"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></a><a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Wiki"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></a></div>
+          <div class="flex gap-4 mt-6"><a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Discord"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg></a><a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Forum"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></a><a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Wiki"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></a></div>
         </div>
         <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Navigate</h4><div class="flex flex-col gap-3"><a href="../index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Home</a><a href="../regions/anuire.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Anuire</a><a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Bloodlines</a><a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Tour</a><a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
         <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Community</h4><div class="flex flex-col gap-3"><a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Forum</a><a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Discord</a><a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>

@@ -50,7 +50,7 @@
       --bg-card: #0f0f0f;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
-      --text-muted: rgba(240, 236, 228, 0.3);
+      --text-muted: rgba(240, 236, 228, 0.45);
       --gold: #d4a843;
       --gold-dim: rgba(212, 168, 67, 0.15);
       --gold-glow: rgba(212, 168, 67, 0.25);
@@ -70,30 +70,30 @@
     }
 
     [data-theme="light"] {
-      --bg-primary: #d6ccb8;
-      --bg-secondary: #ccc1ab;
-      --bg-elevated: #ded5c3;
-      --bg-surface: #c4b89f;
-      --bg-card: #d2c8b2;
+      --bg-primary: #f5f5f3;
+      --bg-secondary: #eaeae7;
+      --bg-elevated: #ffffff;
+      --bg-surface: #e0e0dc;
+      --bg-card: #f0f0ed;
       --text-primary: #1a1510;
       --text-secondary: rgba(26, 21, 16, 0.65);
-      --text-muted: rgba(26, 21, 16, 0.35);
+      --text-muted: rgba(26, 21, 16, 0.50);
       --gold: #7a5c10;
-      --gold-dim: rgba(122, 92, 16, 0.12);
-      --gold-glow: rgba(122, 92, 16, 0.18);
+      --gold-dim: rgba(122, 92, 16, 0.10);
+      --gold-glow: rgba(122, 92, 16, 0.15);
       --crimson: #8b1a1a;
-      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-dim: rgba(139, 26, 26, 0.08);
       --crimson-bright: #b82020;
-      --border: rgba(26, 21, 16, 0.14);
-      --border-hover: rgba(26, 21, 16, 0.25);
-      --shadow-color: rgba(80, 60, 30, 0.25);
-      --nav-bg: rgba(214, 204, 184, 0.92);
-      --grain-opacity: 0.04;
+      --border: rgba(26, 21, 16, 0.10);
+      --border-hover: rgba(26, 21, 16, 0.20);
+      --shadow-color: rgba(0, 0, 0, 0.12);
+      --nav-bg: rgba(245, 245, 243, 0.92);
+      --grain-opacity: 0.03;
       --logo-filter: none;
-      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
-      --overlay-heavy: rgba(214, 204, 184, 0.92);
-      --overlay-medium: rgba(214, 204, 184, 0.75);
-      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(0,0,0,0.10);
+      --overlay-heavy: rgba(245, 245, 243, 0.92);
+      --overlay-medium: rgba(245, 245, 243, 0.75);
+      --hero-text-shadow: 0 2px 15px rgba(245,245,243,0.5);
       --accent: #8b1a1a;
       --accent-dim: rgba(139, 26, 26, 0.12);
     }
@@ -154,7 +154,7 @@
 
     .typo-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
     }
@@ -295,6 +295,7 @@
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .mobile-nav.open { transform: translateX(0); }
+    .mobile-backdrop.open { opacity: 1 !important; pointer-events: auto !important; }
 
     /* ═══════════════════════════════════════════
        HERO
@@ -467,6 +468,38 @@
       .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
       .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
     }
+  
+    /* Footer social icons */
+    .social-icon:hover {
+      color: var(--gold) !important;
+      border-color: var(--gold) !important;
+    }
+
+    /* ═══════════════════════════════════════════
+       REDUCED MOTION — Accessibility
+       ═══════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal, .reveal-left, .reveal-right {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .anim-fade-up {
+        opacity: 1 !important;
+      }
+      .hero-scanline {
+        display: none;
+      }
+      .divider-blood {
+        height: 40px !important;
+        opacity: 0.6 !important;
+      }
+    }
   </style>
 </head>
 
@@ -511,6 +544,9 @@
         </button>
       </div>
     </div>
+
+        <!-- Mobile Nav Backdrop -->
+    <div id="mobileBackdrop" class="mobile-backdrop fixed inset-0 z-30 xl:hidden" style="background: rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s;"></div>
 
     <!-- Mobile Nav -->
     <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
@@ -581,7 +617,7 @@
 
     <!-- Scroll indicator -->
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 anim-fade-up anim-d5">
-      <span class="typo-label" style="color: var(--text-muted); font-size: 0.55rem;">Scroll</span>
+      <span class="typo-label" style="color: var(--text-muted); font-size: 0.7rem;">Scroll</span>
       <div class="w-px h-8" style="background: linear-gradient(to bottom, var(--accent), transparent);"></div>
     </div>
   </section>
@@ -795,7 +831,7 @@
           </p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-            <span class="typo-label" style="font-size: 0.6rem;">Intrigue &middot; Diplomacy &middot; Betrayal</span>
+            <span class="typo-label" style="font-size: 0.7rem;">Intrigue &middot; Diplomacy &middot; Betrayal</span>
           </div>
         </div>
 
@@ -810,7 +846,7 @@
           </p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
-            <span class="typo-label" style="font-size: 0.6rem;">History &middot; Ruins &middot; Reunification</span>
+            <span class="typo-label" style="font-size: 0.7rem;">History &middot; Ruins &middot; Reunification</span>
           </div>
         </div>
 
@@ -825,7 +861,7 @@
           </p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/></svg>
-            <span class="typo-label" style="font-size: 0.6rem;">Bloodlines &middot; Power &middot; Legitimacy</span>
+            <span class="typo-label" style="font-size: 0.7rem;">Bloodlines &middot; Power &middot; Legitimacy</span>
           </div>
         </div>
 
@@ -925,13 +961,13 @@
             recognized by Wizards of the Coast. Keeping the blood alive since 1996.
           </p>
           <div class="flex gap-4 mt-6">
-            <a href="https://discord.gg/birthright" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
+            <a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
-            <a href="https://forum.birthright.net" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+            <a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+            <a href="http://www.birthright.net/forums/showwiki.php" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
@@ -1002,16 +1038,48 @@
     // === MOBILE MENU ===
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
     let menuOpen = false;
-    menuBtn.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      mobileNav.classList.toggle('open', menuOpen);
+
+    function openMenu() {
+      menuOpen = true;
+      mobileNav.classList.add('open');
+      if (mobileBackdrop) mobileBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      const firstLink = mobileNav.querySelector('a');
+      if (firstLink) firstLink.focus();
+    }
+    function closeMenu() {
+      menuOpen = false;
+      mobileNav.classList.remove('open');
+      if (mobileBackdrop) mobileBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+      menuBtn.focus();
+    }
+
+    menuBtn.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+    if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOpen) closeMenu();
     });
+
+    mobileNav.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !menuOpen) return;
+      const focusable = mobileNav.querySelectorAll('a, button');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
     mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuOpen = false;
-        mobileNav.classList.remove('open');
-      });
+      link.addEventListener('click', closeMenu);
     });
 
     // === SCROLL REVEAL ===

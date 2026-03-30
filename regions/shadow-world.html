@@ -46,7 +46,7 @@
       --bg-card: #0f0f0f;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
-      --text-muted: rgba(240, 236, 228, 0.3);
+      --text-muted: rgba(240, 236, 228, 0.45);
       --gold: #d4a843;
       --gold-dim: rgba(212, 168, 67, 0.15);
       --gold-glow: rgba(212, 168, 67, 0.25);
@@ -73,31 +73,31 @@
     }
 
     [data-theme="light"] {
-      --bg-primary: #d6ccb8;
-      --bg-secondary: #ccc1ab;
-      --bg-elevated: #ded5c3;
-      --bg-surface: #c4b89f;
-      --bg-card: #d2c8b2;
+      --bg-primary: #f5f5f3;
+      --bg-secondary: #eaeae7;
+      --bg-elevated: #ffffff;
+      --bg-surface: #e0e0dc;
+      --bg-card: #f0f0ed;
       --text-primary: #1a1510;
       --text-secondary: rgba(26, 21, 16, 0.65);
-      --text-muted: rgba(26, 21, 16, 0.35);
+      --text-muted: rgba(26, 21, 16, 0.50);
       --gold: #7a5c10;
-      --gold-dim: rgba(122, 92, 16, 0.12);
-      --gold-glow: rgba(122, 92, 16, 0.18);
+      --gold-dim: rgba(122, 92, 16, 0.10);
+      --gold-glow: rgba(122, 92, 16, 0.15);
       --crimson: #8b1a1a;
-      --crimson-dim: rgba(139, 26, 26, 0.1);
+      --crimson-dim: rgba(139, 26, 26, 0.08);
       --crimson-bright: #b82020;
-      --border: rgba(26, 21, 16, 0.14);
-      --border-hover: rgba(26, 21, 16, 0.25);
-      --overlay-heavy: rgba(214, 204, 184, 0.92);
-      --overlay-medium: rgba(214, 204, 184, 0.75);
-      --overlay-light: rgba(214, 204, 184, 0.4);
-      --shadow-color: rgba(80, 60, 30, 0.25);
-      --nav-bg: rgba(214, 204, 184, 0.92);
+      --border: rgba(26, 21, 16, 0.10);
+      --border-hover: rgba(26, 21, 16, 0.20);
+      --overlay-heavy: rgba(245, 245, 243, 0.92);
+      --overlay-medium: rgba(245, 245, 243, 0.75);
+      --overlay-light: rgba(245, 245, 243, 0.4);
+      --shadow-color: rgba(0, 0, 0, 0.12);
+      --nav-bg: rgba(245, 245, 243, 0.92);
       --grain-opacity: 0.05;
       --logo-filter: none;
-      --hero-text-shadow: 0 2px 15px rgba(214,204,184,0.5);
-      --card-hover-shadow: 0 20px 60px rgba(80,60,30,0.25);
+      --hero-text-shadow: 0 2px 15px rgba(245,245,243,0.5);
+      --card-hover-shadow: 0 20px 60px rgba(0,0,0,0.10);
       --invert: 0;
       /* Shadow World accent — light */
       --accent: #5a1a6b;
@@ -162,7 +162,7 @@
 
     .typo-label {
       font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
     }
@@ -429,6 +429,7 @@
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .mobile-nav.open { transform: translateX(0); }
+    .mobile-backdrop.open { opacity: 1 !important; pointer-events: auto !important; }
 
     /* ═══════════════════════════════════════════
        HERO
@@ -581,6 +582,32 @@
       .typo-mega { font-size: clamp(2.2rem, 11vw, 3.5rem); }
       .typo-section-head { font-size: clamp(2rem, 9vw, 3rem); }
     }
+  
+    /* ═══════════════════════════════════════════
+       REDUCED MOTION — Accessibility
+       ═══════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal, .reveal-left, .reveal-right {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .anim-fade-up {
+        opacity: 1 !important;
+      }
+      .hero-scanline {
+        display: none;
+      }
+      .divider-blood {
+        height: 40px !important;
+        opacity: 0.6 !important;
+      }
+    }
   </style>
 </head>
 
@@ -625,6 +652,9 @@
         </button>
       </div>
     </div>
+
+        <!-- Mobile Nav Backdrop -->
+    <div id="mobileBackdrop" class="mobile-backdrop fixed inset-0 z-30 xl:hidden" style="background: rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s;"></div>
 
     <!-- Mobile Nav -->
     <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
@@ -732,23 +762,23 @@
           <div class="space-y-4">
             <!-- Fact cards -->
             <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border);">
-              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Nature</span>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Nature</span>
               <p class="mt-2 font-body text-base" style="color: var(--text-primary); line-height: 1.6;">Parallel dimension / dark reflection</p>
             </div>
             <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border);">
-              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Barrier</span>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Barrier</span>
               <p class="mt-2 font-body text-base" style="color: var(--text-primary); line-height: 1.6;">The Seeming (growing thinner)</p>
             </div>
             <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border);">
-              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Inhabitants</span>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Inhabitants</span>
               <p class="mt-2 font-body text-base" style="color: var(--text-primary); line-height: 1.6;">Undead, shadow creatures, lost souls</p>
             </div>
             <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border);">
-              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">The Halfling Connection</span>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">The Halfling Connection</span>
               <p class="mt-2 font-body text-base" style="color: var(--text-primary); line-height: 1.6;">The halflings are said to have originated from the Shadow World</p>
             </div>
             <div class="p-6" style="background: var(--bg-card); border: 1px solid var(--border); border-color: var(--accent);">
-              <span class="typo-label" style="color: var(--crimson); font-size: 0.55rem;">Danger Level</span>
+              <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">Danger Level</span>
               <p class="mt-2 font-body text-base font-semibold" style="color: var(--crimson); line-height: 1.6;">Extreme &mdash; prolonged exposure corrupts</p>
             </div>
           </div>
@@ -784,7 +814,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
               <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.97zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.97z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">The Barrier</span>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">The Barrier</span>
           </div>
           <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--accent)]" style="color: var(--text-primary); transition: color 0.3s;">THE SEEMING</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -798,7 +828,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
               <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 0h.008v.008h-.008V7.5z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Fortress</span>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Fortress</span>
           </div>
           <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--accent)]" style="color: var(--text-primary); transition: color 0.3s;">THE COLD RIDER'S DOMAIN</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -812,7 +842,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
               <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Library</span>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Library</span>
           </div>
           <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--accent)]" style="color: var(--text-primary); transition: color 0.3s;">THE WHISPERING GALLERY</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -826,7 +856,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
               <svg class="w-5 h-5" style="color: var(--accent);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Palace</span>
+            <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Palace</span>
           </div>
           <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--accent)]" style="color: var(--text-primary); transition: color 0.3s;">THE MIRROR COURTS</h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.65;">
@@ -840,7 +870,7 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--crimson);">
               <svg class="w-5 h-5" style="color: var(--crimson);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
             </div>
-            <span class="typo-label" style="color: var(--crimson); font-size: 0.55rem;">Wilderness</span>
+            <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">Wilderness</span>
           </div>
           <h3 class="font-impact text-3xl mb-3 group-hover:text-[var(--crimson)]" style="color: var(--text-primary); transition: color 0.3s;">THE BLEEDING FOREST</h3>
           <p class="font-body text-base max-w-xl" style="color: var(--text-secondary); line-height: 1.65;">
@@ -877,7 +907,7 @@
         <div class="reveal editorial-card">
           <div class="grid lg:grid-cols-12 gap-0">
             <div class="lg:col-span-4 p-8 lg:p-12 flex flex-col justify-center" style="border-right: 1px solid var(--border);">
-              <span class="typo-label" style="color: var(--accent); font-size: 0.55rem;">Gameplay</span>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Gameplay</span>
               <h3 class="font-impact text-4xl lg:text-5xl mt-3" style="color: var(--text-primary);">CROSSING OVER</h3>
             </div>
             <div class="lg:col-span-8 p-8 lg:p-12">
@@ -892,7 +922,7 @@
         <div class="reveal rd1 editorial-card">
           <div class="grid lg:grid-cols-12 gap-0">
             <div class="lg:col-span-4 p-8 lg:p-12 flex flex-col justify-center lg:order-2" style="border-left: 1px solid var(--border);">
-              <span class="typo-label" style="color: var(--crimson); font-size: 0.55rem;">Horror</span>
+              <span class="typo-label" style="color: var(--crimson); font-size: 0.7rem;">Horror</span>
               <h3 class="font-impact text-4xl lg:text-5xl mt-3" style="color: var(--text-primary);">THE CORRUPTION</h3>
             </div>
             <div class="lg:col-span-8 p-8 lg:p-12 lg:order-1">
@@ -907,7 +937,7 @@
         <div class="reveal rd2 editorial-card">
           <div class="grid lg:grid-cols-12 gap-0">
             <div class="lg:col-span-4 p-8 lg:p-12 flex flex-col justify-center" style="border-right: 1px solid var(--border);">
-              <span class="typo-label" style="color: var(--gold); font-size: 0.55rem;">Deep Lore</span>
+              <span class="typo-label" style="color: var(--gold); font-size: 0.7rem;">Deep Lore</span>
               <h3 class="font-impact text-4xl lg:text-5xl mt-3" style="color: var(--text-primary);">THE HALFLING SECRET</h3>
             </div>
             <div class="lg:col-span-8 p-8 lg:p-12">
@@ -1083,16 +1113,48 @@
     // === MOBILE MENU ===
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
     let menuOpen = false;
-    menuBtn.addEventListener('click', () => {
-      menuOpen = !menuOpen;
-      mobileNav.classList.toggle('open', menuOpen);
+
+    function openMenu() {
+      menuOpen = true;
+      mobileNav.classList.add('open');
+      if (mobileBackdrop) mobileBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      const firstLink = mobileNav.querySelector('a');
+      if (firstLink) firstLink.focus();
+    }
+    function closeMenu() {
+      menuOpen = false;
+      mobileNav.classList.remove('open');
+      if (mobileBackdrop) mobileBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+      menuBtn.focus();
+    }
+
+    menuBtn.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+    if (mobileBackdrop) mobileBackdrop.addEventListener('click', closeMenu);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuOpen) closeMenu();
     });
+
+    mobileNav.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !menuOpen) return;
+      const focusable = mobileNav.querySelectorAll('a, button');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
     mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuOpen = false;
-        mobileNav.classList.remove('open');
-      });
+      link.addEventListener('click', closeMenu);
     });
 
     // === SCROLL REVEAL ===
