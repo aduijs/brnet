@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wiki — Birthright.net</title>
+  <meta name="description" content="Browse the Birthright wiki — the community encyclopedia for the Birthright campaign setting.">
+  <meta property="og:title" content="Wiki — Birthright.net"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600;700;800;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{blackletter:['UnifrakturCook','cursive'],impact:['Bebas Neue','sans-serif'],display:['Cinzel','serif'],body:['Crimson Pro','serif']}}}}</script>
+  <style>
+    :root{--transition-theme:0.6s cubic-bezier(0.16,1,0.3,1);--accent:#ff2e2e;--accent-dim:rgba(255,46,46,0.20)}
+    [data-theme="dark"]{--bg-primary:#1a1d24;--bg-secondary:#1e2128;--bg-elevated:#252830;--bg-surface:#2a2d36;--bg-card:#1e2128;--text-primary:#f0ece4;--text-secondary:rgba(240,236,228,0.78);--text-muted:rgba(240,236,228,0.55);--gold:#d4a843;--gold-dim:rgba(212,168,67,0.15);--gold-glow:rgba(212,168,67,0.25);--crimson:#e02828;--crimson-dim:rgba(196,30,30,0.12);--crimson-bright:#ff2e2e;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--shadow-color:rgba(0,0,0,0.6);--nav-bg:rgba(20,22,27,0.92);--grain-opacity:0.035;--logo-filter:none;--card-hover-shadow:0 30px 80px rgba(0,0,0,0.7);--overlay-heavy:rgba(6,6,6,0.92);--overlay-medium:rgba(6,6,6,0.7);--hero-text-shadow:0 4px 30px rgba(0,0,0,0.8)}
+    [data-theme="light"]{--bg-primary:#f5f5f3;--bg-secondary:#eaeae7;--bg-elevated:#ffffff;--bg-surface:#e0e0dc;--bg-card:#f0f0ed;--text-primary:#1a1510;--text-secondary:rgba(26,21,16,0.65);--text-muted:rgba(26,21,16,0.35);--gold:#7a5c10;--gold-dim:rgba(122,92,16,0.10);--gold-glow:rgba(122,92,16,0.15);--crimson:#8b1a1a;--crimson-dim:rgba(139,26,26,0.08);--crimson-bright:#b82020;--border:rgba(26,21,16,0.10);--border-hover:rgba(26,21,16,0.20);--shadow-color:rgba(0,0,0,0.12);--nav-bg:rgba(245,245,243,0.92);--grain-opacity:0.03;--logo-filter:none;--card-hover-shadow:0 20px 60px rgba(0,0,0,0.10);--overlay-heavy:rgba(245,245,243,0.92);--overlay-medium:rgba(245,245,243,0.75);--hero-text-shadow:0 2px 15px rgba(245,245,243,0.5);--accent:#8b1a1a;--accent-dim:rgba(139,26,26,0.12)}
+    *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+    body{font-family:'Crimson Pro',serif;background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;transition:background var(--transition-theme),color var(--transition-theme);-webkit-font-smoothing:antialiased}
+    *:focus-visible{outline:2px solid var(--gold);outline-offset:3px}::selection{background:var(--accent);color:#fff}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg-primary)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+    .grain::after{content:'';position:absolute;inset:0;opacity:var(--grain-opacity);pointer-events:none;z-index:100;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
+    .typo-mega{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,10rem);line-height:0.85;letter-spacing:-0.03em;text-transform:uppercase}
+    .typo-section-head{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);line-height:0.9;letter-spacing:-0.02em;text-transform:uppercase}
+    .typo-label{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase}
+    .word-accent{display:inline-block;color:var(--accent);transform:rotate(-3deg) scale(1.05);margin:0 0.05em;text-shadow:0 0 40px var(--accent-dim);position:relative}
+    .word-accent::after{content:'';position:absolute;bottom:0.05em;left:0;right:0;height:3px;background:var(--accent);opacity:0.4;transform:skewX(-8deg)}
+    .word-gold{color:var(--gold)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes blood-drip{0%{height:0;opacity:0}20%{opacity:1}100%{height:80px;opacity:0.6}}
+    @keyframes horizontalScan{0%{transform:translateX(-100%)}100%{transform:translateX(100vw)}}
+    .anim-fade-up{opacity:0;animation:fadeUp 1s cubic-bezier(0.16,1,0.3,1) forwards}
+    .anim-d1{animation-delay:0.1s}.anim-d2{animation-delay:0.25s}.anim-d3{animation-delay:0.4s}.anim-d4{animation-delay:0.55s}.anim-d5{animation-delay:0.7s}
+    .reveal{opacity:0;transform:translateY(50px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+    #nav{transition:background var(--transition-theme)}#nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav-link{position:relative;font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color 0.3s}.nav-link:hover{color:var(--gold)}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:50%;width:0;height:2px;background:var(--accent);transition:width 0.3s,left 0.3s}.nav-link:hover::after{width:100%;left:0}
+    .theme-toggle{width:44px;height:24px;border-radius:12px;background:var(--bg-surface);border:1px solid var(--border);cursor:pointer;position:relative;transition:background 0.3s,border-color 0.3s}
+    .theme-toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--gold);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);box-shadow:0 1px 3px var(--shadow-color)}
+    [data-theme="light"] .theme-toggle::after{transform:translateX(20px)}.theme-toggle:hover{border-color:var(--gold)}
+    .mobile-nav{transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1)}.mobile-nav.open{transform:translateX(0)}
+    .hero-scanline{position:absolute;top:0;left:0;width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.3;animation:horizontalScan 8s linear infinite}
+    .divider-blood{width:2px;height:0;margin:0 auto;background:linear-gradient(to bottom,var(--accent),transparent);animation:blood-drip 2s ease-out forwards;position:relative}
+    .divider-blood::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--accent)}
+    .btn-primary{display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2.5rem;background:var(--accent);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s,background 0.3s}
+    .btn-primary:hover{background:var(--crimson-bright);transform:scale(1.03);box-shadow:0 0 50px var(--accent-dim),0 10px 40px rgba(0,0,0,0.3)}.btn-primary:active{transform:scale(0.97)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2.5rem;background:transparent;color:var(--text-primary);font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--border-hover);cursor:pointer;transition:transform 0.3s,border-color 0.3s,color 0.3s}
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:scale(1.03)}.btn-ghost:active{transform:scale(0.97)}
+    .social-icon:hover{color:var(--gold) !important;border-color:var(--gold) !important}
+    section{transition:background var(--transition-theme)}
+
+    /* Search */
+    #search-input{background:var(--bg-card);border:1px solid var(--border);color:var(--text-primary);font-family:'Crimson Pro',serif;font-size:1.1rem;transition:border-color 0.3s}
+    #search-input:focus{border-color:var(--gold);outline:none}
+    #search-input::placeholder{color:var(--text-muted)}
+    #search-results{background:var(--bg-elevated);border:1px solid var(--border);max-height:400px;overflow-y:auto}
+    .search-result-item{padding:0.75rem 1rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.2s}
+    .search-result-item:hover{background:var(--bg-surface)}
+    .search-result-item:last-child{border-bottom:none}
+
+    /* Wiki article styles */
+    #wiki-article h1,#wiki-article h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.05em;color:var(--gold);margin:2.5rem 0 1rem;text-transform:uppercase}
+    #wiki-article h3{font-family:'Cinzel',serif;font-size:1.15rem;color:var(--text-primary);margin:1.5rem 0 0.75rem}
+    #wiki-article h4{font-family:'Cinzel',serif;font-size:1rem;color:var(--text-primary);margin:1.25rem 0 0.5rem}
+    #wiki-article p{margin-bottom:1rem}
+    #wiki-article a{color:var(--gold);text-decoration:underline;text-underline-offset:3px;transition:color 0.3s}
+    #wiki-article a:hover{color:var(--crimson)}
+    #wiki-article a.new{color:var(--crimson);opacity:0.6}
+    #wiki-article ul,#wiki-article ol{padding-left:1.5rem;margin-bottom:1rem}
+    #wiki-article li{margin-bottom:0.4rem}
+    #wiki-article table{width:100%;border-collapse:collapse;margin:1.5rem 0}
+    #wiki-article th{font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-align:left;padding:0.75rem;border-bottom:2px solid var(--border)}
+    #wiki-article td{padding:0.6rem 0.75rem;border-bottom:1px solid var(--border);color:var(--text-secondary);font-size:0.95rem}
+    #wiki-article tr:hover td{background:var(--bg-card)}
+    #wiki-article blockquote{border-left:3px solid var(--gold);padding:1rem 1.5rem;margin:1.5rem 0;background:var(--bg-card);font-style:italic}
+    #wiki-article img{max-width:100%;border:1px solid var(--border)}
+    #wiki-article .toc,#wiki-article #toc{display:none}
+    #wiki-article .mw-editsection{display:none}
+    #wiki-article .mw-headline{color:var(--gold)}
+    #wiki-article .infobox,#wiki-article .wikitable{background:var(--bg-card);border:1px solid var(--border)}
+    #wiki-article .infobox th,#wiki-article .wikitable th{background:var(--bg-surface)}
+    #wiki-article .infobox td,#wiki-article .wikitable td{background:transparent}
+    #wiki-article .catlinks{display:none}
+    #wiki-article dl{margin-bottom:1rem}
+    #wiki-article dt{font-weight:600;color:var(--text-primary);margin-top:0.75rem}
+    #wiki-article dd{margin-left:1.5rem;margin-bottom:0.5rem}
+    #wiki-article hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+    #wiki-article .thumbinner{background:var(--bg-card);border:1px solid var(--border);padding:0.5rem;margin:0 0 1rem 1.5rem;float:right;max-width:300px}
+    #wiki-article .thumbcaption{font-size:0.85rem;color:var(--text-muted);padding:0.5rem 0 0;font-style:italic}
+    #wiki-article .magnify{display:none}
+
+    /* Category labels */
+    .wiki-category{display:inline-block;padding:0.3rem 0.75rem;margin:0.25rem;font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);background:var(--gold-dim);transition:background 0.3s,border-color 0.3s}
+    .wiki-category:hover{background:var(--gold-glow);border-color:var(--gold)}
+
+    /* Wiki result cards (grid) */
+    .wiki-card{display:block;background:var(--bg-card);border:1px solid var(--border);text-decoration:none;transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;position:relative;overflow:hidden}
+    .wiki-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.35)}
+    .wiki-card .card-accent{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.6}
+    .wiki-card-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-primary);line-height:1.1}
+    .wiki-card-snippet{font-family:'Crimson Pro',serif;font-size:0.85rem;color:var(--text-secondary);line-height:1.45;margin-top:0.4rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .wiki-results-status{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);text-align:center;padding:2rem 0}
+
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}.reveal{opacity:1 !important;transform:none !important}.anim-fade-up{opacity:1 !important}.hero-scanline{display:none}.divider-blood{height:40px !important;opacity:0.6 !important}}
+    @media(max-width:768px){.typo-mega{font-size:clamp(2.8rem,12vw,4.5rem)}.typo-section-head{font-size:clamp(2.5rem,10vw,4rem)}}
+    @media(max-width:480px){.typo-mega{font-size:clamp(2.2rem,11vw,3.5rem)}.typo-section-head{font-size:clamp(2rem,9vw,3rem)}}
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
+</head>
+<body>
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+
+  <!-- NAV -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <a href="index.html" class="relative z-10 flex items-center gap-3 group"><img src="brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter:var(--logo-filter);transition:transform 0.3s;"><span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color:var(--text-muted);">.NET</span></a>
+      <div class="hidden lg:flex items-center gap-8 xl:gap-10">
+        <a href="index.html#world" class="nav-link">The World</a><a href="bloodlines.html" class="nav-link">Bloodlines</a><a href="index.html#regions" class="nav-link">Regions</a><a href="tour.html" class="nav-link">Tour</a>
+        <a href="compendium.html" class="nav-link">Compendium</a><a href="wiki.html" class="nav-link">Wiki</a><a href="/downloads" class="nav-link">Downloads</a> <a href="index.html#community" class="nav-link">Community</a>
+      </div>
+      <div class="hidden lg:flex items-center gap-5">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
+        <a href="https://discord.gg/birthright" class="btn-primary" style="padding:0.6rem 1.5rem;font-size:0.85rem;"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>Join Discord</a>
+      </div>
+      <div class="flex lg:hidden items-center gap-3">
+        <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme"></button>
+        <button id="menuBtn" class="relative z-50 w-10 h-10 flex items-center justify-center" style="color:var(--text-primary);" aria-label="Menu"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></button>
+      </div>
+    </div>
+    <div id="mobileBackdrop" class="mobile-backdrop fixed inset-0 z-30 xl:hidden" style="background:rgba(0,0,0,0.6);opacity:0;pointer-events:none;transition:opacity 0.3s;"></div>
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: #0b0d12; border-left: 1px solid var(--border); box-shadow: -12px 0 30px rgba(0,0,0,0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+      <a href="index.html#world" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">The World</a>
+      <a href="bloodlines.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Bloodlines</a>
+      <a href="index.html#regions" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Regions</a>
+      <a href="tour.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Tour</a>
+      <a href="compendium.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Compendium</a>
+      <a href="wiki.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Wiki</a>
+      <a href="/downloads" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Downloads</a>
+      <a href="index.html#community" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Community</a>
+      <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size:0.9rem;"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>Join Discord</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="main-content" class="relative flex flex-col items-center justify-end grain overflow-hidden" style="background:var(--bg-primary);min-height:55vh;">
+    <img src="brand_assets/hero%20background.png" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" style="object-position:center 35%;opacity:0.55;">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at center 60%,var(--gold-dim),transparent 70%);"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to top,var(--bg-primary) 0%,rgba(26,29,36,0.55) 40%,transparent 70%);"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(to bottom,var(--bg-primary) 0%,transparent 35%);"></div>
+    <div class="hero-scanline"></div>
+    <div class="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12 pb-12 lg:pb-20 w-full text-center">
+      <div class="anim-fade-up anim-d1 mb-4"><span class="typo-label" style="color:var(--gold);">Birthright Encyclopedia</span></div>
+      <h1 id="hero-title" class="typo-mega anim-fade-up anim-d2" style="text-shadow:var(--hero-text-shadow);">
+        <span class="word-gold">Wiki</span>
+      </h1>
+      <!-- Search bar -->
+      <div class="anim-fade-up anim-d3 max-w-2xl mx-auto mt-8 relative">
+        <div class="relative">
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5" style="color:var(--text-muted);" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+          <input id="search-input" type="text" placeholder="Search the Birthright wiki..." class="w-full pl-12 pr-4 py-3.5 rounded-none" autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE CONTENT -->
+  <section class="relative grain" style="background:var(--bg-secondary);padding:4rem 0;min-height:40vh;">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <!-- Edit on wiki link + categories bar -->
+      <div id="article-header" class="flex items-center justify-between mb-8 hidden">
+        <div id="article-categories" class="flex flex-wrap gap-1"></div>
+        <a id="edit-link" href="#" target="_blank" rel="noopener noreferrer" class="font-display text-xs tracking-[0.2em] uppercase px-4 py-2 transition-colors shrink-0" style="color:var(--gold);border:1px solid var(--border);">Edit on Wiki &rarr;</a>
+      </div>
+      <!-- Article body -->
+      <div id="wiki-article" style="font-family:'Crimson Pro',serif;font-size:1.1rem;line-height:1.75;color:var(--text-secondary);">
+        <div id="loading-state" class="text-center py-20">
+          <p class="typo-label" style="color:var(--text-muted);">Loading article...</p>
+        </div>
+        <div id="empty-state" class="hidden">
+          <div class="reveal mb-8">
+            <h2 class="typo-section-head" style="color:var(--text-primary);">Browse the Wiki</h2>
+            <p class="font-body text-lg mt-2" style="color:var(--text-muted);">14,000+ articles. Type in the search bar above to explore.</p>
+          </div>
+          <div id="wiki-results-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"></div>
+          <p id="wiki-results-loading" class="wiki-results-status hidden">Searching wiki&hellip;</p>
+          <p id="wiki-results-empty" class="wiki-results-status">Type at least 2 characters in the search bar to begin.</p>
+        </div>
+        <div id="error-state" class="text-center py-20 hidden">
+          <p class="font-impact text-4xl tracking-wide uppercase mb-4" style="color:var(--accent);">Article Not Found</p>
+          <p id="error-message" class="font-body text-lg" style="color:var(--text-muted);"></p>
+          <a id="error-create-link" href="#" target="_blank" class="btn-ghost mt-6 inline-flex" style="font-size:0.9rem;">Create this article &rarr;</a>
+        </div>
+        <div id="article-body" class="hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="py-8" style="background:var(--bg-primary);"><div class="divider-blood"></div></div>
+
+  <!-- FOOTER -->
+  <footer class="relative grain" style="background:var(--bg-primary);border-top:1px solid var(--border);">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="md:col-span-2"><img src="brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter:var(--logo-filter);"><p class="font-body text-base max-w-sm" style="color:var(--text-muted);line-height:1.65;">The official fan community for the Birthright campaign setting, recognized by Wizards of the Coast. Keeping the blood alive since 1996.</p>
+          <div class="flex gap-4 mt-6"><a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Discord"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg></a><a href="/forum" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Forum"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></a><a href="wiki.html" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Wiki"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></a></div>
+        </div>
+        <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Navigate</h4><div class="flex flex-col gap-3"><a href="index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Home</a><a href="bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Bloodlines</a><a href="tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Tour</a><a href="compendium.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Compendium</a><a href="wiki.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
+        <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Community</h4><div class="flex flex-col gap-3"><a href="/forum" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Forum</a><a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Discord</a><a href="wiki.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
+      </div>
+      <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid var(--border);"><p class="font-body text-sm" style="color:var(--text-muted);">&copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.</p><p class="font-impact text-xs tracking-[0.2em] uppercase" style="color:var(--text-muted);">The blood endures</p></div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Theme ── */
+    const html=document.documentElement;const saved=localStorage.getItem('br-theme');if(saved)html.setAttribute('data-theme',saved);
+    function toggleTheme(){const next=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',next);localStorage.setItem('br-theme',next)}
+    document.getElementById('themeToggle').addEventListener('click',toggleTheme);document.getElementById('themeToggleMobile').addEventListener('click',toggleTheme);
+
+    /* ── Nav scroll ── */
+    const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)},{passive:true});
+
+    /* ── Mobile menu ── */
+    const menuBtn=document.getElementById('menuBtn');const mobileNav=document.getElementById('mobileNav');let menuOpen=false;
+    menuBtn.addEventListener('click',()=>{menuOpen=!menuOpen;mobileNav.classList.toggle('open',menuOpen)});
+    mobileNav.querySelectorAll('a').forEach(link=>{link.addEventListener('click',()=>{menuOpen=false;mobileNav.classList.remove('open')})});
+
+    /* ── Reveal animations ── */
+    const reveals=document.querySelectorAll('.reveal');
+    const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+    reveals.forEach(el=>revealObs.observe(el));
+    const drips=document.querySelectorAll('.divider-blood');
+    const dripObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='none';e.target.offsetHeight;e.target.style.animation='blood-drip 2s ease-out forwards'}})},{threshold:0.5});
+    drips.forEach(el=>dripObs.observe(el));
+
+    /* ── State elements ── */
+    const loadingState=document.getElementById('loading-state');
+    const emptyState=document.getElementById('empty-state');
+    const errorState=document.getElementById('error-state');
+    const articleBody=document.getElementById('article-body');
+    const articleHeader=document.getElementById('article-header');
+    const heroTitle=document.getElementById('hero-title');
+    const editLink=document.getElementById('edit-link');
+    const categoriesEl=document.getElementById('article-categories');
+    const errorMsg=document.getElementById('error-message');
+    const errorCreate=document.getElementById('error-create-link');
+
+    function showState(state){
+      loadingState.classList.add('hidden');
+      emptyState.classList.add('hidden');
+      errorState.classList.add('hidden');
+      articleBody.classList.add('hidden');
+      articleHeader.classList.add('hidden');
+      if(state==='loading')loadingState.classList.remove('hidden');
+      else if(state==='empty')emptyState.classList.remove('hidden');
+      else if(state==='error')errorState.classList.remove('hidden');
+      else if(state==='article'){articleBody.classList.remove('hidden');articleHeader.classList.remove('hidden')}
+    }
+
+    /* ── Rewrite internal wiki links ── */
+    function rewriteLinks(container){
+      container.querySelectorAll('a[href]').forEach(a=>{
+        let href=a.getAttribute('href');
+        // Skip edit/action links — let them go to MediaWiki directly
+        if(href.includes('action=edit')||href.includes('action=history')||href.includes('Special:'))return;
+        // /wiki/index.php/TITLE -> wiki.html?title=TITLE  (article path with index.php)
+        let m=href.match(/^\/wiki\/index\.php\/(.+)/);
+        if(m){a.setAttribute('href','wiki.html?title='+encodeURIComponent(decodeURIComponent(m[1])));return;}
+        // /wiki/index.php?title=TITLE
+        m=href.match(/^\/wiki\/index\.php\?title=([^&]+)/);
+        if(m){a.setAttribute('href','wiki.html?title='+encodeURIComponent(decodeURIComponent(m[1])));return;}
+        // /index.php?title=TITLE
+        m=href.match(/^\/index\.php\?title=([^&]+)/);
+        if(m){a.setAttribute('href','wiki.html?title='+encodeURIComponent(decodeURIComponent(m[1])));return;}
+        // /wiki/TITLE  (clean URL)
+        m=href.match(/^\/wiki\/([^?#]+)$/);
+        if(m){a.setAttribute('href','wiki.html?title='+encodeURIComponent(decodeURIComponent(m[1])));return;}
+      });
+    }
+
+    /* ── Load article ── */
+    function isFileTitle(t){return /^(File|Image|Bestand):/i.test(t);}
+
+    function escapeAttr(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+    function fetchFileInfo(title){
+      return fetch('/api.php?action=query&titles='+encodeURIComponent(title)+
+                   '&prop=imageinfo&iiprop=url|size|mime&redirects=1&format=json&origin=*')
+        .then(r=>r.json())
+        .then(d=>{
+          const pages=d.query?.pages||{};
+          const key=Object.keys(pages)[0];
+          if(!key||key==='-1')return null;
+          const ii=pages[key].imageinfo;
+          return (ii&&ii[0])?ii[0]:null;
+        })
+        .catch(()=>null);
+    }
+
+    function renderFileBlock(title,info){
+      const displayName=title.replace(/^[^:]+:/, '').replace(/_/g,' ');
+      const url=info.url;
+      const w=info.width||0, h=info.height||0;
+      const kb=info.size?Math.round(info.size/1024):0;
+      return '<figure style="margin:0 0 2rem;text-align:center;">'+
+        '<a href="'+escapeAttr(url)+'" target="_blank" rel="noopener" style="display:inline-block;max-width:100%;">'+
+          '<img src="'+escapeAttr(url)+'" alt="'+escapeAttr(displayName)+'" '+
+               'style="max-width:100%;height:auto;border:1px solid var(--border);background:var(--bg-card);">'+
+        '</a>'+
+        '<figcaption style="margin-top:0.75rem;font-family:\'Cinzel\',serif;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);">'+
+          escapeHtml(displayName)+(w&&h?' \u00b7 '+w+'\u00d7'+h+' px':'')+(kb?' \u00b7 '+kb+' KB':'')+
+        '</figcaption>'+
+      '</figure>';
+    }
+
+    function loadArticle(title){
+      showState('loading');
+      document.title=title.replace(/_/g,' ')+' \u2014 Wiki \u2014 Birthright.net';
+      heroTitle.innerHTML='<span class="word-gold">'+title.replace(/_/g,' ')+'</span>';
+      editLink.href='/wiki/index.php?title='+encodeURIComponent(title)+'&action=edit';
+
+      const filePromise=isFileTitle(title)?fetchFileInfo(title):Promise.resolve(null);
+      const parsePromise=fetch('/api.php?action=parse&page='+encodeURIComponent(title)+'&format=json&prop=text|categories&disableeditsection=true&redirects=1').then(r=>r.json());
+
+      Promise.all([parsePromise,filePromise]).then(([data,fileInfo])=>{
+          if(data.parse&&data.parse.text){
+            let html=data.parse.text['*'];
+            if(fileInfo){ html=renderFileBlock(title,fileInfo)+html; }
+            articleBody.innerHTML=html;
+            rewriteLinks(articleBody);
+            showState('article');
+
+            categoriesEl.innerHTML='';
+            if(data.parse.categories&&data.parse.categories.length>0){
+              data.parse.categories.forEach(cat=>{
+                const name=cat['*'].replace(/_/g,' ');
+                const el=document.createElement('a');
+                el.href='wiki.html?title=Category:'+encodeURIComponent(cat['*']);
+                el.className='wiki-category';
+                el.textContent=name;
+                categoriesEl.appendChild(el);
+              });
+            }
+
+            window.scrollTo({top:0,behavior:'smooth'});
+          }else if(fileInfo){
+            articleBody.innerHTML=renderFileBlock(title,fileInfo);
+            categoriesEl.innerHTML='';
+            showState('article');
+            window.scrollTo({top:0,behavior:'smooth'});
+          }else{
+            const displayTitle=title.replace(/_/g,' ');
+            errorMsg.textContent='The article "'+displayTitle+'" does not exist yet.';
+            errorCreate.href='/wiki/index.php?title='+encodeURIComponent(title)+'&action=edit';
+            showState('error');
+          }
+        })
+        .catch(()=>{
+          errorMsg.textContent='Could not connect to the wiki. Try again later.';
+          errorCreate.classList.add('hidden');
+          showState('error');
+        });
+    }
+
+    /* ── Search ── */
+    const searchInput=document.getElementById('search-input');
+    const wikiGrid=document.getElementById('wiki-results-grid');
+    const wikiGridLoading=document.getElementById('wiki-results-loading');
+    const wikiGridEmpty=document.getElementById('wiki-results-empty');
+    let gridTimeout=null;
+    let gridReqId=0;
+
+    function inEmptyView(){return !emptyState.classList.contains('hidden');}
+
+    function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+    function renderGridResults(query,results){
+      wikiGridLoading.classList.add('hidden');
+      wikiGrid.innerHTML='';
+      if(results.length===0){
+        wikiGridEmpty.classList.remove('hidden');
+        wikiGridEmpty.textContent='No wiki results for "'+query+'"';
+        return;
+      }
+      wikiGridEmpty.classList.add('hidden');
+      results.forEach(r=>{
+        const card=document.createElement('a');
+        card.href='wiki.html?title='+encodeURIComponent(r.title);
+        card.className='wiki-card';
+        const snippet=(r.snippet||'').replace(/<\/?span[^>]*>/g,'');
+        card.innerHTML='<div class="card-accent"></div>'+
+          '<div class="px-4 py-3">'+
+            '<div class="wiki-card-title">'+escapeHtml(r.title)+'</div>'+
+            (snippet?'<div class="wiki-card-snippet">'+snippet+'</div>':'')+
+          '</div>';
+        card.addEventListener('click',ev=>{
+          ev.preventDefault();
+          const newUrl='wiki.html?title='+encodeURIComponent(r.title);
+          history.pushState(null,'',newUrl);
+          loadArticle(r.title);
+        });
+        wikiGrid.appendChild(card);
+      });
+    }
+
+    async function searchWikiGrid(query){
+      const myId=++gridReqId;
+      wikiGrid.innerHTML='';
+      wikiGridEmpty.classList.add('hidden');
+      wikiGridLoading.classList.remove('hidden');
+      try{
+        // Title-prefix matches catch partial words like "boerui" -> "Boeruine"
+        // srsearch catches body-text matches with snippets
+        const [prefRes,fullRes]=await Promise.all([
+          fetch('/api.php?action=query&list=prefixsearch&pssearch='+encodeURIComponent(query)+'&pslimit=20&format=json&origin=*').then(r=>r.json()),
+          fetch('/api.php?action=query&list=search&srsearch='+encodeURIComponent(query)+'&srlimit=40&format=json&origin=*').then(r=>r.json())
+        ]);
+        if(myId!==gridReqId)return; // a newer query is in flight
+        const prefix=prefRes.query?.prefixsearch||[];
+        const full=fullRes.query?.search||[];
+        const seen=new Set();
+        const merged=[];
+        prefix.forEach(p=>{if(!seen.has(p.title)){seen.add(p.title);merged.push({title:p.title,snippet:''});}});
+        full.forEach(f=>{if(!seen.has(f.title)){seen.add(f.title);merged.push(f);}});
+        renderGridResults(query,merged);
+      }catch(e){
+        if(myId!==gridReqId)return;
+        wikiGridLoading.classList.add('hidden');
+        wikiGridEmpty.classList.remove('hidden');
+        wikiGridEmpty.textContent='Could not reach the wiki. Try again later.';
+      }
+    }
+
+    searchInput.addEventListener('input',()=>{
+      clearTimeout(gridTimeout);
+      const q=searchInput.value.trim();
+      // Typing always switches to the search/grid view
+      if(!inEmptyView()){
+        showState('empty');
+        heroTitle.innerHTML='<span class="word-gold">Wiki</span>';
+        document.title='Wiki — Birthright.net';
+      }
+      if(q.length<2){
+        wikiGrid.innerHTML='';
+        wikiGridLoading.classList.add('hidden');
+        wikiGridEmpty.classList.remove('hidden');
+        wikiGridEmpty.textContent='Type at least 2 characters in the search bar to begin.';
+        return;
+      }
+      gridTimeout=setTimeout(()=>searchWikiGrid(q),300);
+    });
+
+    searchInput.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){
+        e.preventDefault();
+        const q=searchInput.value.trim();
+        if(q){
+          searchInput.value='';
+          const newUrl='wiki.html?title='+encodeURIComponent(q);
+          history.pushState(null,'',newUrl);
+          loadArticle(q);
+        }
+      }
+    });
+
+    /* ── Handle browser back/forward ── */
+    window.addEventListener('popstate',()=>{
+      const params=new URLSearchParams(window.location.search);
+      const title=params.get('title');
+      if(title)loadArticle(title);
+      else showState('empty');
+    });
+
+    /* ── Init: read ?title= from URL ── */
+    const params=new URLSearchParams(window.location.search);
+    const pageTitle=params.get('title');
+    if(pageTitle){
+      searchInput.value='';
+      loadArticle(pageTitle);
+    }else{
+      showState('empty');
+    }
+  </script>
+</body>
+</html>

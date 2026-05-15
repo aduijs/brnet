@@ -1,0 +1,580 @@
+@mixin position-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin text-truncate-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// - Typographical functions and mixins
+@mixin typography-text-base-min {
+  font-family: var(--font-family);
+  font-size: $base-font-size;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+}
+
+@mixin typography-text-base {
+  @include typography-text-base-min;
+}
+
+@mixin typography-heading(
+  $font-family,
+  $font-size,
+  $font-weight,
+  $font-margin,
+  $line-height
+) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  padding: 0;
+  margin: 0;
+  margin-left: $font-margin; // Blizzard font isn't flush with left margin
+}
+
+@mixin large-width {
+  @media screen and (width >= 1140px) {
+    @content;
+  }
+}
+
+// Some fringe cases on very small viewports/devices
+@mixin very-small-browser-width {
+  @media all and (width <= 450px) {
+    @content;
+  }
+}
+
+// The browser width where we stop using padding on the content (essentially mobile)
+@mixin small-browser-width {
+  @media all and (width <= 600px) {
+    @content;
+  }
+}
+
+@mixin large-browser-width {
+  @media all and (width >= 601px) {
+    @content;
+  }
+}
+
+// The browser width where the timeline collapses
+@mixin timeline-width {
+  @media all and (min-width: $timeline-max-width) {
+    @content;
+  }
+}
+
+// For when wrap padding is disabled, but we want our element padded anyway
+@mixin compensate-padding {
+  @include small-browser-width {
+    padding: 0 1em;
+  }
+}
+
+@mixin compensate-margin {
+  @include small-browser-width {
+    margin: 0 1em;
+  }
+}
+
+// Redefine the typography mixins to match the font weights and font family from the comp.
+@mixin typography-heading-h1plus {
+  @include typography-heading(
+    $font-family-title,
+    $font-size-h1plus,
+    $font-weight-heavy,
+    $font-margin-h1plus,
+    $line-height-h1plus
+  );
+}
+
+@mixin typography-heading-h1 {
+  @include typography-heading(
+    $font-family-title,
+    $font-size-h1,
+    $font-weight-heavy,
+    $font-margin-h1,
+    $line-height-h1
+  );
+}
+
+@mixin typography-heading-h2 {
+  @include typography-heading(
+    $font-family-title,
+    $font-size-h2,
+    $font-weight-normal,
+    $font-margin-h2,
+    $line-height-h2
+  );
+}
+
+@mixin typography-heading-h3 {
+  @include typography-heading(
+    $font-family-title,
+    $font-size-h3,
+    $font-weight-normal,
+    $font-margin-h3,
+    $line-height-h3
+  );
+}
+
+@mixin typography-heading-h4 {
+  @include typography-heading(
+    var(--font-family),
+    $font-size-h4,
+    $font-weight-normal,
+    $font-margin-h4,
+    $line-height-h4
+  );
+}
+
+@mixin typography-heading-h5 {
+  @include typography-heading(
+    var(--font-family),
+    $font-size-h5,
+    $font-weight-normal,
+    $font-margin-h5,
+    $line-height-h5
+  );
+}
+
+@mixin typography-heading-h6 {
+  @include typography-heading(
+    var(--font-family),
+    $font-size-h6,
+    $font-weight-normal,
+    $font-margin-h6,
+    $line-height-h6
+  );
+}
+
+// Applies flexbox to the element and centers the content. Parameter can be 'vertical', 'horizontal', 'both', or 'none'.
+@mixin flex($direction: "vertical") {
+  display: flex;
+
+  @if $direction == "vertical" or $direction == "both" {
+    align-items: center;
+  }
+
+  @if $direction == "horizontal" or $direction == "both" {
+    justify-content: center;
+  }
+}
+
+// Text with an icon next to it. Can either be 'before' or 'after', with a margin amount.
+@mixin text-with-icon(
+  $marginAmount: 0.28em,
+  $iconPosition: "before",
+  $iconSize: 0.75em,
+  $direction: "vertical"
+) {
+  @include flex($direction);
+  line-height: normal; // Remove any set line height to prevent it from affecting the icon positioning.
+
+  .svg-icon {
+    flex-shrink: 0; // Prevent the icon from shrinking.
+    font-size: $iconSize;
+
+    @if $iconPosition == "before" {
+      margin-right: $marginAmount;
+    } @else {
+      margin-left: $marginAmount;
+    }
+  }
+}
+
+// Prevent the text from wrapping and truncate and ellipsis it.
+// NOTE: Blizzard UI has 2 classes called .text-nowrap and .text-truncate-ellipsis, but we want to minimize the amount
+// of extending that we do in SASS in favor of mixins.
+@mixin text-nowrap-truncate-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Set padding-left and padding-right.
+@mixin left-right-padding($padding) {
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+// Common hover styling used by several components.
+@mixin hover-highlight {
+  &:hover {
+    background-color: rgba($primary, 0.1);
+  }
+}
+
+/*
+Clickable item coloring. There are several items within Discourse that are clickable, but do not have a hover/click
+style and need one.
+NOTE: The $element parameter allows you to set the transition effect on a child element when the current element is
+hovered/clicked.
+*/
+@mixin clickable-item(
+  $color: $color-text-priority-3,
+  $colorHover: $color-text,
+  $colorActive: $color-text-priority-4,
+  $transition: $transition-hover-link,
+  $background: none,
+  $element: null
+) {
+  @if $element {
+    #{$element} {
+      color: $color;
+      transition: $transition;
+    }
+  } @else {
+    color: $color;
+    transition: $transition;
+  }
+
+  &:hover #{$element} {
+    color: $colorHover;
+    background: $background;
+  }
+
+  &:active #{$element} {
+    color: $colorActive;
+  }
+}
+
+// Blizzard box styling, used for things like dropdowns.
+@mixin b-box($gradient: false) {
+  box-shadow: $color-form-dropdown-shadow;
+  border: $border-style-thin $color-form-dropdown-border-base;
+
+  @if $gradient == false {
+    background-color: $color-form-dropdown-background-base;
+  } @else {
+    // We don't use $Navbar-gradient-background-dropdown-linear here because it is slightly
+    // transparent.
+    background: linear-gradient(
+      to bottom,
+      $Navbar-gradient-background-dropdown-start 0%,
+      $Blizzard-gray-medium 100%
+    );
+  }
+}
+
+// Transparent boxes, used for things like categories
+@mixin b-transbox {
+  @include flex;
+  @include hover-highlight;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 1em;
+  border: $border-style-thin $color-border-primary;
+  background-color: rgba($primary, 0.05);
+  box-shadow: 0 0 0 1px $secondary;
+  color: $color-text-priority-1;
+
+  @include small-browser-width {
+    box-shadow: none;
+  }
+}
+
+// Quote box styling for quoted posts.
+@mixin quote-box {
+  background-color: rgba(#000, $opacity-light);
+  border: $border-style-thin rgba(#fff, $opacity-extralight);
+}
+
+@mixin avatar-dimensions(
+  $width,
+  $height,
+  $margin-right: 0px,
+  $box-shadow-offset: 8px
+) {
+  width: ($width - $box-shadow-offset);
+  height: ($height - $box-shadow-offset);
+  margin: calc($box-shadow-offset * 0.5)
+    calc($box-shadow-offset * 0.5 + $margin-right)
+    calc($box-shadow-offset * 0.5) calc($box-shadow-offset * 0.5);
+}
+
+@mixin avatar-glow-only($color) {
+  box-shadow:
+    0 0 0 1px rgb(white, 0.3),
+    0 0 0 3px $color,
+    0 0 0 4px black,
+    0 0 10px 4px rgba($color, 0.75);
+}
+
+@mixin avatar-glow($color, $width, $height, $margin-right: 0px) {
+  @include avatar-glow-only($color);
+  @include avatar-dimensions($width, $height, $margin-right, 8px);
+}
+
+@mixin avatar-regular-glow-only() {
+  box-shadow:
+    0 0 0 1px rgb(255, 255, 255, 0.3),
+    0 0 0 2px rgb(0, 0, 0, 1);
+}
+
+@mixin avatar-regular-glow($width, $height, $margin-right) {
+  @include avatar-regular-glow-only;
+  @include avatar-dimensions($width, $height, $margin-right, 4px);
+}
+
+// Scrollbar that resembles the Blizzard-style semi-transparent scrollbar with no background.
+@mixin styled-scrollbar {
+  &::-webkit-scrollbar {
+    width: 18px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 0 10px $color-text-priority-5;
+    border: 5.5px solid transparent;
+    border-radius: 10px;
+    background: none;
+
+    &:hover {
+      box-shadow: inset 0 0 0 10px $color-text-priority-4;
+    }
+  }
+}
+
+@mixin selection-indicator {
+  width: 0.25em;
+  height: 0.25em;
+  background-color: $color-theme-blizzard;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@mixin blizz-pill-icon {
+  // Blizzard icon.
+  &::before {
+    content: "";
+    background-image: url($blizzard-icon-small);
+    width: $blizzard-icon-small-width;
+    height: $blizzard-icon-small-height;
+    margin-right: 4px;
+    display: inline-block;
+  }
+
+  // Make the icon brighter when hovered.
+  &:hover::before {
+    filter: brightness(1.2);
+  }
+}
+
+@mixin franchise-pill-icon {
+  // Franchise icon.
+  &::before {
+    content: "";
+    background-image: $theme-small-logo;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    display: inline-block;
+  }
+
+  // Make the icon brighter when hovered.
+  &:hover::before {
+    filter: brightness(1.2);
+  }
+}
+
+@mixin dev-tracker-icon($name) {
+  .nav-pills {
+    // Dev tracker item.
+    li.group-#{$name} a {
+      @include franchise-pill-icon;
+    }
+  }
+}
+
+@mixin spinner-size($size, $speed: 1s) {
+  width: $size;
+  height: $size;
+  background-size: cover;
+  animation-duration: $speed; // Slow down the animation because the size is reduced, otherwise it moves too fast.
+}
+
+@mixin theme-distinguished-classes(
+  $name,
+  $color: $brand-primary,
+  $link-color: $color-theme-moderator-link,
+  $link-color-hover: $color-theme-moderator-link-hover,
+  $distinguished-image: "",
+  $distinguished-image-width: 300px,
+  $distinguished-image-height: 150px,
+  $distinguished-image-margin-top: 8px
+) {
+  // topic post avatar
+  .topic-post.group-#{$name} .topic-avatar .main-avatar .avatar,
+  .topic-post.group-#{$name} .topic-avatar .avatar {
+    @include avatar-glow-only($color);
+  }
+
+  // User icon in header
+  body.primary-group-#{$name}
+    .d-header
+    .d-header-icons
+    #current-user
+    .icon
+    .avatar {
+    @include avatar-glow(
+      $color,
+      $topic-map-avatar-image-width,
+      $topic-map-avatar-image-height,
+      $topic-map-avatar-margin-right
+    );
+  }
+
+  // User card glow
+  #user-card.group-#{$name} .card-content .user-card-avatar img.avatar {
+    @include avatar-glow(
+      $color,
+      $user-card-avatar-image-width,
+      $user-card-avatar-image-height,
+      $user-card-avatar-image-right
+    );
+  }
+
+  // group activity posts
+  .group .user-stream .user-stream-item.group-#{$name},
+  .group .user-content .post-list .post-list-item {
+    .avatar-link img.avatar {
+      @include avatar-glow(
+        $color,
+        $user-card-avatar-image-width,
+        $user-card-avatar-image-height,
+        $user-card-avatar-image-right
+      );
+    }
+
+    .excerpt {
+      color: $color;
+
+      a {
+        color: $link-color;
+
+        &:hover {
+          color: $link-color-hover;
+        }
+      }
+    }
+  }
+
+  .group-#{$name} > .user-main .about .details img.avatar {
+    @include avatar-glow(
+      $color,
+      $summary-avatar-image-width,
+      $summary-avatar-image-height,
+      $summary-avatar-image-right
+    );
+  }
+
+  // post text, and quotes
+  aside.quote.group-#{$name}:not(.quote-modified),
+  .group-#{$name} .topic-body .contents > .cooked {
+    color: $color;
+
+    a {
+      color: $link-color;
+
+      &:hover {
+        color: $link-color-hover;
+      }
+    }
+  }
+
+  // general quoted avatars areas, group and user activity pages
+  aside.quote.group-#{$name}:not(.quote-modified) .title .avatar {
+    @include avatar-glow(
+      $color,
+      $quote-avatar-image-width,
+      $quote-avatar-image-height,
+      $quote-avatar-margin-right
+    );
+  }
+
+  // avatar glow on topic summary info underneath posts
+  .group-#{$name} > .poster .avatar {
+    @include avatar-glow(
+      $color,
+      $topic-map-avatar-image-width,
+      $topic-map-avatar-image-height,
+      $topic-map-avatar-margin-right
+    );
+  }
+
+  // not glowing avatars on topic summary info underneath posts
+  .topic-map .--users-summary div:not([class^="group"]) img.avatar {
+    width: $topic-map-avatar-image-width;
+    height: $topic-map-avatar-image-height;
+  }
+
+  // title color
+  .group-#{$name} .names .user-title {
+    &,
+    & a {
+      color: $color;
+    }
+  }
+
+  // svg backgrounds
+  .topic-post.group-#{$name} {
+    overflow: hidden;
+
+    & > article::before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: $distinguished-image-width;
+      height: $distinguished-image-height;
+      opacity: 0.1;
+      margin-top: $distinguished-image-margin-top;
+      transform: rotate(-15deg);
+      background: no-repeat center;
+      background-image: url($distinguished-image);
+      background-size: contain;
+    }
+  }
+}
+
+@mixin list-item-dropdown {
+  color: $color-form-dropdown-text-base;
+  font-size: $font-0;
+  line-height: $line-height-form-base;
+  padding: 0 $space-medium;
+  white-space: nowrap;
+
+  &:active {
+    background-color: $color-form-dropdown-background-selected;
+  }
+}
+
+@mixin navbar-background-color(
+  $hex-color,
+  $breakpoint: $navbar-mobile-breakpoint-width
+) {
+  blz-nav,
+  blz-nav-battlenet {
+    // navbar colors - no transparency for mobile
+    --navbar-background-color: #{$hex-color};
+    --navbar-background-color-no-blur: #{$hex-color};
+
+    // navbar colors on desktop - add transparency
+    @media all and (min-width: $breakpoint) {
+      // 80% transparency
+      --navbar-background-color: #{$hex-color}cc;
+
+      // 95% transparency
+      --navbar-background-color-no-blur: #{$hex-color}f2;
+    }
+  }
+}
+
+@import "_mixins-button";

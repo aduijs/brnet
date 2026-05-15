@@ -1,0 +1,117 @@
+// Latest topic list heading.
+.latest-topic-list,
+.top-topic-list {
+  .table-heading {
+    text-transform: uppercase;
+    color: $color-text-priority-2;
+    border-bottom-width: 1px;
+    border-color: $color-border-primary;
+    padding: 2.15em $small-space $medium-space $small-space;
+    font-size: $font-down-1;
+  }
+
+  // More topics button at the bottom of the latest topic list. The [href] is needed to override a Discourse style.
+  .more-topics [href].btn {
+    @include button-primary;
+  }
+
+  // Inherit the icon color from the .topic-statuses parent instead of hard-coding it to #919191.
+  .d-icon-bookmark {
+    color: inherit;
+  }
+}
+
+.top-sub-section.replies-section,
+.top-sub-section.topics-section {
+  li {
+    margin: 0;
+    padding-top: 0.25em;
+  }
+}
+
+// A row in the latest topic list.
+.latest-topic-list-item {
+  border-color: $color-border-primary;
+  cursor: pointer;
+  display: block;
+  padding: 0.5em 1em 1em 0.5em;
+
+  &.visited {
+    a.title:not(.badge-notification) {
+      @include clickable-item($color-text-priority-3);
+    }
+
+    .topic-statuses {
+      svg {
+        color: $color-text-priority-3;
+      }
+    }
+  }
+
+  .topic-stats {
+    display: flex;
+    text-align: left;
+  }
+
+  // Status icons before a post's name.
+  .topic-statuses {
+    font-size: $font-up-1;
+    color: $color-theme-icon;
+  }
+
+  // Make the pinned thumbtack icon inherit its color instead of being hard-coded.
+  .d-icon-thumbtack.unpinned {
+    color: inherit;
+  }
+
+  // Topic name with icons.
+  .main-link {
+    @include flex;
+    flex: 15;
+    max-width: unset;
+    font-size: inherit;
+    overflow: hidden;
+
+    // Topic name text.
+    a.title {
+      @include text-nowrap-truncate-ellipsis;
+      padding: 0 0 0 0.25em;
+    }
+  }
+
+  // Chat icon with the reply count.
+  .posts-map {
+    @include text-with-icon($iconSize: 1em);
+    @include clickable-item($color-text-priority-3);
+    padding: $small-space 0;
+
+    // Chat icon.
+    .blizzard-reply-icon {
+      color: #00b4ff;
+      margin-right: 0.15em;
+      top: 0.05em;
+    }
+  }
+
+  // Age of the post.
+  .b-age {
+    margin-left: auto;
+    color: $color-text-priority-3;
+
+    &:hover {
+      color: $color-text-priority-3;
+    }
+  }
+}
+
+.categories-and-top {
+  .top-topic-list {
+    .top-row {
+      font-size: 1em;
+    }
+
+    .topic-poster {
+      display: none;
+    }
+  }
+}

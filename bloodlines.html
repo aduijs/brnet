@@ -41,11 +41,11 @@
     }
 
     [data-theme="dark"] {
-      --bg-primary: #060606;
-      --bg-secondary: #0c0c0c;
-      --bg-elevated: #111111;
-      --bg-surface: #1a1a1a;
-      --bg-card: #0f0f0f;
+      --bg-primary: #1a1d24;
+      --bg-secondary: #1e2128;
+      --bg-elevated: #252830;
+      --bg-surface: #2a2d36;
+      --bg-card: #1e2128;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
       --text-muted: rgba(240, 236, 228, 0.45);
@@ -550,7 +550,53 @@
         opacity: 0.6 !important;
       }
     }
-  </style>
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
 </head>
 
 <body>
@@ -576,7 +622,7 @@
         <a href="index.html#regions" class="nav-link">Regions</a>
         <a href="tour.html" class="nav-link">Tour</a>
         <a href="compendium.html" class="nav-link">Compendium</a>
-        <a href="http://www.birthright.net/forums/showwiki.php" class="nav-link">Wiki</a>
+        <a href="wiki.html" class="nav-link">Wiki</a><a href="/downloads" class="nav-link">Downloads</a>
         <a href="index.html#community" class="nav-link">Community</a>
       </div>
 
@@ -602,12 +648,13 @@
     <div id="mobileBackdrop" class="mobile-backdrop fixed inset-0 z-30 xl:hidden" style="background: rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s;"></div>
 
     <!-- Mobile Nav -->
-    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: #0b0d12; border-left: 1px solid var(--border); box-shadow: -12px 0 30px rgba(0,0,0,0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
       <a href="index.html#world" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">The World</a>
       <a href="bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
       <a href="index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
       <a href="tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
-      <a href="http://www.birthright.net/forums/showwiki.php" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="wiki.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="/downloads" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Downloads</a>
       <a href="index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
 
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
@@ -658,7 +705,7 @@
         </p>
 
         <div class="mt-10 flex flex-wrap gap-4 anim-fade-up anim-d4">
-          <a href="http://www.birthright.net/forums/showwiki.php" class="btn-primary">
+          <a href="wiki.html" class="btn-primary">
             <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             Read on Wiki
           </a>
@@ -698,7 +745,7 @@
 
       <div class="max-w-4xl mt-12 space-y-8">
         <p class="reveal rd1 font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.75;">
-          At the dawn of history, the gods themselves walked the earth alongside their chosen peoples. But the shadow god Azrai grew jealous and corrupted, gathering an army of monsters and dark followers to destroy his siblings and claim dominion over all creation. The other gods — <span class="word-gold">Anduiras</span>, <span class="word-gold">Basaïa</span>, <span class="word-gold">Reynir</span>, <span class="word-gold">Brenna</span>, <span class="word-gold">Masela</span>, and <span class="word-gold">Vorynn</span> — rallied their peoples for a final stand at Mount Deismaar, a volcanic island in the Straits of Aerele.
+          At the dawn of history, the gods themselves walked the earth alongside their chosen peoples. But the shadow god Azrai grew jealous and corrupted, gathering an army of monsters and dark followers to destroy his siblings and claim dominion over all creation. The other gods — <span class="word-gold">Anduiras</span>, <span class="word-gold">Basaïa</span>, <span class="word-gold">Reynir</span>, <span class="word-gold">Brenna</span>, <span class="word-gold">Masela</span>, and <span class="word-gold">Vorynn</span> — rallied their peoples for a final stand at Mount Deismaar, a great volcano on the land bridge that once joined Cerilia to the southern continent of Aduria.
         </p>
 
         <p class="reveal rd2 font-body text-lg lg:text-xl" style="color: var(--text-secondary); line-height: 1.75;">
@@ -1003,7 +1050,7 @@
         <div class="reveal rd2 awnsheg-card p-8 lg:p-10">
           <h3 class="font-impact text-2xl tracking-wider uppercase" style="color: var(--crimson);">The Spider</h3>
           <p class="mt-4 font-body text-base lg:text-lg" style="color: rgba(240,236,228,0.4); line-height: 1.7;">
-            A former elven queen consumed by Azrai's blood. She weaves webs of intrigue and literal spider-silk from her domain in the Spiderfell, plotting the downfall of every kingdom within reach.
+            Once a goblin warlord called Tal-Qazar, the Spiderlord, twisted by the cataclysm of Deismaar into a monstrous arachnid awnshegh. From the Spiderfell, he weaves webs of intrigue and literal spider-silk, plotting the downfall of every kingdom within reach.
           </p>
         </div>
 
@@ -1017,7 +1064,7 @@
         <div class="reveal rd4 awnsheg-card p-8 lg:p-10">
           <h3 class="font-impact text-2xl tracking-wider uppercase" style="color: var(--crimson);">The Vampire</h3>
           <p class="mt-4 font-body text-base lg:text-lg" style="color: rgba(240,236,228,0.4); line-height: 1.7;">
-            An Anuirean lord who made a pact with shadow. He haunts the borderlands between life and death, building an undead army in the darkness.
+            A Brecht lord twisted by Azrai's blood into undeath. He haunts his fortress hold in the mountains of Brechtur, building an undead army in the darkness.
           </p>
         </div>
 
@@ -1108,7 +1155,7 @@
           <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
           Explore Regions
         </a>
-        <a href="http://www.birthright.net/forums/showwiki.php" class="reveal rd3 btn-primary">
+        <a href="wiki.html" class="reveal rd3 btn-primary">
           <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
           Full Wiki
         </a>
@@ -1135,10 +1182,10 @@
             <a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
               <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
-            <a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+            <a href="/forum" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
               <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+            <a href="wiki.html" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
               <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
@@ -1151,7 +1198,7 @@
             <a href="index.html#world" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">The World</a>
             <a href="index.html#regions" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Regions</a>
             <a href="index.html#tools" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Digital Arsenal</a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Wiki</a>
+            <a href="wiki.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Wiki</a>
           </div>
         </div>
 
@@ -1159,9 +1206,9 @@
         <div>
           <h2 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h2>
           <div class="flex flex-col gap-3">
-            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Forum</a>
+            <a href="/forum" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Forum</a>
             <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Discord</a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Wiki</a>
+            <a href="wiki.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted); text-decoration: none;">Wiki</a>
           </div>
         </div>
       </div>

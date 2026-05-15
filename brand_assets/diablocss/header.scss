@@ -1,0 +1,21 @@
+#main-outlet {
+  padding-top: $main-outlet-padding-top;
+}
+
+.blizzard-homepage #main-outlet {
+  padding-top: 0;
+}
+
+.blizzard {
+  .d-header-icons .icon img.avatar {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.discourse-no-touch .d-header-icons .icon:hover,
+.discourse-no-touch .d-header-icons .icon:focus {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}

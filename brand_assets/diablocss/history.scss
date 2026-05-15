@@ -1,0 +1,11 @@
+.modal.history-modal {
+  .modal-header {
+    height: auto;
+  }
+
+  #revision-controls {
+    .btn[disabled] {
+      background-color: inherit;
+    }
+  }
+}

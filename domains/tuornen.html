@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TUORNEN — The Ancient Forest | Birthright.net</title>
-  <meta name="description" content="Explore Tuornen, a land of ancient forests and old magic where the bond between humans and elves remains strong. Ruled by the half-elven Duke Gilgaed Fhiele.">
-  <meta property="og:title" content="Tuornen — The Ancient Forest">
-  <meta property="og:description" content="Where old magic still whispers through ancient trees and the bond between humans and elves endures.">
+  <title>TUORNEN — The Forest Duchy | Birthright.net</title>
+  <meta name="description" content="Explore Tuornen, the forested duchy carved from western Alamie. Ruled by Duchess Laela Flaertes, holding her independence against an old enemy and the wizards who covet her sources.">
+  <meta property="og:title" content="Tuornen — The Forest Duchy">
+  <meta property="og:description" content="The duchy that broke from Alamie and never went back. Duchess Laela Flaertes holds the line against a rival who still calls Tuornen his.">
   <meta property="og:image" content="../brand_assets/anuire%20800x600.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -43,11 +43,11 @@
     }
 
     [data-theme="dark"] {
-      --bg-primary: #060606;
-      --bg-secondary: #0c0c0c;
-      --bg-elevated: #111111;
-      --bg-surface: #1a1a1a;
-      --bg-card: #0f0f0f;
+      --bg-primary: #1a1d24;
+      --bg-secondary: #1e2128;
+      --bg-elevated: #252830;
+      --bg-surface: #2a2d36;
+      --bg-card: #1e2128;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
       --text-muted: rgba(240, 236, 228, 0.45);
@@ -565,7 +565,53 @@
         opacity: 0.6 !important;
       }
     }
-  </style>
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
 </head>
 
 <body>
@@ -588,7 +634,7 @@
         <a href="../index.html#regions" class="nav-link">Regions</a>
         <a href="../tour.html" class="nav-link">Tour</a>
         <a href="../compendium.html" class="nav-link">Compendium</a>
-        <a href="http://www.birthright.net/forums/showwiki.php?title=Tuornen" class="nav-link">Wiki</a>
+        <a href="../wiki.html?title=Tuornen" class="nav-link">Wiki</a>
         <a href="../index.html#community" class="nav-link">Community</a>
       </div>
 
@@ -619,7 +665,7 @@
       <a href="../bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
       <a href="../index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
       <a href="../tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
-      <a href="http://www.birthright.net/forums/showwiki.php?title=Tuornen" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="../wiki.html?title=Tuornen" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
       <a href="../index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
 
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
@@ -667,12 +713,12 @@
 
       <!-- Subtitle -->
       <p class="anim-fade-up anim-d3 font-body text-lg lg:text-xl max-w-2xl mt-6" style="color: var(--text-secondary); line-height: 1.7;">
-        <span class="font-display font-semibold" style="color: var(--forest);">The Ancient Forest</span> — Where Old Magic Still Whispers
+        <span class="font-display font-semibold" style="color: var(--forest);">The Forest Duchy</span> — Won from Alamie, Held by Will
       </p>
 
       <!-- CTA -->
       <div class="anim-fade-up anim-d4 mt-8 flex flex-wrap gap-4">
-        <a href="http://www.birthright.net/forums/showwiki.php?title=Tuornen" class="btn-primary">
+        <a href="../wiki.html?title=Tuornen" class="btn-primary">
           Read on Wiki
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
         </a>
@@ -718,29 +764,29 @@
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Name</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Gilgaed Fhiele</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Duchess Laela Flaertes</span>
             </div>
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Race / Gender</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Male Half-Elf</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Female Anuirean (Human)</span>
             </div>
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Class</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Ranger / Noble</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Fighter / Noble</span>
             </div>
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Bloodline</span>
               <span class="font-display text-base font-semibold" style="color: var(--text-primary);">
-                Reynir, <span style="color: var(--gold);">Major</span> <span style="color: var(--text-muted);">(28)</span>
+                Anduiras, <span style="color: var(--gold);">Major</span>
               </span>
             </div>
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Alignment</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Chaotic Good</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Lawful Good</span>
             </div>
 
             <div class="fact-item">
@@ -751,7 +797,7 @@
             <div class="mt-6 flex gap-6">
               <div>
                 <span class="typo-label block mb-2" style="color: var(--text-muted);">Allies</span>
-                <span class="font-display text-sm font-semibold" style="color: var(--forest);">Elves of Tuarhievel</span>
+                <span class="font-display text-sm font-semibold" style="color: var(--forest);">Mhoried, Wizards of the Erebannien</span>
               </div>
               <div>
                 <span class="typo-label block mb-2" style="color: var(--text-muted);">Enemies</span>
@@ -875,17 +921,17 @@
             <span style="color: var(--accent);">&#9632;</span>&ensp;Overview
           </span>
           <h2 class="typo-section-head mb-8" style="color: var(--text-primary);">
-            Where <span class="word-accent">Two Worlds</span><br>Converge
+            Carved From <span class="word-accent">Alamie</span><br>Held Ever Since
           </h2>
           <div class="space-y-6 font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
             <p>
-              Tuornen is a land of ancient forests, mysterious ruins, and old magic. Nestled in the heartlands of Anuire, it is one of the few domains where the bond between humans and elves remains strong. The domain's half-elven ruler, Gilgaed Fhiele, walks between two worlds &#8212; the human realm of politics and war, and the elven world of nature and ancient tradition.
+              Tuornen is what remained when the western provinces of Alamie broke away &#8212; a forest duchy founded in fire, sustained in vigilance. Duchess Laela Flaertes inherits a realm whose every border tells the same story: the Duke of Alamie has never accepted that his western marches are gone, and every season of relative peace is, in truth, the lull between his next attempt and the last.
             </p>
             <p>
-              The forests of Tuornen are among the oldest in Anuire, and they still harbor secrets from before the Battle of Deismaar. Ancient elven ruins dot the landscape, and the magical sources that flow through the land are unusually strong. This makes Tuornen a coveted prize for wizards and a constant target for neighboring domains that would exploit its resources.
+              The forests of Tuornen are old and rich, and the magical sources that flow beneath them are among the strongest in Anuire. The wizard Fhylie the Sword keeps her tower in the duchy and tends those sources jealously &#8212; an arrangement Laela protects, because a Tuornen without potent sources is a Tuornen with one less reason for outsiders to hesitate.
             </p>
             <p>
-              Tuornen maintains its independence through a combination of forest warfare expertise, elven alliances, and the sheer difficulty of campaigning in its wooded terrain. The domain's soldiers are expert archers and guerrilla fighters who can vanish into the trees and strike from nowhere. Would-be conquerors have learned to their cost that Tuornen's forests fight back.
+              Tuornen holds its independence through forest warfare, well-placed alliances with Mhoried to the north, and the sheer difficulty of campaigning across its wooded terrain. The duchess herself is no warrior of legend, but she is patient, exact, and deeply read in the affairs of her enemies. The Duke of Alamie has miscalculated her three times. He is unlikely to live long enough to do it a fourth.
             </p>
           </div>
         </div>
@@ -926,8 +972,8 @@
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--forest);"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
                 </div>
                 <div>
-                  <span class="font-display text-sm font-semibold block" style="color: var(--text-primary);">Half-Elven Leadership</span>
-                  <span class="font-body text-sm" style="color: var(--text-muted);">Bridge between human and elven worlds</span>
+                  <span class="font-display text-sm font-semibold block" style="color: var(--text-primary);">Flaertes Rule</span>
+                  <span class="font-body text-sm" style="color: var(--text-muted);">Anuirean ducal house, forged in the break from Alamie</span>
                 </div>
               </div>
 
@@ -970,45 +1016,45 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Gilgaed Fhiele -->
+        <!-- Laela Flaertes -->
         <div class="npc-card p-8 lg:p-10 reveal rd1">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-12 h-12 flex items-center justify-center" style="background: var(--forest-dim); border: 1px solid var(--forest);">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--forest);"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
             </div>
             <div>
-              <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Gilgaed Fhiele</h3>
-              <span class="typo-label" style="color: var(--forest); font-size: 0.7rem;">Duke of Tuornen &middot; Half-Elf Ranger</span>
+              <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Duchess Laela Flaertes</h3>
+              <span class="typo-label" style="color: var(--forest); font-size: 0.7rem;">Duchess of Tuornen &middot; House Flaertes</span>
             </div>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            The half-elven Duke is torn between his human obligations as a ruler and his elven heritage. He is a skilled ranger and natural leader, but his dual nature makes him an outsider in both worlds. His bloodline of Reynir grants him a deep connection to the land itself, and the forests respond to his presence in ways that unnerve even his allies.
+            Laela Flaertes inherited a duchy with one enemy older than its own borders. She is patient, methodical, and politically exact &mdash; the kind of regent who summons rivals to her court in Haes one month after a perceived insult and lets the silence do the work. Her Anduiran bloodline runs strong, and the Flaertes line has held Tuornen since the break from Alamie. Her doctrine is simple: hold what was won, repay every betrayal, and never let a wizard forget who owns the source he sits on.
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--forest-dim); color: var(--forest); border: 1px solid var(--forest);">Ranger</span>
-            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Reynir Bloodline</span>
-            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Chaotic Good</span>
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--forest-dim); color: var(--forest); border: 1px solid var(--forest);">Fighter</span>
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Anduiras Bloodline</span>
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent);">Lawful Good</span>
           </div>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--forest), transparent);"></div>
         </div>
 
-        <!-- Fhileraene -->
+        <!-- Fhylie the Sword -->
         <div class="npc-card p-8 lg:p-10 reveal rd2">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-12 h-12 flex items-center justify-center" style="background: var(--gold-dim); border: 1px solid var(--gold);">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--gold);"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z"/></svg>
             </div>
             <div>
-              <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Fhileraene</h3>
-              <span class="typo-label" style="color: var(--gold); font-size: 0.7rem;">Elven Advisor &middot; Voice of Tuarhievel</span>
+              <h3 class="font-impact text-2xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Fhylie the Sword</h3>
+              <span class="typo-label" style="color: var(--gold); font-size: 0.7rem;">Source-Holder &middot; The Mage of Tuornen</span>
             </div>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            An elven advisor from Tuarhievel who serves as Gilgaed's connection to the elven court. She is ancient, wise, and deeply protective of the forests. Fhileraene has witnessed the slow decline of elven influence in Cerilia and sees in Tuornen a last chance to preserve something of the old world. Her counsel shapes much of the domain's forest policy.
+            A female elven wizard whose source holdings span every province in the duchy. Fhylie has bound her fate to Tuornen, and the duchess to her: as long as the Flaertes throne stands, no rival magus enters the woods uncontested, and as long as Fhylie tends the ley lines, Tuornen's wizards have no cause to look elsewhere. The bargain is older than the duchess. It is also the single greatest thing keeping Tuornen on the map.
           </p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Elven Elder</span>
-            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--forest-dim); color: var(--forest); border: 1px solid var(--forest);">Tuarhievel</span>
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold);">Wizard / Source-Holder</span>
+            <span class="px-3 py-1 font-display text-xs font-semibold" style="background: var(--forest-dim); color: var(--forest); border: 1px solid var(--forest);">Sidhelien</span>
           </div>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
         </div>
@@ -1044,7 +1090,7 @@
             The Alamie Aggression
           </h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            Alamie has long pressed territorial claims on Tuornen's eastern provinces. The Duke of Alamie views the forests as rightfully his, a legacy of older borders drawn when the empire still stood. Border skirmishes are a seasonal occurrence, and full-scale war is never far from the horizon.
+            Alamie has never reconciled itself to the loss of its western provinces. The Duke of Alamie views Tuornen as a wound in his own realm, a legacy of the war his ancestors lost. Border skirmishes are a seasonal occurrence, full-scale war is never far from the horizon, and the duchess governs as if every winter peace is a lie told between rounds.
           </p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"/></svg>
@@ -1056,10 +1102,10 @@
         <div class="culture-block reveal rd2">
           <span class="typo-label block mb-4" style="color: var(--forest);">02</span>
           <h3 class="font-impact text-3xl tracking-[0.05em] uppercase mb-5" style="color: var(--text-primary);">
-            The Elven Alliance
+            The Mhoried Friendship
           </h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            The relationship with Tuarhievel is Tuornen's greatest diplomatic asset &#8212; and its most delicate. The elves support Gilgaed because of his half-elven blood, but they have their own agenda regarding the forests. Maintaining this alliance requires constant negotiation between human progress and elven preservation.
+            Mhoried to the north has long been Tuornen's most reliable neighbour. The Mhor and the duchess share a common enemy in the great houses east of the river, and the alliance &mdash; quiet, unsentimental, written in supplies more than treaties &mdash; has saved both realms in turn. It is the steady ground beneath Laela's policy.
           </p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
@@ -1074,7 +1120,7 @@
             Forest Magic
           </h3>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            Tuornen's rich magical sources are the envy of every wizard-regent in Anuire. The ley lines that run through its ancient forests are unusually potent, drawing the attention of source-holders both friendly and hostile. Controlling &#8212; or corrupting &#8212; these sources is a prize worth going to war over.
+            Tuornen's rich magical sources are the envy of every wizard-regent in Anuire. The ley lines that run through its ancient forests are unusually potent, and Fhylie the Sword holds them all. Controlling &#8212; or corrupting &#8212; those sources is a prize worth going to war over, and outside mages know they cannot move without provoking both wizard and duchess at once.
           </p>
           <div class="mt-6 flex items-center gap-3" style="color: var(--text-muted);">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/></svg>
@@ -1153,7 +1199,7 @@
             <span class="font-impact text-4xl" style="color: var(--gold);">Moderate</span>
           </div>
           <p class="font-body text-sm" style="color: var(--text-secondary); line-height: 1.6;">
-            Erik's faith has a natural home here among the forest folk, while Haelyn's temples serve the more settled populations in the capital and towns.
+            The Militant Order of Cuiraécen and the Orthodox Imperial Temple of Haelyn (under the Nichaleir line) are the dominant temple holdings, serving the settled populations in the capital and towns.
           </p>
           <div class="mt-5 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
         </div>
@@ -1269,10 +1315,10 @@
             <a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
-            <a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+            <a href="/forum" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Tuornen" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+            <a href="../wiki.html?title=Tuornen" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
@@ -1286,7 +1332,7 @@
             <a href="../regions/anuire.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Anuire</a>
             <a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Bloodlines</a>
             <a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Tour</a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Tuornen" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../wiki.html?title=Tuornen" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
 
@@ -1294,9 +1340,9 @@
         <div>
           <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
           <div class="flex flex-col gap-3">
-            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="/forum" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
             <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Tuornen" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../wiki.html?title=Tuornen" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
       </div>

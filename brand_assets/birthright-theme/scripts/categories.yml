@@ -1,0 +1,124 @@
+# Birthright category restructure spec.
+# Read by scripts/setup.rb. Edit this, re-run setup.rb to apply.
+#
+# Mirrors the 4 sections shown in the prototype:
+#   ANNOUNCEMENTS / DUNGEONS & DRAGONS / EXPANSIONS / PLAY-BY-POST & SOCIAL GROUPS
+
+parents:
+  - slug: announcements-section
+    name: Announcements
+    color: "C8466A"
+    text_color: "FFFFFF"
+    position: 0
+  - slug: dungeons-and-dragons
+    name: Dungeons & Dragons
+    color: "D96652"
+    text_color: "FFFFFF"
+    position: 1
+  - slug: expansions
+    name: Expansions
+    color: "5FA869"
+    text_color: "FFFFFF"
+    position: 2
+  - slug: play-by-post-and-social-groups
+    name: Play-by-Post & Social Groups
+    color: "9B6FCF"
+    text_color: "FFFFFF"
+    position: 3
+
+# Categories visible in the new design. Anything not listed gets archived.
+visible:
+  # ── ANNOUNCEMENTS ────────────────────────────────────────────────
+  - slug: official-announcements
+    name: "Birthright.net Official Announcements"
+    parent: announcements-section
+    color: "C8466A"
+    description: "Here we will post announcements and updates."
+
+  # ── DUNGEONS & DRAGONS ───────────────────────────────────────────
+  - slug: royal-library
+    name: "The Royal Library"
+    parent: dungeons-and-dragons
+    color: "C8466A"
+    description: "Discussions about general Birthright stuff."
+
+  - slug: brcs-5e
+    name: "BRCS 5th Edition"
+    parent: dungeons-and-dragons
+    color: "D96652"
+    description: 'Discussion focused on the development of the "Official" D&D 5th Edition.'
+
+  - slug: br-online
+    name: "Birthright Online (MMO)"
+    parent: dungeons-and-dragons
+    color: "5B8DEF"
+    description: "Work in Progress project to create a MMO/RTS/RPG in the world of Birthright."
+
+  - slug: brcs-4e
+    name: "BRCS 4th Edition"
+    parent: dungeons-and-dragons
+    color: "D96652"
+    description: 'Discussion focused on the development of the "Official" D&D 4th Edition.'
+
+  - slug: brcs-35
+    name: "BRCS 3.0/3.5 Edition"
+    parent: dungeons-and-dragons
+    color: "D96652"
+    description: 'Discussions focused on the development of the "Official" D&D 3.5 rules.'
+
+  - slug: mpgn-archive
+    name: "MPGN Mailinglist archive 1996-1999"
+    parent: dungeons-and-dragons
+    color: "7A8090"
+    description: "Archive of TSR's first Birthright mailinglist."
+
+  - slug: brwiki
+    name: "BRWiki Discussions"
+    parent: dungeons-and-dragons
+    color: "5B8DEF"
+    description: "Discussion of the Birthright wiki."
+
+  - slug: support
+    name: "Birthright.net support"
+    parent: dungeons-and-dragons
+    color: "D4A04A"
+    description: "You want a new feature? You want to complain about something?"
+
+  # ── EXPANSIONS ───────────────────────────────────────────────────
+  - slug: empires-of-blood
+    name: "Empires of Blood"
+    parent: expansions
+    color: "5FA869"
+    description: "Adurian Campaign Setting."
+
+  # ── PLAY-BY-POST & SOCIAL GROUPS ─────────────────────────────────
+  - slug: play-by-post
+    name: "Birthright play-by-post"
+    parent: play-by-post-and-social-groups
+    color: "9B6FCF"
+    description: "Birthright play-by-post games and recruitment."
+
+  - slug: bards-tale
+    name: "A Bards Tale"
+    parent: play-by-post-and-social-groups
+    color: "E08540"
+    description: "Birthright's own college of bardic lore. In-character stories, fan-fiction, and adventure ideas."
+
+  - slug: ruins-of-empire-2
+    name: "Ruins of Empire II"
+    parent: play-by-post-and-social-groups
+    color: "7A8090"
+    description: "Click here to visit this social group."
+
+  - slug: legacy-of-kings
+    name: "Legacy of Kings"
+    parent: play-by-post-and-social-groups
+    color: "C8466A"
+    description: "Click here to visit this social group."
+
+# Categories to merge into another (topics moved, source archived).
+# Add legacy slugs here as you discover them on the live site.
+merge: []
+
+# Anything else not in `visible` is auto-archived (read_restricted=true,
+# removed from top menu, description prefixed with "[archived]").

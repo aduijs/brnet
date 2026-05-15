@@ -1,0 +1,23 @@
+/* Desktop-only refinements. The bulk of the design lives in common.scss. */
+
+@media (min-width: 1024px) {
+  /* Container widths */
+  #main-outlet { max-width: 1180px; padding-left: 32px; padding-right: 32px; }
+  .topic-body { max-width: 1080px; }
+
+  /* Two-column home grid */
+  .categories-and-top-topics {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 56px;
+  }
+
+  /* Profile body */
+  .user-main .user-content {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 36px;
+  }
+
+  /* Hero is desktop-only — mobile gets a compact version (see mobile.scss) */
+  .birthright-hero { display: block; }
+}

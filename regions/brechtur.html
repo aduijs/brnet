@@ -41,11 +41,11 @@
     }
 
     [data-theme="dark"] {
-      --bg-primary: #060606;
-      --bg-secondary: #0c0c0c;
-      --bg-elevated: #111111;
-      --bg-surface: #1a1a1a;
-      --bg-card: #0f0f0f;
+      --bg-primary: #1a1d24;
+      --bg-secondary: #1e2128;
+      --bg-elevated: #252830;
+      --bg-surface: #2a2d36;
+      --bg-card: #1e2128;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
       --text-muted: rgba(240, 236, 228, 0.45);
@@ -540,7 +540,53 @@
         opacity: 0.6 !important;
       }
     }
-  </style>
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
 </head>
 
 <body>
@@ -563,7 +609,7 @@
         <a href="../index.html#regions" class="nav-link">Regions</a>
         <a href="../tour.html" class="nav-link">Tour</a>
         <a href="../compendium.html" class="nav-link">Compendium</a>
-        <a href="http://www.birthright.net/forums/showwiki.php" class="nav-link">Wiki</a>
+        <a href="../wiki.html" class="nav-link">Wiki</a>
         <a href="../index.html#community" class="nav-link">Community</a>
       </div>
 
@@ -594,7 +640,7 @@
       <a href="../bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
       <a href="../index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
       <a href="../tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
-      <a href="http://www.birthright.net/forums/showwiki.php" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="../wiki.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
       <a href="../index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
 
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
@@ -652,7 +698,7 @@
 
       <!-- CTA -->
       <div class="anim-fade-up anim-d5 flex flex-wrap gap-4 mt-10">
-        <a href="http://www.birthright.net/forums/showwiki.php/index.php/Brechtur" class="btn-primary">
+        <a href="../wiki.html?title=Brechtur" class="btn-primary">
           Explore the Wiki
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
@@ -787,12 +833,12 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1.001A3.75 3.75 0 0012 18z"/></svg>
             </div>
             <div>
-              <span class="typo-label" style="color: var(--text-muted); font-size: 0.7rem;">Cursed Land</span>
+              <span class="typo-label" style="color: var(--text-muted); font-size: 0.7rem;">Pirate Kingdom</span>
               <h3 class="font-impact text-3xl lg:text-4xl tracking-wide uppercase mt-1" style="color: var(--text-primary);">Grabentod</h3>
             </div>
           </div>
           <p class="font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
-            The "Grave of God" — a cursed land where undead stir and the living must be ever vigilant against the darkness.
+            The corsair kingdom of the Great Bay &mdash; ruled by King Ulrich Graben, raider, exile, and self-crowned monarch of a coast no neighbour dares ignore.
           </p>
           <div class="mt-6 h-[1px]" style="background: linear-gradient(90deg, var(--crimson), transparent);"></div>
         </div>

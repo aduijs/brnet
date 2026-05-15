@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SENDOURE — The Crossroads — Where East Meets West | Birthright.net</title>
-  <meta name="description" content="Domain dossier for Sendoure, the great trading crossroads of the Khinasi lands. Ruled by Prince-Merchant Farouk el-Nassir.">
+  <meta name="description" content="Domain dossier for Sendoure, the great trading crossroads of the Khinasi lands. Ruled by Emir Beysim ibn Faroud el-Duatim, Absolute Monarch of the Northern Marches.">
   <meta property="og:title" content="Sendoure — Domain Dossier">
-  <meta property="og:description" content="The Crossroads where east meets west. Prince-Merchant Farouk presides over Cerilia's greatest marketplace.">
+  <meta property="og:description" content="The Crossroads where east meets west. Emir Beysim el-Duatim presides over Cerilia's greatest marketplace.">
   <meta property="og:image" content="../brand_assets/khinasi%20800x600.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -43,11 +43,11 @@
     }
 
     [data-theme="dark"] {
-      --bg-primary: #060606;
-      --bg-secondary: #0c0c0c;
-      --bg-elevated: #111111;
-      --bg-surface: #1a1a1a;
-      --bg-card: #0f0f0f;
+      --bg-primary: #1a1d24;
+      --bg-secondary: #1e2128;
+      --bg-elevated: #252830;
+      --bg-surface: #2a2d36;
+      --bg-card: #1e2128;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
       --text-muted: rgba(240, 236, 228, 0.45);
@@ -433,7 +433,53 @@
         opacity: 0.6 !important;
       }
     }
-  </style>
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
 </head>
 
 <body>
@@ -452,7 +498,7 @@
         <a href="../index.html#regions" class="nav-link">Regions</a>
         <a href="../tour.html" class="nav-link">Tour</a>
         <a href="../compendium.html" class="nav-link">Compendium</a>
-        <a href="http://www.birthright.net/forums/showwiki.php?title=Sendoure" class="nav-link">Wiki</a>
+        <a href="../wiki.html?title=Sendoure" class="nav-link">Wiki</a>
         <a href="../index.html#community" class="nav-link">Community</a>
       </div>
 
@@ -479,7 +525,7 @@
       <a href="../bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
       <a href="../index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
       <a href="../tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
-      <a href="http://www.birthright.net/forums/showwiki.php?title=Sendoure" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="../wiki.html?title=Sendoure" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
       <a href="../index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
@@ -544,7 +590,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div>
             <span class="typo-label block mb-3" style="color: var(--gold);">Ruler</span>
-            <p class="font-display text-base font-semibold mb-1" style="color: var(--text-primary);">Prince-Merchant Farouk el-Nassir</p>
+            <p class="font-display text-base font-semibold mb-1" style="color: var(--text-primary);">Emir Beysim ibn Faroud el-Duatim</p>
             <p class="font-body text-sm" style="color: var(--text-secondary);">Male Khinasi, Rogue/Noble</p>
             <p class="font-body text-sm mt-1" style="color: var(--text-muted);">Bloodline: Brenna, Minor, 22</p>
           </div>
@@ -585,9 +631,9 @@
             The<br><span class="word-accent">Crossroads</span>
           </h2>
           <div class="space-y-6 font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
-            <p>Sendoure is a vibrant trading crossroads where caravans from every corner of Cerilia converge. The Prince-Merchant rules a domain that thrives on commerce, diplomacy, and the controlled chaos of the marketplace.</p>
+            <p>Sendoure is a vibrant trading crossroads where caravans from every corner of Cerilia converge. The Emir rules a domain that thrives on commerce, diplomacy, and the controlled chaos of the marketplace, exploiting Sendoure's location on the only decent land route between the Khinasi states and Anuire.</p>
             <p>Sendoure is neutral ground &mdash; a place where enemies can trade peacefully and where information flows as freely as gold. The city's bazaars are legendary, and it's said that anything in Cerilia can be bought in Sendoure if you know whom to ask.</p>
-            <p>The Prince-Merchant's Brenna bloodline gives him an almost supernatural talent for negotiation and deal-making, allowing him to maintain Sendoure's neutrality even in the most heated conflicts.</p>
+            <p>Emir Beysim el-Duatim &mdash; styled "Absolute Monarch of the Northern Marches" &mdash; assumed the throne when his elder brother died on a hunting trip. His power as a Khinasi wizard, and his uneasy alliance with the Brecht crime lord Helmut Gruber of the Ghoudai&euml; Coster, keep him secure on the throne.</p>
           </div>
         </div>
         <div class="lg:col-span-4 reveal-right">
@@ -647,12 +693,12 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
             </div>
             <div>
-              <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Prince-Merchant Farouk el-Nassir</h3>
-              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Ruler of Sendoure</span>
+              <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Emir Beysim el-Duatim</h3>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Absolute Monarch of the Northern Marches</span>
             </div>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            Charming, unpredictable, and possibly the best-connected person in Cerilia. Farouk knows everyone, owes everyone, and is owed by everyone &mdash; a web of debts and favors that is his true source of power.
+            Egotistical, image-obsessed, and possibly the best-connected regent in southern Cerilia. The emir collects titles, honorifics, and ancient precedents the way other rulers collect armies, and uses each one to bury his detractors in legal confusion. Beneath the opulence is a 7th-level Khinasi wizard with a sharp instinct for survival.
           </p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </div>
@@ -703,7 +749,7 @@
             <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Neutrality as Strategy</h3>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            Sendoure's greatest asset is its neutrality. The Prince-Merchant maintains this through a complex web of agreements, bribes, and mutual dependencies. If any one faction gained control, the others would destroy Sendoure rather than let it be used against them.
+            Sendoure's greatest asset is its neutrality. The Emir maintains this through a complex web of agreements, bribes, and mutual dependencies. If any one faction gained control, the others would destroy Sendoure rather than let it be used against them.
           </p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </div>
@@ -818,10 +864,10 @@
             <a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
-            <a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+            <a href="/forum" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Sendoure" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+            <a href="../wiki.html?title=Sendoure" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
@@ -834,16 +880,16 @@
             <a href="../regions/khinasi.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Khinasi</a>
             <a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Bloodlines</a>
             <a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Tour</a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Sendoure" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../wiki.html?title=Sendoure" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
 
         <div>
           <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
           <div class="flex flex-col gap-3">
-            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="/forum" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
             <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Sendoure" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../wiki.html?title=Sendoure" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
       </div>

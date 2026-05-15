@@ -1,0 +1,43 @@
+@use "lib/viewport";
+
+.views {
+  @include viewport.until(md) {
+    display: none;
+  }
+
+  .has-sidebar-page & {
+    @include viewport.until(lg) {
+      display: none;
+    }
+  }
+}
+
+.topic-list-item {
+  @include hover-highlight;
+
+  .main-link {
+    // Hack to make the table row truncate properly without declaring a fixed width:
+    // https://stackoverflow.com/a/19342181
+    width: 100%;
+    max-width: 0;
+    padding-top: 1.02em;
+    padding-bottom: 1.02em;
+  }
+
+  // desktop creator column is a div with no padding for easier mobile view styling, make it function like a table cell
+  .creator {
+    display: table-cell;
+    align-content: center;
+  }
+}
+
+// Overwrite core's changes
+.more-topics__container .more-topics__list {
+  .topic-list-body .topic-list-item:first-child td {
+    padding-top: 1.02em;
+  }
+
+  .topic-list-header::after {
+    display: none;
+  }
+}

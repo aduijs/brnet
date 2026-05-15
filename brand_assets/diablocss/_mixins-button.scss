@@ -1,0 +1,238 @@
+// Set the color of the text if it's next to an icon.
+@mixin icon-text-color($color) {
+  &[href] {
+    color: $color;
+  }
+
+  .svg-icon,
+  .d-icon {
+    + .d-label,
+    + .d-button-label {
+      color: $color;
+    }
+  }
+}
+
+// Base styles for all the buttons.
+@mixin button-base {
+  // Use inline flex so that the icons will line up properly with the text.
+  display: inline-flex;
+  align-items: center;
+  transition: $transition-hover-button;
+  font-family: var(
+    --heading-font-family
+  ); // Change font family to the button font variable we defined.
+  // Use the small button style for the button sizing. This is copied from Blizzard UI's .Button--small.
+  font-size: $font-0;
+  font-weight: $font-weight-normal;
+  line-height: normal; // Remove Discourse's 18px line height.
+  white-space: nowrap; // Prevent the button text from wrapping.
+  outline: none;
+
+  // Common disabled styling.
+  &:disabled {
+    cursor: default; // Change the "no smoking" pointer that Discourse uses back to the default cursor.
+    opacity: 1; // Remove the 0.4 opacity that Discourse adds.
+
+    &:hover {
+      color: inherit; // Remove the disabled color hover style that Discourse adds.
+    }
+  }
+
+  // Button icon, if any.
+  .svg-icon {
+    opacity: 1; // Change from Discourse's default of 0.7.
+    transition: opacity $transition-hover-speed;
+    position: relative;
+
+    // If there's a label (an icon + text button), add some space between the icon and the text.
+    + .d-label,
+    + .d-button-label {
+      margin-left: 0.28em;
+      transition: $transition-hover-button;
+    }
+  }
+}
+
+// Primary button style.
+@mixin button-primary {
+  @include button-base;
+  @include icon-text-color($color-button-text);
+  background-color: $color-button-background;
+  border: $border-style-thin $color-button-border;
+  color: $color-button-text;
+
+  &:not(.diversity-scale):hover,
+  &:not(.diversity-scale).btn-hover {
+    background-color: $color-button-background-hover;
+    border: $border-style-thin $color-button-border-hover;
+    color: $color-button-text-hover;
+  }
+
+  // Override a Discourse style that sets the color for links styled as buttons.
+  &[href] .d-icon {
+    fill: $color-button-text;
+  }
+
+  &:active,
+  &.btn-active {
+    background-color: $color-button-background-pressed;
+    border: $border-style-thin $color-button-border-pressed;
+
+    @include icon-text-color($color-button-text-pressed);
+    background-image: none; // Remove Discourse's background-image for primary active buttons.
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    background-color: $color-button-background-disabled;
+    border: $border-style-thin $color-button-border-disabled;
+  }
+}
+
+// Secondary button style.
+@mixin button-secondary {
+  @include button-base;
+  @include icon-text-color($color-text-priority-2);
+  background-color: $color-button-tertiary-background;
+  border: $border-style-thin $color-button-tertiary-border;
+  color: $color-button-flat-text;
+
+  &:not(.diversity-scale):hover,
+  &:not(.diversity-scale).btn-hover {
+    @include icon-text-color($color-button-text-hover);
+    background-color: $color-button-tertiary-background-hover;
+    border: $border-style-thin $color-button-tertiary-border-hover;
+    color: $color-button-flat-text-hover;
+  }
+
+  &.notifications-tracking-btn:hover {
+    border: none;
+    background-color: $color-form-dropdown-background-hover;
+
+    .notifications-tracking-btn__description {
+      color: $color-text-priority-2;
+    }
+  }
+
+  &[href] .d-icon {
+    color: $color-button-tertiary-text;
+  }
+
+  &:active,
+  &.btn-active {
+    @include icon-text-color($color-button-text-pressed);
+    background-color: $color-button-tertiary-background-pressed;
+    border: $border-style-thin $color-button-tertiary-border-pressed;
+
+    @include icon-text-color($color-button-tertiary-text-pressed);
+  }
+
+  &.btn:active:not(:hover, :focus, .discard-draft),
+  &.btn:focus:not(.discard-draft) {
+    background-image: none;
+    outline: solid 1px rgb(255, 255, 255, 0.3);
+    color: $color-button-flat-text-hover;
+
+    .d-icon {
+      color: inherit;
+    }
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    color: $color-button-text-disabled;
+
+    @include icon-text-color($color-button-text-disabled);
+    background-color: $color-button-tertiary-background-disabled;
+    border: $border-style-thin $color-button-tertiary-border-disabled;
+
+    @include icon-text-color($color-button-tertiary-text-disabled);
+  }
+}
+
+// Flat button.
+@mixin button-flat(
+  $color: $color-button-flat-text,
+  $colorHover: $color-button-flat-text-hover,
+  $colorActive: $color-button-flat-text-pressed,
+  $colorDisabled: $color-button-flat-text-disabled
+) {
+  @include button-base;
+  padding: 0;
+  color: $color;
+  background: none;
+  border: none;
+
+  &:not(.diversity-scale):hover,
+  &:not(.diversity-scale).btn-hover {
+    color: $colorHover;
+    background: none;
+    border: none;
+  }
+
+  &:active,
+  &.btn-active {
+    color: $colorActive;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    color: $colorDisabled;
+    background: none;
+    border: none;
+  }
+}
+
+@mixin button-flat-gray(
+  $color: $color-text-priority-3,
+  $colorHover: $color-text-priority-2,
+  $colorActive: $color-text-priority-4,
+  $colorDisabled: $color-text-priority-5
+) {
+  @include button-flat($color, $colorHover, $colorActive, $colorDisabled);
+}
+
+@mixin button-danger {
+  @include button-base;
+  @include icon-text-color($color-button-danger-text);
+  background-color: $color-button-tertiary-background;
+  border: $border-style-thin $color-button-danger-text;
+  color: $color-button-danger-text;
+
+  .d-icon {
+    color: $color-button-danger-text;
+  }
+
+  &:not(.diversity-scale):hover,
+  &:not(.diversity-scale).btn-hover {
+    @include icon-text-color($color-button-danger-text-hover);
+    background-color: $color-button-tertiary-background-hover;
+    border: $border-style-thin $color-button-danger-text-hover;
+    color: $color-button-danger-text-hover;
+  }
+
+  // Override a Discourse style that sets the color for links styled as buttons.
+  &[href] {
+    color: $color-button-danger-text;
+  }
+
+  &:active,
+  &.btn-active {
+    @include icon-text-color($color-button-text-pressed);
+    background-color: $color-button-danger-text;
+    border: $border-style-thin $color-button-danger-text-hover;
+    color: $color-button-tertiary-text-pressed;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    @include icon-text-color($color-button-danger-text-disabled);
+    background-color: $color-button-tertiary-background-disabled;
+    border: $border-style-thin $color-button-tertiary-border-disabled;
+    color: $color-button-danger-text-disabled;
+  }
+}

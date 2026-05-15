@@ -1,0 +1,2 @@
+.group-tracker-nav{background-color:var(--secondary);display:inline-flex;height:100%;gap:.5em}.group-tracker-nav .btn{display:inline-flex;gap:.15em}.group-tracker{align-self:stretch}.group-tracker-jump-prev{flex-direction:row-reverse}
+/*# sourceMappingURL=discourse-group-tracker_9b77ce794e138f82a556ee84073b753145ec238e.css.map?__ws=us.forums.blizzard.com */

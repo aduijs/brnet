@@ -1,0 +1,1037 @@
+/*
+   ----------------------------------------------------------------------------
+   Targets Discourse 2026.5+ with desktop_category_page_style =
+   "categories_and_top_topics" and the Glimmer renderer.
+
+   PROTOTYPE → DISCOURSE CLASS MAPPING
+   ----------------------------------------------------------------------------
+   Prototype class       → Real Discourse class(es)
+   ----------------------------------------------------------------------------
+   .userbar              → custom connector (.birthright-userbar) above .d-header
+   .hero                 → custom connector (.birthright-hero) below .d-header
+   .discourse-strip      → .d-header-wrap (we do NOT add a second strip; the
+                            existing breadcrumb is in .category-breadcrumb)
+   .page                 → #main-outlet, with ::before gradient
+   .container            → .container or .full-width.contents (varies by route)
+   .page-title h1        → .navigation-container h1, .category-name,
+                            .topic-list-header (we re-style each)
+   .tabs / .tab          → .nav-pills > li > a (Discourse navigation pills)
+   .tab.active           → .nav-pills > li > a.active
+   .cat-list             → .category-list (table) OR .categories-list
+   .cat-card             → .category-list-item, .category, .category-box,
+                            .category-box-inner — we target ALL of them
+   .cat-icon (Crest)     → injected via plugin-outlet
+                            "category-box-before" + connector .gjs
+                            (or we replace .badge-category-bg via initializer)
+   .cat-title            → .category-title-link .category-name
+   .cat-desc             → .category-description
+   .topic-list           → .topic-list (the <table>)
+   .topic-row            → .topic-list-item OR .latest-topic-list-item
+   .topic-row-title      → .main-link .title, .raw-link, .raw-topic-link
+   .tr-cat               → .badge-wrapper.bullet, .badge-category
+   .tr-replies           → .num.posts-map .number, .posts .number
+   .tr-time              → .num.activity .age
+   .tt-blizz             → .topic-statuses (we add a class for "BR" badge)
+   .tt-pin               → .topic-statuses .pinned
+   .tt-lock              → .topic-statuses .locked
+   .post                 → article.boxed.regular, .topic-post
+   .post-meta            → .topic-meta-data
+   .post-author          → .first.username a
+   .post-time            → .post-info .post-date
+   .post-body            → .cooked
+   .post-quote           → aside.quote
+   .replies-toggle       → .show-replies
+   .post-actions         → nav.post-controls .actions
+   .composer             → #reply-control
+   .composer-toolbar     → #reply-control .d-editor-button-bar
+   .thread-timeline      → #topic-progress-wrapper, .timeline-container
+   .login-card           → .login-modal .modal-body OR /login route container
+   .profile-banner       → .user-main .user-profile-image
+   .profile-avatar       → .user-main .details .avatar
+   .profile-tabs         → .user-secondary-navigation
+   .stat-card            → .user-stream-summary, .user-card .card-content
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   Tokens — driven by theme settings (see settings.yml)
+   --------------------------------------------------------------------------- */
+
+:root {
+  --br-bg:          #1a1d24;
+  --br-bg-2:        #1e2128;
+  --br-bg-3:        #252830;
+  --br-bg-hover:    #2a2d36;
+  --br-border:      #2f323a;
+  --br-border-soft: #262932;
+  --br-text:        #e6e8eb;
+  --br-text-2:      #c2c5cb;
+  --br-text-muted:  #8b8e96;
+  --br-text-faint:  #6b6e76;
+  --br-link:        #6ab1ff;
+  --br-link-2:      #8cc3ff;
+  --br-views:       #e6c200;
+  --br-userbar-bg:  #14161b;
+  --br-userbar-border: #0e1014;
+
+  /* Accent — overridden by [data-br-accent="..."] on <html> via initializer */
+  --br-accent:      #c8466a;
+  --br-accent-2:    #ff5577;
+
+  /* Top page gradient — overridden by [data-br-hero="..."] on <html> */
+  --br-gradient-top: radial-gradient(
+    ellipse 1200px 480px at 50% -100px,
+    rgba(148, 30, 60, 0.55) 0%,
+    rgba(72, 18, 36, 0.35) 35%,
+    rgba(26, 29, 36, 0) 80%
+  );
+}
+
+html[data-br-accent="blood"]   { --br-accent:#a82c4c; --br-accent-2:#d83865; }
+html[data-br-accent="amber"]   { --br-accent:#d4a04a; --br-accent-2:#f0bc60; }
+html[data-br-accent="azure"]   { --br-accent:#5b8def; --br-accent-2:#7aabff; }
+html[data-br-accent="emerald"] { --br-accent:#5fa869; --br-accent-2:#7cc488; }
+
+html[data-br-hero="ember"]   { --br-gradient-top: radial-gradient(ellipse 1200px 480px at 50% -100px, rgba(180, 80, 30, 0.50) 0%, rgba(80, 36, 18, 0.30) 35%, rgba(26, 29, 36, 0) 80%); }
+html[data-br-hero="arcane"]  { --br-gradient-top: radial-gradient(ellipse 1200px 480px at 50% -100px, rgba(70, 40, 140, 0.50) 0%, rgba(36, 22, 80, 0.30) 35%, rgba(26, 29, 36, 0) 80%); }
+html[data-br-hero="forest"]  { --br-gradient-top: radial-gradient(ellipse 1200px 480px at 50% -100px, rgba(40, 100, 60, 0.45) 0%, rgba(20, 50, 30, 0.30) 35%, rgba(26, 29, 36, 0) 80%); }
+
+/* Hide hero when toggled off via initializer (data attr on body). */
+body[data-br-hero-banner="false"] .birthright-hero { display: none !important; }
+
+/* ---------------------------------------------------------------------------
+   Global resets — apply Inter, base background, scrollbars
+   --------------------------------------------------------------------------- */
+
+html, body, #main-outlet {
+  background: var(--br-bg) !important;
+  color: var(--br-text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--br-border); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--br-bg-3); }
+
+/* ---------------------------------------------------------------------------
+   Burgundy gradient — bleeds from top of #main-outlet on every route.
+   --------------------------------------------------------------------------- */
+
+#main-outlet-wrapper { position: relative; }
+#main-outlet-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 600px;
+  background: var(--br-gradient-top);
+  pointer-events: none;
+  z-index: 0;
+}
+#main-outlet-wrapper > * { position: relative; z-index: 1; }
+
+/* ---------------------------------------------------------------------------
+   .d-header — Discourse's header. We make it dark, slim, and Birthright-shaped.
+   The branded userbar above it comes from the connector
+   above-site-header/birthright-userbar.gjs
+   --------------------------------------------------------------------------- */
+
+.d-header {
+  background: var(--br-userbar-bg);
+  border-bottom: 1px solid var(--br-userbar-border);
+  box-shadow: none;
+  height: 44px;
+
+  .contents {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding: 0 22px;
+    gap: 18px;
+  }
+
+  .title { display: none; } /* we render our own brand in the connector */
+
+  .panel .icons .icon,
+  .header-buttons .btn {
+    color: var(--br-text-muted);
+
+    &:hover { color: var(--br-text); background: rgba(255,255,255,0.06); }
+  }
+}
+
+/* The branded userbar connector — sits above .d-header */
+.birthright-userbar {
+  /* If you prefer ABOVE the d-header, set position:sticky here.
+     We ship it INSIDE the d-header by replacing .title via connector. */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  color: var(--br-text);
+
+  .br-userbar-mark {
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, var(--br-accent), #7a1a35);
+    border-radius: 4px;
+    display: grid; place-items: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Hero connector — below-site-header/birthright-hero.gjs
+   --------------------------------------------------------------------------- */
+
+.birthright-hero {
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+  background: #0a0c10;
+
+  .br-hero-img {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,12,16,0) 0%, rgba(10,12,16,0) 60%, rgba(10,12,16,1) 100%),
+      radial-gradient(ellipse at 30% 50%, rgba(180, 60, 40, 0.45) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 40%, rgba(220, 130, 60, 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 90%, rgba(40, 18, 24, 0.85) 0%, rgba(10,12,16,1) 70%),
+      linear-gradient(180deg, #2c1418 0%, #1a0f14 50%, #0a0c10 100%);
+  }
+  .br-hero-img.has-image {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .br-hero-title-wrap {
+    position: absolute;
+    left: 6%;
+    top: 60px;
+    z-index: 2;
+  }
+  .br-hero-title {
+    font-family: "Cinzel", "Times New Roman", serif;
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin: 0;
+    background: linear-gradient(180deg, #ffd591 0%, #d4a04a 50%, #8a5a1f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 40px rgba(180, 80, 30, 0.4);
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
+    line-height: 0.95;
+  }
+  .br-hero-sub {
+    font-family: "Cinzel", serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.30em;
+    color: #c89a55;
+    margin-top: 6px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Page title (Categories / Category-name / Profile-name)
+   Discourse renders these in different containers; we normalize.
+   --------------------------------------------------------------------------- */
+
+.navigation-container,
+.category-heading,
+#main-outlet .navigation-container h1 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  row-gap: 4px;
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+
+#main-outlet h1,
+.category-name,
+.topic-list-bottom h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------------
+   Navigation pills — Discourse's nav-pills become our underlined tabs.
+   --------------------------------------------------------------------------- */
+
+.nav-pills {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--br-border);
+  margin: 0 0 36px;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    margin: 0;
+
+    > a {
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--br-text-muted);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.12s;
+      background: transparent !important;
+
+      &:hover { color: var(--br-text-2); }
+
+      &.active {
+        color: var(--br-accent-2);
+        border-bottom-color: var(--br-accent);
+      }
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Categories page — desktop_category_page_style: "subcategories_with_featured_topics"
+   Discourse renders parents as section headers and children as cards beneath.
+   We layer in the TOP rail via the connector
+     connectors/discovery-categories-above/birthright-top-rail.gjs
+   See common/top-rail.scss for the grid that places the rail in column 2.
+   --------------------------------------------------------------------------- */
+
+.categories-and-top-topics,
+.category-list-and-top-topics {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 56px;
+
+  > .category-list-container,
+  > .top-topic-list-container {
+    min-width: 0;
+  }
+}
+
+/* Section labels (COMMUNITY / GAMEPLAY & LORE / SITE) come from the
+   parent-category headers Discourse already renders. We restyle them. */
+
+.category-list .category-list-header,
+.parent-category-row .parent-category-name {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--br-text-muted);
+  margin: 24px 0 14px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+/* Category card. Discourse classes shift between renderers — target both. */
+
+.category-list-item,
+.category-box,
+.category-box-inner {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  transition: background 0.12s, border-color 0.12s;
+  align-items: flex-start;
+  margin-bottom: 8px;
+
+  &:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .category-logo,
+  .badge-category-bg,
+  .category-box-heading-icon {
+    /* hide Discourse's stock icon — replaced by our crest connector */
+    display: none !important;
+  }
+
+  .category-title-link,
+  .category-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+
+  .category-description,
+  .subcategories-list {
+    font-size: 13px;
+    color: var(--br-text-muted);
+    line-height: 1.45;
+    margin: 3px 0 0;
+  }
+}
+
+/* Crest — rendered by connector category-box-before/birthright-crest */
+.birthright-crest {
+  width: 36px; height: 36px;
+  flex-shrink: 0;
+  display: grid; place-items: center;
+  border-radius: 4px;
+  background: var(--br-cat-color, var(--br-accent));
+  position: relative;
+
+  .br-crest-inner {
+    width: 28px; height: 28px;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.25), transparent 50%),
+      var(--br-cat-color, var(--br-accent));
+    transform: rotate(45deg);
+    display: grid; place-items: center;
+    border-radius: 3px;
+
+    .br-crest-letter {
+      transform: rotate(-45deg);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: -0.02em;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Top topics rail (right column on home; also reused on category page).
+   Discourse class: .latest-topic-list-item
+   --------------------------------------------------------------------------- */
+
+.latest-topic-list,
+.top-topic-list {
+  .latest-topic-list-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--br-border-soft);
+    display: block;
+
+    .main-link a.title,
+    .raw-topic-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--br-text);
+      line-height: 1.4;
+      transition: color 0.12s;
+
+      &:hover { color: var(--br-link-2); }
+    }
+
+    .topic-stats,
+    .topic-last-activity-date,
+    .topic-category {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--br-text-muted);
+      margin-right: 12px;
+    }
+
+    .topic-stats .number { color: var(--br-link); }
+
+    .badge-wrapper.bullet .badge-category-bg {
+      width: 8px; height: 8px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Category drill-in — the topic list table.
+   Discourse renders a <table class="topic-list">.
+   --------------------------------------------------------------------------- */
+
+.topic-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+
+  thead th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--br-text-muted);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--br-border);
+    background: transparent;
+    text-transform: capitalize;
+  }
+  th.posters, th.replies, th.likes, th.posts, th.views { text-align: center; }
+  th.activity { text-align: right; }
+
+  tbody tr.topic-list-item {
+    cursor: pointer;
+    transition: background 0.12s;
+
+    &:hover { background: rgba(255,255,255,0.025); }
+
+    > td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--br-border-soft);
+      font-size: 14px;
+      vertical-align: middle;
+    }
+  }
+
+  /* Pinned rows */
+  tr.topic-list-item.pinned {
+    background: rgba(255,255,255,0.02);
+    > td { background: rgba(255,255,255,0.02); }
+  }
+
+  .main-link {
+    .title.raw-link.raw-topic-link,
+    a.raw-link {
+      color: var(--br-text);
+      font-weight: 400;
+      text-decoration: none;
+    }
+    .topic-statuses {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 6px;
+
+      .pinned svg, .pin svg { color: var(--br-accent-2); }
+      .closed svg, .locked svg { color: var(--br-text-faint); }
+    }
+  }
+
+  /* "BR" badge — added by initializer for staff-flagged topics */
+  .topic-list-item.br-flagged .main-link::before {
+    content: "BR";
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #6ab1ff, #2c5fbf);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    margin-right: 6px;
+  }
+
+  /* Avatar in the posters cell */
+  .posters a img.avatar,
+  td.posters a:first-child img.avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+  }
+
+  td.replies, td.posts, td.likes { text-align: center; }
+  td.replies .number, td.posts .number {
+    color: var(--br-link);
+    font-weight: 500;
+  }
+  td.views {
+    text-align: center;
+    color: var(--br-text-2);
+    font-weight: 500;
+
+    &.heatmap-high .number { color: var(--br-views); font-weight: 600; }
+  }
+  td.activity {
+    text-align: right;
+    color: var(--br-text-muted);
+    font-size: 13px;
+
+    .relative-date { color: inherit; }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Topic / thread view
+   --------------------------------------------------------------------------- */
+
+#topic-title h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.topic-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--br-text-2);
+
+  .badge-category-bg {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+  }
+}
+
+#topic article.boxed.regular,
+.topic-post {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 14px;
+  padding: 22px 0;
+
+  &:not(:last-child) { border-bottom: 1px solid var(--br-border-soft); }
+
+  .topic-avatar { width: 48px; }
+  .topic-avatar img.avatar {
+    width: 48px; height: 48px;
+    border-radius: 4px;
+  }
+
+  .topic-meta-data {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: nowrap;
+    min-width: 0;
+
+    .first.username a {
+      font-weight: 700;
+      color: #fff;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .second.poster-icon { font-size: 12px; color: var(--br-text-muted); white-space: nowrap; }
+    .post-info.post-date { margin-left: auto; color: var(--br-text-faint); font-size: 12px; white-space: nowrap; }
+    .post-info.edits { color: var(--br-text-muted); font-size: 12px; }
+  }
+
+  .cooked {
+    color: var(--br-text);
+    line-height: 1.6;
+    font-size: 15px;
+
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    aside.quote {
+      background: rgba(255,255,255,0.04);
+      border: 0;
+      border-left: 3px solid var(--br-border);
+      padding: 10px 14px;
+      margin: 8px 0 12px;
+      border-radius: 0 4px 4px 0;
+
+      .title {
+        font-size: 12px;
+        color: var(--br-text-muted);
+        background: transparent;
+        padding: 0 0 6px;
+      }
+      blockquote {
+        color: var(--br-text-2);
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  nav.post-controls .actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 14px;
+
+    button {
+      background: transparent;
+      border: 0;
+      color: var(--br-text-muted);
+      padding: 0;
+      font-size: 13px;
+
+      &:hover { color: var(--br-text); }
+      &.like-button.has-like { color: var(--br-accent-2); }
+    }
+  }
+}
+
+/* Replies-toggle */
+.show-replies {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--br-link);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--br-border-soft);
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-top: 14px;
+}
+
+/* Timeline rail (#topic-progress-wrapper / .timeline-container) */
+.timeline-container {
+  background: transparent !important;
+  border: 0 !important;
+  width: 60px;
+
+  .topic-timeline {
+    color: var(--br-text-muted);
+    font-size: 12px;
+    text-align: center;
+
+    .timeline-scrollarea {
+      background: var(--br-border);
+      width: 1px;
+
+      .timeline-handle {
+        background: var(--br-link);
+        width: 3px;
+        border-radius: 2px;
+      }
+    }
+    .timeline-date-wrapper { color: var(--br-text-muted); }
+  }
+}
+
+/* Composer */
+#reply-control {
+  background: var(--br-bg-2);
+  border-top: 1px solid var(--br-border);
+  border-radius: 6px 6px 0 0;
+
+  .d-editor-button-bar {
+    background: transparent;
+    border-bottom: 1px solid var(--br-border-soft);
+    padding-bottom: 10px;
+
+    .d-editor-button {
+      color: var(--br-text-muted);
+      &:hover { color: var(--br-text); background: rgba(255,255,255,0.06); }
+    }
+  }
+
+  .d-editor-input {
+    background: transparent;
+    color: var(--br-text);
+    border: 0;
+    font-family: inherit;
+  }
+
+  .save-or-cancel {
+    .btn-primary { background: var(--br-accent); border-color: var(--br-accent); }
+    .btn-primary:hover { background: var(--br-accent-2); border-color: var(--br-accent-2); }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons (global)
+   --------------------------------------------------------------------------- */
+
+.btn-primary {
+  background: var(--br-accent);
+  border: 1px solid var(--br-accent);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 7px 14px;
+  border-radius: 4px;
+
+  &:hover, &:focus { background: var(--br-accent-2); border-color: var(--br-accent-2); }
+}
+
+.btn-default,
+.btn-flat {
+  background: transparent;
+  border: 1px solid var(--br-border);
+  color: var(--br-text-2);
+  font-weight: 500;
+  font-size: 13px;
+  padding: 7px 14px;
+  border-radius: 4px;
+
+  &:hover {
+    border-color: var(--br-text-muted);
+    color: var(--br-text);
+    background: rgba(255,255,255,0.03);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Login modal — Discourse renders a modal at /login.
+   We can't fully replace it with a routed page (see README), but we can
+   make it match the design.
+   --------------------------------------------------------------------------- */
+
+.login-modal,
+.create-account {
+  .modal-inner-container {
+    background: rgba(28, 31, 38, 0.90);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--br-border);
+    border-radius: 8px;
+    width: 420px;
+    padding: 36px;
+  }
+
+  .login-title, .create-account-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 6px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    background: #11131a;
+    border: 1px solid var(--br-border);
+    border-radius: 4px;
+    color: var(--br-text);
+    padding: 9px 12px;
+    width: 100%;
+
+    &:focus {
+      border-color: var(--br-accent);
+      box-shadow: 0 0 0 2px rgba(200, 70, 106, 0.2);
+      outline: none;
+    }
+  }
+
+  .btn-primary.login-button { width: 100%; padding: 10px; justify-content: center; }
+}
+
+/* ---------------------------------------------------------------------------
+   Profile page — /u/:username/summary
+   --------------------------------------------------------------------------- */
+
+.user-main {
+  .user-profile-image {
+    height: 180px;
+    background:
+      linear-gradient(180deg, rgba(10,12,16,0) 0%, rgba(10,12,16,0.6) 70%, rgba(26,29,36,1) 100%),
+      radial-gradient(ellipse at 30% 50%, rgba(180, 60, 40, 0.4) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 40%, rgba(220, 130, 60, 0.3) 0%, transparent 60%),
+      linear-gradient(180deg, #2c1418 0%, #1a0f14 50%, #0a0c10 100%);
+  }
+
+  .details {
+    margin-top: -60px;
+
+    .avatar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--br-bg);
+    }
+
+    .username h1 {
+      font-size: 26px; font-weight: 700; color: #fff; margin: 0;
+    }
+  }
+
+  .user-secondary-navigation { margin-top: 22px; }
+}
+
+.user-stream-summary,
+.user-card .card-content,
+.user-stat-block {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--br-border-soft);
+  border-radius: 6px;
+  padding: 14px 16px;
+}
+
+/* ---------------------------------------------------------------------------
+   Sidebar — we hide it; Birthright uses the dropdown header nav instead.
+   This is enforced via site setting `navigation_menu = "header dropdown"`,
+   but defensive CSS in case an admin flips it back.
+   --------------------------------------------------------------------------- */
+
+.has-sidebar-page #main-outlet-wrapper > .sidebar-wrapper { display: none; }
+
+
+/* ===== Top rail (Pad A — discovery-categories-above connector) ===== */
+
+/* Birthright top-topics rail — paired with
+   connectors/discovery-categories-above/birthright-top-rail.gjs.
+
+   The connector lands inside .discovery.categories. We turn its container
+   into a 2-column grid: cats stack left, rail right.
+
+   Note on selectors: Discourse renders the page as
+     <section class="discovery-categories">
+       <div class="contents">
+         <div class="container">
+           ... parents-as-labels + children-as-cards (native) ...
+           <div class="custom-emoji-section ... discovery-categories-above">
+             <div class="birthright-top-rail">...</div>  ← our connector
+           </div>
+         </div>
+       </div>
+     </section>
+
+   We promote the rail out of its plugin-outlet wrapper and grid it next
+   to the cats list. Easiest reliable path: position the rail via grid on
+   .discovery-categories .container, and let the cats list flow as the
+   first track. The plugin-outlet wrapper is display:contents so it
+   doesn't break the grid.
+*/
+
+@media (min-width: 1024px) {
+  .discovery-categories .container,
+  .navigation-categories + .container,
+  .category-list-and-top-topics {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* Plugin-outlet wrappers pass through */
+  .discovery-categories-above-outlet,
+  .discovery-categories-above {
+    display: contents;
+  }
+
+  /* Cats list spans the first column */
+  .discovery-categories .category-list,
+  .discovery-categories .parent-category-row,
+  .discovery-categories .subcategories-with-featured-topics {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  /* Rail spans the second column, sticks to top */
+  .birthright-top-rail {
+    grid-column: 2;
+    grid-row: 1 / span 99;
+    position: sticky;
+    top: 80px;
+    align-self: start;
+  }
+}
+
+.birthright-top-rail {
+  .br-rail-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--br-text-muted);
+    margin: 24px 0 14px;
+  }
+
+  .br-rail-loading {
+    color: var(--br-text-faint);
+    font-size: 13px;
+    padding: 12px 0;
+  }
+
+  .br-rail-list { display: flex; flex-direction: column; }
+
+  .br-rail-row {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--br-border-soft);
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.12s;
+
+    &:hover .br-rail-title { color: var(--br-link-2); }
+  }
+
+  .br-rail-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 6px;
+    color: var(--br-text);
+  }
+
+  .br-rail-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--br-text-muted);
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+  .br-rail-meta .br-rail-replies {
+    display: inline-flex; align-items: center; gap: 4px;
+    color: var(--br-link);
+  }
+  .br-rail-meta .br-rail-cat {
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .br-rail-meta .br-rail-cat-dot {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+  .br-rail-meta .br-rail-time {
+    margin-left: auto;
+    color: var(--br-text-faint);
+  }
+}
+
+/* Mobile — collapse to single column, rail goes below cats */
+@media (max-width: 1023px) {
+  .birthright-top-rail {
+    margin-top: 32px;
+  }
+}
+
+/* Native parent-category section labels — restyle to match design */
+.discovery-categories {
+  .parent-category-row .parent-category-name,
+  h2.category-title-link,
+  .category-list-header {
+    font-size: 12px !important;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--br-text-muted);
+    margin: 24px 0 14px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+  }
+
+  /* Ensure parent rows render their children directly underneath */
+  .parent-category-row {
+    display: block;
+    margin-bottom: 24px;
+  }
+  .parent-category-row .subcategories,
+  .parent-category-row .category-list-item-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

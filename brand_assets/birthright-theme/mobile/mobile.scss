@@ -1,0 +1,33 @@
+/* Mobile overrides. */
+
+@media (max-width: 1023px) {
+  .birthright-hero {
+    height: 200px;
+
+    .br-hero-title { font-size: 38px; }
+    .br-hero-sub { font-size: 13px; letter-spacing: 0.22em; }
+    .br-hero-title-wrap { left: 5%; top: 32px; }
+  }
+
+  /* Collapse two-column layouts */
+  .categories-and-top-topics,
+  .user-main .user-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Topic table — hide Author + Views columns, keep Title / Replies / Activity */
+  .topic-list {
+    th.posters, td.posters,
+    th.views,   td.views { display: none; }
+  }
+
+  /* Timeline rail collapses to top progress bar */
+  .timeline-container { display: none; }
+
+  #main-outlet { padding-left: 16px; padding-right: 16px; }
+
+  /* Userbar */
+  .d-header .contents { padding: 0 12px; gap: 10px; }
+  .birthright-userbar .br-userbar-name { display: none; }
+}

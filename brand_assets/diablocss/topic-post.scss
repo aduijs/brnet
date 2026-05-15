@@ -1,0 +1,256 @@
+// Parent div for an individual post or reply.
+.topic-post {
+  border-left: none; // Not sure why Discourse adds a transparent 1px left border.
+  border-bottom: $border-style-thin $color-border-light;
+
+  // User title that shows below the username, if the user has a title.
+  .user-title {
+    font-size: $font-down-2;
+    display: block;
+    padding: 0;
+  }
+
+  // Inner wrapper for an individual post.
+  .row {
+    @include flex("none");
+  }
+
+  // Topic avatar showing the user icon and name.
+  .topic-avatar {
+    padding-top: 40px;
+
+    @include very-small-browser-width {
+      // Supporting slightly smaller desktop viewports
+      flex-shrink: 0;
+      border-top: none;
+    }
+  }
+
+  // Topic body containing the post contents and the post buttons.
+  .topic-body {
+    flex: 1 1; // Allowing element to shrink to fit.
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-right: 8px;
+    color: $color-text-priority-2;
+    border-top: none;
+    z-index: auto; // prevents out of bounds content from post to go under next post
+    width: 100vw; // Removing Discourse default width, attempt to take up full width
+    min-width: 0; // Forcing browser to calculate container width
+    max-width: 100%;
+
+    pre,
+    code {
+      white-space: pre-wrap; // Code blocks will be too wide without this, due to topic-body having auto width
+    }
+    word-break: break-word; // Line wrap really long URLs.
+
+    .post-count {
+      word-break: initial; // Do not wrap post counts
+    }
+
+    // Hide the blue background highlight animation.
+    &.highlighted {
+      animation: none;
+    }
+  }
+
+  // Topic metadata. Contains the date and read state bubble for topic replies. Also used to show the username and the
+  // "jump down to post" arrow when the replies button is clicked for a post that has direct replies.
+  .topic-meta-data {
+    align-items: flex-start;
+    padding-right: 0;
+
+    .post-infos {
+      gap: 10px;
+
+      .b-post-statuses:not(:has(> *)) {
+        display: none;
+      }
+    }
+
+    .next-tracked-post {
+      position: absolute;
+      top: 4.2em;
+      right: 1.5em;
+    }
+
+    .names {
+      flex-wrap: wrap;
+      align-items: flex-start;
+
+      .user-title {
+        order: 4;
+        width: 100%;
+      }
+
+      .full-name,
+      .username {
+        @include flex;
+        font-weight: bold;
+        font-size: $font-up-1;
+
+        &.second {
+          display: none;
+        }
+      }
+
+      span {
+        max-width: unset;
+      }
+    }
+  }
+
+  // Post info containing the post date. If this is a direct reply for a post, it will be the "jump down to post" arrow.
+  .post-info {
+    line-height: normal;
+    font-size: $font-down-1;
+
+    // Post date. Clicking on it will show the share link element.
+    .post-date {
+      @include clickable-item;
+    }
+
+    // "Jump down to post" arrow.
+    &.arrow {
+      @include clickable-item;
+      padding: 0.3em 0.5em;
+    }
+  }
+
+  // Icon and username showing which user the current post is in reply to. Clicking on it will show the replied-to post
+  // above the current post.
+  .reply-to-tab {
+    @include flex;
+    margin-right: 1em;
+    font-size: $font-down-1;
+
+    // Add some space between each item in the reply to tab.
+    .avatar {
+      margin: 0 0.4em;
+      height: 14px;
+      width: 14px;
+    }
+  }
+
+  // Read state bubble, showing if the post has not been read yet and fades away once you scroll to the unread post.
+  .read-state {
+    position: static;
+    color: $brand-primary;
+  }
+
+  // The embedded post that this post is in reply to
+  .embedded-posts.top {
+    margin-left: 90px; // Width of .topic-avatar
+    margin-top: $large-space;
+    padding: 0 11px;
+  }
+
+  // Direct replies to a post that shows when you click the "X Replies" button.
+  .embedded-posts .reply {
+    // Parent element for the "jump down to post" arrow.
+    .post-link-arrow {
+      margin-left: auto;
+    }
+
+    .topic-avatar {
+      display: none;
+    }
+
+    .topic-body {
+      @include quote-box;
+      padding: $large-space;
+    }
+
+    // Text of the reply.
+    .cooked {
+      margin-top: $medium-space;
+    }
+  }
+
+  // Select post button. Displays when the "Select Post..." option is selected in the admin menu.
+  article.boxed .select-posts button {
+    @include button-primary;
+  }
+
+  // This post has been selected. Make it look like an :active button.
+  &.selected article.boxed .select-posts button.select-post {
+    background-color: $color-button-background-pressed;
+    border-color: $color-button-border-pressed;
+    color: $color-button-text;
+  }
+}
+
+// The timeline will be displayed if the width is $timeline-max-width or wider. Narrower than that, the mobile-style timeline that's
+// fixed to the bottom right corner is used instead.
+@include timeline-width {
+  .topic-post {
+    margin-right: $timeline-spacing; // Reserve space for the timeline.
+  }
+}
+
+.post-menu-area {
+  margin-bottom: 0;
+  margin-top: 2em;
+
+  // Treats the whole icon + reply text as one hover target
+  .widget-button.reply.create {
+    &:hover {
+      .d-icon,
+      .d-button-label {
+        color: $color-button-secondary-text-hover;
+      }
+    }
+
+    .d-icon,
+    .d-button-label {
+      color: $brand-primary;
+      transition: color $transition-hover-speed;
+
+      &:hover {
+        color: $color-button-secondary-text-hover;
+      }
+    }
+  }
+
+  .post-controls {
+    .actions button {
+      padding: 8px 10px;
+    }
+  }
+}
+
+.topic-map ul {
+  padding-bottom: 0;
+}
+
+.embedded-posts {
+  &.bottom {
+    margin-top: 1em;
+
+    .row {
+      padding-bottom: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  .row {
+    border: none;
+  }
+
+  .collapse-down,
+  .collapse-up {
+    display: none;
+  }
+}
+
+.time-gap + .topic-post .embedded-posts.top {
+  border: none;
+}
+
+nav.post-controls .show-replies[aria-expanded="true"] {
+  box-shadow: unset;
+}

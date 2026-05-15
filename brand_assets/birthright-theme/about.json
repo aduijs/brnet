@@ -1,0 +1,27 @@
+{
+  "name": "Birthright",
+  "about_url": "https://birthright.net",
+  "license_url": "https://github.com/birthright-net/discourse-theme-birthright/blob/main/LICENSE",
+  "component": false,
+  "assets": {},
+  "color_schemes": {
+    "Birthright Crimson": {
+      "primary":          "#e6e8eb",
+      "secondary":        "#1a1d24",
+      "tertiary":         "#6ab1ff",
+      "quaternary":       "#c8466a",
+      "header_background":"#14161b",
+      "header_primary":   "#e6e8eb",
+      "highlight":        "#c8466a",
+      "danger":           "#e85d75",
+      "success":          "#5fa869",
+      "love":             "#ff5577"
+    }
+  },
+  "modifiers": {
+    "serialize_topic_excerpts": true,
+    "topic_thumbnail_sizes": [[400, 300]]
+  },
+  "theme_version": "1.0.0",
+  "learn_more": "https://meta.discourse.org/t/-/123456"
+}

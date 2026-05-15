@@ -1,0 +1,48 @@
+.character-selector-modal .modal-inner-container {
+  // Safari needs this
+  max-width: 1300px;
+}
+
+.character-selector {
+  // Resize the modal to show up to 3 characters per row
+  width: 1300px;
+}
+
+.blz-second-factor-form {
+  display: none !important;
+}
+
+.selectable-alias button.btn.select-alias-btn {
+  background: transparent;
+  border-color: transparent;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: none;
+    outline: none;
+  }
+
+  &.selected-alias {
+    background-color: rgb(0, 0, 0, 0.2);
+    outline: rgb(255, 255, 255, 0.3) solid 1px;
+  }
+
+  .selectable-character {
+    display: flex;
+    gap: 20px;
+
+    .character-achievement-points,
+    .user-post-count {
+      display: none;
+    }
+  }
+}
+
+// Hide information for silenced users
+.user-main .about .details .primary .bio {
+  .suspended,
+  .silenced {
+    display: none;
+  }
+}

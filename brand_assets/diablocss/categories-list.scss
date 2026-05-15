@@ -1,0 +1,57 @@
+.categories-list .category-list {
+  padding-top: 1em;
+
+  // Remove Discourse's added negative margin to aid styling
+  @include small-browser-width {
+    margin: 0;
+    padding-top: 0;
+  }
+
+  // Add some spacing between each category.
+  .b-category:not(:last-child) {
+    margin-bottom: 1em;
+
+    @include small-browser-width {
+      margin: 0;
+    }
+  }
+
+  // Remove the 10px margin that Discourse adds.
+  .category-description {
+    margin-top: 0;
+  }
+
+  .category-group-name {
+    @include compensate-padding;
+    text-transform: uppercase;
+    color: $color-text-priority-2;
+    margin-bottom: 0.5em;
+
+    &:first-of-type {
+      margin-top: 1.15em;
+    }
+    margin-top: 2.3em;
+    font-size: $font-down-1;
+  }
+
+  .category-icon {
+    margin-top: 0.2em;
+  }
+
+  .category-information {
+    flex: 0 1 100%; // IE11
+    overflow: hidden;
+  }
+
+  .b-categories-columned {
+    columns: 2;
+
+    .b-category {
+      break-inside: avoid;
+    }
+
+    @include small-browser-width {
+      columns: 1;
+    }
+  }
+}

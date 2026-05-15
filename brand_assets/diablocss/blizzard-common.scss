@@ -1,0 +1,633 @@
+html {
+  font-size: $base-font-size;
+
+  &.text-size-smallest {
+    font-size: $base-font-size-smallest;
+  }
+
+  &.text-size-smaller {
+    font-size: $base-font-size-smaller;
+  }
+
+  &.text-size-larger {
+    font-size: $base-font-size-larger;
+  }
+
+  &.text-size-largest {
+    font-size: $base-font-size-largest;
+  }
+
+  // Override scroll behavior set by navbar
+  scroll-behavior: initial !important;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: $color-background-base;
+  color: $color-text;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+  overflow: initial !important; // Override Blizzard set overflow from new navbar
+}
+
+div {
+  box-sizing: border-box;
+}
+
+h1 {
+  @include typography-heading-h1;
+}
+
+h2 {
+  @include typography-heading-h2;
+}
+
+h3 {
+  @include typography-heading-h3;
+}
+
+h4 {
+  @include typography-heading-h4;
+}
+
+h5 {
+  @include typography-heading-h5;
+}
+
+h6 {
+  @include typography-heading-h6;
+}
+
+p {
+  @include typography-text-base;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+li {
+  @include typography-text-base;
+}
+
+a,
+.link {
+  color: $color-text-link;
+  text-decoration: none;
+  transition: $transition-hover-link;
+  cursor: pointer;
+
+  .sublink {
+    color: $color-text-link;
+    text-decoration: none;
+    transition: $transition-hover-link;
+  }
+}
+
+a,
+.link {
+  &:hover {
+    color: $color-text-link-hover;
+    text-decoration: none;
+
+    .sublink {
+      color: $color-text-link-hover;
+      text-decoration: none;
+    }
+  }
+}
+
+a,
+.link {
+  &:disabled,
+  &.is-disabled {
+    color: $color-text-link-disabled;
+    text-decoration: none;
+    cursor: default;
+
+    .sublink {
+      color: $color-text-link-disabled;
+      text-decoration: none;
+      cursor: default;
+    }
+  }
+
+  &.text-priority-2 {
+    color: $color-text-priority-2;
+
+    &:hover {
+      color: $color-text-link-hover;
+      text-decoration: none;
+    }
+
+    &:disabled,
+    &.is-disabled {
+      color: $color-text-link-disabled;
+      text-decoration: none;
+    }
+  }
+
+  &.text-priority-3 {
+    color: $color-text-priority-3;
+
+    &:hover {
+      color: $color-text-link-hover;
+      text-decoration: none;
+    }
+
+    &:disabled,
+    &.is-disabled {
+      color: $color-text-link-disabled;
+      text-decoration: none;
+    }
+  }
+}
+
+input,
+select,
+textarea {
+  box-sizing: border-box;
+  border: $border-style-thin $color-form-border-base;
+  background-color: $color-form-background-base;
+  border-radius: var(--d-border-radius);
+  padding: $medium-space;
+  line-height: normal;
+  font-family: var(--font-family);
+  font-size: $base-font-size;
+  font-weight: $font-weight-normal;
+  color: $color-form-text-base;
+  text-decoration: none;
+  text-align: left;
+  transition: $transition-hover-form;
+
+  &::placeholder {
+    color: $color-text-priority-4;
+    opacity: 1;
+  }
+
+  // Removes default clear-text button
+  &::-ms-clear {
+    display: none;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+  }
+
+  &:not(:disabled, .is-disabled) {
+    &:active,
+    &:focus {
+      background-color: $color-form-background-base;
+      border-color: $color-form-border-active;
+      outline: none;
+    }
+  }
+}
+
+input,
+select,
+textarea {
+  &:not(:disabled, .is-disabled) {
+    &:hover {
+      border-color: $color-form-border-hover;
+      background-color: $color-form-background-hover;
+      outline: none;
+    }
+  }
+}
+
+.Page-container {
+  min-height: 50vh;
+}
+
+// Center the icons with the text within labels.
+label {
+  @include text-with-icon($marginAmount: $small-space);
+  align-items: baseline;
+
+  // Add some space between checkboxes and their labels.
+  input[type="checkbox"] {
+    margin: 0 $small-space 0 0;
+    min-height: auto;
+  }
+}
+
+// Hide the alerts that show for new Discourse instances.
+.alert-too-few-topics,
+.alert-bootstrap-mode,
+.alert-wizard {
+  display: none;
+}
+
+tbody {
+  border-top: 1px solid $color-border-primary;
+}
+
+// Don't bold table headers.
+th {
+  font-weight: normal;
+}
+
+tr {
+  border-color: $color-border-primary;
+}
+
+hr {
+  height: 0; // Remove the 1px height that Discourse adds, the hr already has a border-top that gives it a 1px height.
+}
+
+// Change the circle avatars to square avatars.
+img.avatar {
+  border-radius: 0;
+}
+
+// Make the max width and padding of the page contents the same as the Blizzard navbar so that they match up visually.
+.wrap,
+#main-outlet {
+  @include small-browser-width {
+    padding: 0.5em;
+  }
+  max-width: $full-max-width;
+  padding: 0 $main-content-padding;
+}
+
+// Vertically align the category name and the icon next to it. This is used in multiple places.
+.badge-wrapper .badge-category {
+  @include text-with-icon;
+  font-weight: normal;
+}
+
+// Topic status icons. This is used in several places.
+.topic-statuses {
+  .topic-status {
+    color: inherit; // For icons that are links and are using the link color. Make it inherit the color instead.
+  }
+}
+
+// Loading spinner.
+.user-menu .quick-access-panel .spinner,
+.spinner {
+  background-image: url($blizzard-spinner-small);
+  animation: none;
+  height: 40px;
+  width: 40px;
+  border: none;
+
+  &.small {
+    @include spinner-size(20px, 1.2s);
+  }
+}
+
+// Align the button examples to the bottom edge of the div so that it's easier to see the size differences.
+.buttons-examples .styleguide-example .rendered {
+  @include flex("none");
+  align-items: flex-end;
+}
+
+// Remove the bottom margin for the button examples so that they align to the bottom edge properly.
+.buttons-examples button {
+  margin-bottom: 0;
+}
+
+// Make the category selector dropdown wider so that it more closely resembles how it would look in the compose UI.
+.dropdowns-examples .category-combobox {
+  width: 430px;
+}
+
+// Quotes that are shown in an aside element. Used in the compose UI and on the user profile page, activity tab.
+aside.quote {
+  // Parent element for the quoted person's icon and username.
+  .title {
+    @include quote-box;
+    border-bottom: none;
+    line-height: normal;
+
+    // Quoted person's icon.
+    .avatar {
+      @include avatar-regular-glow(
+        $quote-avatar-image-width,
+        $quote-avatar-image-height,
+        $quote-avatar-margin-right
+      );
+    }
+  }
+
+  // Quoted post text.
+  blockquote {
+    border-top: none;
+  }
+}
+
+// Never display the emails disabled alert
+.alert-emails-disabled {
+  display: none;
+}
+
+// A round circle with a number in it that shows the number of unseen notifications.
+.badge-notification[href],
+.unread-high-priority-notifications.badge-notification[href],
+.badge-notification {
+  color: $color-text; // Change the text color to white from the Discourse default of #ddd.
+  font-weight: bold; // Bold the number, at regular weight Open Sans is too anemic to see the number clearly.
+  padding: 3px 5px; // Redefine the padding so the number is centered within the circle.
+  min-width: 16.5px; // Set a min-width so that really short numbers like "1" will still show a full circle.
+  box-sizing: border-box;
+
+  // Hover color needs to be the same as the regular color since you can't go brighter than pure white.
+  &:hover {
+    color: $color-text;
+  }
+
+  &.new-topic {
+    color: $Blizzard-blue-base;
+  }
+
+  &.unread-posts {
+    background-color: $Blizzard-blue-base;
+  }
+}
+
+.d-header-icons .unread-high-priority-notifications,
+.d-header-icons .ring {
+  right: 15px;
+}
+
+.pika-single {
+  @include b-box($gradient: true);
+
+  .pika-label {
+    background: transparent;
+  }
+
+  .pika-button {
+    background: transparent;
+  }
+
+  .is-selected button {
+    color: $color-text-priority-1;
+  }
+}
+
+.tip {
+  @include flex(vertical);
+}
+
+// Temporary fix for the heart icon defined in locales and code
+// and showing two times as a result
+.user-summary-page .top-section .user-stat i.fa-heart {
+  display: none;
+}
+
+.top-section .user-detail .name {
+  display: none;
+}
+
+// Hack until the footer allows our format for URL's
+.NavbarFooter .NavbarFooter-icon.NavbarFooter-selectorOptionIcon {
+  display: none;
+}
+
+.btn .d-icon,
+.btn.ok .d-icon,
+.discourse-no-touch .btn.ok:hover .d-icon,
+.btn.cancel .d-icon,
+.discourse-no-touch .btn.cancel:hover .d-icon,
+.btn:hover .d-icon,
+.discourse-no-touch .btn:hover .d-icon,
+.discourse-no-touch .btn.btn-hover .d-icon {
+  color: inherit;
+}
+
+.discourse-no-touch .sidebar-section-wrapper .sidebar-section-header.btn,
+.sidebar-section-wrapper .sidebar-section-header.btn {
+  color: var(--primary);
+}
+
+.pwa-install-banner {
+  display: none;
+}
+
+.hosted-site {
+  display: none;
+}
+
+.control-group {
+  &.color-scheme,
+  &.text-size {
+    display: none;
+  }
+}
+
+body,
+p,
+li {
+  font-family: var(--font-family);
+  font-weight: 400;
+}
+
+// Use the theme background for the entire page.
+body {
+  background:
+    $theme-bg center 0 no-repeat,
+    $theme-bg-repeat center 0 repeat-y;
+  background-color: $color-theme-background;
+
+  &.blizzard-homepage {
+    background:
+      $theme-bg center 600px no-repeat,
+      $theme-bg-repeat center 0 repeat-y;
+    background-color: $color-theme-background;
+
+    @media all and (max-width: $max-banner-width) {
+      background:
+        $theme-bg center 200px no-repeat,
+        $theme-bg-repeat center 0 repeat-y;
+      background-color: $color-theme-background;
+    }
+  }
+}
+
+// Page header background.
+.d-header {
+  background-image: none;
+  background-color: $color-navbar-secondary;
+}
+
+// Blizzard navbar.
+.Navbar {
+  &,
+  .blizzard-homepage & {
+    background-color: $color-navbar-primary !important;
+  }
+}
+
+// Group post tracker buttons
+.nav-pills {
+  li.group-blizzard-tracker a {
+    @include blizz-pill-icon;
+  }
+}
+
+.bookmark-with-reminder.modal .bookmark-name-wrap {
+  align-items: stretch;
+}
+
+@media (width <= 790px) {
+  .topic-area > .loading-container {
+    max-width: calc(100vw - 80px);
+  }
+}
+
+// hide the external-icon in blizzard nav
+blz-nav-footer::part(external-icon) {
+  display: none;
+}
+
+blz-nav-footer .bnet-footer-logo {
+  height: 54px;
+  width: 325px;
+}
+
+blz-nav-footer .social-links {
+  padding-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  svg {
+    width: 36px;
+    height: 36px;
+    color: hsl(0deg, 0%, 100%, 0.7);
+    transition: color 0.2s linear;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// mobile game icon in nav menu
+blz-nav-link .nav-mobile-game-icon {
+  content: $theme-mobile-nav-logo;
+  width: 100%;
+  height: auto;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+// remove the heading for category
+.category-heading {
+  display: none;
+
+  &.--has-logo {
+    display: none;
+  }
+}
+
+// hide the powered-by-discourse button
+.powered-by-discourse {
+  display: none;
+}
+
+// overwrite the user menu styles from core
+.user-menu.revamped .tabs-list .btn.active svg.d-icon,
+.user-menu.revamped .tabs-list .btn:not(.active):hover svg.d-icon {
+  background-color: transparent;
+}
+
+.user-menu.revamped .tabs-list .btn,
+.user-menu.revamped
+  .tabs-list
+  .d-modal.json-schema-editor-modal
+  .je-ready
+  .json-editor-btn-add,
+.d-modal.json-schema-editor-modal
+  .je-ready
+  .user-menu.revamped
+  .tabs-list
+  .json-editor-btn-add,
+.user-menu.revamped
+  .tabs-list
+  .d-modal.json-schema-editor-modal
+  .je-ready
+  button,
+.d-modal.json-schema-editor-modal
+  .je-ready
+  .user-menu.revamped
+  .tabs-list
+  button {
+  border-radius: var(--d-border-radius);
+  outline-offset: -2px;
+}
+
+// overwrite the navigation style from core
+.user-content-wrapper {
+  gap: 20px;
+
+  .user-secondary-navigation + .user-content {
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .user-content {
+    grid-row-start: 2;
+    grid-row-end: 4;
+  }
+
+  // Force the sidebar in the category listing to display as nav-stacked - overwritting the latest core changes
+  .user-secondary-navigation {
+    border: none;
+    font-size: 1em;
+
+    .action-list.activity-nav {
+      @extend .nav-stacked;
+      gap: 0;
+      flex-direction: column;
+
+      li {
+        a {
+          justify-content: flex-start;
+          margin: 0;
+          padding: 0.75em;
+          line-height: var(--line-height-small);
+          cursor: pointer;
+
+          &.active::after {
+            display: none;
+          }
+
+          &:hover {
+            background: var(--primary-very-low);
+            color: var(--primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Remove the option to delete account for users
+.user-content.user-preferences .delete-account {
+  display: none;
+}
+
+// Overwrite core background color for sidebar buttons
+.sidebar-section-link-wrapper .sidebar-section-link--active,
+.sidebar-section-link-wrapper .sidebar-section-link.active,
+.admin-search__result:hover {
+  background-color: rgba($brand-primary, $opacity-extralight);
+}
+
+// Overwrite core's hover button color
+.tap-tile-grid .tap-tile {
+  &:hover,
+  &.active {
+    background-color: var(--tertiary-low);
+  }
+}

@@ -1,0 +1,67 @@
+// Subnav containing the links to Categories, Latest, New, Unread, Top, and Dev Tracker.
+#navigation-bar.nav-pills,
+.admin-main-nav .nav-pills {
+  position: relative;
+  font-size: $font-0;
+  font-weight: $font-weight-normal;
+  border-bottom: $border-style-thin $color-border-light;
+  margin-bottom: 0;
+  height: auto;
+  background-color: transparent;
+
+  > li {
+    // Override a bunch of Discourse's stylings.
+    > a {
+      font-weight: $font-weight-normal;
+      text-decoration: none;
+      line-height: inherit;
+      text-transform: uppercase;
+      padding: 7px 1em;
+      color: $color-text-priority-3;
+
+      // Remove the background color that Discourse adds.
+      &:hover {
+        background-color: transparent;
+      }
+
+      // hover color
+      &.active,
+      &:hover {
+        color: $color-text;
+      }
+
+      // underline
+      &:hover::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: var(--d-nav-underline-height);
+        background: $color-text-priority-3;
+      }
+
+      &.active::after {
+        content: "";
+        background: $color-text-link;
+        background: $color-theme-primary;
+      }
+    }
+  }
+}
+
+.new-user-wrapper .user-navigation .nav-pills li {
+  a:hover,
+  a.active {
+    background: none;
+    color: var(--primary);
+  }
+
+  a:focus {
+    color: unset;
+  }
+
+  a {
+    padding: calc(0.75em + var(--user-navigation__border-width)) 0.5em 0.75em;
+  }
+}

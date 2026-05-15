@@ -1,0 +1,508 @@
+.post-admin-menu.popup-menu {
+  @include b-box($gradient: true);
+
+  .btn {
+    width: auto;
+  }
+}
+
+.dropdown-select-box {
+  .select-kit-body {
+    border: none;
+  }
+
+  .select-kit-row:hover {
+    background: $color-form-dropdown-background-hover;
+  }
+
+  .select-kit-row.is-highlighted {
+    background: none;
+  }
+
+  .dropdown-header {
+    height: auto;
+  }
+}
+
+.notifications-tracking-trigger {
+  .notifications-tracking-content {
+    border: none;
+  }
+
+  .dropdown-menu__item:hover {
+    background: $color-form-dropdown-background-hover;
+  }
+
+  .dropdown-menu__item.-highlighted {
+    background: none;
+  }
+
+  .dropdown-header {
+    height: auto;
+  }
+}
+
+.select-kit {
+  &.combo-box {
+    // Small, secondary dropdown of categories
+    &.category-drop:nth-of-type(2) {
+      .category-drop-header {
+        .category-name {
+          color: $color-text-priority-3;
+        }
+        color: $color-text-priority-3;
+        background: transparent;
+        text-transform: capitalize;
+        border: 0;
+        padding: 0.2em;
+        font-size: $font-down-1;
+      }
+    }
+
+    // Large text dropdown of categories
+    &.category-drop:nth-of-type(1) {
+      .category-drop-header {
+        height: auto;
+        color: $color-text;
+        text-transform: capitalize;
+        background: none;
+        padding: 0;
+        overflow: hidden;
+        justify-content: flex-start;
+        border: none;
+
+        .selected-name {
+          flex: 0 auto;
+
+          .badge-wrapper {
+            display: flex;
+          }
+        }
+
+        // this is more complicated than usually as the category drop usually dispays
+        // category-badge with all the box/bar/bullet styles support of Discourse
+        .selected-name .category-name,
+        .selected-name .name {
+          @include typography-heading-h2;
+          @include text-nowrap-truncate-ellipsis;
+          color: white;
+          line-height: 1.7;
+
+          // Add a very small left padding so that the left edge of the first letter doesn't get cut off (most noticeable for
+          // the letter A). This appears to only be an issue when using text-transform: uppercase.
+          padding-left: 0.1em;
+
+          // Add a small right padding so right edges of the last character doesn't get cut off as has been observed in Thai
+          padding-right: 0.1em;
+        }
+
+        &::before {
+          content: "";
+          background-image: $theme-small-logo;
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 3.125rem;
+          height: 3.125rem;
+          margin-right: 8px;
+          flex-shrink: 0; // Prevents the icon from shrinking if there's not enough room for it.
+
+          @include small-browser-width {
+            width: 2.8rem;
+            height: 2.8rem;
+          }
+        }
+
+        // Remove the default hover/expand/focus borders on select-kit-header for categories.
+        &:hover {
+          border: none;
+        }
+      }
+
+      .category-drop-header {
+        color: $color-text;
+        text-transform: capitalize;
+        background: none;
+        padding: 0;
+        overflow: hidden;
+        justify-content: flex-start;
+        border: none;
+
+        .selected-name {
+          flex: 0 auto;
+
+          .badge-wrapper {
+            display: flex;
+          }
+        }
+
+        // this is more complicated than usually as the category drop usually dispays
+        // category-badge with all the box/bar/bullet styles support of Discourse
+        .selected-name .category-name {
+          @include typography-heading-h2;
+          font-size: $font-0;
+
+          @include text-nowrap-truncate-ellipsis;
+          color: white;
+          line-height: 1.7;
+
+          // Add a very small left padding so that the left edge of the first letter doesn't get cut off (most noticeable for
+          // the letter A). This appears to only be an issue when using text-transform: uppercase.
+          padding-left: 0.1em;
+
+          // Add a small right padding so right edges of the last character doesn't get cut off as has been observed in Thai
+          padding-right: 0.1em;
+        }
+
+        &::before {
+          content: "";
+          background-image: $theme-small-logo;
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 3.125rem;
+          height: 3.125rem;
+          margin-right: 8px;
+          flex-shrink: 0; // Prevents the icon from shrinking if there's not enough room for it.
+
+          @include small-browser-width {
+            width: 2.8rem;
+            height: 2.8rem;
+          }
+        }
+
+        // Remove the default hover/expand/focus borders on select-kit-header for categories.
+        &:hover {
+          border: none;
+        }
+      }
+    }
+
+    &.category-drop {
+      .category-drop-header {
+        .caret-icon {
+          font-size: $font-down-3;
+          font-weight: bold;
+
+          @include clickable-item(
+            $color: $color-text-priority-3,
+            $colorHover: $color-text-priority-3,
+            $colorActive: $color-text-priority-5
+          );
+          margin-left: initial;
+        }
+      }
+
+      // unused features
+      .topic-count,
+      .category-desc {
+        display: none;
+      }
+
+      // "all-categories" is not a row atm in select-kit
+      // this will change in the future
+      .select-kit-collection li:not(:hover) {
+        &.is-highlighted:not(.is-selected) {
+          background: none;
+        }
+      }
+
+      .select-kit-body {
+        .badge-wrapper.none,
+        .select-kit-collection .collection-header .category-filter {
+          width: 100%;
+          font-weight: 400;
+          margin-right: 0;
+          padding-top: 0.425em;
+          padding-bottom: 0.425em;
+          line-height: normal;
+        }
+      }
+
+      .select-kit-collection .collection-header .category-filter {
+        @include list-item-dropdown;
+        text-transform: capitalize;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .select-kit-body {
+        .select-kit-row {
+          @include list-item-dropdown;
+
+          &.is-selected {
+            color: $color-form-text-active;
+          }
+        }
+      }
+
+      .select-kit-collection {
+        border-radius: var(--d-border-radius);
+      }
+
+      &.is-expanded,
+      &.is-focused {
+        .category-drop-header {
+          border: none;
+          box-shadow: none;
+        }
+      }
+
+      &.none.has-selection .category-drop-header {
+        padding: 0;
+
+        .badge-wrapper.none {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  &.dropdown-select-box {
+    &.composer-actions {
+      .select-kit-header {
+        &:hover {
+          background-color: transparent;
+        }
+
+        .d-icon {
+          border: none;
+        }
+      }
+    }
+
+    &.period-chooser {
+      margin: 1em 0 0.5em 0.5em;
+
+      .period-chooser-row {
+        font-size: $font-0;
+        color: rgba($text-color, $opacity-half);
+
+        .top-date-string {
+          color: rgba($text-color, $opacity-half);
+        }
+
+        .selection-indicator {
+          margin: 0 0.25em 0 0;
+        }
+
+        &.is-selected {
+          background: none;
+        }
+
+        &.is-selected,
+        &:hover {
+          color: $color-text;
+
+          .top-date-string {
+            color: $color-text;
+          }
+        }
+      }
+
+      .period-chooser-header {
+        h2.selected-name {
+          color: $color-text;
+
+          .top-date-string {
+            @include clickable-item($color-text-priority-3);
+            margin-left: 0.4em;
+          }
+        }
+
+        .d-icon {
+          transition: color $transition-hover-speed;
+          color: $color-text-priority-3;
+          font-size: $font-0;
+          margin: 0 0 0 10px;
+        }
+
+        &:hover {
+          .d-icon,
+          h2.selected-name .top-date-string {
+            color: $color-text-priority-1;
+          }
+        }
+      }
+    }
+
+    &.notifications-button {
+      .select-kit-header {
+        @include button-secondary;
+
+        .d-icon:not(.d-icon-caret-down),
+        .d-icon:not(.d-icon-angle-down) {
+          opacity: 1;
+          transition: opacity 200ms;
+          color: $color-button-tertiary-text;
+        }
+
+        &:hover {
+          .d-icon:not(.d-icon-caret-down),
+          .d-icon:not(.d-icon-angle-down) {
+            color: $color-button-tertiary-text-hover;
+          }
+        }
+      }
+    }
+
+    &.toolbar-popup-menu-options {
+      .select-kit-header {
+        background-color: transparent;
+        color: $primary-high;
+      }
+
+      .select-kit-body {
+        @include b-box($gradient: true);
+      }
+
+      .select-kit-row,
+      .select-kit-row.is-selected {
+        border-radius: 4px;
+        background-color: rgb(0, 0, 0, 0.2);
+        border: 1px solid rgb(255, 255, 255, 0.15);
+        font-size: $font-0;
+        padding: 7px 10px;
+
+        .selection-indicator {
+          display: none;
+        }
+
+        .icons .d-icon {
+          color: $Blizzard-blue-base;
+        }
+
+        &:hover,
+        &.is-highlighted,
+        &.is-selected.is-highlighted {
+          border: 1px solid rgb(255, 255, 255, 0.3);
+          background-color: rgb(0, 0, 0, 0.2);
+
+          .icons .d-icon {
+            color: $Blizzard-blue-hover;
+          }
+        }
+      }
+    }
+  }
+}
+
+.timeline-footer-controls .topic-notifications-options {
+  .d-icon-caret-down,
+  .d-icon-angle-down,
+  .d-icon-caret-up,
+  .d-icon-angle-up {
+    display: none;
+  }
+}
+
+#topic-footer-buttons {
+  .pinned-options,
+  .topic-notifications-button {
+    .notifications-tracking-trigger {
+      background: none;
+      border: none;
+
+      .d-icon {
+        height: 20px;
+      }
+
+      &:active {
+        background-color: rgba($color-block-background, $opacity-light);
+        color: $color-text-link-active;
+      }
+
+      &:hover {
+        .d-icon {
+          color: $Blizzard-blue-base;
+        }
+
+        .d-icon-caret-down,
+        .d-icon-angle-down,
+        .d-icon-caret-up,
+        .d-icon-angle-up {
+          color: rgba($text-color, $opacity-half);
+        }
+      }
+
+      .d-button-label {
+        margin-left: 10px;
+        color: $text-color;
+      }
+
+      .d-icon-angle-down,
+      .d-icon-angle-up {
+        transition: transform 0.3s ease;
+        margin-left: 5px;
+        color: rgba($text-color, $opacity-light);
+        order: 1;
+      }
+
+      .d-icon-thumbtack {
+        margin-right: 0;
+
+        &.unpinned {
+          padding-left: 0;
+        }
+      }
+
+      &.-expanded {
+        .d-button-label {
+          color: $Blizzard-blue-base;
+        }
+
+        .d-icon-angle-down {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+.category-breadcrumb .tag-drop {
+  .select-kit-header.tag-drop-header {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    justify-content: flex-start;
+    height: auto;
+
+    .caret-icon {
+      font-size: $font-down-3;
+      font-weight: bold;
+
+      @include clickable-item(
+        $color: $color-text-priority-3,
+        $colorHover: $color-text-priority-3,
+        $colorActive: $color-text-priority-5
+      );
+      margin-left: initial;
+    }
+  }
+
+  .selected-name .name {
+    @include typography-heading-h2;
+    @include text-nowrap-truncate-ellipsis;
+    @include clickable-item($color: $color-text-priority-2);
+    line-height: 1.7;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+  }
+}
+
+.category-breadcrumb .category-drop .selected-name .name .badge-category {
+  @include clickable-item($color: $color-text-priority-2);
+}
+
+.category-breadcrumb .category-drop .selected-name .name .badge-category__name {
+  color: $color-text-priority-2;
+  transition: color 0.2s;
+}
+
+.category-breadcrumb
+  .category-drop
+  .selected-name
+  .name:hover
+  .badge-category__name {
+  color: $color-text;
+}

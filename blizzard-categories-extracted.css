@@ -1,0 +1,78 @@
+.badge-wrapper .badge-category { display: flex;
+    align-items: center;
+    line-height: normal;
+    font-weight: normal }
+.badge-wrapper .badge-category .svg-icon { flex-shrink: 0;
+    font-size: .75em;
+    margin-right: .28em }
+.category-heading { display: none }
+.category-heading.--has-logo { display: none }
+.category-breadcrumb .category-drop .selected-name .name .badge-category { color: hsla(0, 0%, 100%, .8);
+    transition: color 200ms }
+.category-breadcrumb .category-drop .selected-name .name .badge-category:hover { color: #fff;
+    background: none }
+.category-breadcrumb .category-drop .selected-name .name .badge-category:active { color: hsla(0, 0%, 100%, .3) }
+.category-breadcrumb .category-drop .selected-name .name .badge-category__name { color: hsla(0, 0%, 100%, .8);
+    transition: color .2s }
+.category-breadcrumb .category-drop .selected-name .name:hover .badge-category__name { color: #fff }
+.b-category .category-icon img { width: 50px;
+    height: 50px;
+    margin-right: 1em }
+.b-category .category-description { display: none }
+.b-category .category-description { font-size: 1em;
+    color: hsla(0, 0%, 100%, .5);
+    line-height: 1.5em;
+    width: 100%;
+    margin-bottom: .5em }
+.b-category .subcategories { display: flex;
+    flex-flow: wrap }
+.b-category .subcategories a.b-category-small { margin-right: 1em;
+    margin-bottom: .6em }
+.b-category .subcategories a.b-category-small img { margin-right: .6em }
+.b-category .subcategories a.b-category-small .b-category-label { white-space: initial;
+    color: #fff;
+    transition: color 200ms }
+.b-category .subcategories a.b-category-small .b-category-label:hover { color: #fff;
+    background: none }
+.b-category .subcategories a.b-category-small .b-category-label:active { color: hsla(0, 0%, 100%, .3) }
+.b-category .subcategories a.b-category-small .b-category-label:hover { text-decoration: underline }
+.name .badge-category__wrapper .badge-category { gap: 0 }
+.name .badge-category__wrapper .badge-category.--has-parent::before, .name .badge-category__wrapper .badge-category::before { background: none;
+    width: 0 }
+a.b-subcategory .category-icon img { width: 30px;
+    height: 30px;
+    margin-right: .5em }
+.select-kit.combo-box.category-drop .badge-category__wrapper, .select-kit.combo-box.category-drop .badge-category__wrapper .badge-category { color: inherit }
+.category-name-fields .field input { width: 300px }
+.categories-list .category-list { padding-top: 1em }
+.categories-list .category-list { margin: 0;
+        padding-top: 0 }
+.categories-list .category-list .b-category:not(:last-child) { margin-bottom: 1em }
+.categories-list .category-list .b-category:not(:last-child) { margin: 0 }
+.categories-list .category-list .category-description { margin-top: 0 }
+.categories-list .category-list .category-group-name { text-transform: uppercase;
+    color: hsla(0, 0%, 100%, .8);
+    margin-bottom: .5em;
+    margin-top: 2.3em;
+    font-size: var(--font-down-1) }
+.categories-list .category-list .category-group-name { padding: 0 1em }
+.categories-list .category-list .category-group-name:first-of-type { margin-top: 1.15em }
+.categories-list .category-list .category-icon { margin-top: .2em }
+.categories-list .category-list .category-information { flex: 0 1 100%;
+    overflow: hidden }
+.categories-list .category-list .b-categories-columned { columns: 2 }
+.categories-list .category-list .b-categories-columned .b-category { break-inside: avoid }
+.categories-list .category-list .b-categories-columned { columns: 1 }
+.category-boxes { grid-template-columns: repeat(auto-fit, minmax(9em, 1fr));
+    align-items: stretch;
+    margin-bottom: 2em }
+.category-boxes .subcategory-container.third-1 .b-subcategory { margin: 0 auto }
+.category-boxes .subcategory-container.third-2 .b-subcategory { margin-left: auto }
+.category-boxes .subcategory-container { width: 100% }
+.group .user-stream-item .badge-category, .group .post-list-item .badge-category { font-size: var(--font-down-1);
+    color: hsla(0, 0%, 100%, .5) }
+.group .user-stream-item .group-post-time, .group .user-stream-item .badge-category, .group .post-list-item .group-post-time, .group .post-list-item .badge-category { font-size: var(--font-down-1);
+    color: hsla(0, 0%, 100%, .5) }
+.group .user-stream-item .badge-category, .group .post-list-item .badge-category { text-transform: uppercase }
+.categories-and-top .top-topic-list .top-row { font-size: 1em }
+.categories-and-top .top-topic-list .topic-poster { display: none }

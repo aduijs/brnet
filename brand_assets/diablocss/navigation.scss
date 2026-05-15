@@ -1,0 +1,67 @@
+.category-navigation,
+.navigation-container {
+  // Category selector.
+  .category-breadcrumb {
+    flex: 1 0 auto;
+    order: 1;
+  }
+
+  // Edit category button, only shows for admin users.
+  .navigation-controls {
+    order: 2;
+    margin: 10px 0;
+    height: 3em;
+  }
+
+  .edit-category {
+    margin-bottom: 0;
+    padding: 0 0.75em;
+    margin-right: 0.5em;
+    align-self: center;
+  }
+
+  // Notification options button wrapper, only shows for admin users.
+  .category-notifications-button {
+    align-self: center;
+
+    .btn {
+      margin: 0;
+    }
+  }
+
+  // Admin menu that allows you to add a new category or re-order the existing ones.
+  .categories-admin-dropdown {
+    .btn {
+      height: 100%;
+
+      @include flex("both");
+      margin: 0;
+    }
+  }
+
+  #create-topic {
+    font-size: $font-up-1;
+  }
+
+  // Subnav links for topic filters.
+  .nav-pills {
+    width: 100%;
+    order: 3;
+    margin-bottom: 0;
+
+    // #navigation-bar is 44.6px tall, this makes it 60px between category and bottom border of #navigation bar
+    margin-top: 15.4px;
+  }
+}
+
+.navigation-container {
+  margin-top: 30px;
+}
+
+.group .user-content-wrapper .user-secondary-navigation {
+  .nav-stacked a.active {
+    color: var(--primary);
+    font-weight: bold;
+    background: var(--primary-very-low);
+  }
+}

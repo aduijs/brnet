@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>THE SPIDER &mdash; The Patient Darkness | Birthright.net</title>
-  <meta name="description" content="The Spider, once the elven queen Kal'ithiel, is an Awnsheghlien who rules the Spiderfell. A creature of infinite patience and deadly cunning.">
+  <meta name="description" content="The Spider, once the goblin Spiderlord Tal-Qazar, is an Awnsheghlien who rules the Spiderfell. A creature of infinite patience and deadly cunning.">
   <meta property="og:title" content="The Spider &mdash; The Patient Darkness">
-  <meta property="og:description" content="Once an elven queen, now a massive spider with an eerily beautiful face. Rules the Spiderfell through webs of intrigue spanning decades.">
+  <meta property="og:description" content="Once a goblin warlord, now a massive spider sustained by Azrai's stolen essence. Rules the Spiderfell through webs of intrigue spanning decades.">
   <meta property="og:image" content="../brand_assets/shadowworld%20800x600.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -41,11 +41,11 @@
     }
 
     [data-theme="dark"] {
-      --bg-primary: #060606;
-      --bg-secondary: #0c0c0c;
-      --bg-elevated: #111111;
-      --bg-surface: #1a1a1a;
-      --bg-card: #0f0f0f;
+      --bg-primary: #1a1d24;
+      --bg-secondary: #1e2128;
+      --bg-elevated: #252830;
+      --bg-surface: #2a2d36;
+      --bg-card: #1e2128;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
       --text-muted: rgba(240, 236, 228, 0.45);
@@ -444,7 +444,53 @@
         opacity: 0.6 !important;
       }
     }
-  </style>
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
 </head>
 <body>
 
@@ -462,7 +508,7 @@
         <a href="../index.html#regions" class="nav-link">Regions</a>
         <a href="../tour.html" class="nav-link">Tour</a>
         <a href="../compendium.html" class="nav-link">Compendium</a>
-        <a href="http://www.birthright.net/forums/showwiki.php" class="nav-link">Wiki</a>
+        <a href="../wiki.html" class="nav-link">Wiki</a>
         <a href="../index.html#community" class="nav-link">Community</a>
       </div>
 
@@ -489,7 +535,7 @@
       <a href="../bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
       <a href="../index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
       <a href="../tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
-      <a href="http://www.birthright.net/forums/showwiki.php" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="../wiki.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
       <a href="../index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
@@ -553,7 +599,7 @@
 
           <div>
             <span class="typo-label block mb-3" style="color: var(--gold);">Race / Gender</span>
-            <p class="font-display text-base font-semibold mb-4" style="color: var(--text-primary);">Awnsheghlien (formerly Sidhelien/Elf)</p>
+            <p class="font-display text-base font-semibold mb-4" style="color: var(--text-primary);">Awnsheghlien (formerly Goblin)</p>
             <span class="typo-label block mb-3" style="color: var(--gold);">Class / Level</span>
             <p class="font-display text-base font-semibold" style="color: var(--text-primary);">Unknown (ancient beyond measure)</p>
           </div>
@@ -599,10 +645,10 @@
             The <span class="word-accent">Patient</span><br>Weaver
           </h2>
           <div class="space-y-6 font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
-            <p>Before the Battle of Deismaar, she was Kal'ithiel, queen of the Sidhelien &mdash; an elven ruler of extraordinary beauty and cunning who chose to ally with Azrai against the other gods. When the dark god died and his essence scattered, Kal'ithiel absorbed enough of Azrai's power to transform her into something no longer elven, no longer mortal, no longer anything the world had ever seen.</p>
-            <p>Over centuries, the transformation has reshaped her utterly. The Spider is now a massive arachnoid creature, larger than a wagon, with eight powerful legs and a body covered in chitinous black armor. But her face &mdash; her face remains eerily, hauntingly beautiful, still bearing the features of the elven queen she once was. It is this terrible beauty that makes encountering her so disturbing: the face of an angel on the body of a nightmare.</p>
-            <p>The Spider rules the Spiderfell, a vast forest of ancient trees choked with webs so thick they blot out the sun. Within this darkness, she sits at the center of her web &mdash; both literal and figurative. Her servants infiltrate courts across Anuire, her spies report on every domain within a hundred leagues, and her schemes unfold over timescales that no human mind can match.</p>
-            <p>Her most dangerous quality is her patience. The Gorgon rages and threatens. Rhuobhe wages open war. The Spider waits. She plants agents who will not be activated for decades. She creates situations whose consequences will not be felt for generations. She is the most patient planner in Cerilia, and that patience makes her the most insidious.</p>
+            <p>Before the Battle of Deismaar, he was Tal-Qazar, the Spiderlord &mdash; a goblin warlord who carved a kingdom from the dark wood the Andu would later name the Spiderfell, and who marched a mighty host to fight beside Azrai at Mount Deismaar. When the dark god died and his essence scattered, Tal-Qazar absorbed enough of Azrai's power to transform him into something no longer goblin, no longer mortal, no longer anything the world had ever seen.</p>
+            <p>Over centuries, the transformation has reshaped him utterly. The Spider is now a massive arachnoid creature, larger than a wagon, with eight powerful legs and a body covered in chitinous black armor. The bloated abdomen and venomous mandibles of a great hunting spider have all but consumed what little remained of his goblin shape, leaving only a thing of nightmare crouched at the heart of its web.</p>
+            <p>The Spider rules the Spiderfell, a vast forest of ancient trees choked with webs so thick they blot out the sun. Within this darkness, the awnshegh sits at the center of its web &mdash; both literal and figurative. Its servants infiltrate courts across Anuire, its spies report on every domain within a hundred leagues, and its schemes unfold over timescales that no human mind can match.</p>
+            <p>Its most dangerous quality is its patience. The Gorgon rages and threatens. Rhuobhe wages open war. The Spider waits. It plants agents who will not be activated for decades. It creates situations whose consequences will not be felt for generations. It is the most patient planner in Cerilia, and that patience makes it the most insidious.</p>
           </div>
         </div>
 
@@ -614,11 +660,11 @@
             
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Physical</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Massive spider with an eerily beautiful elven face</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Massive bloated spider with venomous mandibles</span>
             </div>
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">True Name</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Kal'ithiel, former elven queen</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Tal-Qazar, the Spiderlord</span>
             </div>
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Most Dangerous Quality</span>
@@ -654,7 +700,7 @@
         
         <div class="culture-block reveal rd1">
           <h3 class="font-impact text-xl tracking-[0.08em] uppercase mb-3" style="color: var(--text-primary);">Master Manipulator</h3>
-          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Spider's webs of intrigue extend into every court in Anuire. Her agents &mdash; some willing, some blackmailed, some who don't even know they serve her &mdash; provide intelligence and execute plans that span decades.</p>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Spider's webs of intrigue extend into every court in Anuire. Its agents &mdash; some willing, some blackmailed, some who don't even know they serve it &mdash; provide intelligence and execute plans that span decades.</p>
           <div class="mt-4">
             <div class="holding-bar"><div class="holding-bar-fill" style="--fill: 98%; background: linear-gradient(90deg, var(--accent), var(--gold));"></div></div>
           </div>
@@ -668,28 +714,28 @@
         </div>
         <div class="culture-block reveal rd3">
           <h3 class="font-impact text-xl tracking-[0.08em] uppercase mb-3" style="color: var(--text-primary);">Infinite Patience</h3>
-          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Spider thinks in decades and centuries. A scheme that takes fifty years to unfold is merely efficient. This patience means her plans are almost impossible to detect or counter.</p>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Spider thinks in decades and centuries. A scheme that takes fifty years to unfold is merely efficient. This patience means its plans are almost impossible to detect or counter.</p>
           <div class="mt-4">
             <div class="holding-bar"><div class="holding-bar-fill" style="--fill: 100%; background: linear-gradient(90deg, var(--accent), var(--gold));"></div></div>
           </div>
         </div>
         <div class="culture-block reveal rd4">
           <h3 class="font-impact text-xl tracking-[0.08em] uppercase mb-3" style="color: var(--text-primary);">The Spiderfell</h3>
-          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Her domain is a fortress of web-choked forest, filled with giant spiders, corrupted creatures, and magical traps. No army has ever successfully invaded the Spiderfell.</p>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Its domain is a fortress of web-choked forest, filled with giant spiders, corrupted creatures, and magical traps. No army has ever successfully invaded the Spiderfell.</p>
           <div class="mt-4">
             <div class="holding-bar"><div class="holding-bar-fill" style="--fill: 90%; background: linear-gradient(90deg, var(--accent), var(--gold));"></div></div>
           </div>
         </div>
         <div class="culture-block reveal rd5">
           <h3 class="font-impact text-xl tracking-[0.08em] uppercase mb-3" style="color: var(--text-primary);">Corruption</h3>
-          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Spider's most insidious power is her ability to corrupt. She finds weaknesses &mdash; greed, ambition, fear &mdash; and exploits them, turning loyal servants against their masters.</p>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Spider's most insidious power is its ability to corrupt. It finds weaknesses &mdash; greed, ambition, fear &mdash; and exploits them, turning loyal servants against their masters.</p>
           <div class="mt-4">
             <div class="holding-bar"><div class="holding-bar-fill" style="--fill: 92%; background: linear-gradient(90deg, var(--accent), var(--gold));"></div></div>
           </div>
         </div>
         <div class="culture-block reveal rd6">
           <h3 class="font-impact text-xl tracking-[0.08em] uppercase mb-3" style="color: var(--text-primary);">Ancient Knowledge</h3>
-          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">As a former elven queen who lived before Deismaar, the Spider possesses knowledge of the ancient world that even the Gorgon lacks.</p>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">As an awnshegh who fought at Deismaar itself and ruled the Spiderfell for centuries before that, the Spider possesses knowledge of the ancient world that even the Gorgon lacks.</p>
           <div class="mt-4">
             <div class="holding-bar"><div class="holding-bar-fill" style="--fill: 85%; background: linear-gradient(90deg, var(--accent), var(--gold));"></div></div>
           </div>
@@ -725,7 +771,7 @@
               <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Front Organization</span>
             </div>
           </div>
-          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The shadowy trading guild serves as the Spider's primary interface with the human world, handling smuggling, espionage, and commerce on her behalf. Most members don't know who truly controls them.</p>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The shadowy trading guild serves as the Spider's primary interface with the human world, handling smuggling, espionage, and commerce on its behalf. Most members don't know who truly controls them.</p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </div>
         <div class="culture-block reveal rd2">
@@ -738,7 +784,7 @@
               <span class="typo-label" style="color: var(--gold); font-size: 0.7rem;">Victims & Targets</span>
             </div>
           </div>
-          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Roesone, Endier, Coeranys, and other domains near the Spiderfell are all targets of the Spider's infiltration. She seeks not to conquer them openly, but to control them through corrupted agents.</p>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">Roesone, Endier, Coeranys, and other domains near the Spiderfell are all targets of the Spider's infiltration. It seeks not to conquer them openly, but to control them through corrupted agents.</p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
         </div>
         <div class="culture-block reveal rd3">
@@ -751,7 +797,7 @@
               <span class="typo-label" style="color: var(--gold); font-size: 0.7rem;">Wary Respect</span>
             </div>
           </div>
-          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Spider regards the Gorgon as the only being in Cerilia she cannot manipulate or control. She avoids direct conflict with him, preferring to let his rages serve her plans when possible.</p>
+          <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">The Spider regards the Gorgon as the only being in Cerilia it cannot manipulate or control. It avoids direct conflict with the Gorgon, preferring to let his rages serve its plans when possible.</p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
         </div>
       </div>
@@ -773,9 +819,9 @@
             The <span class="word-accent">Hidden</span><br>Threat
           </h2>
           <div class="space-y-6 font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
-            <p>The Spider is the perfect antagonist for intrigue-focused campaigns. Unlike the Gorgon's overt military threat, the Spider's danger is invisible &mdash; her agents are everywhere, her plans unfold in secret, and by the time you realize you've been manipulated, it may be too late.</p>
+            <p>The Spider is the perfect antagonist for intrigue-focused campaigns. Unlike the Gorgon's overt military threat, the Spider's danger is invisible &mdash; its agents are everywhere, its plans unfold in secret, and by the time you realize you've been manipulated, it may be too late.</p>
             <p>For DMs, the Spider works best as a long-term antagonist whose influence is felt gradually. Early clues &mdash; a trusted advisor acting strangely, trade routes being disrupted, a mysterious new guild appearing &mdash; should only slowly reveal themselves as part of a larger web.</p>
-            <p>The Spider also forces players to question trust. Any NPC could be one of her agents. Any fortunate coincidence could be one of her manipulations. This paranoia is a powerful tool for creating tension and driving player engagement.</p>
+            <p>The Spider also forces players to question trust. Any NPC could be one of its agents. Any fortunate coincidence could be one of its manipulations. This paranoia is a powerful tool for creating tension and driving player engagement.</p>
           </div>
         </div>
 
@@ -868,10 +914,10 @@
             <a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
-            <a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+            <a href="/forum" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+            <a href="../wiki.html" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
@@ -884,16 +930,16 @@
             <a href="../index.html#regions" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Regions</a>
             <a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Bloodlines</a>
             <a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Tour</a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../wiki.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
 
         <div>
           <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
           <div class="flex flex-col gap-3">
-            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="/forum" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
             <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../wiki.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
       </div>

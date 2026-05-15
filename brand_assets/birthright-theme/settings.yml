@@ -1,0 +1,58 @@
+# Tweakable settings — surface in Admin → Customize → Themes → Birthright → Settings.
+# Match the prototype's Tweaks panel.
+
+accent_color:
+  default: "crimson"
+  type: enum
+  choices:
+    - crimson
+    - blood
+    - amber
+    - azure
+    - emerald
+  description: "Primary accent used for the brand mark, primary buttons, active tab underline, and crests."
+
+hero_tint:
+  default: "burgundy"
+  type: enum
+  choices:
+    - burgundy
+    - ember
+    - arcane
+    - forest
+  description: "Color of the burgundy radial that bleeds from the top of every page surface."
+
+show_hero_banner:
+  default: true
+  description: "Show the full-bleed BIRTHRIGHT hero banner on the categories page."
+
+hero_image_url:
+  default: ""
+  type: string
+  description: "Optional URL of the hero artwork. Leave blank to use the gradient placeholder."
+
+hero_title:
+  default: "BIRTHRIGHT"
+  type: string
+  description: "Wordmark shown over the hero (Cinzel)."
+
+hero_subtitle:
+  default: "THE LEGACY OF KINGS"
+  type: string
+  description: "Tagline under the wordmark."
+
+brand_name:
+  default: "Birthright.net"
+  type: string
+  description: "Name shown in the userbar to the right of the brand mark."
+
+show_userbar_brand:
+  default: true
+  description: "Show the brand mark + name in the userbar (above the standard Discourse header)."
+
+# Category color overrides (CSV: 'category-slug:#hex').
+# Discourse stores per-category color but we normalize to the design palette.
+category_color_map:
+  default: "official-announcements:#c8466a,royal-library:#c8466a,brcs-5e:#d96652,br-online:#5b8def,brcs-4e:#d96652,brcs-35:#d96652,mpgn-archive:#7a8090,brwiki:#5b8def,support:#d4a04a,empires-of-blood:#5fa869,play-by-post:#9b6fcf,bards-tale:#e08540,ruins-of-empire-2:#7a8090,legacy-of-kings:#c8466a"
+  type: string
+  description: "Comma-separated slug:#hex pairs that drive crest, dot, and timeline accent per category."

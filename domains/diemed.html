@@ -11,8 +11,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config={theme:{extend:{fontFamily:{blackletter:['UnifrakturCook','cursive'],impact:['Bebas Neue','sans-serif'],display:['Cinzel','serif'],body:['Crimson Pro','serif']}}}}</script>
   <style>
-    :root{--transition-theme:0.6s cubic-bezier(0.16,1,0.3,1);--accent:#c41e1e;--accent-dim:rgba(196,30,30,0.15)}
-    [data-theme="dark"]{--bg-primary:#060606;--bg-secondary:#0c0c0c;--bg-elevated:#111111;--bg-surface:#1a1a1a;--bg-card:#0f0f0f;--text-primary:#f0ece4;--text-secondary:rgba(240,236,228,0.55);--text-muted:rgba(240,236,228,0.3);--gold:#d4a843;--gold-dim:rgba(212,168,67,0.15);--gold-glow:rgba(212,168,67,0.25);--crimson:#c41e1e;--crimson-dim:rgba(196,30,30,0.12);--crimson-bright:#ff2e2e;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--shadow-color:rgba(0,0,0,0.6);--nav-bg:rgba(6,6,6,0.85);--grain-opacity:0.035;--logo-filter:none;--card-hover-shadow:0 30px 80px rgba(0,0,0,0.7);--overlay-heavy:rgba(6,6,6,0.92);--overlay-medium:rgba(6,6,6,0.7);--hero-text-shadow:0 4px 30px rgba(0,0,0,0.8)}
+    :root{--transition-theme:0.6s cubic-bezier(0.16,1,0.3,1);--accent:#ff2e2e;--accent-dim:rgba(255,46,46,0.20)}
+    [data-theme="dark"]{--bg-primary:#1a1d24;--bg-secondary:#1e2128;--bg-elevated:#252830;--bg-surface:#2a2d36;--bg-card:#1e2128;--text-primary:#f0ece4;--text-secondary:rgba(240,236,228,0.78);--text-muted:rgba(240,236,228,0.55);--gold:#d4a843;--gold-dim:rgba(212,168,67,0.15);--gold-glow:rgba(212,168,67,0.25);--crimson:#e02828;--crimson-dim:rgba(196,30,30,0.12);--crimson-bright:#ff2e2e;--border:rgba(255,255,255,0.06);--border-hover:rgba(255,255,255,0.12);--shadow-color:rgba(0,0,0,0.6);--nav-bg:rgba(20,22,27,0.92);--grain-opacity:0.035;--logo-filter:none;--card-hover-shadow:0 30px 80px rgba(0,0,0,0.7);--overlay-heavy:rgba(6,6,6,0.92);--overlay-medium:rgba(6,6,6,0.7);--hero-text-shadow:0 4px 30px rgba(0,0,0,0.8)}
     [data-theme="light"]{--bg-primary:#f5f5f3;--bg-secondary:#eaeae7;--bg-elevated:#ffffff;--bg-surface:#e0e0dc;--bg-card:#f0f0ed;--text-primary:#1a1510;--text-secondary:rgba(26,21,16,0.65);--text-muted:rgba(26,21,16,0.35);--gold:#7a5c10;--gold-dim:rgba(122,92,16,0.10);--gold-glow:rgba(122,92,16,0.15);--crimson:#8b1a1a;--crimson-dim:rgba(139,26,26,0.08);--crimson-bright:#b82020;--border:rgba(26,21,16,0.10);--border-hover:rgba(26,21,16,0.20);--shadow-color:rgba(0,0,0,0.12);--nav-bg:rgba(245,245,243,0.92);--grain-opacity:0.03;--logo-filter:none;--card-hover-shadow:0 20px 60px rgba(0,0,0,0.10);--overlay-heavy:rgba(245,245,243,0.92);--overlay-medium:rgba(245,245,243,0.75);--hero-text-shadow:0 2px 15px rgba(245,245,243,0.5);--accent:#8b1a1a;--accent-dim:rgba(139,26,26,0.12)}
     *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
     body{font-family:'Crimson Pro',serif;background:var(--bg-primary);color:var(--text-primary);overflow-x:hidden;transition:background var(--transition-theme),color var(--transition-theme);-webkit-font-smoothing:antialiased}
@@ -96,7 +96,53 @@
         opacity: 0.6 !important;
       }
     }
-  </style>
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
 </head>
 <body>
   <a href="#main-content" class="sr-only">Skip to main content</a>
@@ -105,7 +151,7 @@
       <a href="../index.html" class="relative z-10 flex items-center gap-3 group"><img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-9 lg:h-11" style="filter:var(--logo-filter);transition:transform 0.3s;"><span class="hidden sm:block font-impact text-sm tracking-[0.2em] uppercase" style="color:var(--text-muted);">.NET</span></a>
       <div class="hidden lg:flex items-center gap-8 xl:gap-10">
         <a href="../index.html#world" class="nav-link">The World</a><a href="../bloodlines.html" class="nav-link">Bloodlines</a><a href="../index.html#regions" class="nav-link">Regions</a><a href="../tour.html" class="nav-link">Tour</a>
-        <a href="../compendium.html" class="nav-link">Compendium</a><a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="nav-link">Wiki</a><a href="../index.html#community" class="nav-link">Community</a>
+        <a href="../compendium.html" class="nav-link">Compendium</a><a href="../wiki.html?title=Diemed" class="nav-link">Wiki</a><a href="../index.html#community" class="nav-link">Community</a>
       </div>
       <div class="hidden lg:flex items-center gap-5">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode"></button>
@@ -123,7 +169,7 @@
       <a href="../bloodlines.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Bloodlines</a>
       <a href="../index.html#regions" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Regions</a>
       <a href="../tour.html" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Tour</a>
-      <a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Wiki</a>
+      <a href="../wiki.html?title=Diemed" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Wiki</a>
       <a href="../index.html#community" class="py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color:var(--text-secondary);border-color:var(--border);text-decoration:none;">Community</a>
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size:0.9rem;"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>Join Discord</a>
     </div>
@@ -384,10 +430,10 @@
     <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
         <div class="md:col-span-2"><img src="../brand_assets/BRlogo.gif" alt="Birthright" class="h-10 mb-4" style="filter:var(--logo-filter);"><p class="font-body text-base max-w-sm" style="color:var(--text-muted);line-height:1.65;">The official fan community for the Birthright campaign setting, recognized by Wizards of the Coast. Keeping the blood alive since 1996.</p>
-          <div class="flex gap-4 mt-6"><a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Discord"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg></a><a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Forum"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></a><a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Wiki"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></a></div>
+          <div class="flex gap-4 mt-6"><a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Discord"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg></a><a href="/forum" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Forum"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg></a><a href="../wiki.html?title=Diemed" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border:1px solid var(--border);color:var(--text-muted);" aria-label="Wiki"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></a></div>
         </div>
-        <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Navigate</h4><div class="flex flex-col gap-3"><a href="../index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Home</a><a href="../regions/anuire.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Anuire</a><a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Bloodlines</a><a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Tour</a><a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
-        <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Community</h4><div class="flex flex-col gap-3"><a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Forum</a><a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Discord</a><a href="http://www.birthright.net/forums/showwiki.php?title=Diemed" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
+        <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Navigate</h4><div class="flex flex-col gap-3"><a href="../index.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Home</a><a href="../regions/anuire.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Anuire</a><a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Bloodlines</a><a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Tour</a><a href="../wiki.html?title=Diemed" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
+        <div><h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color:var(--text-primary);">Community</h4><div class="flex flex-col gap-3"><a href="/forum" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Forum</a><a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Discord</a><a href="../wiki.html?title=Diemed" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color:var(--text-muted);">Wiki</a></div></div>
       </div>
       <div class="mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4" style="border-top:1px solid var(--border);"><p class="font-body text-sm" style="color:var(--text-muted);">&copy; Birthright.net community. Birthright, D&amp;D, and Wizards of the Coast are trademarks of Hasbro, Inc.</p><p class="font-impact text-xs tracking-[0.2em] uppercase" style="color:var(--text-muted);">The blood endures</p></div>
     </div>

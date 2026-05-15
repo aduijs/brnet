@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRABENTOD — The Grave of God — Where Death Rules the Living | Birthright.net</title>
-  <meta name="description" content="Domain dossier for Grabentod, the cursed domain ruled by the Vampire — one of the most feared Awnsheghlien in Cerilia.">
+  <title>GRABENTOD — The Pirate Kingdom of the Great Bay | Birthright.net</title>
+  <meta name="description" content="Domain dossier for Grabentod, the Brecht corsair principality on the Great Bay. Ruled by King Ulrich Graben, who returned from exile to claim the throne.">
   <meta property="og:title" content="Grabentod — Domain Dossier">
-  <meta property="og:description" content="The Grave of God where death rules the living. The Vampire commands legions of undead from this cursed Brecht realm.">
+  <meta property="og:description" content="The pirate kingdom of the Great Bay. King Ulrich Graben rules a coast of raiders, smugglers, and a dark pact with the Hag of the marshes.">
   <meta property="og:image" content="../brand_assets/brechtur%20800x600.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -43,11 +43,11 @@
     }
 
     [data-theme="dark"] {
-      --bg-primary: #060606;
-      --bg-secondary: #0c0c0c;
-      --bg-elevated: #111111;
-      --bg-surface: #1a1a1a;
-      --bg-card: #0f0f0f;
+      --bg-primary: #1a1d24;
+      --bg-secondary: #1e2128;
+      --bg-elevated: #252830;
+      --bg-surface: #2a2d36;
+      --bg-card: #1e2128;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
       --text-muted: rgba(240, 236, 228, 0.45);
@@ -433,7 +433,53 @@
         opacity: 0.6 !important;
       }
     }
-  </style>
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
 </head>
 
 <body>
@@ -452,7 +498,7 @@
         <a href="../index.html#regions" class="nav-link">Regions</a>
         <a href="../tour.html" class="nav-link">Tour</a>
         <a href="../compendium.html" class="nav-link">Compendium</a>
-        <a href="http://www.birthright.net/forums/showwiki.php?title=Grabentod" class="nav-link">Wiki</a>
+        <a href="../wiki.html?title=Grabentod" class="nav-link">Wiki</a>
         <a href="../index.html#community" class="nav-link">Community</a>
       </div>
 
@@ -479,7 +525,7 @@
       <a href="../bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
       <a href="../index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
       <a href="../tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
-      <a href="http://www.birthright.net/forums/showwiki.php?title=Grabentod" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="../wiki.html?title=Grabentod" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
       <a href="../index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
@@ -491,7 +537,7 @@
   <!-- HERO -->
   <section id="main-content" class="relative flex flex-col items-center justify-end grain overflow-hidden" style="background: var(--bg-primary); min-height: 60vh;">
     <div class="absolute inset-0">
-      <img src="../brand_assets/shadowworld%20800x600.png" data-fallback="../brand_assets/brechtur%20800x600.png" alt="The cursed domain of Grabentod" class="w-full h-full object-cover" style="opacity: 0.5; mix-blend-mode: luminosity;">
+      <img src="../brand_assets/shadowworld%20800x600.png" data-fallback="../brand_assets/brechtur%20800x600.png" alt="The pirate kingdom of Grabentod on the Great Bay" class="w-full h-full object-cover" style="opacity: 0.5; mix-blend-mode: luminosity;">
       <div class="absolute inset-0" style="background: var(--accent); mix-blend-mode: multiply; opacity: 0.2;"></div>
     </div>
     <div class="absolute inset-0" style="background: linear-gradient(to top, var(--bg-primary) 0%, transparent 50%);"></div>
@@ -522,7 +568,7 @@
       </h1>
 
       <p class="anim-fade-up anim-d4 font-body text-lg lg:text-xl max-w-2xl mt-6" style="color: var(--text-secondary); line-height: 1.7;">
-        The Grave of God &mdash; Where Death Rules the Living
+        The Pirate Kingdom of the Great Bay &mdash; Where Brecht Raiders Crown a Returned Exile
       </p>
     </div>
 
@@ -544,23 +590,23 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           <div>
             <span class="typo-label block mb-3" style="color: var(--gold);">Ruler</span>
-            <p class="font-display text-base font-semibold mb-1" style="color: var(--text-primary);">The Vampire (Awnsheghlien)</p>
-            <p class="font-body text-sm" style="color: var(--text-secondary);">Undead, Former Brecht Noble</p>
-            <p class="font-body text-sm mt-1" style="color: var(--text-muted);">Bloodline: Azrai, True, 75+</p>
+            <p class="font-display text-base font-semibold mb-1" style="color: var(--text-primary);">King Ulrich Graben</p>
+            <p class="font-body text-sm" style="color: var(--text-secondary);">Male Brecht (Human), Fighter / Pirate-King</p>
+            <p class="font-body text-sm mt-1" style="color: var(--text-muted);">Bloodline: Azrai, Minor (the Brecht raider line)</p>
           </div>
           <div>
             <span class="typo-label block mb-3" style="color: var(--gold);">Alignment</span>
-            <p class="font-display text-base font-semibold mb-4" style="color: var(--text-primary);">Lawful Evil</p>
+            <p class="font-display text-base font-semibold mb-4" style="color: var(--text-primary);">Chaotic Neutral</p>
             <span class="typo-label block mb-3" style="color: var(--gold);">Capital</span>
-            <p class="font-display text-base font-semibold" style="color: var(--text-primary);">Grabentod</p>
+            <p class="font-display text-base font-semibold" style="color: var(--text-primary);">Darres' End</p>
           </div>
           <div>
             <span class="typo-label block mb-3" style="color: var(--gold);">Allies</span>
-            <p class="font-body text-sm" style="color: var(--text-secondary);">Undead legions, dark creatures</p>
+            <p class="font-body text-sm" style="color: var(--text-secondary);">The Hag (rumoured pact), independent corsair captains</p>
           </div>
           <div>
             <span class="typo-label block mb-3" style="color: var(--accent);">Enemies</span>
-            <p class="font-body text-sm" style="color: var(--text-secondary);"><span style="color: var(--accent);">All living domains</span></p>
+            <p class="font-body text-sm" style="color: var(--text-secondary);"><span style="color: var(--accent);">Drachenward, M&uuml;den, Rheulgard</span> &mdash; every coastal realm raided from the Bay</p>
           </div>
         </div>
         <div class="mt-8 h-1 w-24" style="background: linear-gradient(90deg, var(--accent), var(--gold));"></div>
@@ -582,12 +628,12 @@
             <span aria-hidden="true" style="color: var(--accent);">&#9632;</span>&ensp;Overview
           </span>
           <h2 class="typo-section-head mb-8" style="color: var(--text-primary);">
-            The <span class="word-accent">Grave</span><br>of God
+            The <span class="word-accent">Returned</span><br>King's Coast
           </h2>
           <div class="space-y-6 font-body text-lg" style="color: var(--text-secondary); line-height: 1.7;">
-            <p>Grabentod &mdash; literally "the Grave of God" &mdash; is a cursed domain ruled by the Vampire, one of the most feared Awnsheghlien in Cerilia. Once a prosperous Brecht realm, it has been transformed into a nightmare kingdom where the dead serve their undead master and the living exist only to feed his hunger.</p>
-            <p>The domain's borders are perpetually shrouded in unnatural fog, and travelers who enter rarely leave. The surrounding domains maintain constant vigilance, for the Vampire's ambitions extend far beyond his current borders.</p>
-            <p>Within Grabentod, a mockery of civilization persists. The undead maintain the farms and workshops of the living, going through the motions of life in a horrible pantomime that serves the Vampire's dark sense of order.</p>
+            <p>Grabentod is a Brecht raider principality on the Great Bay &mdash; centuries ago a noble realm of the old Brechtir, now a hard, cold coast where banditry, smuggling, and the corsair's trade pay better than honest work. Ulrich Graben, exiled in his youth, returned with a small fleet and a desperate crew, burned out the resistance in Darres' End and Cooling Bay, and named himself the new king. The Brecht League has refused to recognise him; the rest of the Bay simply tries not to be in his way.</p>
+            <p>The land itself is harsh: the Drachenaur Mountains shelter Grabentod's eastern flank, the inland marshes are unwholesome, and the Burning Forest still smoulders, locals say, on the worst nights of the year &mdash; lit by the funeral fires Ulrich's men set when they took the throne. Ley lines run from these dark places into many of the surrounding regions, which has not gone unnoticed by the wizards of Brechtur.</p>
+            <p>Whatever else is said of him, Ulrich Graben is no awnshegh. He is a Brecht warlord with a pirate's instinct and a king's ambition, and his court at Darres' End is a meeting-place of ship captains, marsh-dwellers, fences, and exiles from every realm on the Bay. There are darker rumours &mdash; the pact with the Hag, the prophecies the marsh-witch knows of, the captain Ulrich keeps but does not name &mdash; and any one of them might be true. None of them are needed to explain why his neighbours fear him.</p>
           </div>
         </div>
         <div class="lg:col-span-4 reveal-right">
@@ -598,22 +644,22 @@
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Government</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Undead Tyranny</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Pirate kingdom (House Graben)</span>
             </div>
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Religion</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">None (all temples destroyed)</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Belinik strong on the coast; little else tolerated</span>
             </div>
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Economy</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Undead labor, plunder</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Raiding, smuggling, tribute, hard fishing</span>
             </div>
 
             <div class="fact-item">
               <span class="typo-label block mb-2" style="color: var(--text-muted);">Military</span>
-              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Undead legions, death knights</span>
+              <span class="font-display text-base font-semibold" style="color: var(--text-primary);">Longships, corsair crews, hard infantry</span>
             </div>
             <div class="mt-8 h-1 w-16" style="background: linear-gradient(90deg, var(--accent), var(--gold));"></div>
           </div>
@@ -647,12 +693,12 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21"/></svg>
             </div>
             <div>
-              <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Vampire</h3>
-              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Lord of Grabentod</span>
+              <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">King Ulrich Graben</h3>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Returned exile, self-crowned</span>
             </div>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            Once a Brecht lord who made a pact with Azrai's shadow. Now an ancient undead horror of terrifying power and cunning intelligence. He remembers everything he was &mdash; and wants everything he lost.
+            Exiled as a young man, Ulrich returned to the coast with a hard fleet and a crew of desperate men, burned out the resistance, and put the crown of his ancestors on his own head. He is a fighter and a sailor before he is a sovereign, and Darres' End knows him as a king who will lead from the prow. He carries the minor Brecht Azrai bloodline of his line &mdash; enough to mark him, not enough to twist him.
           </p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </div>
@@ -663,12 +709,12 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
             </div>
             <div>
-              <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Broken Knight</h3>
-              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Undead General</span>
+              <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Hag of the Marshes</h3>
+              <span class="typo-label" style="color: var(--accent); font-size: 0.7rem;">Rumoured patron &middot; ancient power</span>
             </div>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            A death knight who serves as the Vampire's general, commanding legions of undead soldiers. In life, he was a noble champion. In death, he is a relentless engine of destruction.
+            The marsh-witch detailed in the Blood Enemies tradition. Some say Ulrich made a pact with her in the years of his exile, and that the Hag's hatred of the surrounding realms aligns too neatly with the king's policy for coincidence. She knows prophecies that touch on Grabentod's return, and where her counsel ends and Ulrich's ambition begins is a question no one in Darres' End is foolish enough to ask aloud.
           </p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </div>
@@ -700,10 +746,10 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--accent-dim); border: 1px solid var(--accent);">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--accent);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/></svg>
             </div>
-            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Undead Menace</h3>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Pirate War</h3>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            Grabentod is a wound on the face of Cerilia that refuses to heal. The Vampire's undead legions probe the borders of neighboring domains constantly, and each fallen defender rises to join the enemy's ranks. The threat grows with every battle.
+            Grabentod is a permanent raid on the Great Bay. Ulrich's longships strike at coastal villages, merchant convoys, and unprotected fishing fleets, then vanish back into the marshes and headlands of his coast. Drachenward, M&uuml;den, and Rheulgard each carry the cost &mdash; and yet none of them is willing to bear the cost of a full reckoning.
           </p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--accent), transparent);"></div>
         </div>
@@ -716,7 +762,7 @@
             <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">Border Watch</h3>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            The surrounding domains maintain a constant vigil against Grabentod's expansion. This "Border Watch" drains resources and keeps entire armies tied down in defensive positions, weakening the living realms even when no active attack is underway.
+            The surrounding domains maintain a constant vigil against Grabentod's raids. This Border Watch ties down ships and infantry in defensive postures, weakening the Bay realms even in the seasons when no active strike is underway. Drachenward in particular has found its armies pinned to a war it cannot finish.
           </p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--gold), transparent);"></div>
         </div>
@@ -726,10 +772,10 @@
             <div class="w-10 h-10 flex items-center justify-center" style="background: var(--crimson-dim); border: 1px solid var(--border-hover);">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="color: var(--text-secondary);" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Living Hostages</h3>
+            <h3 class="font-impact text-xl tracking-[0.08em] uppercase" style="color: var(--text-primary);">The Hag's Shadow</h3>
           </div>
           <p class="font-body text-base" style="color: var(--text-secondary); line-height: 1.7;">
-            Perhaps the most horrifying aspect of Grabentod is the living population trapped within its borders. These people are kept alive as a food source for the Vampire and his court, their suffering a constant reproach to the neighboring realms that cannot save them.
+            What gives Grabentod its grim reputation in Brechtir is not the king's army &mdash; it is the suspicion that the king is no longer the senior partner in his own bargain. The Hag of the marshes nurses an old hatred for the realm and may yet collect on it. Even Ulrich's own captains avoid the deep marsh paths after dark.
           </p>
           <div class="mt-6 h-px" style="background: linear-gradient(90deg, var(--border-hover), transparent);"></div>
         </div>
@@ -818,10 +864,10 @@
             <a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
-            <a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+            <a href="/forum" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Grabentod" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+            <a href="../wiki.html?title=Grabentod" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
@@ -834,16 +880,16 @@
             <a href="../regions/brechtur.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Brechtur</a>
             <a href="../bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Bloodlines</a>
             <a href="../tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Tour</a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Grabentod" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../wiki.html?title=Grabentod" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
 
         <div>
           <h4 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h4>
           <div class="flex flex-col gap-3">
-            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="/forum" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
             <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
-            <a href="http://www.birthright.net/forums/showwiki.php?title=Grabentod" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="../wiki.html?title=Grabentod" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
       </div>

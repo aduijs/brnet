@@ -41,11 +41,11 @@
     }
 
     [data-theme="dark"] {
-      --bg-primary: #060606;
-      --bg-secondary: #0c0c0c;
-      --bg-elevated: #111111;
-      --bg-surface: #1a1a1a;
-      --bg-card: #0f0f0f;
+      --bg-primary: #1a1d24;
+      --bg-secondary: #1e2128;
+      --bg-elevated: #252830;
+      --bg-surface: #2a2d36;
+      --bg-card: #1e2128;
       --text-primary: #f0ece4;
       --text-secondary: rgba(240, 236, 228, 0.55);
       --text-muted: rgba(240, 236, 228, 0.45);
@@ -557,7 +557,53 @@
         opacity: 0.6 !important;
       }
     }
-  </style>
+  
+/* === BIRTHRIGHT APEX PATCH START === */
+/* search dropdown must always sit above any subsequent section */
+#search-results { z-index: 9999 !important; box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+.search-result-item { color: var(--text-primary); }
+.search-result-item:hover { color: var(--gold); }
+
+/* Red label readability — was being lost in shadow blur */
+.word-accent { text-shadow: 0 0 18px rgba(255,46,46,0.55), 0 2px 4px rgba(0,0,0,0.6); font-weight: 700; }
+.typo-label { font-weight: 600; }
+[style*="color:var(--accent)"], [style*="color: var(--accent)"] { font-weight: 600; }
+
+/* Wiki-rendered article polish — applies on wiki.html?title=... */
+#wiki-article { font-size: 1rem; line-height: 1.65; }
+#wiki-article p { color: var(--text-secondary); }
+#wiki-article table.wikitable, #wiki-article .infobox {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+#wiki-article table.wikitable th, #wiki-article .infobox th {
+  background: rgba(212,168,67,0.08);
+  color: var(--gold);
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+#wiki-article table.wikitable td, #wiki-article .infobox td {
+  padding: 0.5rem 0.8rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#wiki-article .infobox {
+  float: right;
+  max-width: 280px;
+  margin: 0 0 1.25rem 1.25rem;
+}
+#wiki-article img { border-radius: 3px; }
+#wiki-article ul, #wiki-article ol { color: var(--text-secondary); }
+#wiki-article hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+/* === BIRTHRIGHT APEX PATCH END === */
+</style>
 </head>
 
 <body>
@@ -581,7 +627,7 @@
         <a href="index.html#regions" class="nav-link">Regions</a>
         <a href="tour.html" class="nav-link">Tour</a>
         <a href="compendium.html" class="nav-link">Compendium</a>
-        <a href="http://www.birthright.net/forums/showwiki.php" class="nav-link">Wiki</a>
+        <a href="wiki.html" class="nav-link">Wiki</a><a href="/downloads" class="nav-link">Downloads</a>
         <a href="index.html#community" class="nav-link">Community</a>
       </div>
 
@@ -605,12 +651,13 @@
     <div id="mobileBackdrop" class="mobile-backdrop fixed inset-0 z-30 xl:hidden" style="background: rgba(0,0,0,0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s;"></div>
 
     <!-- Mobile Nav -->
-    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: var(--bg-elevated); border-left: 1px solid var(--border);">
+    <div id="mobileNav" class="mobile-nav fixed inset-y-0 right-0 w-80 z-40 flex flex-col pt-20 px-8 lg:hidden" style="background: #0b0d12; border-left: 1px solid var(--border); box-shadow: -12px 0 30px rgba(0,0,0,0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
       <a href="index.html#world" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">The World</a>
       <a href="bloodlines.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Bloodlines</a>
       <a href="index.html#regions" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Regions</a>
       <a href="tour.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Tour</a>
-      <a href="http://www.birthright.net/forums/showwiki.php" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="wiki.html" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Wiki</a>
+      <a href="/downloads" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Downloads</a>
       <a href="index.html#community" class="mobile-link py-4 font-impact text-lg tracking-[0.15em] uppercase border-b" style="color: var(--text-secondary); border-color: var(--border);">Community</a>
       <a href="https://discord.gg/birthright" class="mt-8 btn-primary justify-center" style="font-size: 0.9rem;">
         <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
@@ -868,7 +915,7 @@
             <div class="px-4 py-3">
               <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Tuornen</div>
               <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Ancient Forest</div>
-              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Gilgaed Fhiele</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Duchess Laela Flaertes</div>
             </div>
           </a>
           <a href="domains/alamie.html" class="codex-card" data-name="Alamie">
@@ -971,7 +1018,7 @@
             <div class="px-4 py-3">
               <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Baruk-Azhik</div>
               <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Dwarven Kingdom</div>
-              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Overthane Grimm</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Overthane Grimm Graybeard II</div>
             </div>
           </a>
           <a href="domains/chimaeron.html" class="codex-card evil-card" data-name="Chimaeron">
@@ -1006,7 +1053,67 @@
             <div class="px-4 py-3">
               <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Sielwode</div>
               <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Elven Forest</div>
-              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Emerald Queen</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Queen Isaelie</div>
+            </div>
+          </a>
+          <a href="domains/tuarhievel.html" class="codex-card" data-name="Tuarhievel">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Tuarhievel</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Thorn Throne</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Prince Fhileraene</div>
+            </div>
+          </a>
+          <a href="domains/the-burrows.html" class="codex-card" data-name="The Burrows">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">The Burrows</div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Halfling Refuge</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Council of Elders</div>
+            </div>
+          </a>
+          <a href="domains/gorgons-crown.html" class="codex-card evil-card" data-name="The Gorgon's Crown">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">The Gorgon's Crown</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Empire of Raesene</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Gorgon (Raesene)</div>
+            </div>
+          </a>
+          <a href="domains/vampires-hold.html" class="codex-card evil-card" data-name="The Vampire's Hold">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">The Vampire's Hold</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Bloodshroud Realm</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Vampire (Britter)</div>
+            </div>
+          </a>
+          <a href="domains/the-hag.html" class="codex-card evil-card" data-name="The Hag's Holding">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">The Hag's Holding</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Sea-Witch's Mire</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Hag</div>
+            </div>
+          </a>
+          <a href="domains/the-magian.html" class="codex-card evil-card" data-name="The Magian">
+            <div class="card-accent"></div>
+            <div class="px-4 py-3">
+              <div class="flex items-center gap-2">
+                <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">The Magian</div>
+                <span class="evil-pill">EVIL</span>
+              </div>
+              <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Tower of the Lost</div>
+              <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Magian</div>
             </div>
           </a>
         </div>
@@ -1070,7 +1177,31 @@
           <div class="px-4 py-3">
             <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Hogunmark</div>
             <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Druid Realm</div>
-            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Emerald Watcher</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Jarl Storm Holtson Freila</div>
+          </div>
+        </a>
+        <a href="domains/hjolvar.html" class="codex-card" data-name="Hjolvar">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Hjolvar</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Uldviik Hold</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Jarl Uldviik</div>
+          </div>
+        </a>
+        <a href="domains/svinik.html" class="codex-card" data-name="Svinik">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Svinik</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Hruthvar Line</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Jarl Hruthvar</div>
+          </div>
+        </a>
+        <a href="domains/jankaping.html" class="codex-card" data-name="Jankaping">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Jankaping</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Alnor Holds</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Jarl Alnor</div>
           </div>
         </a>
       </div>
@@ -1098,7 +1229,7 @@
           <div class="px-4 py-3">
             <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Khourane</div>
             <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Jewel of the South</div>
-            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Sultan el-Hadid</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Emir Farid el-Mashil</div>
           </div>
         </a>
         <a href="domains/ariya.html" class="codex-card" data-name="Ariya">
@@ -1114,7 +1245,7 @@
           <div class="px-4 py-3">
             <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Mairada</div>
             <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">City of Magic</div>
-            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Archmage Kalilah</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Archmage Kalilah el-Mair</div>
           </div>
         </a>
         <a href="domains/binsada.html" class="codex-card" data-name="Binsada">
@@ -1122,7 +1253,7 @@
           <div class="px-4 py-3">
             <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Binsada</div>
             <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Sacred Land</div>
-            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">High Priestess Laera</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">High Priestess Laera el-Reshid</div>
           </div>
         </a>
         <a href="domains/sendoure.html" class="codex-card" data-name="Sendoure">
@@ -1130,7 +1261,58 @@
           <div class="px-4 py-3">
             <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Sendoure</div>
             <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Crossroads</div>
-            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Prince-Merchant Farouk</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Emir Beysim el-Duatim</div>
+          </div>
+        </a>
+        <a href="domains/aftane.html" class="codex-card evil-card" data-name="Aftane">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="flex items-center gap-2">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Aftane</div>
+              <span class="evil-pill">EVIL</span>
+            </div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Red Kings</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Red Kings dynasty</div>
+          </div>
+        </a>
+        <a href="domains/mesire.html" class="codex-card" data-name="Mesire">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Mesire</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Citadel of Memory</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Yousuf el-Mesir</div>
+          </div>
+        </a>
+        <a href="domains/suiriene.html" class="codex-card" data-name="Suiriene">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Suiriene</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Old Lands</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Buired Family</div>
+          </div>
+        </a>
+        <a href="domains/zikala.html" class="codex-card" data-name="Zikala">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Zikala</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Sunrise Realm</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">el-Zisef Family</div>
+          </div>
+        </a>
+        <a href="domains/djafra.html" class="codex-card" data-name="Djafra">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Djafra</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Fiery Dawn</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">el-Djafara Family</div>
+          </div>
+        </a>
+        <a href="domains/pipryet.html" class="codex-card" data-name="Pipryet">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Pipryet</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Island Holding</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Council of Elders</div>
           </div>
         </a>
       </div>
@@ -1176,8 +1358,8 @@
               <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Grabentod</div>
               <span class="evil-pill">EVIL</span>
             </div>
-            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Grave of God</div>
-            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Vampire</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Pirate Kingdom of the Bay</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">King Ulrich Graben</div>
           </div>
         </a>
         <a href="domains/rheulgard.html" class="codex-card" data-name="Rheulgard">
@@ -1194,6 +1376,41 @@
             <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Treucht</div>
             <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Free City</div>
             <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Council of Guilds</div>
+          </div>
+        </a>
+        <a href="domains/berhagen.html" class="codex-card" data-name="Berhagen">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Berhagen</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Mountain Cornerstone</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Baron Ludwig von Schaeffen</div>
+          </div>
+        </a>
+        <a href="domains/rohrmarch.html" class="codex-card" data-name="Rohrmarch">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Rohrmarch</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Refugee Kingdom</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">King Alaric I</div>
+          </div>
+        </a>
+        <a href="domains/massenmarch.html" class="codex-card" data-name="Massenmarch">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Massenmarch</div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">The Swordhawk's Realm</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">The Swordhawk</div>
+          </div>
+        </a>
+        <a href="domains/kiergard.html" class="codex-card evil-card" data-name="Kiergard">
+          <div class="card-accent"></div>
+          <div class="px-4 py-3">
+            <div class="flex items-center gap-2">
+              <div class="font-impact text-[1.2rem] tracking-wide uppercase" style="color: var(--text-primary);">Kiergard</div>
+              <span class="evil-pill">EVIL</span>
+            </div>
+            <div class="font-body italic text-[0.85rem]" style="color: var(--text-muted);">Vassal of the Gorgon</div>
+            <div class="font-body text-[0.8rem] mt-1" style="color: var(--text-secondary);">Gorgon-installed vassal</div>
           </div>
         </a>
       </div>
@@ -1525,10 +1742,10 @@
             <a href="https://discord.gg/birthright" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Discord">
               <svg aria-hidden="true" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.618-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.099.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.076.076 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.031-.056c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.028z"/></svg>
             </a>
-            <a href="https://forum.birthright.net" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
+            <a href="/forum" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Forum">
               <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
             </a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
+            <a href="wiki.html" class="social-icon w-9 h-9 flex items-center justify-center transition-colors" style="border: 1px solid var(--border); color: var(--text-muted);" aria-label="Wiki">
               <svg aria-hidden="true" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
             </a>
           </div>
@@ -1542,7 +1759,7 @@
             <a href="index.html#regions" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Regions</a>
             <a href="bloodlines.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Bloodlines</a>
             <a href="tour.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Tour</a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="wiki.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
 
@@ -1550,9 +1767,9 @@
         <div>
           <h2 class="font-impact text-base tracking-widest uppercase mb-6" style="color: var(--text-primary);">Community</h2>
           <div class="flex flex-col gap-3">
-            <a href="https://forum.birthright.net" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
+            <a href="/forum" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Forum</a>
             <a href="https://discord.gg/birthright" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Discord</a>
-            <a href="http://www.birthright.net/forums/showwiki.php" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
+            <a href="wiki.html" class="font-body text-base hover:text-[var(--gold)] transition-colors" style="color: var(--text-muted);">Wiki</a>
           </div>
         </div>
       </div>
@@ -1712,6 +1929,7 @@
     // === SEARCH FILTER ===
     const searchInput = document.getElementById('searchInput');
     const allCards = document.querySelectorAll('.codex-card');
+    const dividerWraps = document.querySelectorAll('.divider-wrap');
 
     searchInput.addEventListener('input', () => {
       const query = searchInput.value.toLowerCase().trim();
@@ -1761,6 +1979,15 @@
       sections.forEach(section => {
         const visibleCards = section.querySelectorAll('.codex-card:not([style*="display: none"])');
         section.style.display = visibleCards.length === 0 ? 'none' : '';
+      });
+
+      // Hide dividers between hidden sections
+      dividerWraps.forEach(d => {
+        const prev = d.previousElementSibling;
+        const next = d.nextElementSibling;
+        const prevHidden = prev && prev.style.display === 'none';
+        const nextHidden = next && next.style.display === 'none';
+        d.style.display = (prevHidden || nextHidden) ? 'none' : '';
       });
     });
   </script>
