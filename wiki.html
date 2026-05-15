@@ -229,10 +229,11 @@
           <p id="wiki-results-loading" class="wiki-results-status hidden">Searching wiki&hellip;</p>
           <p id="wiki-results-empty" class="wiki-results-status">Type at least 2 characters in the search bar to begin.</p>
         </div>
-        <div id="error-state" class="text-center py-20 hidden">
-          <p class="font-impact text-4xl tracking-wide uppercase mb-4" style="color:var(--accent);">Article Not Found</p>
-          <p id="error-message" class="font-body text-lg" style="color:var(--text-muted);"></p>
-          <a id="error-create-link" href="#" target="_blank" class="btn-ghost mt-6 inline-flex" style="font-size:0.9rem;">Create this article &rarr;</a>
+        <div id="error-state" class="wiki-empty-state text-center py-20 hidden">
+          <p id="error-message" class="font-body text-lg mb-8" style="color:var(--text-muted); line-height:1.65;">Nothing matched your search.</p>
+          <a href="/domains/tuornen.html" id="random-domain-link" class="wiki-empty-cta btn-ghost inline-flex" style="font-size:0.9rem;">
+            Try a Random Domain &rarr;
+          </a>
         </div>
         <div id="article-body" class="hidden"></div>
       </div>
@@ -287,7 +288,17 @@
     const editLink=document.getElementById('edit-link');
     const categoriesEl=document.getElementById('article-categories');
     const errorMsg=document.getElementById('error-message');
-    const errorCreate=document.getElementById('error-create-link');
+    const randomDomainLink=document.getElementById('random-domain-link');
+
+    /* ── Random domain rotation (panel audit P0 #3, 2026-05-15) ── */
+    const randomDomains=['tuornen','mhoried','boeruine','avanil','diemed','alamie','ghoere','roesone','endier','talinie','medoere','ilien','aerenwe','coeranys','dhoesone'];
+    function pickRandomDomain(){
+      if(!randomDomainLink)return;
+      const slug=randomDomains[Math.floor(Math.random()*randomDomains.length)];
+      randomDomainLink.href='/domains/'+slug+'.html';
+      randomDomainLink.textContent='Try '+slug.charAt(0).toUpperCase()+slug.slice(1)+' →';
+    }
+    pickRandomDomain();
 
     function showState(state){
       loadingState.classList.add('hidden');
@@ -393,15 +404,14 @@
             showState('article');
             window.scrollTo({top:0,behavior:'smooth'});
           }else{
-            const displayTitle=title.replace(/_/g,' ');
-            errorMsg.textContent='The article "'+displayTitle+'" does not exist yet.';
-            errorCreate.href='/wiki/index.php?title='+encodeURIComponent(title)+'&action=edit';
+            errorMsg.textContent='Nothing matched your search.';
+            pickRandomDomain();
             showState('error');
           }
         })
         .catch(()=>{
           errorMsg.textContent='Could not connect to the wiki. Try again later.';
-          errorCreate.classList.add('hidden');
+          pickRandomDomain();
           showState('error');
         });
     }
